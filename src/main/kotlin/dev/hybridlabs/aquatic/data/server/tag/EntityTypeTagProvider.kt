@@ -10,7 +10,7 @@ import java.util.concurrent.CompletableFuture
 
 class EntityTypeTagProvider(output: FabricDataOutput, registriesFuture: CompletableFuture<RegistryWrapper.WrapperLookup>) : FabricTagProvider.EntityTypeTagProvider(output, registriesFuture) {
     override fun configure(arg: RegistryWrapper.WrapperLookup) {
-        // prey source
+        // small preys
         getOrCreateTagBuilder(HybridAquaticEntityTags.SMALL_PREY)
             .add(
                 HybridAquaticEntityTypes.CLOWNFISH,
@@ -33,6 +33,7 @@ class EntityTypeTagProvider(output: FabricDataOutput, registriesFuture: Completa
                 EntityType.TROPICAL_FISH
             )
 
+        // medium preys
         getOrCreateTagBuilder(HybridAquaticEntityTags.MEDIUM_PREY)
             .add(
                 HybridAquaticEntityTypes.RATFISH,
@@ -48,6 +49,7 @@ class EntityTypeTagProvider(output: FabricDataOutput, registriesFuture: Completa
                 EntityType.GLOW_SQUID
             )
 
+        // large preys
         getOrCreateTagBuilder(HybridAquaticEntityTags.LARGE_PREY)
             .add(
                 HybridAquaticEntityTypes.SUNFISH,
@@ -58,6 +60,7 @@ class EntityTypeTagProvider(output: FabricDataOutput, registriesFuture: Completa
                 EntityType.TURTLE,
             )
 
+        // crustaceans
         getOrCreateTagBuilder(HybridAquaticEntityTags.CRUSTACEAN)
             .add(
                 HybridAquaticEntityTypes.COCONUT_CRAB,
@@ -78,6 +81,7 @@ class EntityTypeTagProvider(output: FabricDataOutput, registriesFuture: Completa
                 HybridAquaticEntityTypes.YETI_CRAB,
             )
 
+        // Cephalopods
         getOrCreateTagBuilder(HybridAquaticEntityTags.CEPHALOPOD)
             .add(
                 HybridAquaticEntityTypes.CUTTLEFISH,
@@ -104,7 +108,6 @@ class EntityTypeTagProvider(output: FabricDataOutput, registriesFuture: Completa
             )
 
         // critters
-
         getOrCreateTagBuilder(HybridAquaticEntityTags.CRITTER)
             .add(
                 HybridAquaticEntityTypes.NUDIBRANCH,
@@ -128,5 +131,16 @@ class EntityTypeTagProvider(output: FabricDataOutput, registriesFuture: Completa
                 HybridAquaticEntityTypes.NOMURA_JELLYFISH,
                 HybridAquaticEntityTypes.SEA_NETTLE,
             )
+
+        // fishes
+        getOrCreateTagBuilder(HybridAquaticEntityTags.FISH)
+        // TODO: add all the fishes here
+
+        // entities that you can catch with the fishing net
+        getOrCreateTagBuilder(HybridAquaticEntityTags.CAN_USE_FISHING_NET_ON)
+            .addTag(HybridAquaticEntityTags.JELLYFISH)
+            .addTag(HybridAquaticEntityTags.CRITTER)
+            .addTag(HybridAquaticEntityTags.CRUSTACEAN)
+            .addTag(HybridAquaticEntityTags.FISH)
     }
 }

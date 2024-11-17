@@ -18,7 +18,7 @@ import java.util.*
 class FishingNetItem(settings: Settings?): Item(settings) {
 
     override fun useOnEntity(stack: ItemStack, user: PlayerEntity, entity: LivingEntity, hand: Hand): ActionResult {
-        val validFishForNet = entity.type.isIn(HybridAquaticEntityTags.JELLYFISH) || entity.type.isIn(HybridAquaticEntityTags.CRITTER) || entity.type.isIn(HybridAquaticEntityTags.CRUSTACEAN) || entity.type.isIn(HybridAquaticEntityTags.FISH)
+        val validFishForNet = entity.type.isIn(HybridAquaticEntityTags.CAN_USE_FISHING_NET_ON)
 
         if (!alreadyHasFish(stack) && validFishForNet) {
             writeEntityToNet(entity, user, hand)
