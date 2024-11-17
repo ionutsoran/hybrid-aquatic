@@ -4,6 +4,7 @@ import dev.hybridlabs.aquatic.entity.ai.goal.FishJumpGoal
 import dev.hybridlabs.aquatic.tag.HybridAquaticBiomeTags
 import dev.hybridlabs.aquatic.tag.HybridAquaticEntityTags
 import net.minecraft.entity.EntityType
+import net.minecraft.entity.ai.goal.BreatheAirGoal
 import net.minecraft.entity.attribute.DefaultAttributeContainer
 import net.minecraft.entity.attribute.EntityAttributes
 import net.minecraft.entity.mob.WaterCreatureEntity
@@ -28,6 +29,7 @@ class TunaEntity(entityType: EntityType<out TunaEntity>, world: World) :
 
     override fun initGoals() {
         super.initGoals()
+        goalSelector.add(2, BreatheAirGoal(this))
         goalSelector.add(5, FishJumpGoal(this, 10))
     }
 

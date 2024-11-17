@@ -4,6 +4,7 @@ import dev.hybridlabs.aquatic.entity.ai.goal.FishJumpGoal
 import dev.hybridlabs.aquatic.tag.HybridAquaticBiomeTags
 import dev.hybridlabs.aquatic.tag.HybridAquaticEntityTags
 import net.minecraft.entity.EntityType
+import net.minecraft.entity.ai.goal.BreatheAirGoal
 import net.minecraft.entity.attribute.DefaultAttributeContainer
 import net.minecraft.entity.attribute.EntityAttributes
 import net.minecraft.entity.mob.WaterCreatureEntity
@@ -25,8 +26,10 @@ class MahiEntity(entityType: EntityType<out MahiEntity>, world: World) :
     override fun getLimitPerChunk(): Int {
         return 2
     }
+
     override fun initGoals() {
         super.initGoals()
+        goalSelector.add(2, BreatheAirGoal(this))
         goalSelector.add(5, FishJumpGoal(this, 10))
     }
 
