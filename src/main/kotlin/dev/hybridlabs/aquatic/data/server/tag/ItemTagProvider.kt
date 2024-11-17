@@ -85,6 +85,7 @@ class ItemTagProvider(output: FabricDataOutput, registriesFuture: CompletableFut
 
         listOf(
             HybridAquaticItems.KOI,
+            HybridAquaticItems.CARP,
             HybridAquaticItems.GOLDFISH,
             HybridAquaticItems.DRAGONFISH,
             HybridAquaticItems.PIRANHA,

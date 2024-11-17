@@ -127,6 +127,7 @@ object  HybridAquaticItemGroups {
             entries.add(HybridAquaticItems.PIRANHA)
             entries.add(HybridAquaticItems.GOLDFISH)
             entries.add(HybridAquaticItems.KOI)
+            entries.add(HybridAquaticItems.CARP)
             entries.add(HybridAquaticItems.ANGLERFISH)
             entries.add(HybridAquaticItems.BARRELEYE)
             entries.add(HybridAquaticItems.DRAGONFISH)

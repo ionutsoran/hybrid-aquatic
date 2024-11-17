@@ -608,6 +608,15 @@ class GenericLootTableProvider(output: FabricDataOutput) : SimpleFabricLootTable
         )
 
         exporter.accept(
+            HybridAquaticLootTables.CARP,
+            LootTable.builder()
+                .pool(
+                    LootPool.builder()
+                        .with(ItemEntry.builder(HybridAquaticItems.CARP))
+                )
+        )
+
+        exporter.accept(
             HybridAquaticLootTables.PARROTFISH,
             LootTable.builder()
                 .pool(

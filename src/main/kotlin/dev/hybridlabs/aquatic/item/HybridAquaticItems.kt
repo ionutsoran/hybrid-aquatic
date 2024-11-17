@@ -617,6 +617,19 @@ object HybridAquaticItems {
         )
     )
 
+    val CARP = register("carp",
+        Item(
+            FabricItemSettings()
+                .food(
+                    FoodComponent.Builder()
+                        .hunger(1)
+                        .saturationModifier(0.2F)
+                        .meat()
+                        .build()
+                )
+        )
+    )
+
     val GOLDFISH = register("goldfish",
         Item(
             FabricItemSettings()
