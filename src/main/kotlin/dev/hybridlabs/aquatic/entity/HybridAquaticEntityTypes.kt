@@ -32,6 +32,13 @@ object HybridAquaticEntityTypes {
         AfricanButterflyEntity.createMobAttributes()
     )
 
+    val FLYING_FISH = registerFish(
+        "flying_fish",
+        ::FlyingFishEntity,
+        EntityDimensions.fixed(0.25f, 0.2f),
+        FlyingFishEntity.createMobAttributes()
+    )
+
     val ANGLERFISH = registerFishUnderground(
         "anglerfish",
         ::AnglerfishEntity,

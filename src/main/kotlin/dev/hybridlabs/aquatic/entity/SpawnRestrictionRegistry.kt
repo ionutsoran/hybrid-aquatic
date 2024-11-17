@@ -24,6 +24,7 @@ object SpawnRestrictionRegistry {
         // fish
         setOf(
             HybridAquaticEntityTypes.AFRICAN_BUTTERFLY,
+            HybridAquaticEntityTypes.FLYING_FISH,
             HybridAquaticEntityTypes.CLOWNFISH,
             HybridAquaticEntityTypes.TUNA,
             HybridAquaticEntityTypes.MAHI,
