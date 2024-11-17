@@ -1,11 +1,11 @@
 {
   "replace": false,
   "values": [
-    "hybrid-aquatic:vampire_squid",
-    "hybrid-aquatic:firefly_squid",
     "hybrid-aquatic:cuttlefish",
+    "hybrid-aquatic:firefly_squid",
     "hybrid-aquatic:glowing_sucker_octopus",
+    "hybrid-aquatic:nautilus",
     "hybrid-aquatic:umbrella_octopus",
-    "hybrid-aquatic:nautilus"
+    "hybrid-aquatic:vampire_squid"
   ]
 }

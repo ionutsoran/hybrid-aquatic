@@ -60,28 +60,31 @@ class EntityTypeTagProvider(output: FabricDataOutput, registriesFuture: Completa
         getOrCreateTagBuilder(HybridAquaticEntityTags.CRUSTACEAN)
             .add(
                 HybridAquaticEntityTypes.COCONUT_CRAB,
+                HybridAquaticEntityTypes.CRAYFISH,
+                HybridAquaticEntityTypes.DECORATOR_CRAB,
                 HybridAquaticEntityTypes.DUNGENESS_CRAB,
                 HybridAquaticEntityTypes.FIDDLER_CRAB,
                 HybridAquaticEntityTypes.FLOWER_CRAB,
                 HybridAquaticEntityTypes.GHOST_CRAB,
+                HybridAquaticEntityTypes.GIANT_ISOPOD,
                 HybridAquaticEntityTypes.HERMIT_CRAB,
                 HybridAquaticEntityTypes.HORSESHOE_CRAB,
                 HybridAquaticEntityTypes.LIGHTFOOT_CRAB,
+                HybridAquaticEntityTypes.LOBSTER,
+                HybridAquaticEntityTypes.SHRIMP,
                 HybridAquaticEntityTypes.SPIDER_CRAB,
                 HybridAquaticEntityTypes.VAMPIRE_CRAB,
-                HybridAquaticEntityTypes.GIANT_ISOPOD,
                 HybridAquaticEntityTypes.YETI_CRAB,
-                HybridAquaticEntityTypes.DECORATOR_CRAB,
             )
 
         getOrCreateTagBuilder(HybridAquaticEntityTags.CEPHALOPOD)
             .add(
-                HybridAquaticEntityTypes.VAMPIRE_SQUID,
-                HybridAquaticEntityTypes.FIREFLY_SQUID,
                 HybridAquaticEntityTypes.CUTTLEFISH,
+                HybridAquaticEntityTypes.FIREFLY_SQUID,
                 HybridAquaticEntityTypes.GLOWING_SUCKER_OCTOPUS,
-                HybridAquaticEntityTypes.UMBRELLA_OCTOPUS,
                 HybridAquaticEntityTypes.NAUTILUS,
+                HybridAquaticEntityTypes.UMBRELLA_OCTOPUS,
+                HybridAquaticEntityTypes.VAMPIRE_SQUID,
             )
 
         getOrCreateTagBuilder(HybridAquaticEntityTags.NONE)
