@@ -9,7 +9,7 @@ import net.minecraft.util.Identifier
 import net.minecraft.world.World
 
 class DecoratorCrabEntity(entityType: EntityType<out HybridAquaticCrustaceanEntity>, world: World) :
-    HybridAquaticCrustaceanEntity(entityType, world, variants = hashMapOf(
+    HybridAquaticCrustaceanEntity(entityType, world, true, false, variants = hashMapOf(
         "fire" to CrustaceanVariant.biomeVariant("fire", HybridAquaticBiomeTags.REEF,
             ignore = listOf(CrustaceanVariant.Ignore.MODEL, CrustaceanVariant.Ignore.ANIMATION)),
         "tube" to CrustaceanVariant.biomeVariant("tube", HybridAquaticBiomeTags.REEF,

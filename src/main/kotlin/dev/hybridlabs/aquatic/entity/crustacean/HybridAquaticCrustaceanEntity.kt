@@ -17,6 +17,7 @@ import net.minecraft.entity.ai.goal.LookAroundGoal
 import net.minecraft.entity.ai.goal.TemptGoal
 import net.minecraft.entity.ai.goal.WanderAroundGoal
 import net.minecraft.entity.ai.pathing.EntityNavigation
+import net.minecraft.entity.ai.pathing.PathNodeType
 import net.minecraft.entity.damage.DamageSource
 import net.minecraft.entity.data.DataTracker
 import net.minecraft.entity.data.TrackedData
@@ -41,6 +42,8 @@ import software.bernie.geckolib.util.GeckoLibUtil
 open class HybridAquaticCrustaceanEntity(
     type: EntityType<out HybridAquaticCrustaceanEntity>,
     world: World,
+    isAquatic: Boolean,
+    isTerrestrial: Boolean,
     private val variants: Map<String, CrustaceanVariant> = mutableMapOf(),
     open val assumeDefault: Boolean = false,
     open val collisionRules: List<HybridAquaticFishEntity.VariantCollisionRules> = listOf(),
@@ -143,14 +146,21 @@ open class HybridAquaticCrustaceanEntity(
     }
 
     // region movement
-   init {
+    init {
+        if (isAquatic) {
+            setPathfindingPenalty(PathNodeType.WATER, 0.0f)
+            setPathfindingPenalty(PathNodeType.WALKABLE, 10.0f)
+        } else if (isTerrestrial) {
+            setPathfindingPenalty(PathNodeType.WATER, 10.0f)
+            setPathfindingPenalty(PathNodeType.WALKABLE, 0.0f)
+        } else {
+            setPathfindingPenalty(PathNodeType.WATER, 0.0f)
+            setPathfindingPenalty(PathNodeType.WALKABLE, 0.0f)
+        }
+
         moveControl = MoveControl(this)
         navigation = this.landNavigation
         stepHeight = 1.0F
-    }
-
-    override fun getPathfindingFavor(pos: BlockPos?, world: WorldView?): Float {
-        return 0.0f
     }
 
     override fun hasNoDrag(): Boolean {
@@ -164,7 +174,7 @@ open class HybridAquaticCrustaceanEntity(
     // end region
 
     override fun getGroup(): EntityGroup? {
-        return EntityGroup.ARTHROPOD
+        return EntityGroup.AQUATIC
     }
 
     protected open fun getMinSize(): Int {
@@ -198,11 +208,7 @@ open class HybridAquaticCrustaceanEntity(
     // region sounds
 
     override fun calculateNextStepSoundDistance(): Float {
-        return this.distanceTraveled + 0.5f
-    }
-
-    override fun getMinAmbientSoundDelay(): Int {
-        return 200
+        return this.distanceTraveled + 0.25f
     }
 
     override fun getHurtSound(source: DamageSource): SoundEvent {
@@ -213,18 +219,16 @@ open class HybridAquaticCrustaceanEntity(
         return SoundEvents.ENTITY_TURTLE_EGG_BREAK
     }
 
-    override fun getAmbientSound(): SoundEvent {
-        return SoundEvents.ENTITY_COD_AMBIENT
-    }
-
     // endregion
 
     // region water breathing
+
     override fun canBreatheInWater(): Boolean {
         return true
     }
 
-    override fun tickWaterBreathingAir(air: Int) {}
+    override fun tickWaterBreathingAir(air: Int) {
+    }
 
     // endregion
 
@@ -251,7 +255,7 @@ open class HybridAquaticCrustaceanEntity(
         controllerRegistrar.add(
             AnimationController(
                 this,
-                "Swim/Idle",
+                "Walk/Idle",
                 20
             ) { state: AnimationState<HybridAquaticCrustaceanEntity> ->
                 if (state.isMoving) {
@@ -276,7 +280,7 @@ open class HybridAquaticCrustaceanEntity(
             pos: BlockPos,
             random: Random?
         ): Boolean {
-            val topY = world.seaLevel + 6
+            val topY = world.seaLevel + 3
             val bottomY = world.seaLevel - 48
 
             return pos.y in bottomY..topY &&
@@ -355,7 +359,6 @@ open class HybridAquaticCrustaceanEntity(
 
         fun weightedDistribution(weights: Set<Pair<String, Double>>, status: ExclusionStatus = ExclusionStatus.EXCLUSIVE) : VariantCollisionRules {
             return VariantCollisionRules(weights.map { pair -> pair.first }.toSet(), { _, random, _ ->
-                // sum up weights
                 val weightTotal = weights.sumOf { pair -> pair.second }
                 val randomVal = random.nextFloat() * weightTotal
                 var accumulatedWeight = 0.0

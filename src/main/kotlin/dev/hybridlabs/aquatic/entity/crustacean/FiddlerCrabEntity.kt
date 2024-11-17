@@ -8,7 +8,7 @@ import net.minecraft.entity.mob.WaterCreatureEntity
 import net.minecraft.world.World
 
 class FiddlerCrabEntity(entityType: EntityType<out HybridAquaticCrustaceanEntity>, world: World) :
-    HybridAquaticCrustaceanEntity(entityType, world, variants = hashMapOf(
+    HybridAquaticCrustaceanEntity(entityType, world, false, false, variants = hashMapOf(
         "blue" to CrustaceanVariant.biomeVariant("blue", HybridAquaticBiomeTags.SWAMP,
             ignore = listOf(CrustaceanVariant.Ignore.MODEL, CrustaceanVariant.Ignore.ANIMATION)),
         "red" to CrustaceanVariant.biomeVariant("red", HybridAquaticBiomeTags.SWAMP,
