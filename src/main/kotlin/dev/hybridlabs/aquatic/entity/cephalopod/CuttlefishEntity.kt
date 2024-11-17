@@ -28,7 +28,7 @@ class CuttlefishEntity(entityType: EntityType<out CuttlefishEntity>, world: Worl
 
         if (this.isSprinting) {
             sprintCounter++
-            if (sprintCounter >= 5) {
+            if (sprintCounter >= 10) {
                 randomValue = if (randomValue == 3) 4 else 3
                 sprintCounter = 0
             }
