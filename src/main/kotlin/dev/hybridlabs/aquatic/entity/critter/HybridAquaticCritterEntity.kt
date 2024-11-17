@@ -11,6 +11,7 @@ import net.minecraft.entity.ai.goal.LookAroundGoal
 import net.minecraft.entity.ai.goal.MoveIntoWaterGoal
 import net.minecraft.entity.ai.goal.WanderAroundGoal
 import net.minecraft.entity.ai.pathing.EntityNavigation
+import net.minecraft.entity.ai.pathing.PathNodeType
 import net.minecraft.entity.ai.pathing.SpiderNavigation
 import net.minecraft.entity.damage.DamageSource
 import net.minecraft.entity.data.DataTracker
@@ -49,6 +50,8 @@ open class HybridAquaticCritterEntity(
 
     init {
         stepHeight = 1.0F
+        setPathfindingPenalty(PathNodeType.WATER, 0.0f)
+        setPathfindingPenalty(PathNodeType.WALKABLE, 10.0f)
         moveControl = MoveControl(this)
         navigation = this.landNavigation
     }
