@@ -1,19 +1,13 @@
 package dev.hybridlabs.aquatic.entity.fish
 
-import dev.hybridlabs.aquatic.effect.HybridAquaticStatusEffects
 import dev.hybridlabs.aquatic.entity.ai.goal.FishJumpGoal
 import dev.hybridlabs.aquatic.tag.HybridAquaticEntityTags
-import net.minecraft.entity.Entity
 import net.minecraft.entity.EntityType
-import net.minecraft.entity.LivingEntity
-import net.minecraft.entity.ai.goal.ActiveTargetGoal
-import net.minecraft.entity.ai.goal.DolphinJumpGoal
-import net.minecraft.entity.ai.goal.RevengeGoal
+import net.minecraft.entity.ai.goal.BreatheAirGoal
 import net.minecraft.entity.attribute.DefaultAttributeContainer
 import net.minecraft.entity.attribute.EntityAttributes
-import net.minecraft.entity.effect.StatusEffectInstance
 import net.minecraft.entity.mob.WaterCreatureEntity
-import net.minecraft.world.Difficulty
+import net.minecraft.util.math.Vec3d
 import net.minecraft.world.World
 
 class AfricanButterflyEntity(entityType: EntityType<out AfricanButterflyEntity>, world: World) :
@@ -24,22 +18,58 @@ class AfricanButterflyEntity(entityType: EntityType<out AfricanButterflyEntity>,
             HybridAquaticEntityTags.LARGE_PREY,
             HybridAquaticEntityTags.SHARK)) {
 
+    private var isGliding = false
+
     override fun getLimitPerChunk(): Int {
         return 1
+    }
+
+    override fun initGoals() {
+        super.initGoals()
+        goalSelector.add(2, BreatheAirGoal(this))
+        targetSelector.add(5, FishJumpGoal(this, 10))
+    }
+
+    override fun tick() {
+        super.tick()
+
+        if (!this.isTouchingWater && !isOnGround) {
+            if (!isGliding) {
+                startGliding()
+            }
+            applyGlidingPhysics()
+        } else if (isGliding) {
+            stopGliding()
+        }
+    }
+
+    private fun startGliding() {
+        isGliding = true
+    }
+
+    private fun stopGliding() {
+        isGliding = false
+    }
+
+    private fun applyGlidingPhysics() {
+        if (!isGliding) return
+
+        val motion = this.velocity
+        val newMotion = Vec3d(
+            motion.x * 1.1,
+            (motion.y * 0.95).coerceAtLeast(-0.1),
+            motion.z * 1.1
+        )
+        this.velocity = newMotion
     }
 
     companion object {
         fun createMobAttributes(): DefaultAttributeContainer.Builder {
             return WaterCreatureEntity.createMobAttributes()
                 .add(EntityAttributes.GENERIC_MAX_HEALTH, 2.0)
-                .add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.7)
+                .add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.6)
                 .add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 1.0)
                 .add(EntityAttributes.GENERIC_FOLLOW_RANGE, 8.0)
         }
-    }
-
-    override fun initGoals() {
-        super.initGoals()
-        targetSelector.add(1, FishJumpGoal(this, 10))
     }
 }
