@@ -48,6 +48,7 @@ class NudibranchEntity(entityType: EntityType<out NudibranchEntity>, world: Worl
         }
         return PlayState.CONTINUE
     }
+
     override fun getMaxSize() : Int {
         return 5
     }

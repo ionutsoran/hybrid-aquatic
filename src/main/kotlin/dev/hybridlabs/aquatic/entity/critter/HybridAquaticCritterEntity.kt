@@ -345,12 +345,6 @@ open class HybridAquaticCritterEntity(
 
     @Suppress("UNUSED")
     data class VariantCollisionRules(val variants : Set<String>, val collisionHandler: (Set<String>, Random, ServerWorldAccess) -> String, val exclusionStatus: ExclusionStatus = INCLUSIVE) {
-
-        /**
-         * INCLUSIVE - all other variants can exist within this selection swath
-         * <pre> </pre>
-         * EXCLUSIVE - all other variants are excluded from this selection swath
-         */
         enum class ExclusionStatus {
             INCLUSIVE,
             EXCLUSIVE
@@ -364,7 +358,6 @@ open class HybridAquaticCritterEntity(
 
         fun weightedDistribution(weights: Set<Pair<String, Double>>, status: ExclusionStatus = EXCLUSIVE) : VariantCollisionRules {
             return VariantCollisionRules(weights.map { pair -> pair.first }.toSet(), { _, random, _ ->
-                // sum up weights
                 val weightTotal = weights.sumOf { pair -> pair.second }
                 val randomVal = random.nextFloat() * weightTotal
                 var accumulatedWeight = 0.0
