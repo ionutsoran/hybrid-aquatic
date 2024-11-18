@@ -59,32 +59,29 @@ class HydrothermalVentFeature(codec: Codec<HydrothermalVentFeatureConfig>?) :
         if (!isValidBasePosition(world, currentPos)) return false
 
         val baseThickness = 1 + random.nextInt(3)
-        for (i in 0 until baseThickness) {
+        repeat(baseThickness) {
             world.setBlockState(currentPos, Blocks.DRIPSTONE_BLOCK.defaultState, 2)
             currentPos = currentPos.up()
         }
 
-        val maxVentHeight = 5
-        val minVentHeight = 2
-        val ventHeight = max(
-            minVentHeight,
-            (minVentHeight + (maxVentHeight - minVentHeight) * heightMultiplier).toInt()
-        )
+        val ventHeight = calculateVentHeight(heightMultiplier)
 
-        for (i in 0 until ventHeight) {
+        repeat(ventHeight) {
             if (world.getBlockState(currentPos).isOf(Blocks.WATER)) {
                 world.setBlockState(currentPos, HybridAquaticBlocks.HYDROTHERMAL_VENT.defaultState, 2)
                 currentPos = currentPos.up()
             } else {
-                break
+                return false
             }
         }
 
-        if (world.getBlockState(currentPos).isOf(Blocks.WATER)) {
-            world.setBlockState(currentPos, HybridAquaticBlocks.HYDROTHERMAL_VENT.defaultState, 2)
-        }
-
         return true
+    }
+
+    private fun calculateVentHeight(heightMultiplier: Double): Int {
+        val maxVentHeight = 5
+        val minVentHeight = 2
+        return max(minVentHeight, (minVentHeight + (maxVentHeight - minVentHeight) * heightMultiplier).toInt())
     }
 
     private fun generateFireCoralPatches(

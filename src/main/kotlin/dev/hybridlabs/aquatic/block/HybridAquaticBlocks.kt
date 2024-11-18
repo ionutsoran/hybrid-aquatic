@@ -160,11 +160,6 @@ object HybridAquaticBlocks {
         .nonOpaque()
         .hardness(0.5F)))
 
-    val HYDROTHERMAL_VENT_SHAFT = register("hydrothermal_vent_shaft", HydrothermalVentShaftBlock(FabricBlockSettings.copyOf(Blocks.TUFF)
-        .nonOpaque()
-        .hardness(0.5F)
-        .dropsLike(HYDROTHERMAL_VENT)))
-
     val TUBE_SPONGE = register("tube_sponge", TubeSpongeBlock(FabricBlockSettings.copyOf(Blocks.WET_SPONGE)
         .nonOpaque()))
 

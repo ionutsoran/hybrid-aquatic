@@ -91,7 +91,6 @@ class LanguageProvider(output: FabricDataOutput) : FabricLanguageProvider(output
             HybridAquaticBlocks.DRIFTWOOD_PRESSURE_PLATE to "Driftwood Pressure Plate",
             HybridAquaticBlocks.DRIFTWOOD_BUTTON to "Driftwood Button",
             HybridAquaticBlocks.HYDROTHERMAL_VENT to "Thermal Vent",
-            HybridAquaticBlocks.HYDROTHERMAL_VENT_SHAFT to "Thermal Vent Shaft",
         ).forEach { (block, translation) ->
             builder.add(block, translation)
         }

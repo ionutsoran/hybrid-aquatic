@@ -2,8 +2,8 @@
 	"credit": "Made with Blockbench",
 	"texture_size": [32, 32],
 	"textures": {
-		"0": "hybrid-aquatic:block/chimney_shaft",
-		"particle": "hybrid-aquatic:block/chimney_shaft"
+		"0": "hybrid-aquatic:block/chimney_middle",
+		"particle": "hybrid-aquatic:block/chimney_middle"
 	},
 	"elements": [
 		{
