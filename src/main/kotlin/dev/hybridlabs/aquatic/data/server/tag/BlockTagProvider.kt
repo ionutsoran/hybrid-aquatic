@@ -78,7 +78,6 @@ class BlockTagProvider(output: FabricDataOutput, registriesFuture: CompletableFu
             .add(HybridAquaticBlocks.THORN_CORAL_BLOCK)
             .add(HybridAquaticBlocks.DEAD_THORN_CORAL_BLOCK)
             .add(HybridAquaticBlocks.HYDROTHERMAL_VENT)
-            .add(HybridAquaticBlocks.HYDROTHERMAL_VENT_SHAFT)
             .add(HybridAquaticBlocks.GIANT_CLAM)
 
         getOrCreateTagBuilder(BlockTags.LOGS)

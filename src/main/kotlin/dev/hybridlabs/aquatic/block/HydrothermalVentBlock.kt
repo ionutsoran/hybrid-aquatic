@@ -26,6 +26,7 @@ class HydrothermalVentBlock(settings: Settings?) :
     override fun getPlant(): Block {
         return HybridAquaticBlocks.HYDROTHERMAL_VENT_SHAFT
     }
+
     override fun isFertilizable(world: WorldView?, pos: BlockPos?, state: BlockState?, isClient: Boolean): Boolean {
         return false
     }
@@ -89,7 +90,7 @@ class HydrothermalVentBlock(settings: Settings?) :
     }
 
     companion object {
-        private val SHAPE = createCuboidShape(4.0, 0.0, 4.0, 12.0, 6.0, 12.0)
-        private val COLLISION_SHAPE = createCuboidShape(4.0, 0.0, 4.0, 12.0, 8.0, 12.0)
+        private val SHAPE = createCuboidShape(3.0, 0.0, 3.0, 13.0, 4.0, 13.0)
+        private val COLLISION_SHAPE = createCuboidShape(3.0, 0.0, 3.0, 13.0, 4.0, 13.0)
     }
 }

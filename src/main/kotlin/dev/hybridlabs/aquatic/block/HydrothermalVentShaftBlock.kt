@@ -52,7 +52,7 @@ class HydrothermalVentShaftBlock(settings: Settings?) :
     }
 
     companion object {
-        private val SHAPE = createCuboidShape(4.0, 0.0, 4.0, 12.0, 12.0, 12.0)
-        private val COLLISION_SHAPE = createCuboidShape(4.0, 1.0, 4.0, 12.0, 12.0, 12.0)
+        private val SHAPE = createCuboidShape(3.0, 0.0, 3.0, 13.0, 16.0, 13.0)
+        private val COLLISION_SHAPE = createCuboidShape(3.0, 0.0, 3.0, 13.0, 16.0, 13.0)
     }
 }
