@@ -3,6 +3,7 @@
 package dev.hybridlabs.aquatic.data.server
 
 import dev.hybridlabs.aquatic.block.HybridAquaticBlocks
+import dev.hybridlabs.aquatic.block.TubeWormBlock
 import dev.hybridlabs.aquatic.tag.HybridAquaticBlockTags
 import dev.hybridlabs.aquatic.world.gen.feature.*
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput
@@ -94,8 +95,7 @@ class ConfiguredFeatureProvider(output: FabricDataOutput, registriesFuture: Comp
                     ConstantIntProvider.create(5),
                     UniformIntProvider.create(4, 8),
                     UniformIntProvider.create(2, 8), // Worm spread radius
-                    1,
-                    4
+                    UniformIntProvider.create(TubeWormBlock.WORMS.min, TubeWormBlock.WORMS.max),
                 )
             )
         )

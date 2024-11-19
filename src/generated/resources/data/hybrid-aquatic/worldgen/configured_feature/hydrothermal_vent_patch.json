@@ -14,8 +14,6 @@
         "min_inclusive": 2
       }
     },
-    "max_worms": 4,
-    "min_worms": 1,
     "spread_radius": 5,
     "vent_block": {
       "type": "minecraft:simple_state_provider",
@@ -42,6 +40,13 @@
       "value": {
         "max_inclusive": 8,
         "min_inclusive": 4
+      }
+    },
+    "worm_count_per_block": {
+      "type": "minecraft:uniform",
+      "value": {
+        "max_inclusive": 4,
+        "min_inclusive": 1
       }
     },
     "worm_spread_radius": {

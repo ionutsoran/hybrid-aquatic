@@ -15,8 +15,7 @@ data class VentPatchFeatureConfig(
     val spreadRadius: IntProvider,
     val wormCount: IntProvider,
     val wormSpreadRadius: IntProvider,
-    val minWorms: Int,
-    val maxWorms: Int,
+    val wormCountPerBlock: IntProvider,
 ) : FeatureConfig {
     companion object {
         val CODEC: Codec<VentPatchFeatureConfig> = RecordCodecBuilder.create { instance ->
@@ -28,8 +27,7 @@ data class VentPatchFeatureConfig(
                 IntProvider.POSITIVE_CODEC.fieldOf("spread_radius").forGetter(VentPatchFeatureConfig::spreadRadius),
                 IntProvider.POSITIVE_CODEC.fieldOf("worm_count").forGetter(VentPatchFeatureConfig::wormCount),
                 IntProvider.POSITIVE_CODEC.fieldOf("worm_spread_radius").forGetter(VentPatchFeatureConfig::wormSpreadRadius),
-                Codec.intRange(1, TubeWormBlock.MAX_WORMS).fieldOf("min_worms").forGetter(VentPatchFeatureConfig::minWorms),
-                Codec.intRange(1, TubeWormBlock.MAX_WORMS).fieldOf("max_worms").forGetter(VentPatchFeatureConfig::maxWorms),
+                TubeWormBlock.WORM_COUNT_CODEC.fieldOf("worm_count_per_block").forGetter(VentPatchFeatureConfig::wormCountPerBlock),
             ).apply(instance, ::VentPatchFeatureConfig)
         }
     }

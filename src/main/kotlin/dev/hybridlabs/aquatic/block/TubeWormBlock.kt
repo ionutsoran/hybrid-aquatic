@@ -1,5 +1,6 @@
 package dev.hybridlabs.aquatic.block
 
+import com.mojang.serialization.Codec
 import net.minecraft.block.*
 import net.minecraft.entity.ai.pathing.NavigationType
 import net.minecraft.fluid.FluidState
@@ -13,6 +14,7 @@ import net.minecraft.state.property.IntProperty
 import net.minecraft.state.property.Properties
 import net.minecraft.util.math.BlockPos
 import net.minecraft.util.math.Direction
+import net.minecraft.util.math.intprovider.IntProvider
 import net.minecraft.util.math.random.Random
 import net.minecraft.util.shape.VoxelShape
 import net.minecraft.world.BlockView
@@ -24,9 +26,11 @@ import org.jetbrains.annotations.Nullable
 @Suppress("DEPRECATION", "SameParameterValue")
 class TubeWormBlock(settings: Settings) : PlantBlock(settings), Fertilizable, Waterloggable {
     companion object {
-        const val MAX_WORMS = 4
-        val WORMS: IntProperty = IntProperty.of("worms", 1, MAX_WORMS)
+        val WORMS: IntProperty = IntProperty.of("worms", 1, 4)
         val WATERLOGGED: BooleanProperty = Properties.WATERLOGGED
+
+        val WORM_COUNT_CODEC: Codec<IntProvider> = IntProvider.createValidatingCodec(WORMS.min, WORMS.max)
+
         private val ONE_WORM_SHAPE: VoxelShape = createCuboidShape(6.0, 0.0, 6.0, 10.0, 8.0, 10.0)
         private val TWO_WORMS_SHAPE: VoxelShape = createCuboidShape(3.0, 0.0, 3.0, 13.0, 8.0, 13.0)
         private val THREE_WORMS_SHAPE: VoxelShape = createCuboidShape(2.0, 0.0, 2.0, 14.0, 8.0, 14.0)
@@ -34,14 +38,14 @@ class TubeWormBlock(settings: Settings) : PlantBlock(settings), Fertilizable, Wa
     }
 
     init {
-        defaultState = stateManager.defaultState.with(WORMS, 1).with(WATERLOGGED, true)
+        defaultState = stateManager.defaultState.with(WORMS, WORMS.min).with(WATERLOGGED, true)
     }
 
     @Nullable
     override fun getPlacementState(ctx: ItemPlacementContext): BlockState? {
         val blockState = ctx.world.getBlockState(ctx.blockPos)
         return if (blockState.isOf(this)) {
-            blockState.with(WORMS, (blockState[WORMS]!! + 1).coerceAtMost(MAX_WORMS))
+            blockState.with(WORMS, (blockState[WORMS] + 1).coerceAtMost(WORMS.max))
         } else {
             val fluidState = ctx.world.getFluidState(ctx.blockPos)
             val isWaterlogged = fluidState.fluid == Fluids.WATER
@@ -75,7 +79,7 @@ class TubeWormBlock(settings: Settings) : PlantBlock(settings), Fertilizable, Wa
     override fun canReplace(state: BlockState, context: ItemPlacementContext): Boolean {
         return !context.shouldCancelInteraction() &&
                 context.stack.isOf(asItem()) &&
-                state[WORMS]!! < MAX_WORMS || super.canReplace(state, context)
+                state[WORMS] < WORMS.max || super.canReplace(state, context)
     }
 
     override fun getOutlineShape(

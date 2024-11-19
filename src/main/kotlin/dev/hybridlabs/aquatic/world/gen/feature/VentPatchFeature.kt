@@ -2,12 +2,14 @@ package dev.hybridlabs.aquatic.world.gen.feature
 
 import com.mojang.serialization.Codec
 import dev.hybridlabs.aquatic.block.HydrothermalVentBlock
+import dev.hybridlabs.aquatic.block.TubeWormBlock
 import net.minecraft.block.Block
 import net.minecraft.block.BlockState
 import net.minecraft.block.enums.Thickness
 import net.minecraft.state.property.Properties
 import net.minecraft.util.math.BlockPos
 import net.minecraft.util.math.Direction
+import net.minecraft.util.math.intprovider.IntProvider
 import net.minecraft.util.math.random.Random
 import net.minecraft.world.Heightmap
 import net.minecraft.world.WorldAccess
@@ -25,7 +27,7 @@ class VentPatchFeature(codec: Codec<VentPatchFeatureConfig>) : Feature<VentPatch
         val origin = context.origin
         val random = context.random
 
-        val (baseProvider, ventProvider, wormProvider, countProvider, radiusProvider, wormCountProvider, wormRadiusProvider) = context.config
+        val (baseProvider, ventProvider, wormProvider, countProvider, radiusProvider, wormCountProvider, wormRadiusProvider, wormCountPerBlockProvider) = context.config
 
         val count = countProvider.get(random)
         repeat(count) {
@@ -43,7 +45,7 @@ class VentPatchFeature(codec: Codec<VentPatchFeatureConfig>) : Feature<VentPatch
             if (generateSingleVent(world, candidateTopPos, random, heightMultiplier, baseProvider, ventProvider)) {
                 val wormCount = wormCountProvider.get(random)
                 val wormRadius = wormRadiusProvider.get(random)
-                generateTubeWormPatch(world, candidateTopPos, random, wormCount, wormRadius, wormProvider)
+                generateTubeWormPatch(world, candidateTopPos, random, wormCount, wormCountPerBlockProvider, wormRadius, wormProvider)
                 generated = true
             }
         }
@@ -122,6 +124,7 @@ class VentPatchFeature(codec: Codec<VentPatchFeatureConfig>) : Feature<VentPatch
         pos: BlockPos,
         random: Random,
         count: Int,
+        wormCountProvider: IntProvider,
         wormRadius: Int,
         stateProvider: BlockStateProvider
     ): Boolean {
@@ -142,7 +145,8 @@ class VentPatchFeature(codec: Codec<VentPatchFeatureConfig>) : Feature<VentPatch
 
             val state = stateProvider.get(random, tubeWormPos)
             if (isValidPosition(world, tubeWormPos, state)) {
-                world.setBlockState(tubeWormPos, state, Block.NOTIFY_LISTENERS)
+                val wormCount = wormCountProvider.get(random)
+                world.setBlockState(tubeWormPos, state.with(TubeWormBlock.WORMS, wormCount), Block.NOTIFY_LISTENERS)
                 placed++
             }
         }
