@@ -60,8 +60,9 @@ object EntityBiomeModifications {
         addUndergroundFish(HybridAquaticEntityTypes.SEA_ANGEL, listOf(HybridAquaticBiomeTags.ARCTIC_OCEANS), 1, 1, 1)
 
         // cephalopods
-        addCephalopod(HybridAquaticEntityTypes.FIREFLY_SQUID, listOf(HybridAquaticBiomeTags.TROPICAL_OCEANS), 5, 1, 2)
-        addCephalopod(HybridAquaticEntityTypes.CUTTLEFISH, listOf(HybridAquaticBiomeTags.REEF), 1, 1, 1)
+        addCephalopod(HybridAquaticEntityTypes.ARROW_SQUID, listOf(HybridAquaticBiomeTags.COLD_OCEANS, HybridAquaticBiomeTags.ARCTIC_OCEANS), 5, 1, 3)
+        addCephalopod(HybridAquaticEntityTypes.FIREFLY_SQUID, listOf(HybridAquaticBiomeTags.TROPICAL_OCEANS), 5, 3, 5)
+        addCephalopod(HybridAquaticEntityTypes.CUTTLEFISH, listOf(HybridAquaticBiomeTags.REEF), 1, 1, 2)
 
         // underground cephalopods
         addUndergroundCephalopod(HybridAquaticEntityTypes.VAMPIRE_SQUID, listOf(HybridAquaticBiomeTags.TROPICAL_OCEANS), 3, 1, 1)

@@ -73,13 +73,14 @@ object SpawnRestrictionRegistry {
             HybridAquaticEntityTypes.MANTA_RAY,
         ).forEach { registerRay(it) }
 
-        // squids
+        // cephalopods
         setOf(
+            HybridAquaticEntityTypes.ARROW_SQUID,
             HybridAquaticEntityTypes.FIREFLY_SQUID,
             HybridAquaticEntityTypes.CUTTLEFISH,
         ).forEach { registerCephalopod(it) }
 
-        // underground squids
+        // underground cephalopods
         setOf(
             HybridAquaticEntityTypes.GLOWING_SUCKER_OCTOPUS,
             HybridAquaticEntityTypes.NAUTILUS,

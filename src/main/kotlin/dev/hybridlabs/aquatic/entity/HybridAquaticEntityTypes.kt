@@ -299,6 +299,13 @@ object HybridAquaticEntityTypes {
     )
 
     //cephalopods
+    val ARROW_SQUID = registerCephalopod(
+        "arrow_squid",
+        ::ArrowSquidEntity,
+        EntityDimensions.fixed(0.5f, 0.3f),
+        ArrowSquidEntity.createMobAttributes()
+    )
+
     val FIREFLY_SQUID = registerCephalopod(
         "firefly_squid",
         ::FireflySquidEntity,

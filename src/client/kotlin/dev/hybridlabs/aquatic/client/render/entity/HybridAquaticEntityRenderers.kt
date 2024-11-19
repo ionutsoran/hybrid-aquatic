@@ -66,6 +66,7 @@ object HybridAquaticEntityRenderers {
     val UMBRELLA_OCTOPUS = EntityRendererRegistry.register(HybridAquaticEntityTypes.UMBRELLA_OCTOPUS, ::UmbrellaOctopusEntityRenderer)
     val VAMPIRE_SQUID = EntityRendererRegistry.register(HybridAquaticEntityTypes.VAMPIRE_SQUID, ::VampireSquidEntityRenderer)
     val NAUTILUS = EntityRendererRegistry.register(HybridAquaticEntityTypes.NAUTILUS, ::NautilusEntityRenderer)
+    val ARROW_SQUID = EntityRendererRegistry.register(HybridAquaticEntityTypes.ARROW_SQUID, ::ArrowSquidEntityRenderer)
     val FIREFLY_SQUID = EntityRendererRegistry.register(HybridAquaticEntityTypes.FIREFLY_SQUID, ::FireflySquidEntityRenderer)
     val GLOWING_SUCKER_OCTOPUS = EntityRendererRegistry.register(HybridAquaticEntityTypes.GLOWING_SUCKER_OCTOPUS, ::GlowingSuckerOctopusEntityRenderer)
 
