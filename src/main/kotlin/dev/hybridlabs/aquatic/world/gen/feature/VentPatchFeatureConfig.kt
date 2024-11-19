@@ -9,22 +9,22 @@ import net.minecraft.world.gen.stateprovider.BlockStateProvider
 data class VentPatchFeatureConfig(
     val baseProvider: BlockStateProvider,
     val ventProvider: BlockStateProvider,
-    val coralProvider: BlockStateProvider,
+    val wormProvider: BlockStateProvider,
     val count: IntProvider,
     val spreadRadius: IntProvider,
-    val coralCount: IntProvider,
-    val coralSpreadRadius: IntProvider,
+    val wormCount: IntProvider,
+    val wormSpreadRadius: IntProvider,
 ) : FeatureConfig {
     companion object {
         val CODEC: Codec<VentPatchFeatureConfig> = RecordCodecBuilder.create { instance ->
             instance.group(
                 BlockStateProvider.TYPE_CODEC.fieldOf("base_block").forGetter(VentPatchFeatureConfig::baseProvider),
                 BlockStateProvider.TYPE_CODEC.fieldOf("vent_block").forGetter(VentPatchFeatureConfig::ventProvider),
-                BlockStateProvider.TYPE_CODEC.fieldOf("coral_block").forGetter(VentPatchFeatureConfig::coralProvider),
+                BlockStateProvider.TYPE_CODEC.fieldOf("worm_block").forGetter(VentPatchFeatureConfig::wormProvider),
                 IntProvider.POSITIVE_CODEC.fieldOf("count").forGetter(VentPatchFeatureConfig::count),
                 IntProvider.POSITIVE_CODEC.fieldOf("spread_radius").forGetter(VentPatchFeatureConfig::spreadRadius),
-                IntProvider.POSITIVE_CODEC.fieldOf("coral_count").forGetter(VentPatchFeatureConfig::coralCount),
-                IntProvider.POSITIVE_CODEC.fieldOf("coral_spread_radius").forGetter(VentPatchFeatureConfig::coralSpreadRadius),
+                IntProvider.POSITIVE_CODEC.fieldOf("worm_count").forGetter(VentPatchFeatureConfig::wormCount),
+                IntProvider.POSITIVE_CODEC.fieldOf("worm_spread_radius").forGetter(VentPatchFeatureConfig::wormSpreadRadius),
             ).apply(instance, ::VentPatchFeatureConfig)
         }
     }

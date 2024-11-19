@@ -2,11 +2,10 @@ package dev.hybridlabs.aquatic.world.gen.feature
 
 import com.mojang.serialization.Codec
 import dev.hybridlabs.aquatic.block.HydrothermalVentBlock
+import dev.hybridlabs.aquatic.block.TubeWormBlock
 import net.minecraft.block.Block
 import net.minecraft.block.BlockState
 import net.minecraft.block.enums.Thickness
-import net.minecraft.fluid.Fluids
-import net.minecraft.registry.tag.FluidTags
 import net.minecraft.state.property.Properties
 import net.minecraft.util.math.BlockPos
 import net.minecraft.util.math.Direction
@@ -27,7 +26,7 @@ class VentPatchFeature(codec: Codec<VentPatchFeatureConfig>) : Feature<VentPatch
         val origin = context.origin
         val random = context.random
 
-        val (baseProvider, ventProvider, coralProvider, countProvider, radiusProvider, coralCountProvider, coralRadiusProvider) = context.config
+        val (baseProvider, ventProvider, wormProvider, countProvider, radiusProvider, wormCountProvider, wormRadiusProvider) = context.config
 
         val count = countProvider.get(random)
         repeat(count) {
@@ -43,9 +42,9 @@ class VentPatchFeature(codec: Codec<VentPatchFeatureConfig>) : Feature<VentPatch
             val heightMultiplier = 1.0 - (distanceFromCenter / radius).coerceIn(0.0, 1.0)
 
             if (generateSingleVent(world, candidateTopPos, random, heightMultiplier, baseProvider, ventProvider)) {
-                val coralCount = coralCountProvider.get(random)
-                val coralRadius = coralRadiusProvider.get(random)
-                generateCoralPatch(world, candidateTopPos, random, coralCount, coralRadius, coralProvider)
+                val wormCount = wormCountProvider.get(random)
+                val wormRadius = wormRadiusProvider.get(random)
+                generateWormPatch(world, candidateTopPos, random, wormCount, wormRadius, wormProvider)
                 generated = true
             }
         }
@@ -119,7 +118,7 @@ class VentPatchFeature(codec: Codec<VentPatchFeatureConfig>) : Feature<VentPatch
         return max(minVentHeight, (minVentHeight + (maxVentHeight - minVentHeight) * heightMultiplier).toInt())
     }
 
-    private fun generateCoralPatch(
+    private fun generateWormPatch(
         world: WorldAccess,
         pos: BlockPos,
         random: Random,
@@ -134,15 +133,18 @@ class VentPatchFeature(codec: Codec<VentPatchFeatureConfig>) : Feature<VentPatch
                 random.nextInt(radius * 2) - radius,
             )
 
-            val coralPos = pos.add(offset)
+            val wormPos = pos.add(offset)
 
-            if (!world.isWater(coralPos)) {
+            if (!world.isWater(wormPos)) {
                 return@repeat
             }
 
-            val state = stateProvider.get(random, coralPos)
-            if (isValidPosition(world, coralPos, state)) {
-                world.setBlockState(coralPos, state, Block.NOTIFY_LISTENERS)
+            val baseState = stateProvider.get(random, wormPos)
+
+            val stateWithWorms = baseState.with(TubeWormBlock.WORMS, random.nextInt(4) + 1)
+
+            if (isValidPosition(world, wormPos, stateWithWorms)) {
+                world.setBlockState(wormPos, stateWithWorms, Block.NOTIFY_LISTENERS)
             }
         }
     }

@@ -132,12 +132,7 @@ class AnemoneBlock(settings: Settings) : PlantBlock(settings), BlockEntityProvid
         builder.add(WATERLOGGED)
     }
 
-    override fun canPathfindThrough(
-        state: BlockState?,
-        world: BlockView?,
-        pos: BlockPos?,
-        type: NavigationType?
-    ): Boolean {
+    override fun canPathfindThrough(state: BlockState, world: BlockView, pos: BlockPos, type: NavigationType): Boolean {
         return false
     }
 

@@ -3,6 +3,7 @@ package dev.hybridlabs.aquatic.block
 import dev.hybridlabs.aquatic.block.entity.TubeSpongeBlockEntity
 import net.minecraft.block.*
 import net.minecraft.block.entity.BlockEntity
+import net.minecraft.entity.ai.pathing.NavigationType
 import net.minecraft.fluid.FluidState
 import net.minecraft.fluid.Fluids
 import net.minecraft.item.ItemPlacementContext
@@ -58,6 +59,10 @@ class TubeSpongeBlock(settings: Settings) : PlantBlock(settings), BlockEntityPro
         return if (fluidState.isIn(FluidTags.WATER)) defaultState.with(
             Properties.WATERLOGGED, ctx.world.getFluidState(ctx.blockPos).isOf(
                 Fluids.WATER)) else null
+    }
+
+    override fun canPathfindThrough(state: BlockState, world: BlockView, pos: BlockPos, type: NavigationType): Boolean {
+        return false
     }
 
     override fun getFluidState(state: BlockState): FluidState {

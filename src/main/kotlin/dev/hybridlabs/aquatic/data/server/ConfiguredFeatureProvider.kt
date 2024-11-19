@@ -87,9 +87,9 @@ class ConfiguredFeatureProvider(output: FabricDataOutput, registriesFuture: Comp
             HybridAquaticConfiguredFeatures.HYDROTHERMAL_VENT_PATCH,
             ConfiguredFeature(
                 HybridAquaticFeatures.VENT_PATCH, VentPatchFeatureConfig(
-                    SimpleBlockStateProvider.of(Blocks.DRIPSTONE_BLOCK),
+                    SimpleBlockStateProvider.of(Blocks.TUFF),
                     SimpleBlockStateProvider.of(HybridAquaticBlocks.HYDROTHERMAL_VENT),
-                    SimpleBlockStateProvider.of(Blocks.FIRE_CORAL),
+                    SimpleBlockStateProvider.of(HybridAquaticBlocks.TUBE_WORM),
                     UniformIntProvider.create(2, 5),
                     ConstantIntProvider.create(5),
                     UniformIntProvider.create(4, 8),

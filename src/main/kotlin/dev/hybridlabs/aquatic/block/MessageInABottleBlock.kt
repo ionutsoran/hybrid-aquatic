@@ -14,6 +14,7 @@ import net.minecraft.block.ShapeContext
 import net.minecraft.block.Waterloggable
 import net.minecraft.block.entity.BlockEntity
 import net.minecraft.entity.LivingEntity
+import net.minecraft.entity.ai.pathing.NavigationType
 import net.minecraft.fluid.FluidState
 import net.minecraft.fluid.Fluids
 import net.minecraft.item.BlockItem
@@ -96,6 +97,10 @@ class MessageInABottleBlock(settings: Settings) : BlockWithEntity(settings), Wat
         val pos = context.blockPos
         val fluidState = world.getFluidState(pos)
         return super.getPlacementState(context)?.with(WATERLOGGED, fluidState.fluid == Fluids.WATER)
+    }
+
+    override fun canPathfindThrough(state: BlockState, world: BlockView, pos: BlockPos, type: NavigationType): Boolean {
+        return false
     }
 
     override fun getStateForNeighborUpdate(

@@ -4,14 +4,15 @@
     "base_block": {
       "type": "minecraft:simple_state_provider",
       "state": {
-        "Name": "minecraft:dripstone_block"
+        "Name": "minecraft:tuff"
       }
     },
     "coral_block": {
       "type": "minecraft:simple_state_provider",
       "state": {
-        "Name": "minecraft:fire_coral",
+        "Name": "hybrid-aquatic:tube_worm",
         "Properties": {
+          "pickles": "1",
           "waterlogged": "true"
         }
       }

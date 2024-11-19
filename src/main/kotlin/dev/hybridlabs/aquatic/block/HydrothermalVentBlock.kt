@@ -2,7 +2,7 @@ package dev.hybridlabs.aquatic.block
 
 import net.minecraft.block.*
 import net.minecraft.block.enums.Thickness
-import net.minecraft.fluid.Fluid
+import net.minecraft.entity.ai.pathing.NavigationType
 import net.minecraft.fluid.FluidState
 import net.minecraft.fluid.Fluids
 import net.minecraft.item.ItemPlacementContext
@@ -27,6 +27,10 @@ class HydrothermalVentBlock(settings: Settings?) : Block(settings), Waterloggabl
         defaultState = stateManager.defaultState
             .with(THICKNESS, Thickness.TIP)
             .with(WATERLOGGED, true)
+    }
+
+    override fun canPathfindThrough(state: BlockState, world: BlockView, pos: BlockPos, type: NavigationType): Boolean {
+        return false
     }
 
     override fun canPlaceAt(state: BlockState, world: WorldView, pos: BlockPos): Boolean {
@@ -72,7 +76,7 @@ class HydrothermalVentBlock(settings: Settings?) : Block(settings), Waterloggabl
         }
     }
 
-    fun getThickness(world: WorldView, currentPos: BlockPos): Thickness {
+    private fun getThickness(world: WorldView, currentPos: BlockPos): Thickness {
         val blockAbove = world.getBlockState(currentPos.offset(Direction.UP))
 
         return if (blockAbove.isOf(this)) {
@@ -87,7 +91,7 @@ class HydrothermalVentBlock(settings: Settings?) : Block(settings), Waterloggabl
         }
     }
 
-    fun spawnSmokeParticle(world: World, pos: BlockPos, random: Random) {
+    private fun spawnSmokeParticle(world: World, pos: BlockPos, random: Random) {
         world.addParticle(
             ParticleTypes.CAMPFIRE_SIGNAL_SMOKE,
             pos.x.toDouble() + 0.5 + random.nextDouble() / 4.0 * (if (random.nextBoolean()) 1 else -1).toDouble(),
