@@ -72,6 +72,7 @@ object  HybridAquaticItemGroups {
             entries.add(HybridAquaticItems.DEAD_THORN_CORAL_FAN)
             entries.add(HybridAquaticItems.TUBE_SPONGE)
             entries.add(HybridAquaticItems.HYDROTHERMAL_VENT)
+            entries.add(HybridAquaticItems.TUBE_WORM)
             entries.add(HybridAquaticItems.GIANT_CLAM)
             entries.add(HybridAquaticBlocks.ANEMONE)
             entries.add(HybridAquaticBlocks.BASKING_SHARK_PLUSHIE)
