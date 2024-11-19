@@ -7,8 +7,11 @@ import dev.hybridlabs.aquatic.tag.HybridAquaticBlockTags
 import dev.hybridlabs.aquatic.world.gen.feature.*
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricDynamicRegistryProvider
+import net.minecraft.block.Blocks
 import net.minecraft.registry.RegistryWrapper
 import net.minecraft.state.property.Properties
+import net.minecraft.util.math.intprovider.ConstantIntProvider
+import net.minecraft.util.math.intprovider.UniformIntProvider
 import net.minecraft.world.gen.blockpredicate.BlockPredicate
 import net.minecraft.world.gen.feature.*
 import net.minecraft.world.gen.stateprovider.BlockStateProvider
@@ -81,10 +84,16 @@ class ConfiguredFeatureProvider(output: FabricDataOutput, registriesFuture: Comp
 
         // hydrothermal vents
         entries.add(
-            HybridAquaticConfiguredFeatures.HYDROTHERMAL_VENT,
+            HybridAquaticConfiguredFeatures.HYDROTHERMAL_VENT_PATCH,
             ConfiguredFeature(
-                HybridAquaticFeatures.HYDROTHERMAL_VENT, HydrothermalVentFeatureConfig(
-                    SimpleBlockStateProvider.of(HybridAquaticBlocks.HYDROTHERMAL_VENT)
+                HybridAquaticFeatures.VENT_PATCH, VentPatchFeatureConfig(
+                    SimpleBlockStateProvider.of(Blocks.DRIPSTONE_BLOCK),
+                    SimpleBlockStateProvider.of(HybridAquaticBlocks.HYDROTHERMAL_VENT),
+                    SimpleBlockStateProvider.of(Blocks.FIRE_CORAL),
+                    UniformIntProvider.create(2, 5),
+                    ConstantIntProvider.create(5),
+                    UniformIntProvider.create(4, 8),
+                    UniformIntProvider.create(2, 8),
                 )
             )
         )

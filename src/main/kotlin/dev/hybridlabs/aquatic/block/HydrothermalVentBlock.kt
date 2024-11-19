@@ -7,10 +7,10 @@ import net.minecraft.fluid.FluidState
 import net.minecraft.fluid.Fluids
 import net.minecraft.item.ItemPlacementContext
 import net.minecraft.particle.ParticleTypes
-import net.minecraft.registry.tag.FluidTags
 import net.minecraft.state.StateManager
+import net.minecraft.state.property.BooleanProperty
 import net.minecraft.state.property.EnumProperty
-import net.minecraft.state.property.Property
+import net.minecraft.state.property.Properties
 import net.minecraft.util.math.BlockPos
 import net.minecraft.util.math.Direction
 import net.minecraft.util.math.random.Random
@@ -22,34 +22,83 @@ import net.minecraft.world.WorldAccess
 import net.minecraft.world.WorldView
 
 @Suppress("DEPRECATION", "SameParameterValue")
-class HydrothermalVentBlock(settings: Settings?) :
-    Block(settings),
-    Waterloggable {
-    companion object {
-        val THICKNESS: EnumProperty<Thickness> = EnumProperty.of("thickness", Thickness::class.java, Thickness.TIP, Thickness.MIDDLE, Thickness.BASE)
-
-        private val TIP_COLLISION_SHAPE = createCuboidShape(3.0, 0.0, 3.0, 13.0, 4.0, 13.0)
-        private val MIDDLE_COLLISION_SHAPE = createCuboidShape(3.0, 0.0, 3.0, 13.0, 16.0, 13.0)
-        private val BASE_COLLISION_SHAPE = createCuboidShape(3.0, 0.0, 3.0, 13.0, 16.0, 13.0)
-
-        private val TIP_SHAPE = createCuboidShape(3.0, 0.0, 3.0, 13.0, 4.0, 13.0)
-        private val MIDDLE_SHAPE = createCuboidShape(3.0, 0.0, 3.0, 13.0, 16.0, 13.0)
-        private val BASE_SHAPE = createCuboidShape(3.0, 0.0, 3.0, 13.0, 16.0, 13.0)
-    }
-
+class HydrothermalVentBlock(settings: Settings?) : Block(settings), Waterloggable {
     init {
-        this.defaultState = this.stateManager.defaultState.with(THICKNESS, Thickness.TIP)
+        defaultState = stateManager.defaultState
+            .with(THICKNESS, Thickness.TIP)
+            .with(WATERLOGGED, true)
     }
 
-    override fun appendProperties(builder: StateManager.Builder<Block?, BlockState?>) {
-        builder.add(
-            *arrayOf<Property<*>>(
-                THICKNESS,
-            )
+    override fun canPlaceAt(state: BlockState, world: WorldView, pos: BlockPos): Boolean {
+        val supportingPos = pos.down()
+        val supportingState = world.getBlockState(supportingPos)
+        return supportingState.isOf(this) || supportingState.isSideSolidFullSquare(world, supportingPos, Direction.UP)
+    }
+
+    override fun getPlacementState(ctx: ItemPlacementContext): BlockState? {
+        val world = ctx.world
+        val pos = ctx.blockPos
+        return defaultState
+            .with(THICKNESS, getThickness(world, pos))
+            .with(WATERLOGGED, world.getFluidState(pos).fluid == Fluids.WATER)
+    }
+
+    override fun getStateForNeighborUpdate(
+        state: BlockState,
+        direction: Direction,
+        neighborState: BlockState,
+        world: WorldAccess,
+        pos: BlockPos,
+        neighborPos: BlockPos
+    ): BlockState {
+        if (state.get(Properties.WATERLOGGED)) {
+            world.scheduleFluidTick(pos, Fluids.WATER, Fluids.WATER.getTickRate(world))
+        }
+
+        if (!canPlaceAt(state, world, pos)) {
+            return Blocks.AIR.defaultState
+        }
+
+        return if (direction != Direction.DOWN && direction != Direction.UP) {
+            state
+        } else {
+            state.with(THICKNESS, getThickness(world, pos))
+        }
+    }
+
+    override fun randomDisplayTick(state: BlockState, world: World, pos: BlockPos, random: Random) {
+        if (state.get(THICKNESS) == Thickness.TIP) {
+            spawnSmokeParticle(world, pos, random)
+        }
+    }
+
+    fun getThickness(world: WorldView, currentPos: BlockPos): Thickness {
+        val blockAbove = world.getBlockState(currentPos.offset(Direction.UP))
+
+        return if (blockAbove.isOf(this)) {
+            val blockBelow = world.getBlockState(currentPos.offset(Direction.DOWN))
+            if (blockBelow.isOf(this)) {
+                Thickness.MIDDLE
+            } else {
+                Thickness.BASE
+            }
+        } else {
+            Thickness.TIP
+        }
+    }
+
+    fun spawnSmokeParticle(world: World, pos: BlockPos, random: Random) {
+        world.addParticle(
+            ParticleTypes.CAMPFIRE_SIGNAL_SMOKE,
+            pos.x.toDouble() + 0.5 + random.nextDouble() / 4.0 * (if (random.nextBoolean()) 1 else -1).toDouble(),
+            pos.y.toDouble() + 0.4,
+            pos.z.toDouble() + 0.5 + random.nextDouble() / 4.0 * (if (random.nextBoolean()) 1 else -1).toDouble(),
+            0.0,
+            0.01,
+            0.0
         )
     }
 
-    @Deprecated("Deprecated in Java")
     override fun getCollisionShape(
         state: BlockState,
         world: BlockView?,
@@ -66,22 +115,15 @@ class HydrothermalVentBlock(settings: Settings?) :
         return voxelShape.offset(vec3d.x, 0.0, vec3d.z)
     }
 
-    @Deprecated("Deprecated in Java", ReplaceWith("VoxelShapes.empty()", "net.minecraft.util.shape.VoxelShapes"))
-    override fun getCullingShape(state: BlockState?, world: BlockView?, pos: BlockPos?): VoxelShape {
+    override fun getCullingShape(state: BlockState, world: BlockView, pos: BlockPos): VoxelShape {
         return VoxelShapes.empty()
     }
 
-    @Deprecated("Deprecated in Java", ReplaceWith("false"))
-    override fun isShapeFullCube(state: BlockState?, world: BlockView?, pos: BlockPos?): Boolean {
-        return false
-    }
-
-    @Deprecated("Deprecated in Java")
     override fun getOutlineShape(
         state: BlockState,
-        world: BlockView?,
-        pos: BlockPos?,
-        context: ShapeContext?
+        world: BlockView,
+        pos: BlockPos,
+        context: ShapeContext
     ): VoxelShape {
         val voxelShape = when (val thickness = state.get(THICKNESS) as Thickness) {
             Thickness.TIP -> TIP_SHAPE
@@ -89,70 +131,33 @@ class HydrothermalVentBlock(settings: Settings?) :
             Thickness.BASE -> BASE_SHAPE
             else -> throw IllegalStateException("Unexpected thickness: $thickness")
         }
-        val vec3d = state.getModelOffset(world, pos)
-        return voxelShape.offset(vec3d.x, 0.0, vec3d.z)
+
+        val modelOffset = state.getModelOffset(world, pos)
+        return voxelShape.offset(modelOffset.x, 0.0, modelOffset.z)
     }
 
-    private fun getThickness(world: WorldView, pos: BlockPos, direction: Direction): Thickness {
-        val blockAbove = world.getBlockState(pos.offset(direction))
-        val blockBelow = world.getBlockState(pos.offset(direction.opposite))
-
-        return when {
-            (blockBelow.isSolid || blockBelow.block is HydrothermalVentBlock) && blockAbove.block !is HydrothermalVentBlock -> Thickness.TIP
-            blockBelow.isSolid && blockAbove.block is HydrothermalVentBlock -> Thickness.BASE
-            blockBelow.block is HydrothermalVentBlock && blockAbove.block is HydrothermalVentBlock -> Thickness.MIDDLE
-            else -> Thickness.MIDDLE
-        }
-    }
-
-    override fun canFillWithFluid(world: BlockView, pos: BlockPos, state: BlockState, fluid: Fluid): Boolean {
-        return false
-    }
-
-    override fun tryFillWithFluid(
-        world: WorldAccess,
-        pos: BlockPos,
-        state: BlockState,
-        fluidState: FluidState
-    ): Boolean {
-        return false
-    }
-
-    override fun randomDisplayTick(state: BlockState?, world: World?, pos: BlockPos?, random: Random?) {
-        super.randomDisplayTick(state, world, pos, random)
-        if (world != null && pos != null) {
-            spawnSmokeParticle(world, pos)
-        }
-    }
-
-    private fun spawnSmokeParticle(world: World, pos: BlockPos) {
-        val random = world.getRandom()
-        world.addParticle(
-            ParticleTypes.CAMPFIRE_SIGNAL_SMOKE,
-            pos.x.toDouble() + 0.5 + random.nextDouble() / 4.0 * (if (random.nextBoolean()) 1 else -1).toDouble(),
-            pos.y.toDouble() + 0.4,
-            pos.z.toDouble() + 0.5 + random.nextDouble() / 4.0 * (if (random.nextBoolean()) 1 else -1).toDouble(),
-            0.0,
-            0.01,
-            0.0
-        )
-    }
-
-    override fun getPlacementState(ctx: ItemPlacementContext): BlockState? {
-        val worldAccess = ctx.world
-        val blockPos = ctx.blockPos
-        val fluidState = worldAccess.getFluidState(blockPos)
-
-        if (fluidState.isIn(FluidTags.WATER) && fluidState.level == 8) {
-            val thickness = getThickness(worldAccess, blockPos, Direction.UP)
-            return this.defaultState.with(THICKNESS, thickness)
-        }
-
-        return null
-    }
-
-    @Deprecated("Deprecated in Java", ReplaceWith("Fluids.WATER.getStill(false)", "net.minecraft.fluid.Fluids"))
     override fun getFluidState(state: BlockState): FluidState {
-        return Fluids.WATER.getStill(false)
+        return if (state.get(WATERLOGGED)) {
+            Fluids.WATER.getStill(false)
+        } else {
+            super.getFluidState(state)
+        }
+    }
+
+    override fun appendProperties(builder: StateManager.Builder<Block?, BlockState?>) {
+        builder.add(THICKNESS, WATERLOGGED)
+    }
+
+    companion object {
+        val THICKNESS: EnumProperty<Thickness> = EnumProperty.of("thickness", Thickness::class.java, Thickness.TIP, Thickness.MIDDLE, Thickness.BASE)
+        val WATERLOGGED: BooleanProperty = Properties.WATERLOGGED
+
+        private val TIP_COLLISION_SHAPE = createCuboidShape(3.0, 0.0, 3.0, 13.0, 4.0, 13.0)
+        private val MIDDLE_COLLISION_SHAPE = createCuboidShape(3.0, 0.0, 3.0, 13.0, 16.0, 13.0)
+        private val BASE_COLLISION_SHAPE = createCuboidShape(3.0, 0.0, 3.0, 13.0, 16.0, 13.0)
+
+        private val TIP_SHAPE = createCuboidShape(3.0, 0.0, 3.0, 13.0, 4.0, 13.0)
+        private val MIDDLE_SHAPE = createCuboidShape(3.0, 0.0, 3.0, 13.0, 16.0, 13.0)
+        private val BASE_SHAPE = createCuboidShape(3.0, 0.0, 3.0, 13.0, 16.0, 13.0)
     }
 }

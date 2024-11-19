@@ -87,9 +87,11 @@ class ModelProvider(output: FabricDataOutput) : FabricModelProvider(output) {
 
         registerTorch(HybridAquaticBlocks.GLOWSTICK, HybridAquaticBlocks.WALL_GLOWSTICK)
 
+        registerParentedItemModel(HybridAquaticBlocks.CRAB_POT, ModelIds.getBlockModelId(HybridAquaticBlocks.CRAB_POT))
+
         registerCoral(HybridAquaticBlocks.LOPHELIA_CORAL, HybridAquaticBlocks.DEAD_LOPHELIA_CORAL, HybridAquaticBlocks.LOPHELIA_CORAL_BLOCK, HybridAquaticBlocks.DEAD_LOPHELIA_CORAL_BLOCK, HybridAquaticBlocks.LOPHELIA_CORAL_FAN, HybridAquaticBlocks.DEAD_LOPHELIA_CORAL_FAN, HybridAquaticBlocks.LOPHELIA_CORAL_WALL_FAN, HybridAquaticBlocks.DEAD_LOPHELIA_CORAL_WALL_FAN)
         registerCoral(HybridAquaticBlocks.THORN_CORAL, HybridAquaticBlocks.DEAD_THORN_CORAL, HybridAquaticBlocks.THORN_CORAL_BLOCK, HybridAquaticBlocks.DEAD_THORN_CORAL_BLOCK, HybridAquaticBlocks.THORN_CORAL_FAN, HybridAquaticBlocks.DEAD_THORN_CORAL_FAN, HybridAquaticBlocks.THORN_CORAL_WALL_FAN, HybridAquaticBlocks.DEAD_THORN_CORAL_WALL_FAN)
-        }
+    }
     }
 
     override fun generateItemModels(generator: ItemModelGenerator) {

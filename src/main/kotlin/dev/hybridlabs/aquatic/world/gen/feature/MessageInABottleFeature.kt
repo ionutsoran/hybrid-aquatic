@@ -40,7 +40,7 @@ class MessageInABottleFeature(codec: Codec<MessageInABottleFeatureConfig>) : Fea
         }
 
         // set state
-        world.setBlockState(pos, state.with(Properties.WATERLOGGED, world.getFluidState(pos).fluid == Fluids.WATER), Block.NOTIFY_LISTENERS)
+        world.setBlockState(pos, state.with(Properties.WATERLOGGED, world.isWater(pos)), Block.NOTIFY_LISTENERS)
 
         val blockEntity = world.getBlockEntity(pos)
         if (blockEntity is MessageInABottleBlockEntity) {

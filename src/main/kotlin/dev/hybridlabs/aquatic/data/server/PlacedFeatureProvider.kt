@@ -70,12 +70,12 @@ class PlacedFeatureProvider(output: FabricDataOutput, registriesFuture: Completa
         // thermal vents
         entries.add(
             HybridAquaticPlacedFeatures.HYDROTHERMAL_VENT,
-            PlacedFeature(entries.ref(HybridAquaticConfiguredFeatures.HYDROTHERMAL_VENT),
+            PlacedFeature(entries.ref(HybridAquaticConfiguredFeatures.HYDROTHERMAL_VENT_PATCH),
                 listOf(
                     SquarePlacementModifier.of(),
                     PlacedFeatures.BOTTOM_TO_120_RANGE,
                     SurfaceThresholdFilterPlacementModifier.of(Heightmap.Type.OCEAN_FLOOR_WG, Int.MIN_VALUE, -32),
-                    CountPlacementModifier.of(5),
+                    CountPlacementModifier.of(4),
                     BiomePlacementModifier.of()
                 )
             )
