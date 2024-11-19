@@ -160,7 +160,13 @@ object HybridAquaticBlocks {
         .nonOpaque()
         .hardness(0.5F)))
 
-    val TUBE_WORM = register("tube_worm", TubeWormBlock(FabricBlockSettings.copyOf(Blocks.SEA_PICKLE)))
+    val TUBE_WORM = register("tube_worm", TubeWormBlock(FabricBlockSettings.copyOf(
+        AbstractBlock.Settings.create()
+            .mapColor(MapColor.GREEN)
+            .sounds(BlockSoundGroup.SLIME)
+            .nonOpaque()
+            .pistonBehavior(PistonBehavior.DESTROY)
+    )))
 
     val TUBE_SPONGE = register("tube_sponge", TubeSpongeBlock(FabricBlockSettings.copyOf(Blocks.WET_SPONGE)
         .nonOpaque()))

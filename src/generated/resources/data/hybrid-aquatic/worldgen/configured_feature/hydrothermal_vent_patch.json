@@ -7,30 +7,6 @@
         "Name": "minecraft:tuff"
       }
     },
-    "coral_block": {
-      "type": "minecraft:simple_state_provider",
-      "state": {
-        "Name": "hybrid-aquatic:tube_worm",
-        "Properties": {
-          "worms": "1",
-          "waterlogged": "true"
-        }
-      }
-    },
-    "coral_count": {
-      "type": "minecraft:uniform",
-      "value": {
-        "max_inclusive": 8,
-        "min_inclusive": 4
-      }
-    },
-    "coral_spread_radius": {
-      "type": "minecraft:uniform",
-      "value": {
-        "max_inclusive": 8,
-        "min_inclusive": 2
-      }
-    },
     "count": {
       "type": "minecraft:uniform",
       "value": {
@@ -38,6 +14,8 @@
         "min_inclusive": 2
       }
     },
+    "max_worms": 4,
+    "min_worms": 1,
     "spread_radius": 5,
     "vent_block": {
       "type": "minecraft:simple_state_provider",
@@ -47,6 +25,30 @@
           "thickness": "tip",
           "waterlogged": "true"
         }
+      }
+    },
+    "worm_block": {
+      "type": "minecraft:simple_state_provider",
+      "state": {
+        "Name": "hybrid-aquatic:tube_worm",
+        "Properties": {
+          "waterlogged": "true",
+          "worms": "1"
+        }
+      }
+    },
+    "worm_count": {
+      "type": "minecraft:uniform",
+      "value": {
+        "max_inclusive": 8,
+        "min_inclusive": 4
+      }
+    },
+    "worm_spread_radius": {
+      "type": "minecraft:uniform",
+      "value": {
+        "max_inclusive": 8,
+        "min_inclusive": 2
       }
     }
   }
