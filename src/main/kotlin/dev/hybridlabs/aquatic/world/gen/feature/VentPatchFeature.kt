@@ -2,7 +2,6 @@ package dev.hybridlabs.aquatic.world.gen.feature
 
 import com.mojang.serialization.Codec
 import dev.hybridlabs.aquatic.block.HydrothermalVentBlock
-import dev.hybridlabs.aquatic.block.TubeWormBlock
 import net.minecraft.block.Block
 import net.minecraft.block.BlockState
 import net.minecraft.block.enums.Thickness
@@ -44,7 +43,7 @@ class VentPatchFeature(codec: Codec<VentPatchFeatureConfig>) : Feature<VentPatch
             if (generateSingleVent(world, candidateTopPos, random, heightMultiplier, baseProvider, ventProvider)) {
                 val wormCount = wormCountProvider.get(random)
                 val wormRadius = wormRadiusProvider.get(random)
-                generateWormPatch(world, candidateTopPos, random, wormCount, wormRadius, wormProvider)
+                generateTubeWormPatch(world, candidateTopPos, random, wormCount, wormRadius, wormProvider)
                 generated = true
             }
         }
@@ -118,35 +117,37 @@ class VentPatchFeature(codec: Codec<VentPatchFeatureConfig>) : Feature<VentPatch
         return max(minVentHeight, (minVentHeight + (maxVentHeight - minVentHeight) * heightMultiplier).toInt())
     }
 
-    private fun generateWormPatch(
+    fun generateTubeWormPatch(
         world: WorldAccess,
         pos: BlockPos,
         random: Random,
         count: Int,
-        radius: Int,
-        stateProvider: BlockStateProvider,
-    ) {
+        wormRadius: Int,
+        stateProvider: BlockStateProvider
+    ): Boolean {
+        var placed = 0
+
         repeat(count) {
             val offset = BlockPos(
-                random.nextInt(radius * 2) - radius,
-                random.nextInt(radius * 2) - radius,
-                random.nextInt(radius * 2) - radius,
+                random.nextInt(8) - random.nextInt(8),
+                0,
+                random.nextInt(8) - random.nextInt(8)
             )
 
-            val wormPos = pos.add(offset)
+            val targetPos = pos.add(offset)
+            val surfaceY = world.getTopY(Heightmap.Type.OCEAN_FLOOR, targetPos.x, targetPos.z)
+            val tubeWormPos = BlockPos(targetPos.x, surfaceY, targetPos.z)
 
-            if (!world.isWater(wormPos)) {
-                return@repeat
-            }
+            if (!world.isWater(tubeWormPos)) return@repeat
 
-            val baseState = stateProvider.get(random, wormPos)
-
-            val stateWithWorms = baseState.with(TubeWormBlock.WORMS, random.nextInt(4) + 1)
-
-            if (isValidPosition(world, wormPos, stateWithWorms)) {
-                world.setBlockState(wormPos, stateWithWorms, Block.NOTIFY_LISTENERS)
+            val state = stateProvider.get(random, tubeWormPos)
+            if (isValidPosition(world, tubeWormPos, state)) {
+                world.setBlockState(tubeWormPos, state, Block.NOTIFY_LISTENERS)
+                placed++
             }
         }
+
+        return placed > 0
     }
 
     private fun isValidPosition(world: WorldAccess, pos: BlockPos, state: BlockState): Boolean {

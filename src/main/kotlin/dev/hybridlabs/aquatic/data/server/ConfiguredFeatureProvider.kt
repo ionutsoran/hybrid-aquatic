@@ -93,7 +93,9 @@ class ConfiguredFeatureProvider(output: FabricDataOutput, registriesFuture: Comp
                     UniformIntProvider.create(2, 5),
                     ConstantIntProvider.create(5),
                     UniformIntProvider.create(4, 8),
-                    UniformIntProvider.create(2, 8),
+                    UniformIntProvider.create(2, 8), // Worm spread radius
+                    1,
+                    4
                 )
             )
         )

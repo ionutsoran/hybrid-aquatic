@@ -25,7 +25,7 @@ import org.jetbrains.annotations.Nullable
 class TubeWormBlock(settings: Settings) : PlantBlock(settings), Fertilizable, Waterloggable {
     companion object {
         const val MAX_WORMS = 4
-        val WORMS: IntProperty = IntProperty.of("worms_count", 1, MAX_WORMS)
+        val WORMS: IntProperty = IntProperty.of("worms", 1, MAX_WORMS)
         val WATERLOGGED: BooleanProperty = Properties.WATERLOGGED
         private val ONE_WORM_SHAPE: VoxelShape = createCuboidShape(6.0, 0.0, 6.0, 10.0, 8.0, 10.0)
         private val TWO_WORMS_SHAPE: VoxelShape = createCuboidShape(3.0, 0.0, 3.0, 13.0, 8.0, 13.0)

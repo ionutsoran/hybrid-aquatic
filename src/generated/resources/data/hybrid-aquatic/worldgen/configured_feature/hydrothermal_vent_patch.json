@@ -12,7 +12,7 @@
       "state": {
         "Name": "hybrid-aquatic:tube_worm",
         "Properties": {
-          "pickles": "1",
+          "worms": "1",
           "waterlogged": "true"
         }
       }
