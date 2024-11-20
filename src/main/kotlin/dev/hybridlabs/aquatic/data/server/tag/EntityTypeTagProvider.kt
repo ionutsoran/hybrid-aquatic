@@ -114,6 +114,7 @@ class EntityTypeTagProvider(output: FabricDataOutput, registriesFuture: Completa
                 HybridAquaticEntityTypes.SEA_CUCUMBER,
                 HybridAquaticEntityTypes.SEA_URCHIN,
                 HybridAquaticEntityTypes.STARFISH,
+                HybridAquaticEntityTypes.SEA_ANGEL,
             )
 
         // jellyfish
@@ -134,7 +135,44 @@ class EntityTypeTagProvider(output: FabricDataOutput, registriesFuture: Completa
 
         // fishes
         getOrCreateTagBuilder(HybridAquaticEntityTags.FISH)
-        // TODO: add all the fishes here
+            .add(
+                HybridAquaticEntityTypes.AFRICAN_BUTTERFLY,
+                HybridAquaticEntityTypes.BETTA,
+                HybridAquaticEntityTypes.CARP,
+                HybridAquaticEntityTypes.CLOWNFISH,
+                HybridAquaticEntityTypes.COWFISH,
+                HybridAquaticEntityTypes.DANIO,
+                HybridAquaticEntityTypes.DISCUS,
+                HybridAquaticEntityTypes.FLASHLIGHT_FISH,
+                HybridAquaticEntityTypes.FLYING_FISH,
+                HybridAquaticEntityTypes.GOLDFISH,
+                HybridAquaticEntityTypes.GOURAMI,
+                HybridAquaticEntityTypes.LIONFISH,
+                HybridAquaticEntityTypes.MACKEREL,
+                HybridAquaticEntityTypes.MAHI,
+                HybridAquaticEntityTypes.MORAY_EEL,
+                HybridAquaticEntityTypes.NEEDLEFISH,
+                HybridAquaticEntityTypes.OARFISH,
+                HybridAquaticEntityTypes.OPAH,
+                HybridAquaticEntityTypes.OSCAR,
+                HybridAquaticEntityTypes.PARROTFISH,
+                HybridAquaticEntityTypes.PIRANHA,
+                HybridAquaticEntityTypes.ROCKFISH,
+                HybridAquaticEntityTypes.SEA_BASS,
+                HybridAquaticEntityTypes.SEAHORSE,
+                HybridAquaticEntityTypes.SUNFISH,
+                HybridAquaticEntityTypes.SURGEONFISH,
+                HybridAquaticEntityTypes.TETRA,
+                HybridAquaticEntityTypes.TIGER_BARB,
+                HybridAquaticEntityTypes.TRIGGERFISH,
+                HybridAquaticEntityTypes.TUNA,
+                HybridAquaticEntityTypes.MANTA_RAY,
+                HybridAquaticEntityTypes.STINGRAY,
+                HybridAquaticEntityTypes.ANGLERFISH,
+                HybridAquaticEntityTypes.BARRELEYE,
+                HybridAquaticEntityTypes.DRAGONFISH,
+                HybridAquaticEntityTypes.RATFISH,
+            )
 
         // entities that you can catch with the fishing net
         getOrCreateTagBuilder(HybridAquaticEntityTags.CAN_USE_FISHING_NET_ON)
