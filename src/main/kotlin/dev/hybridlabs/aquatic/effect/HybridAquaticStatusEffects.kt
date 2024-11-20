@@ -12,6 +12,8 @@ object HybridAquaticStatusEffects {
     val THALASSOPHOBIA = register("thalassophobia", ThalassophobiaStatusEffect())
     val BUOYANCY = register("buoyancy", BuoyancyStatusEffect())
     val SPININESS = register("spininess", SpininessStatusEffect())
+    val CORROSION = register("corrosion", CorrosionStatusEffect())
+    
     private fun register(id: String, effect: StatusEffect): StatusEffect {
         return Registry.register(Registries.STATUS_EFFECT, Identifier(HybridAquatic.MOD_ID, id), effect)
     }

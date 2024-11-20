@@ -173,6 +173,7 @@ class LanguageProvider(output: FabricDataOutput) : FabricLanguageProvider(output
             HybridAquaticItems.SPONGE_CHUNK to "Sponge Chunk",
             HybridAquaticItems.PEARL to "Pearl",
             HybridAquaticItems.BLACK_PEARL to "Black Pearl",
+            HybridAquaticItems.SULFUR to "Sulfur",
             HybridAquaticItems.BARBED_HOOK to "Barbed Hook",
             HybridAquaticItems.GLOWING_HOOK to "Glowing Hook",
             HybridAquaticItems.MAGNETIC_HOOK to "Magnetic Hook",
@@ -209,6 +210,7 @@ class LanguageProvider(output: FabricDataOutput) : FabricLanguageProvider(output
         mapOf(
             HybridAquaticStatusEffects.BLEEDING to "Bleeding",
             HybridAquaticStatusEffects.CLARITY to "Clarity",
+            HybridAquaticStatusEffects.CORROSION to "Corrosion",
             HybridAquaticStatusEffects.THALASSOPHOBIA to "Thalassophobia",
             HybridAquaticStatusEffects.BUOYANCY to "Buoyancy",
             HybridAquaticStatusEffects.SPININESS to "Spininess",
@@ -252,6 +254,7 @@ class LanguageProvider(output: FabricDataOutput) : FabricLanguageProvider(output
         mapOf(
             "glowing" to "Glowing",
             "clarity" to "Clarity",
+            "corrosion" to "Corrosion",
             "thalassophobia" to "Thalassophobia",
             "bleeding" to "Bleeding",
             "swimming" to "Swimming",

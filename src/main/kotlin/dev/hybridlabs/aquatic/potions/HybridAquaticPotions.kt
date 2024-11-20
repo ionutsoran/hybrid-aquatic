@@ -79,6 +79,13 @@ object HybridAquaticPotions {
         HybridAquaticItems.SEA_URCHIN_SPINE
     )
 
+    val CORROSION_POTION = registerPotionWithRecipe(
+        "corrosion",
+        Potion(StatusEffectInstance(HybridAquaticStatusEffects.CORROSION, 300, 0)),
+        Potions.AWKWARD,
+        HybridAquaticItems.SULFUR
+    )
+
     private fun registerPotionWithRecipe(id: String, potion: Potion, inputPotion: Potion, ingredient: Item): Potion {
         BrewingRecipeRegistry.registerPotionRecipe(inputPotion, ingredient, potion)
         return register(id, potion)

@@ -1,17 +1,25 @@
 package dev.hybridlabs.aquatic.block
 
+import dev.hybridlabs.aquatic.effect.HybridAquaticStatusEffects
 import net.minecraft.block.*
 import net.minecraft.block.enums.Thickness
+import net.minecraft.enchantment.EnchantmentHelper
+import net.minecraft.entity.Entity
+import net.minecraft.entity.LivingEntity
 import net.minecraft.entity.ai.pathing.NavigationType
+import net.minecraft.entity.effect.StatusEffectInstance
 import net.minecraft.fluid.FluidState
 import net.minecraft.fluid.Fluids
 import net.minecraft.item.ItemPlacementContext
 import net.minecraft.particle.ParticleTypes
+import net.minecraft.sound.SoundCategory
+import net.minecraft.sound.SoundEvents
 import net.minecraft.state.StateManager
 import net.minecraft.state.property.BooleanProperty
 import net.minecraft.state.property.EnumProperty
 import net.minecraft.state.property.Properties
 import net.minecraft.util.math.BlockPos
+import net.minecraft.util.math.Box
 import net.minecraft.util.math.Direction
 import net.minecraft.util.math.random.Random
 import net.minecraft.util.shape.VoxelShape
@@ -21,8 +29,13 @@ import net.minecraft.world.World
 import net.minecraft.world.WorldAccess
 import net.minecraft.world.WorldView
 
-@Suppress("DEPRECATION", "SameParameterValue")
-class HydrothermalVentBlock(settings: Settings?) : Block(settings), Waterloggable {
+@Suppress("DEPRECATION", "SameParameterValue", "OVERRIDE_DEPRECATION")
+class HydrothermalVentBlock(
+    private val emitsParticles: Boolean,
+    private val fireDamage: Int,
+    settings: Settings?
+) : Block(settings), Waterloggable {
+
     init {
         defaultState = stateManager.defaultState
             .with(THICKNESS, Thickness.TIP)
@@ -74,6 +87,28 @@ class HydrothermalVentBlock(settings: Settings?) : Block(settings), Waterloggabl
         if (state.get(THICKNESS) == Thickness.TIP) {
             spawnSmokeParticle(world, pos, random)
         }
+        if (random.nextInt(10) == 0) {
+            world.playSound(
+                pos.x.toDouble() + 0.5,
+                pos.y.toDouble() + 0.5,
+                pos.z.toDouble() + 0.5,
+                SoundEvents.BLOCK_LAVA_POP,
+                SoundCategory.BLOCKS,
+                0.5f + random.nextFloat(),
+                random.nextFloat() * 0.7f + 0.6f,
+                false
+            )
+        }
+
+        if (state.get(THICKNESS) == Thickness.TIP && this.emitsParticles && random.nextInt(5) == 0) {
+            for (i in 0 until random.nextInt(1) + 1) {
+                world.addParticle(
+                    ParticleTypes.LAVA, pos.x.toDouble() + 0.5, pos.y.toDouble() + 0.5, pos.z.toDouble() + 0.5,
+                    (random.nextFloat() / 2.0f).toDouble(), 5.0E-5,
+                    (random.nextFloat() / 2.0f).toDouble()
+                )
+            }
+        }
     }
 
     private fun getThickness(world: WorldView, currentPos: BlockPos): Thickness {
@@ -101,6 +136,24 @@ class HydrothermalVentBlock(settings: Settings?) : Block(settings), Waterloggabl
             0.01,
             0.0
         )
+    }
+
+    override fun onSteppedOn(world: World, pos: BlockPos?, state: BlockState?, entity: Entity) {
+        if (world.isClient || pos == null || state == null) return
+
+        if (state.get(THICKNESS) == Thickness.TIP) {
+            val boundingBox = Box(pos.x - 0.5, pos.y.toDouble(), pos.z - 0.5, pos.x + 1.5, pos.y + 3.0, pos.z + 1.5)
+            val entities = world.getEntitiesByClass(LivingEntity::class.java, boundingBox) { true }
+
+            for (nearbyEntity in entities) {
+                if (!nearbyEntity.bypassesSteppingEffects() && !EnchantmentHelper.hasFrostWalker(nearbyEntity)) {
+                    nearbyEntity.damage(world.damageSources.hotFloor(), fireDamage.toFloat())
+                    nearbyEntity.addStatusEffect(StatusEffectInstance(HybridAquaticStatusEffects.CORROSION, 200, 0)) // 10 seconds
+                }
+            }
+        }
+
+        super.onSteppedOn(world, pos, state, entity)
     }
 
     override fun getCollisionShape(

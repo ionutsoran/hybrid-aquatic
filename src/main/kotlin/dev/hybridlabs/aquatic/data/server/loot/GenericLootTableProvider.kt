@@ -10,6 +10,7 @@ import net.minecraft.loot.LootTable
 import net.minecraft.loot.context.LootContextTypes
 import net.minecraft.loot.entry.ItemEntry
 import net.minecraft.loot.function.SetCountLootFunction
+import net.minecraft.loot.provider.number.ConstantLootNumberProvider
 import net.minecraft.loot.provider.number.UniformLootNumberProvider
 import net.minecraft.util.Identifier
 import java.util.function.BiConsumer
@@ -497,11 +498,20 @@ class GenericLootTableProvider(output: FabricDataOutput) : SimpleFabricLootTable
         )
 
         exporter.accept(
-            HybridAquaticLootTables.THERMAL_VENT_LOOT_ID,
+            HybridAquaticLootTables.VENT_LOOT_ID,
             LootTable.builder()
-                .randomSequenceId(HybridAquaticLootTables.THERMAL_VENT_LOOT_ID)
+                .randomSequenceId(HybridAquaticLootTables.VENT_LOOT_ID)
                 .pool(
                     LootPool.builder()
+                        .rolls(ConstantLootNumberProvider.create(1F))
+                        .with(
+                            ItemEntry.builder(HybridAquaticItems.SULFUR)
+                                .apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(0.0f, 2.0f)))
+                        )
+                )
+                .pool(
+                    LootPool.builder()
+                        .rolls(ConstantLootNumberProvider.create(1F))
                         .with(ItemEntry.builder(Items.RAW_GOLD).weight(1))
                         .with(ItemEntry.builder(Items.RAW_IRON).weight(3))
                         .with(ItemEntry.builder(Items.RAW_COPPER).weight(5))

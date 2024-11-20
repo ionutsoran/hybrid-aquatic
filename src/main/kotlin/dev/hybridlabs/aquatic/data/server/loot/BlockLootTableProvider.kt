@@ -91,7 +91,7 @@ class BlockLootTableProvider(output: FabricDataOutput) : FabricBlockLootTablePro
                 LootPool.builder().with(
                     AlternativeEntry.builder(
                         ItemEntry.builder(block).conditionally(WITH_SILK_TOUCH),
-                        LootTableEntry.builder(HybridAquaticLootTables.THERMAL_VENT_LOOT_ID)
+                        LootTableEntry.builder(HybridAquaticLootTables.VENT_LOOT_ID)
                     )
                 )
             )
