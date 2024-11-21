@@ -1,6 +1,7 @@
 package dev.hybridlabs.aquatic.block
 
 import dev.hybridlabs.aquatic.effect.HybridAquaticStatusEffects
+import dev.hybridlabs.aquatic.entity.crustacean.YetiCrabEntity
 import net.minecraft.block.*
 import net.minecraft.block.enums.Thickness
 import net.minecraft.enchantment.EnchantmentHelper
@@ -19,7 +20,6 @@ import net.minecraft.state.property.BooleanProperty
 import net.minecraft.state.property.EnumProperty
 import net.minecraft.state.property.Properties
 import net.minecraft.util.math.BlockPos
-import net.minecraft.util.math.Box
 import net.minecraft.util.math.Direction
 import net.minecraft.util.math.random.Random
 import net.minecraft.util.shape.VoxelShape
@@ -141,15 +141,10 @@ class HydrothermalVentBlock(
     override fun onSteppedOn(world: World, pos: BlockPos?, state: BlockState?, entity: Entity) {
         if (world.isClient || pos == null || state == null) return
 
-        if (state.get(THICKNESS) == Thickness.TIP) {
-            val boundingBox = Box(pos.x - 0.5, pos.y.toDouble(), pos.z - 0.5, pos.x + 1.5, pos.y + 3.0, pos.z + 1.5)
-            val entities = world.getEntitiesByClass(LivingEntity::class.java, boundingBox) { true }
-
-            for (nearbyEntity in entities) {
-                if (!nearbyEntity.bypassesSteppingEffects() && !EnchantmentHelper.hasFrostWalker(nearbyEntity)) {
-                    nearbyEntity.damage(world.damageSources.hotFloor(), fireDamage.toFloat())
-                    nearbyEntity.addStatusEffect(StatusEffectInstance(HybridAquaticStatusEffects.CORROSION, 200, 0))
-                }
+        if (state.get(THICKNESS) == Thickness.TIP && entity !is YetiCrabEntity) {
+            if (!entity.bypassesSteppingEffects() && entity is LivingEntity && !EnchantmentHelper.hasFrostWalker(entity)) {
+                entity.damage(world.damageSources.hotFloor(), fireDamage.toFloat())
+                entity.addStatusEffect(StatusEffectInstance(HybridAquaticStatusEffects.CORROSION, 200, 0))
             }
         }
 
