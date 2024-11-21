@@ -94,6 +94,7 @@ object HybridAquaticClient : ClientModInitializer {
         registry.putBlocks(
             RenderLayer.getCutout(),
             HybridAquaticBlocks.CRAB_POT,
+            HybridAquaticBlocks.GIANT_CLAM,
             HybridAquaticBlocks.TUBE_WORM,
             HybridAquaticBlocks.LOPHELIA_CORAL,
             HybridAquaticBlocks.LOPHELIA_CORAL_FAN,

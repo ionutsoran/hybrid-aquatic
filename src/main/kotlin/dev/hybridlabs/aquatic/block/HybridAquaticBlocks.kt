@@ -171,11 +171,12 @@ object HybridAquaticBlocks {
     val TUBE_SPONGE = register("tube_sponge", TubeSpongeBlock(FabricBlockSettings.copyOf(Blocks.WET_SPONGE)
         .nonOpaque()))
 
-    val GIANT_CLAM = register("giant_clam", GiantClamBlock(true, 4, FabricBlockSettings.copyOf(Blocks.TUFF)
-        .nonOpaque()
-        .hardness(1.0F)
-        .pistonBehavior(PistonBehavior.DESTROY)
-        .drops(Identifier(HybridAquatic.MOD_ID, "blocks/giant_clam"))
+    val GIANT_CLAM = register("giant_clam", GiantClamBlock(
+        true, FabricBlockSettings.copyOf(Blocks.TUFF)
+            .nonOpaque()
+            .hardness(1.0F)
+            .pistonBehavior(PistonBehavior.DESTROY)
+            .drops(Identifier(HybridAquatic.MOD_ID, "blocks/giant_clam"))
     ))
 
     val BUOY = register("buoy", BuoyBlock(FabricBlockSettings.copyOf(Blocks.OAK_PLANKS)
