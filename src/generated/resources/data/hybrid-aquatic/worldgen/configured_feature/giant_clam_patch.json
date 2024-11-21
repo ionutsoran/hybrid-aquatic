@@ -10,7 +10,7 @@
             "state": {
               "Name": "hybrid-aquatic:giant_clam",
               "Properties": {
-                "clam_has_pearl": "true",
+                "state": "closed",
                 "waterlogged": "true"
               }
             }

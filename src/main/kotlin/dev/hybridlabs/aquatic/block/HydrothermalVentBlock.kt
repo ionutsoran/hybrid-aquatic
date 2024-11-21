@@ -148,7 +148,7 @@ class HydrothermalVentBlock(
             for (nearbyEntity in entities) {
                 if (!nearbyEntity.bypassesSteppingEffects() && !EnchantmentHelper.hasFrostWalker(nearbyEntity)) {
                     nearbyEntity.damage(world.damageSources.hotFloor(), fireDamage.toFloat())
-                    nearbyEntity.addStatusEffect(StatusEffectInstance(HybridAquaticStatusEffects.CORROSION, 200, 0)) // 10 seconds
+                    nearbyEntity.addStatusEffect(StatusEffectInstance(HybridAquaticStatusEffects.CORROSION, 200, 0))
                 }
             }
         }

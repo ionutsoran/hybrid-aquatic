@@ -1,0 +1,55 @@
+{
+  "variants": {
+    "state=open": [
+      {
+        "model": "hybrid-aquatic:block/giant_clam_open"
+      },
+      {
+        "model": "hybrid-aquatic:block/giant_clam_open",
+        "y": 45
+      },
+      {
+        "model": "hybrid-aquatic:block/giant_clam_open",
+        "y": 90
+      },
+      {
+        "model": "hybrid-aquatic:block/giant_clam_open",
+        "y": 135
+      }
+    ],
+    "state=closed": [
+      {
+        "model": "hybrid-aquatic:block/giant_clam_closed"
+      },
+      {
+        "model": "hybrid-aquatic:block/giant_clam_closed",
+        "y": 45
+      },
+      {
+        "model": "hybrid-aquatic:block/giant_clam_closed",
+        "y": 90
+      },
+      {
+        "model": "hybrid-aquatic:block/giant_clam_closed",
+        "y": 135
+      }
+    ],
+    "state=dead": [
+      {
+        "model": "hybrid-aquatic:block/giant_clam_dead"
+      },
+      {
+        "model": "hybrid-aquatic:block/giant_clam_dead",
+        "y": 45
+      },
+      {
+        "model": "hybrid-aquatic:block/giant_clam_dead",
+        "y": 90
+      },
+      {
+        "model": "hybrid-aquatic:block/giant_clam_dead",
+        "y": 135
+      }
+    ]
+  }
+}

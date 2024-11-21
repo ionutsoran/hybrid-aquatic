@@ -13,7 +13,6 @@ import net.minecraft.util.Util
 
 object HybridAquaticBlockEntityTypes {
     val ANEMONE: BlockEntityType<AnemoneBlockEntity> = register("anemone", FabricBlockEntityTypeBuilder.create(::AnemoneBlockEntity, HybridAquaticBlocks.ANEMONE))
-    val GIANT_CLAM: BlockEntityType<GiantClamBlockEntity> = register("giant_clam", FabricBlockEntityTypeBuilder.create(::GiantClamBlockEntity, HybridAquaticBlocks.GIANT_CLAM))
     val MESSAGE_IN_A_BOTTLE: BlockEntityType<MessageInABottleBlockEntity> = register("message_in_a_bottle", FabricBlockEntityTypeBuilder.create(::MessageInABottleBlockEntity, HybridAquaticBlocks.MESSAGE_IN_A_BOTTLE))
     val BUOY: BlockEntityType<BuoyBlockEntity> = register("buoy", FabricBlockEntityTypeBuilder.create(::BuoyBlockEntity, HybridAquaticBlocks.BUOY))
     val TUBE_SPONGE: BlockEntityType<TubeSpongeBlockEntity> = register("tube_sponge", FabricBlockEntityTypeBuilder.create(::TubeSpongeBlockEntity, HybridAquaticBlocks.TUBE_SPONGE))

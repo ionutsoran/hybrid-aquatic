@@ -171,7 +171,7 @@ object HybridAquaticBlocks {
     val TUBE_SPONGE = register("tube_sponge", TubeSpongeBlock(FabricBlockSettings.copyOf(Blocks.WET_SPONGE)
         .nonOpaque()))
 
-    val GIANT_CLAM = register("giant_clam", GiantClamBlock(FabricBlockSettings.copyOf(Blocks.TUFF)
+    val GIANT_CLAM = register("giant_clam", GiantClamBlock(true, 4, FabricBlockSettings.copyOf(Blocks.TUFF)
         .nonOpaque()
         .hardness(1.0F)
         .pistonBehavior(PistonBehavior.DESTROY)
