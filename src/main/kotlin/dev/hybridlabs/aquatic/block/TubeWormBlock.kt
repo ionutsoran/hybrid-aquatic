@@ -6,7 +6,6 @@ import net.minecraft.entity.ai.pathing.NavigationType
 import net.minecraft.fluid.FluidState
 import net.minecraft.fluid.Fluids
 import net.minecraft.item.ItemPlacementContext
-import net.minecraft.registry.tag.BlockTags
 import net.minecraft.server.world.ServerWorld
 import net.minecraft.state.StateManager
 import net.minecraft.state.property.BooleanProperty
@@ -23,7 +22,7 @@ import net.minecraft.world.WorldAccess
 import net.minecraft.world.WorldView
 import org.jetbrains.annotations.Nullable
 
-@Suppress("DEPRECATION", "SameParameterValue")
+@Suppress("DEPRECATION", "SameParameterValue", "OVERRIDE_DEPRECATION")
 class TubeWormBlock(settings: Settings) : PlantBlock(settings), Fertilizable, Waterloggable {
     companion object {
         val WORMS: IntProperty = IntProperty.of("worms", 1, 4)
@@ -123,9 +122,5 @@ class TubeWormBlock(settings: Settings) : PlantBlock(settings), Fertilizable, Wa
     override fun canPlantOnTop(floor: BlockState, world: BlockView, pos: BlockPos): Boolean {
         return !floor.getCollisionShape(world, pos).getFace(Direction.UP).isEmpty ||
                 floor.isSideSolidFullSquare(world, pos, Direction.UP)
-    }
-
-    private fun isDry(state: BlockState): Boolean {
-        return !state[WATERLOGGED]
     }
 }
