@@ -85,6 +85,7 @@ open class HybridAquaticFishEntity(
     ): EntityData? {
         this.air = getMaxMoistness()
         pitch = 0.0f
+        yaw = 0.0f
         this.size = this.random.nextBetween(getMinSize(),getMaxSize())
 
         if (variants.isNotEmpty()) {
@@ -467,6 +468,10 @@ open class HybridAquaticFishEntity(
     }
 
     override fun getMaxLookPitchChange(): Int {
+        return 1
+    }
+
+    override fun getMaxLookYawChange(): Int {
         return 1
     }
 
