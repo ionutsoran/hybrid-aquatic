@@ -156,9 +156,12 @@ object HybridAquaticBlocks {
         .luminance(GlowstickBlock::luminance)
         .nonOpaque()))
 
-    val HYDROTHERMAL_VENT = register("hydrothermal_vent", HydrothermalVentBlock(true, 2, FabricBlockSettings.copyOf(Blocks.TUFF)
+    val HYDROTHERMAL_VENT = register("hydrothermal_vent", HydrothermalVentBlock(
+        true, 2, FabricBlockSettings.copyOf(Blocks.TUFF)
         .nonOpaque()
-        .hardness(0.5F)))
+        .hardness(0.5F)
+        .pistonBehavior(PistonBehavior.DESTROY)
+    ))
 
     val TUBE_WORM = register("tube_worm", TubeWormBlock(FabricBlockSettings.copyOf(
         AbstractBlock.Settings.create()
@@ -168,8 +171,14 @@ object HybridAquaticBlocks {
             .pistonBehavior(PistonBehavior.DESTROY)
     )))
 
-    val TUBE_SPONGE = register("tube_sponge", TubeSpongeBlock(FabricBlockSettings.copyOf(Blocks.WET_SPONGE)
-        .nonOpaque()))
+    val TUBE_SPONGE = register("tube_sponge", TubeSpongeBlock(
+        true, FabricBlockSettings.copyOf(
+        AbstractBlock.Settings.create()
+        .mapColor(MapColor.YELLOW)
+        .sounds(BlockSoundGroup.SLIME)
+        .nonOpaque()
+        .pistonBehavior(PistonBehavior.DESTROY)
+    )))
 
     val GIANT_CLAM = register("giant_clam", GiantClamBlock(
         true, FabricBlockSettings.copyOf(Blocks.TUFF)

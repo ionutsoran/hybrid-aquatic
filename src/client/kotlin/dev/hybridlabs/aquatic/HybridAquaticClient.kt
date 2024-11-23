@@ -12,9 +12,10 @@ import dev.hybridlabs.aquatic.client.render.armor.*
 import dev.hybridlabs.aquatic.client.render.block.entity.AnemoneBlockEntityRenderer
 import dev.hybridlabs.aquatic.client.render.block.entity.BuoyBlockEntityRenderer
 import dev.hybridlabs.aquatic.client.render.block.entity.MessageInABottleBlockEntityRenderer
-import dev.hybridlabs.aquatic.client.render.block.entity.TubeSpongeBlockEntityRenderer
 import dev.hybridlabs.aquatic.client.render.entity.HybridAquaticEntityRenderers
-import dev.hybridlabs.aquatic.client.render.item.*
+import dev.hybridlabs.aquatic.client.render.item.AnemoneBlockItemRenderer
+import dev.hybridlabs.aquatic.client.render.item.BuoyBlockItemRenderer
+import dev.hybridlabs.aquatic.client.render.item.MessageInABottleBlockItemRenderer
 import dev.hybridlabs.aquatic.item.HybridAquaticItems
 import net.fabricmc.api.ClientModInitializer
 import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap
@@ -119,7 +120,6 @@ object HybridAquaticClient : ClientModInitializer {
         BlockEntityRendererFactories.register(HybridAquaticBlockEntityTypes.ANEMONE, ::AnemoneBlockEntityRenderer)
         BlockEntityRendererFactories.register(HybridAquaticBlockEntityTypes.MESSAGE_IN_A_BOTTLE, ::MessageInABottleBlockEntityRenderer)
         BlockEntityRendererFactories.register(HybridAquaticBlockEntityTypes.BUOY, ::BuoyBlockEntityRenderer)
-        BlockEntityRendererFactories.register(HybridAquaticBlockEntityTypes.TUBE_SPONGE, ::TubeSpongeBlockEntityRenderer)
     }
 
     private fun registerEntityRenderers() {
@@ -128,7 +128,6 @@ object HybridAquaticClient : ClientModInitializer {
 
     private fun registerBuiltinItemRenderers(registry: BuiltinItemRendererRegistry = BuiltinItemRendererRegistry.INSTANCE) {
         registry.register(HybridAquaticItems.ANEMONE, AnemoneBlockItemRenderer())
-        registry.register(HybridAquaticItems.TUBE_SPONGE, TubeSpongeBlockItemRenderer())
         registry.register(HybridAquaticItems.BUOY, BuoyBlockItemRenderer())
         registry.register(HybridAquaticItems.MESSAGE_IN_A_BOTTLE, MessageInABottleBlockItemRenderer())
     }

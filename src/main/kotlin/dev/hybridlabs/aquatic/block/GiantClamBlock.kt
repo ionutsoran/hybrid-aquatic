@@ -145,7 +145,6 @@ class GiantClamBlock(
         super.onSteppedOn(world, pos, state, entity)
     }
 
-
     override fun randomDisplayTick(state: BlockState, world: World, pos: BlockPos, random: Random) {
         if (state.get(STATE) == GiantClamState.OPEN && emitsParticles && random.nextInt(5) == 0) {
             for (i in 0..random.nextInt(1)) {
