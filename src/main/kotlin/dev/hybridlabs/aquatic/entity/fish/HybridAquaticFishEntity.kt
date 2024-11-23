@@ -64,8 +64,6 @@ open class HybridAquaticFishEntity(
         goalSelector.add(1, AttackGoal(this))
         goalSelector.add(5, FleeEntityGoal(this, GuardianEntity::class.java, 8.0f, 1.0, 1.0))
         goalSelector.add(5, FleeEntityGoal(this, PlayerEntity::class.java, 8.0f, 1.0, 1.0))
-        goalSelector.add(5, FleeEntityGoal(this, LivingEntity::class.java, 8.0f, 1.25, 1.5) { entity -> predator.any { entity.type.isIn(it) && this.hunger < 100} })
-        targetSelector.add(1, ActiveTargetGoal(this, LivingEntity::class.java, 10, true, true) { entity -> prey.any { entity.type.isIn(it) } })
     }
 
     override fun initDataTracker() {
