@@ -49,12 +49,6 @@
         "min_inclusive": 1
       }
     },
-    "worm_spread_radius": {
-      "type": "minecraft:uniform",
-      "value": {
-        "max_inclusive": 8,
-        "min_inclusive": 2
-      }
-    }
+    "worm_spread_radius": 8
   }
 }
