@@ -231,7 +231,7 @@ open class HybridAquaticRayEntity(
     }
 
     override fun getLimitPerChunk(): Int {
-        return 4
+        return 2
     }
 
     // region Properties

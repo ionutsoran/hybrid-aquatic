@@ -152,7 +152,12 @@ class FishingLootTableProvider(output: FabricDataOutput) : SimpleFabricLootTable
                                 .conditionally(needsLukewarmOcean.or(needsDeepLukewarmOcean))
                         )
                         .with(
-                            ItemEntry.builder(HybridAquaticItems.TUNA)
+                            ItemEntry.builder(HybridAquaticItems.YELLOWFIN_TUNA)
+                                .weight(5)
+                                .conditionally(needsDeepOcean.or(needsDeepColdOcean.or(needsDeepFrozenOcean.or(needsDeepLukewarmOcean))))
+                        )
+                        .with(
+                            ItemEntry.builder(HybridAquaticItems.BLUEFIN_TUNA)
                                 .weight(5)
                                 .conditionally(needsDeepOcean.or(needsDeepColdOcean.or(needsDeepFrozenOcean.or(needsDeepLukewarmOcean))))
                         )

@@ -8,6 +8,7 @@ import net.minecraft.entity.ai.goal.BreatheAirGoal
 import net.minecraft.entity.attribute.DefaultAttributeContainer
 import net.minecraft.entity.attribute.EntityAttributes
 import net.minecraft.entity.mob.WaterCreatureEntity
+import net.minecraft.util.Identifier
 import net.minecraft.world.World
 
 class TunaEntity(entityType: EntityType<out TunaEntity>, world: World) :
@@ -22,6 +23,14 @@ class TunaEntity(entityType: EntityType<out TunaEntity>, world: World) :
             ignore = listOf(FishVariant.Ignore.ANIMATION)),
         "yellowfin" to FishVariant.biomeVariant("yellowfin", listOf(HybridAquaticBiomeTags.TROPICAL_OCEANS, HybridAquaticBiomeTags.TEMPERATE_OCEANS),
             ignore = listOf(FishVariant.Ignore.ANIMATION)))) {
+
+    public override fun getLootTableId(): Identifier {
+        return when (this.variant?.variantName) {
+            "yellowfin" -> Identifier("hybrid-aquatic", "gameplay/yellowfin")
+            "bluefin" -> Identifier("hybrid-aquatic", "gameplay/bluefin")
+            else -> super.getLootTableId()
+        }
+    }
 
     override fun getLimitPerChunk(): Int {
         return 4

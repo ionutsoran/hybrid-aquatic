@@ -246,7 +246,7 @@ object HybridAquaticItems {
                 .food(
                     FoodComponent.Builder()
                         .hunger(8)
-                        .saturationModifier(12.8F)
+                        .saturationModifier(1.8F)
                         .meat()
                         .build()
                 )
@@ -259,7 +259,7 @@ object HybridAquaticItems {
                 .food(
                     FoodComponent.Builder()
                         .hunger(3)
-                        .saturationModifier(1.8F)
+                        .saturationModifier(0.9F)
                         .meat()
                         .build()
                 )
@@ -829,7 +829,20 @@ object HybridAquaticItems {
         )
     )
 
-    val TUNA = register("tuna",
+    val YELLOWFIN_TUNA = register("yellowfin_tuna",
+        Item(
+            FabricItemSettings()
+                .food(
+                    FoodComponent.Builder()
+                        .hunger(3)
+                        .saturationModifier(1.8F)
+                        .meat()
+                        .build()
+                )
+        )
+    )
+
+    val BLUEFIN_TUNA = register("bluefin_tuna",
         Item(
             FabricItemSettings()
                 .food(

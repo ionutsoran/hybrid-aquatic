@@ -62,7 +62,8 @@ class LiveCatchEnchantment : Enchantment(Rarity.RARE, EnchantmentTarget.FISHING_
             HybridAquaticItems.NEEDLEFISH to HybridAquaticEntityTypes.NEEDLEFISH,
 
             HybridAquaticItems.MAHI to HybridAquaticEntityTypes.MAHI,
-            HybridAquaticItems.TUNA to HybridAquaticEntityTypes.TUNA,
+            HybridAquaticItems.YELLOWFIN_TUNA to HybridAquaticEntityTypes.TUNA,
+            HybridAquaticItems.BLUEFIN_TUNA to HybridAquaticEntityTypes.TUNA,
             HybridAquaticItems.OPAH to HybridAquaticEntityTypes.OPAH,
             HybridAquaticItems.SUNFISH to HybridAquaticEntityTypes.SUNFISH,
             HybridAquaticItems.OARFISH to HybridAquaticEntityTypes.OARFISH,

@@ -636,6 +636,33 @@ class GenericLootTableProvider(output: FabricDataOutput) : SimpleFabricLootTable
         )
 
         exporter.accept(
+            HybridAquaticLootTables.SEABASS_BLACK,
+            LootTable.builder()
+                .pool(
+                    LootPool.builder()
+                        .with(ItemEntry.builder(HybridAquaticItems.SEA_BASS))
+                )
+        )
+
+        exporter.accept(
+            HybridAquaticLootTables.YELLOWFIN,
+            LootTable.builder()
+                .pool(
+                    LootPool.builder()
+                        .with(ItemEntry.builder(HybridAquaticItems.YELLOWFIN_TUNA))
+                )
+        )
+
+        exporter.accept(
+            HybridAquaticLootTables.BLUEFIN,
+            LootTable.builder()
+                .pool(
+                    LootPool.builder()
+                        .with(ItemEntry.builder(HybridAquaticItems.BLUEFIN_TUNA))
+                )
+        )
+
+        exporter.accept(
             HybridAquaticLootTables.SPOTTED_EAGLE_RAY,
             LootTable.builder()
                 .pool(

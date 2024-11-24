@@ -722,17 +722,6 @@ class EntityTypeLootTableProvider(output: FabricDataOutput) : SimpleFabricLootTa
         }
 
         // medium fish
-        export(exporter, HybridAquaticEntityTypes.TUNA) {
-            pool(
-                LootPool.builder()
-                    .with(
-                        ItemEntry.builder(HybridAquaticItems.TUNA)
-                            .apply(LootingEnchantLootFunction.builder(UniformLootNumberProvider.create(0.0F, 1.0F)))
-                            .apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(1.0F, 1.0F)))
-                    )
-            )
-        }
-
         export(exporter, HybridAquaticEntityTypes.MAHI) {
             pool(
                 LootPool.builder()

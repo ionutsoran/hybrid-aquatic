@@ -156,7 +156,8 @@ object  HybridAquaticItemGroups {
             entries.add(HybridAquaticItems.NEEDLEFISH)
             entries.add(HybridAquaticItems.PARROTFISH)
             entries.add(HybridAquaticItems.MORAY_EEL)
-            entries.add(HybridAquaticItems.TUNA)
+            entries.add(HybridAquaticItems.YELLOWFIN_TUNA)
+            entries.add(HybridAquaticItems.BLUEFIN_TUNA)
             entries.add(HybridAquaticItems.MAHI)
             entries.add(HybridAquaticItems.OPAH)
             entries.add(HybridAquaticItems.OARFISH)
@@ -230,7 +231,7 @@ object  HybridAquaticItemGroups {
 
     val SPAWN_EGGS = register("spawn_eggs", FabricItemGroup.builder()
         .displayName(Text.translatable("itemGroup.${HybridAquatic.MOD_ID}.spawn_eggs"))
-        .icon { ItemStack(HybridAquaticItems.TUNA) }
+        .icon { ItemStack(HybridAquaticItems.YELLOWFIN_TUNA) }
         .entries { _, entries ->
             Registries.ITEM.forEach { item ->
                 val id = Registries.ITEM.getId(item)

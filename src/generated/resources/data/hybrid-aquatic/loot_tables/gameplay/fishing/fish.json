@@ -360,7 +360,53 @@
               ]
             }
           ],
-          "name": "hybrid-aquatic:tuna",
+          "name": "hybrid-aquatic:yellowfin_tuna",
+          "weight": 5
+        },
+        {
+          "type": "minecraft:item",
+          "conditions": [
+            {
+              "condition": "minecraft:any_of",
+              "terms": [
+                {
+                  "condition": "minecraft:location_check",
+                  "predicate": {
+                    "biome": "minecraft:deep_ocean"
+                  }
+                },
+                {
+                  "condition": "minecraft:any_of",
+                  "terms": [
+                    {
+                      "condition": "minecraft:location_check",
+                      "predicate": {
+                        "biome": "minecraft:deep_cold_ocean"
+                      }
+                    },
+                    {
+                      "condition": "minecraft:any_of",
+                      "terms": [
+                        {
+                          "condition": "minecraft:location_check",
+                          "predicate": {
+                            "biome": "minecraft:deep_frozen_ocean"
+                          }
+                        },
+                        {
+                          "condition": "minecraft:location_check",
+                          "predicate": {
+                            "biome": "minecraft:deep_lukewarm_ocean"
+                          }
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ],
+          "name": "hybrid-aquatic:bluefin_tuna",
           "weight": 5
         },
         {
