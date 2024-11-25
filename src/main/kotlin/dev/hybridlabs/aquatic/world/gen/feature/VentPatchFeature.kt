@@ -55,13 +55,17 @@ class VentPatchFeature(codec: Codec<VentPatchFeatureConfig>) : Feature<VentPatch
 
     private fun generateSingleVent(
         world: WorldAccess,
-        startPos: BlockPos,
+        rootPos: BlockPos,
         random: Random,
         heightMultiplier: Double,
         baseProvider: BlockStateProvider,
         ventProvider: BlockStateProvider,
     ): Boolean {
-        val mutablePos = startPos.mutableCopy()
+        if (!world.isWater(rootPos)) {
+            return false
+        }
+
+        val mutablePos = rootPos.mutableCopy()
 
         val state = ventProvider.get(random, mutablePos)
         if (!isValidPosition(world, mutablePos, state)) {
@@ -125,33 +129,30 @@ class VentPatchFeature(codec: Codec<VentPatchFeatureConfig>) : Feature<VentPatch
         random: Random,
         count: Int,
         wormCountProvider: IntProvider,
-        wormRadius: Int,
+        radius: Int,
         stateProvider: BlockStateProvider
-    ): Boolean {
-        var placed = 0
-
+    ) {
         repeat(count) {
             val offset = BlockPos(
-                random.nextInt(8) - random.nextInt(8),
-                0,
-                random.nextInt(8) - random.nextInt(8)
+                random.nextInt(radius * 2) - radius,
+                random.nextInt(radius * 2) - radius,
+                random.nextInt(radius * 2) - radius,
             )
 
             val targetPos = pos.add(offset)
             val surfaceY = world.getTopY(Heightmap.Type.OCEAN_FLOOR, targetPos.x, targetPos.z)
             val tubeWormPos = BlockPos(targetPos.x, surfaceY, targetPos.z)
 
-            if (!world.isWater(tubeWormPos)) return@repeat
+            if (!world.isWater(tubeWormPos)) {
+                return@repeat
+            }
 
             val state = stateProvider.get(random, tubeWormPos)
             if (isValidPosition(world, tubeWormPos, state)) {
                 val wormCount = wormCountProvider.get(random)
                 world.setBlockState(tubeWormPos, state.with(TubeWormBlock.WORMS, wormCount), Block.NOTIFY_LISTENERS)
-                placed++
             }
         }
-
-        return placed > 0
     }
 
     private fun isValidPosition(world: WorldAccess, pos: BlockPos, state: BlockState): Boolean {
