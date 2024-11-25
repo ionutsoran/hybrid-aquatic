@@ -24,9 +24,6 @@
 				"core_tentacles": {
 					"rotation": {
 						"vector": [0, 0, 0.01]
-					},
-					"position": {
-						"vector": [0, "Math.SIN(query.anim_time * 90)*0.25", 0]
 					}
 				},
 				"tentacle_a1": {
