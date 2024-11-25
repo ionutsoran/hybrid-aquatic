@@ -11,7 +11,6 @@ import net.minecraft.util.Identifier
 
 object HybridAquaticItemTags {
     val LURE_ITEMS = create("lure_items")
-    val CRUSTACEAN_TEMPT_ITEMS = create("crustacean_tempt_items")
     val PLUSHIES = create("plushies")
     val SMALL_FISH = create("small_fish")
     val MEDIUM_FISH = create("medium_fish")
