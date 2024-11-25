@@ -131,24 +131,20 @@ open class HybridAquaticJellyfishEntity(
     override fun onPlayerCollision(player: PlayerEntity?) {
         super.onPlayerCollision(player)
 
-        if (player is ServerPlayerEntity) {
-            if (player.damage(this.damageSources.mobAttack(this), 1.0f)) {
-                if (isVenomous && !player.hasVehicle()) {
-                    player.addStatusEffect(StatusEffectInstance(StatusEffects.POISON, 100, 0), this)
-                }
+        if (player is ServerPlayerEntity && isVenomous && !player.hasVehicle()) {
+            player.damage(this.damageSources.mobAttack(this), 1.0f)
+            player.addStatusEffect(StatusEffectInstance(StatusEffects.POISON, 100, 0), this)
 
-                if (!this.isSilent) {
-                    player.networkHandler.sendPacket(
-                        GameStateChangeS2CPacket(
-                            GameStateChangeS2CPacket.PUFFERFISH_STING,
-                            0.0f
-                        )
+            if (!this.isSilent) {
+                player.networkHandler.sendPacket(
+                    GameStateChangeS2CPacket(
+                        GameStateChangeS2CPacket.PUFFERFISH_STING,
+                        0.0f
                     )
-                }
+                )
             }
         }
     }
-
 
     override fun dropLoot(source: DamageSource, causedByPlayer: Boolean) {
         val attacker = source.attacker
