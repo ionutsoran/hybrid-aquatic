@@ -104,6 +104,7 @@ object SpawnRestrictionRegistry {
 
         setOf(
             HybridAquaticEntityTypes.ATOLLA_JELLYFISH,
+            HybridAquaticEntityTypes.BIG_RED_JELLYFISH,
         ).forEach { registerJellyUnderground(it) }
 
         // sharks

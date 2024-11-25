@@ -505,6 +505,13 @@ object HybridAquaticEntityTypes {
         AtollaJellyfishEntity.createMobAttributes()
     )
 
+    val BIG_RED_JELLYFISH = registerJellyUnderground(
+        "big_red_jellyfish",
+        ::BigRedJellyfishEntity,
+        EntityDimensions.fixed(0.9f, 0.9f),
+        BigRedJellyfishEntity.createMobAttributes()
+    )
+
     val BARREL_JELLYFISH = registerJelly(
         "barrel_jellyfish",
         ::BarrelJellyfishEntity,
