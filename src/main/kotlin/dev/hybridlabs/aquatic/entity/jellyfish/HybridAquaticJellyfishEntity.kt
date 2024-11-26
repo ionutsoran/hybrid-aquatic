@@ -31,10 +31,12 @@ import net.minecraft.util.math.random.Random
 import net.minecraft.world.World
 import net.minecraft.world.WorldAccess
 import software.bernie.geckolib.animatable.GeoEntity
-import software.bernie.geckolib.core.animatable.GeoAnimatable
+import software.bernie.geckolib.constant.DefaultAnimations
 import software.bernie.geckolib.core.animatable.instance.AnimatableInstanceCache
-import software.bernie.geckolib.core.animation.*
-import software.bernie.geckolib.core.`object`.PlayState
+import software.bernie.geckolib.core.animation.AnimatableManager
+import software.bernie.geckolib.core.animation.AnimationController
+import software.bernie.geckolib.core.animation.AnimationState
+import software.bernie.geckolib.core.animation.EasingType
 import software.bernie.geckolib.util.GeckoLibUtil
 
 @Suppress("LeakingThis", "UNUSED_PARAMETER", "DEPRECATION")
@@ -134,15 +136,6 @@ open class HybridAquaticJellyfishEntity(
         if (player is ServerPlayerEntity && isVenomous && !player.hasVehicle()) {
             player.damage(this.damageSources.mobAttack(this), 1.0f)
             player.addStatusEffect(StatusEffectInstance(StatusEffects.POISON, 100, 0), this)
-
-            if (!this.isSilent) {
-                player.networkHandler.sendPacket(
-                    GameStateChangeS2CPacket(
-                        GameStateChangeS2CPacket.PUFFERFISH_STING,
-                        0.0f
-                    )
-                )
-            }
         }
     }
 
@@ -165,22 +158,19 @@ open class HybridAquaticJellyfishEntity(
             dataTracker.set(JELLYFISH_SIZE, size)
         }
 
-    open fun <E : GeoAnimatable> predicate(event: AnimationState<E>): PlayState {
-        if (isSubmergedInWater) {
-            event.controller.setAnimation(BOB_ANIMATION)
-            return PlayState.CONTINUE
-        }
-        return PlayState.STOP
-    }
-
     override fun registerControllers(controllerRegistrar: AnimatableManager.ControllerRegistrar) {
         controllerRegistrar.add(
             AnimationController(
                 this,
-                "controller",
-                0,
-                ::predicate
-            )
+                "Swim/Idle",
+                20
+            ) { state: AnimationState<HybridAquaticJellyfishEntity> ->
+                if (state.isMoving) {
+                    state.setAndContinue(DefaultAnimations.SWIM)
+                } else {
+                    state.setAndContinue(DefaultAnimations.IDLE)
+                }
+            }.setOverrideEasingType(EasingType.EASE_IN_OUT_SINE)
         )
     }
 
@@ -221,8 +211,6 @@ open class HybridAquaticJellyfishEntity(
     companion object {
         val MOISTNESS: TrackedData<Int> = DataTracker.registerData(HybridAquaticJellyfishEntity::class.java, TrackedDataHandlerRegistry.INTEGER)
         val JELLYFISH_SIZE: TrackedData<Int> = DataTracker.registerData(HybridAquaticJellyfishEntity::class.java, TrackedDataHandlerRegistry.INTEGER)
-
-        val BOB_ANIMATION: RawAnimation = RawAnimation.begin().then("bob", Animation.LoopType.LOOP)
 
         fun canSpawn(
             type: EntityType<out WaterCreatureEntity>,

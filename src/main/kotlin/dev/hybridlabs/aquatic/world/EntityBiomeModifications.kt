@@ -86,6 +86,7 @@ object EntityBiomeModifications {
         // underground jellies
         addUndergroundJelly(HybridAquaticEntityTypes.ATOLLA_JELLYFISH, listOf(BiomeTags.IS_DEEP_OCEAN), 1, 1, 2)
         addUndergroundJelly(HybridAquaticEntityTypes.BIG_RED_JELLYFISH, listOf(BiomeTags.IS_DEEP_OCEAN), 2, 1, 2)
+        addUndergroundJelly(HybridAquaticEntityTypes.COSMIC_JELLYFISH, listOf(BiomeTags.IS_DEEP_OCEAN), 2, 1, 2)
 
         // sharks
         addShark(HybridAquaticEntityTypes.GREAT_WHITE_SHARK, listOf(HybridAquaticBiomeTags.TEMPERATE_OCEANS, HybridAquaticBiomeTags.TROPICAL_OCEANS), 1, 1, 1)
