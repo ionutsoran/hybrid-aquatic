@@ -70,7 +70,7 @@ open class BrineFluid : FlowableFluid() {
     }
 
     public override fun toBlockState(state: FluidState): BlockState {
-        return HybridAquaticBlocks.BRINE.defaultState.with(FluidBlock.LEVEL, getBlockStateLevel(state)) as BlockState
+        return HybridAquaticBlocks.BRINE.defaultState.with(FluidBlock.LEVEL, getBlockStateLevel(state))
     }
 
     override fun isStill(state: FluidState): Boolean {

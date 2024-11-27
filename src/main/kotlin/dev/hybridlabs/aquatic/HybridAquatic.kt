@@ -41,8 +41,8 @@ object HybridAquatic : ModInitializer {
     override fun onInitialize() {
         logger.info("Initializing $MOD_ID")
 
-        HybridAquaticBlocks
         HybridAquaticFluids
+        HybridAquaticBlocks
         HybridAquaticBlockEntityTypes
 
         StrippableBlockRegistry.register(HybridAquaticBlocks.DRIFTWOOD_LOG, HybridAquaticBlocks.STRIPPED_DRIFTWOOD_LOG)

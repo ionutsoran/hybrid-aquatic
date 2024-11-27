@@ -8,6 +8,7 @@ import dev.hybridlabs.aquatic.item.HybridAquaticItems
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricModelProvider
 import net.minecraft.block.Blocks
+import net.minecraft.block.FluidBlock
 import net.minecraft.data.client.*
 import net.minecraft.item.Items
 import net.minecraft.item.SpawnEggItem
@@ -24,6 +25,16 @@ class ModelProvider(output: FabricDataOutput) : FabricModelProvider(output) {
 
                 registerBuiltinWithParticle(block, TextureMap.getId(block.particleBlock))
                 registerParentedItemModel(block, TEMPLATE_PLUSHIE)
+            }
+
+        // fluids
+        Registries.BLOCK
+            .filterIsInstance<FluidBlock>()
+            .forEach { block ->
+                val id = Registries.BLOCK.getId(block)
+                if (id.namespace == HybridAquatic.MOD_ID) {
+                    registerSimpleState(block)
+                }
             }
 
         // spawn eggs

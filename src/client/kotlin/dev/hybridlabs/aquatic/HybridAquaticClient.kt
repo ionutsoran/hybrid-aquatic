@@ -16,12 +16,15 @@ import dev.hybridlabs.aquatic.client.render.entity.HybridAquaticEntityRenderers
 import dev.hybridlabs.aquatic.client.render.item.AnemoneBlockItemRenderer
 import dev.hybridlabs.aquatic.client.render.item.BuoyBlockItemRenderer
 import dev.hybridlabs.aquatic.client.render.item.MessageInABottleBlockItemRenderer
+import dev.hybridlabs.aquatic.fluid.HybridAquaticFluids
 import dev.hybridlabs.aquatic.item.HybridAquaticItems
 import net.fabricmc.api.ClientModInitializer
 import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap
 import net.fabricmc.fabric.api.client.command.v2.ClientCommandRegistrationCallback
 import net.fabricmc.fabric.api.client.command.v2.FabricClientCommandSource
 import net.fabricmc.fabric.api.client.item.v1.ItemTooltipCallback
+import net.fabricmc.fabric.api.client.render.fluid.v1.FluidRenderHandlerRegistry
+import net.fabricmc.fabric.api.client.render.fluid.v1.SimpleFluidRenderHandler
 import net.fabricmc.fabric.api.client.rendering.v1.BuiltinItemRendererRegistry
 import net.minecraft.client.MinecraftClient
 import net.minecraft.client.render.RenderLayer
@@ -32,6 +35,7 @@ import net.minecraft.command.CommandRegistryAccess
 import net.minecraft.entity.EquipmentSlot
 import net.minecraft.entity.LivingEntity
 import net.minecraft.item.ItemStack
+import net.minecraft.util.Identifier
 import software.bernie.geckolib.animatable.client.RenderProvider
 import software.bernie.geckolib.renderer.GeoArmorRenderer
 
@@ -47,8 +51,21 @@ object HybridAquaticClient : ClientModInitializer {
         registerWeatherRenderers()
         registerTooltips()
         registerGeoRenderers()
+        registerFluidRenderers()
 
         ClientCommandRegistrationCallback.EVENT.register(::registerCommands)
+    }
+
+    private fun registerFluidRenderers() {
+        FluidRenderHandlerRegistry.INSTANCE.register(HybridAquaticFluids.BRINE, HybridAquaticFluids.FLOWING_BRINE,
+            SimpleFluidRenderHandler(
+                Identifier("minecraft:block/water_still"),
+                Identifier("minecraft:block/water_flow"),
+                0x4CC248
+            )
+        )
+
+        BlockRenderLayerMap.INSTANCE.putFluids(RenderLayer.getTranslucent(), HybridAquaticFluids.BRINE, HybridAquaticFluids.FLOWING_BRINE);
     }
 
     private fun registerGeoRenderers() {
