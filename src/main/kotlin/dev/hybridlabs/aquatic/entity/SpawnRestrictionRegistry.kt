@@ -91,7 +91,6 @@ object SpawnRestrictionRegistry {
         // jellies
         setOf(
             HybridAquaticEntityTypes.MOON_JELLYFISH,
-            HybridAquaticEntityTypes.MAUVE_STINGER,
             HybridAquaticEntityTypes.SEA_NETTLE,
             HybridAquaticEntityTypes.FRIED_EGG_JELLYFISH,
             HybridAquaticEntityTypes.CAULIFLOWER_JELLYFISH,
@@ -106,6 +105,7 @@ object SpawnRestrictionRegistry {
             HybridAquaticEntityTypes.ATOLLA_JELLYFISH,
             HybridAquaticEntityTypes.BIG_RED_JELLYFISH,
             HybridAquaticEntityTypes.COSMIC_JELLYFISH,
+            HybridAquaticEntityTypes.MAUVE_STINGER,
         ).forEach { registerJellyUnderground(it) }
 
         // sharks

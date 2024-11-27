@@ -74,7 +74,6 @@ object EntityBiomeModifications {
         // jellies
         addJelly(HybridAquaticEntityTypes.BARREL_JELLYFISH, listOf(HybridAquaticBiomeTags.TEMPERATE_OCEANS, HybridAquaticBiomeTags.TROPICAL_OCEANS), 5, 1, 1)
         addJelly(HybridAquaticEntityTypes.MOON_JELLYFISH, listOf(HybridAquaticBiomeTags.TEMPERATE_OCEANS, HybridAquaticBiomeTags.TROPICAL_OCEANS, HybridAquaticBiomeTags.REEF), 5, 1, 2)
-        addJelly(HybridAquaticEntityTypes.MAUVE_STINGER, listOf(HybridAquaticBiomeTags.TEMPERATE_OCEANS, HybridAquaticBiomeTags.TROPICAL_OCEANS, HybridAquaticBiomeTags.REEF), 3, 1, 2)
         addJelly(HybridAquaticEntityTypes.FRIED_EGG_JELLYFISH, listOf(HybridAquaticBiomeTags.TEMPERATE_OCEANS), 5, 1, 2)
         addJelly(HybridAquaticEntityTypes.CAULIFLOWER_JELLYFISH, listOf(HybridAquaticBiomeTags.TROPICAL_OCEANS), 3, 1, 2)
         addJelly(HybridAquaticEntityTypes.COMPASS_JELLYFISH, listOf(HybridAquaticBiomeTags.TEMPERATE_OCEANS), 3, 1, 2)
@@ -87,6 +86,7 @@ object EntityBiomeModifications {
         addUndergroundJelly(HybridAquaticEntityTypes.ATOLLA_JELLYFISH, listOf(BiomeTags.IS_DEEP_OCEAN), 1, 1, 2)
         addUndergroundJelly(HybridAquaticEntityTypes.BIG_RED_JELLYFISH, listOf(BiomeTags.IS_DEEP_OCEAN), 2, 1, 2)
         addUndergroundJelly(HybridAquaticEntityTypes.COSMIC_JELLYFISH, listOf(BiomeTags.IS_DEEP_OCEAN), 2, 1, 2)
+        addJelly(HybridAquaticEntityTypes.MAUVE_STINGER, listOf(BiomeTags.IS_DEEP_OCEAN), 3, 1, 2)
 
         // sharks
         addShark(HybridAquaticEntityTypes.GREAT_WHITE_SHARK, listOf(HybridAquaticBiomeTags.TEMPERATE_OCEANS, HybridAquaticBiomeTags.TROPICAL_OCEANS), 1, 1, 1)
