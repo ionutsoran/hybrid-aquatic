@@ -18,28 +18,28 @@ import net.minecraft.world.WorldAccess
 import net.minecraft.world.WorldView
 
 open class BrineFluid : FlowableFluid() {
-    override fun isInfinite(world: World?): Boolean {
+    override fun isInfinite(world: World): Boolean {
         return false
     }
 
-    override fun beforeBreakingBlock(world: WorldAccess, pos: BlockPos?, state: BlockState) {
+    override fun beforeBreakingBlock(world: WorldAccess, pos: BlockPos, state: BlockState) {
         val blockEntity = if (state.hasBlockEntity()) world.getBlockEntity(pos) else null
         Block.dropStacks(state, world, pos, blockEntity)
     }
 
-    override fun getFlowSpeed(world: WorldView?): Int {
+    override fun getFlowSpeed(world: WorldView): Int {
         return 3
     }
 
-    override fun getLevelDecreasePerBlock(world: WorldView?): Int {
+    override fun getLevelDecreasePerBlock(world: WorldView): Int {
         return 2
     }
 
-    override fun getLevel(state: FluidState?): Int {
+    override fun getLevel(state: FluidState): Int {
         return 8
     }
 
-    override fun getTickRate(world: WorldView?): Int {
+    override fun getTickRate(world: WorldView): Int {
         return 5
     }
 
@@ -48,11 +48,11 @@ open class BrineFluid : FlowableFluid() {
     }
 
     override fun canBeReplacedWith(
-        state: FluidState?,
-        world: BlockView?,
-        pos: BlockPos?,
-        fluid: Fluid?,
-        direction: Direction?
+        state: FluidState,
+        world: BlockView,
+        pos: BlockPos,
+        fluid: Fluid,
+        direction: Direction
     ): Boolean {
         return false
     }
@@ -69,15 +69,15 @@ open class BrineFluid : FlowableFluid() {
         return HybridAquaticItems.BRINE_BUCKET
     }
 
-    public override fun toBlockState(state: FluidState?): BlockState {
+    public override fun toBlockState(state: FluidState): BlockState {
         return HybridAquaticBlocks.BRINE.defaultState.with(FluidBlock.LEVEL, getBlockStateLevel(state)) as BlockState
     }
 
-    override fun isStill(state: FluidState?): Boolean {
+    override fun isStill(state: FluidState): Boolean {
         return false
     }
 
-    internal class Flowing : BrineFluid() {
+    class Flowing : BrineFluid() {
         override fun appendProperties(builder: StateManager.Builder<Fluid?, FluidState?>) {
             super.appendProperties(builder)
             builder.add(LEVEL)
@@ -87,17 +87,17 @@ open class BrineFluid : FlowableFluid() {
             return state.get(LEVEL)
         }
 
-        override fun isStill(state: FluidState?): Boolean {
+        override fun isStill(state: FluidState): Boolean {
             return false
         }
     }
 
-    internal class Still : BrineFluid() {
-        override fun getLevel(state: FluidState?): Int {
+    class Still : BrineFluid() {
+        override fun getLevel(state: FluidState): Int {
             return 8
         }
 
-        override fun isStill(state: FluidState?): Boolean {
+        override fun isStill(state: FluidState): Boolean {
             return true
         }
     }
