@@ -9,8 +9,6 @@
     "hybrid-aquatic:sea_bass",
     "hybrid-aquatic:lionfish",
     "hybrid-aquatic:parrotfish",
-    "hybrid-aquatic:moray_eel",
-    "minecraft:squid",
-    "minecraft:glow_squid"
+    "hybrid-aquatic:moray_eel"
   ]
 }

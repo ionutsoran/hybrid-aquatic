@@ -10,7 +10,7 @@ import java.util.concurrent.CompletableFuture
 
 class EntityTypeTagProvider(output: FabricDataOutput, registriesFuture: CompletableFuture<RegistryWrapper.WrapperLookup>) : FabricTagProvider.EntityTypeTagProvider(output, registriesFuture) {
     override fun configure(arg: RegistryWrapper.WrapperLookup) {
-        // small preys
+        // small prey
         getOrCreateTagBuilder(HybridAquaticEntityTags.SMALL_PREY)
             .add(
                 HybridAquaticEntityTypes.CLOWNFISH,
@@ -33,7 +33,7 @@ class EntityTypeTagProvider(output: FabricDataOutput, registriesFuture: Completa
                 EntityType.TROPICAL_FISH
             )
 
-        // medium preys
+        // medium prey
         getOrCreateTagBuilder(HybridAquaticEntityTags.MEDIUM_PREY)
             .add(
                 HybridAquaticEntityTypes.RATFISH,
@@ -45,11 +45,9 @@ class EntityTypeTagProvider(output: FabricDataOutput, registriesFuture: Completa
                 HybridAquaticEntityTypes.LIONFISH,
                 HybridAquaticEntityTypes.PARROTFISH,
                 HybridAquaticEntityTypes.MORAY_EEL,
-                EntityType.SQUID,
-                EntityType.GLOW_SQUID
             )
 
-        // large preys
+        // large prey
         getOrCreateTagBuilder(HybridAquaticEntityTags.LARGE_PREY)
             .add(
                 HybridAquaticEntityTypes.SUNFISH,
@@ -81,7 +79,7 @@ class EntityTypeTagProvider(output: FabricDataOutput, registriesFuture: Completa
                 HybridAquaticEntityTypes.YETI_CRAB,
             )
 
-        // Cephalopods
+        // cephalopods
         getOrCreateTagBuilder(HybridAquaticEntityTags.CEPHALOPOD)
             .add(
                 HybridAquaticEntityTypes.CUTTLEFISH,
@@ -90,6 +88,8 @@ class EntityTypeTagProvider(output: FabricDataOutput, registriesFuture: Completa
                 HybridAquaticEntityTypes.NAUTILUS,
                 HybridAquaticEntityTypes.UMBRELLA_OCTOPUS,
                 HybridAquaticEntityTypes.VAMPIRE_SQUID,
+                EntityType.SQUID,
+                EntityType.GLOW_SQUID
             )
 
         getOrCreateTagBuilder(HybridAquaticEntityTags.NONE)
@@ -123,8 +123,10 @@ class EntityTypeTagProvider(output: FabricDataOutput, registriesFuture: Completa
                 HybridAquaticEntityTypes.ATOLLA_JELLYFISH,
                 HybridAquaticEntityTypes.BARREL_JELLYFISH,
                 HybridAquaticEntityTypes.BLUE_JELLYFISH,
+                HybridAquaticEntityTypes.BIG_RED_JELLYFISH,
                 HybridAquaticEntityTypes.CAULIFLOWER_JELLYFISH,
                 HybridAquaticEntityTypes.COMPASS_JELLYFISH,
+                HybridAquaticEntityTypes.COSMIC_JELLYFISH,
                 HybridAquaticEntityTypes.FRIED_EGG_JELLYFISH,
                 HybridAquaticEntityTypes.LIONS_MANE_JELLYFISH,
                 HybridAquaticEntityTypes.MAUVE_STINGER,
@@ -133,7 +135,7 @@ class EntityTypeTagProvider(output: FabricDataOutput, registriesFuture: Completa
                 HybridAquaticEntityTypes.SEA_NETTLE,
             )
 
-        // fishes
+        // fish
         getOrCreateTagBuilder(HybridAquaticEntityTags.FISH)
             .add(
                 HybridAquaticEntityTypes.AFRICAN_BUTTERFLY,

@@ -6,6 +6,8 @@
     "hybrid-aquatic:glowing_sucker_octopus",
     "hybrid-aquatic:nautilus",
     "hybrid-aquatic:umbrella_octopus",
-    "hybrid-aquatic:vampire_squid"
+    "hybrid-aquatic:vampire_squid",
+    "minecraft:squid",
+    "minecraft:glow_squid"
   ]
 }
