@@ -604,7 +604,7 @@ object HybridAquaticEntityTypes {
         BullSharkEntity.createMobAttributes()
     )
 
-    val FRILLED_SHARK = registerFishUnderground(
+    val FRILLED_SHARK = registerSharkUnderground(
         "frilled_shark",
         ::FrilledSharkEntity,
         EntityDimensions.fixed(1.0f, 0.5f),
@@ -647,6 +647,14 @@ object HybridAquaticEntityTypes {
     )
 
     private fun <T : LivingEntity> registerShark(
+        id: String,
+        entityFactory: EntityFactory<T>,
+        dimensions: EntityDimensions,
+        attributeContainer: DefaultAttributeContainer.Builder
+    ): EntityType<T> {
+        return registerCustomSpawnGroup(id, entityFactory, dimensions, attributeContainer, HybridAquaticSpawnGroup.SHARK)
+    }
+    private fun <T : LivingEntity> registerSharkUnderground(
         id: String,
         entityFactory: EntityFactory<T>,
         dimensions: EntityDimensions,
@@ -724,7 +732,7 @@ object HybridAquaticEntityTypes {
         dimensions: EntityDimensions,
         attributeContainer: DefaultAttributeContainer.Builder
     ): EntityType<T> {
-        return registerCustomSpawnGroup(id, entityFactory, dimensions, attributeContainer, HybridAquaticSpawnGroup.CEPHALOPOD_UNDERGROUND)
+        return registerCustomSpawnGroup(id, entityFactory, dimensions, attributeContainer, HybridAquaticSpawnGroup.CEPHALOPOD)
     }
 
     private fun <T : LivingEntity> registerJelly(

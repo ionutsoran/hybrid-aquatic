@@ -63,7 +63,6 @@ object SpawnRestrictionRegistry {
             HybridAquaticEntityTypes.DRAGONFISH,
             HybridAquaticEntityTypes.BARRELEYE,
             HybridAquaticEntityTypes.SEA_ANGEL,
-            HybridAquaticEntityTypes.FRILLED_SHARK,
             HybridAquaticEntityTypes.RATFISH,
             ).forEach { registerFishUnderground(it) }
 
@@ -118,6 +117,10 @@ object SpawnRestrictionRegistry {
             HybridAquaticEntityTypes.WHALE_SHARK,
             HybridAquaticEntityTypes.BASKING_SHARK,
         ).forEach { registerShark(it) }
+
+        setOf(
+            HybridAquaticEntityTypes.FRILLED_SHARK,
+        ).forEach { registerSharkUnderground(it) }
 
         // critters
         setOf(
@@ -177,6 +180,10 @@ object SpawnRestrictionRegistry {
 
     private fun <T : WaterCreatureEntity> registerShark(entityType: EntityType<T>) {
         registerWaterCreature(entityType, HybridAquaticSharkEntity::canSpawn)
+    }
+
+    private fun <T : WaterCreatureEntity> registerSharkUnderground(entityType: EntityType<T>) {
+        registerWaterCreature(entityType, HybridAquaticSharkEntity::canUndergroundSpawn)
     }
 
     private fun <T : WaterCreatureEntity> registerJelly(entityType: EntityType<T>) {

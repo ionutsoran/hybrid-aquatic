@@ -161,13 +161,7 @@ object EntityBiomeModifications {
         minGroup: Int,
         maxGroup: Int
     ) {
-        add(
-            entityType,
-            spawnTags,
-            HybridAquaticSpawnGroup.CEPHALOPOD_UNDERGROUND.spawnGroup,
-            weight,
-            minGroup,
-            maxGroup
+        add(entityType, spawnTags, HybridAquaticSpawnGroup.CEPHALOPOD.spawnGroup, weight, minGroup, maxGroup
         )
     }
 
@@ -219,12 +213,7 @@ object EntityBiomeModifications {
         maxGroup: Int
     ) {
         add(
-            entityType,
-            spawnTags,
-            HybridAquaticSpawnGroup.CRUSTACEAN_UNDERGROUND.spawnGroup,
-            weight,
-            minGroup,
-            maxGroup
+            entityType, spawnTags, HybridAquaticSpawnGroup.CRUSTACEAN_UNDERGROUND.spawnGroup, weight, minGroup, maxGroup
         )
     }
 
