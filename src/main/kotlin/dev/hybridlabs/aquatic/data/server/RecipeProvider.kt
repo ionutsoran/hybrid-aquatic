@@ -205,13 +205,20 @@ class RecipeProvider(output: FabricDataOutput) : FabricRecipeProvider(output) {
             .criterion("has_copper", InventoryChangedCriterion.Conditions.items(Items.COPPER_INGOT))
             .offerTo(exporter)
 
-        // hook recipes
+        //#region hooks
         ShapedRecipeJsonBuilder.create(RecipeCategory.TOOLS, HybridAquaticItems.BARBED_HOOK)
             .pattern("N  ")
             .pattern("N N")
             .pattern("NNN")
             .input('N', Items.IRON_NUGGET)
             .criterion("has_iron_nugget", InventoryChangedCriterion.Conditions.items(Items.IRON_NUGGET))
+            .offerTo(exporter)
+
+        ShapelessRecipeJsonBuilder.create(RecipeCategory.TOOLS, HybridAquaticItems.GLOWING_HOOK)
+            .input(HybridAquaticItems.BARBED_HOOK)
+            .input(HybridAquaticItems.GLOW_SLIME)
+            .criterion("has_barbed_hook", InventoryChangedCriterion.Conditions.items(HybridAquaticItems.BARBED_HOOK))
+            .criterion("has_glow_slime", InventoryChangedCriterion.Conditions.items(HybridAquaticItems.GLOW_SLIME))
             .offerTo(exporter)
 
         ShapedRecipeJsonBuilder.create(RecipeCategory.TOOLS, HybridAquaticItems.MAGNETIC_HOOK)
@@ -222,6 +229,28 @@ class RecipeProvider(output: FabricDataOutput) : FabricRecipeProvider(output) {
             .input('I', Items.IRON_INGOT)
             .criterion("has_iron_nugget", InventoryChangedCriterion.Conditions.items(Items.IRON_NUGGET))
             .offerTo(exporter)
+
+        ShapelessRecipeJsonBuilder.create(RecipeCategory.MISC, HybridAquaticItems.CREEPERMAGNET_HOOK)
+            .input(HybridAquaticItems.MAGNETIC_HOOK)
+            .input(Items.GUNPOWDER)
+            .criterion("has_magnetic_hook", InventoryChangedCriterion.Conditions.items(HybridAquaticItems.MAGNETIC_HOOK))
+            .offerTo(exporter)
+
+        ShapelessRecipeJsonBuilder.create(RecipeCategory.TOOLS, HybridAquaticItems.OMINOUS_HOOK)
+            .input(HybridAquaticItems.COCONUT_CRAB_CLAW)
+            .input(HybridAquaticItems.YETI_CRAB_CLAW)
+            .input(HybridAquaticItems.GHOST_CRAB_CLAW)
+            .input(HybridAquaticItems.FLOWER_CRAB_CLAW)
+            .input(HybridAquaticItems.SPIDER_CRAB_CLAW)
+            .input(HybridAquaticItems.FIDDLER_CRAB_CLAW)
+            .input(HybridAquaticItems.VAMPIRE_CRAB_CLAW)
+            .input(HybridAquaticItems.DUNGENESS_CRAB_CLAW)
+            .input(HybridAquaticItems.LIGHTFOOT_CRAB_CLAW)
+            .criterion("has_crab_claw", InventoryChangedCriterion.Conditions.items(
+                ItemPredicate.Builder.create().tag(HybridAquaticItemTags.CRAB_CLAW).build()))
+            .offerTo(exporter)
+
+        //#endregion
 
         ShapedRecipeJsonBuilder.create(RecipeCategory.TOOLS, HybridAquaticItems.FISHING_NET)
             .pattern("  S")
@@ -246,36 +275,17 @@ class RecipeProvider(output: FabricDataOutput) : FabricRecipeProvider(output) {
             .criterion("has_glow_slime", InventoryChangedCriterion.Conditions.items(HybridAquaticItems.GLOW_SLIME))
             .offerTo(exporter)
 
-        ShapelessRecipeJsonBuilder.create(RecipeCategory.TOOLS, HybridAquaticItems.GLOWING_HOOK)
-            .input(HybridAquaticItems.BARBED_HOOK)
-            .input(HybridAquaticItems.GLOW_SLIME)
-            .criterion("has_barbed_hook", InventoryChangedCriterion.Conditions.items(HybridAquaticItems.BARBED_HOOK))
-            .criterion("has_glow_slime", InventoryChangedCriterion.Conditions.items(HybridAquaticItems.GLOW_SLIME))
-            .offerTo(exporter)
-
-        ShapelessRecipeJsonBuilder.create(RecipeCategory.MISC, HybridAquaticItems.CREEPERMAGNET_HOOK)
-            .input(HybridAquaticItems.MAGNETIC_HOOK)
-            .input(Items.GUNPOWDER)
-            .criterion("has_magnetic_hook", InventoryChangedCriterion.Conditions.items(HybridAquaticItems.MAGNETIC_HOOK))
-            .offerTo(exporter)
-
         ShapelessRecipeJsonBuilder.create(RecipeCategory.MISC, Items.BONE_MEAL)
             .input(HybridAquaticItems.CUTTLEBONE)
             .criterion("has_cuttlebone", InventoryChangedCriterion.Conditions.items(HybridAquaticItems.CUTTLEBONE))
             .offerTo(exporter)
 
-        ShapelessRecipeJsonBuilder.create(RecipeCategory.TOOLS, HybridAquaticItems.OMINOUS_HOOK)
-            .input(HybridAquaticItems.COCONUT_CRAB_CLAW)
-            .input(HybridAquaticItems.YETI_CRAB_CLAW)
-            .input(HybridAquaticItems.GHOST_CRAB_CLAW)
-            .input(HybridAquaticItems.FLOWER_CRAB_CLAW)
-            .input(HybridAquaticItems.SPIDER_CRAB_CLAW)
-            .input(HybridAquaticItems.FIDDLER_CRAB_CLAW)
-            .input(HybridAquaticItems.VAMPIRE_CRAB_CLAW)
-            .input(HybridAquaticItems.DUNGENESS_CRAB_CLAW)
-            .input(HybridAquaticItems.LIGHTFOOT_CRAB_CLAW)
-            .criterion("has_crab_claw", InventoryChangedCriterion.Conditions.items(
-                ItemPredicate.Builder.create().tag(HybridAquaticItemTags.CRAB_CLAW).build()))
+        ShapelessRecipeJsonBuilder.create(RecipeCategory.MISC, Items.GUNPOWDER, 2)
+            .input(HybridAquaticItems.SULFUR)
+            .input(Items.COAL)
+            .input(Items.BONE_MEAL)
+            .input(Items.BONE_MEAL)
+            .criterion("has_sulfur", InventoryChangedCriterion.Conditions.items(HybridAquaticItems.SULFUR))
             .offerTo(exporter)
 
         // food items
