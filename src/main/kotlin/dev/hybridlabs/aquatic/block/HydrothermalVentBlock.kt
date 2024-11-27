@@ -84,10 +84,10 @@ class HydrothermalVentBlock(
     }
 
     override fun randomDisplayTick(state: BlockState, world: World, pos: BlockPos, random: Random) {
-        if (state.get(THICKNESS) == Thickness.TIP) {
+        if (state.get(THICKNESS) == Thickness.TIP && state.get(WATERLOGGED)) {
             spawnSmokeParticle(world, pos, random)
         }
-        if (random.nextInt(10) == 0) {
+        if (random.nextInt(10) == 0 && state.get(WATERLOGGED)) {
             world.playSound(
                 pos.x.toDouble() + 0.5,
                 pos.y.toDouble() + 0.5,
@@ -100,7 +100,7 @@ class HydrothermalVentBlock(
             )
         }
 
-        if (state.get(THICKNESS) == Thickness.TIP && this.emitsParticles && random.nextInt(5) == 0) {
+        if (state.get(THICKNESS) == Thickness.TIP && state.get(WATERLOGGED) && this.emitsParticles && random.nextInt(5) == 0) {
             for (i in 0 until random.nextInt(1) + 1) {
                 world.addParticle(
                     ParticleTypes.LAVA, pos.x.toDouble() + 0.5, pos.y.toDouble() + 0.5, pos.z.toDouble() + 0.5,
@@ -141,7 +141,7 @@ class HydrothermalVentBlock(
     override fun onSteppedOn(world: World, pos: BlockPos?, state: BlockState?, entity: Entity) {
         if (world.isClient || pos == null || state == null) return
 
-        if (state.get(THICKNESS) == Thickness.TIP && entity !is YetiCrabEntity) {
+        if (state.get(THICKNESS) == Thickness.TIP && state.get(WATERLOGGED) && entity !is YetiCrabEntity) {
             if (!entity.bypassesSteppingEffects() && entity is LivingEntity && !EnchantmentHelper.hasFrostWalker(entity)) {
                 entity.damage(world.damageSources.hotFloor(), fireDamage.toFloat())
                 entity.addStatusEffect(StatusEffectInstance(HybridAquaticStatusEffects.CORROSION, 200, 0))
