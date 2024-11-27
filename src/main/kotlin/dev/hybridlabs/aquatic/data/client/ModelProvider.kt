@@ -123,6 +123,7 @@ class ModelProvider(output: FabricDataOutput) : FabricModelProvider(output) {
             HybridAquaticItems.GLOW_SLIME,
             HybridAquaticItems.SHARK_TOOTH,
             HybridAquaticItems.SPONGE_CHUNK,
+            HybridAquaticItems.BRINE_BUCKET,
             HybridAquaticItems.PEARL,
             HybridAquaticItems.BLACK_PEARL,
             HybridAquaticItems.SULFUR,

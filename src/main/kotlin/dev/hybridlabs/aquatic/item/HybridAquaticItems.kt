@@ -5,6 +5,7 @@ package dev.hybridlabs.aquatic.item
 import dev.hybridlabs.aquatic.HybridAquatic
 import dev.hybridlabs.aquatic.block.HybridAquaticBlocks
 import dev.hybridlabs.aquatic.entity.HybridAquaticEntityTypes
+import dev.hybridlabs.aquatic.fluid.BrineFluid
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings
 import net.minecraft.block.Block
 import net.minecraft.entity.EntityType
@@ -46,6 +47,7 @@ object HybridAquaticItems {
     val PEARL = register("pearl", Item(FabricItemSettings()))
     val BLACK_PEARL = register("black_pearl", Item(FabricItemSettings()))
     val CUTTLEBONE = register("cuttlebone", Item(FabricItemSettings()))
+    val BRINE_BUCKET = register("brine_bucket", BucketItem(BrineFluid(), FabricItemSettings()))
 
     val SEASHELL_SPEAR = register("seashell_spear", SwordItem(HybridAquaticToolMaterials.SEASHELL,
         3,

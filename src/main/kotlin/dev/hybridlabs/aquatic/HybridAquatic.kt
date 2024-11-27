@@ -9,6 +9,7 @@ import dev.hybridlabs.aquatic.effect.HybridAquaticStatusEffects
 import dev.hybridlabs.aquatic.enchantment.HybridAquaticEnchantments
 import dev.hybridlabs.aquatic.entity.HybridAquaticEntityTypes
 import dev.hybridlabs.aquatic.entity.SpawnRestrictionRegistry
+import dev.hybridlabs.aquatic.fluid.HybridAquaticFluids
 import dev.hybridlabs.aquatic.item.HybridAquaticItemGroups
 import dev.hybridlabs.aquatic.item.HybridAquaticItems
 import dev.hybridlabs.aquatic.loot.LootTableModifications
@@ -41,6 +42,7 @@ object HybridAquatic : ModInitializer {
         logger.info("Initializing $MOD_ID")
 
         HybridAquaticBlocks
+        HybridAquaticFluids
         HybridAquaticBlockEntityTypes
 
         StrippableBlockRegistry.register(HybridAquaticBlocks.DRIFTWOOD_LOG, HybridAquaticBlocks.STRIPPED_DRIFTWOOD_LOG)

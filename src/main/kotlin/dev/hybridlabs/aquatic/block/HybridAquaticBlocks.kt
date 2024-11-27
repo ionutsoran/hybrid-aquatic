@@ -3,6 +3,7 @@ package dev.hybridlabs.aquatic.block
 import com.google.common.collect.ImmutableSet
 import dev.hybridlabs.aquatic.HybridAquatic
 import dev.hybridlabs.aquatic.block.wood.HybridAquaticWoodTypes
+import dev.hybridlabs.aquatic.fluid.HybridAquaticFluids
 import net.fabricmc.fabric.api.`object`.builder.v1.block.FabricBlockSettings
 import net.minecraft.block.*
 import net.minecraft.block.entity.BlockEntity
@@ -34,6 +35,9 @@ object HybridAquaticBlocks {
             .breakInstantly()
             .pistonBehavior(PistonBehavior.DESTROY)
     ))
+
+    val BRINE = register("brine", FluidBlock(HybridAquaticFluids.BRINE, AbstractBlock.Settings.create().mapColor(MapColor.WATER_BLUE).replaceable().noCollision().strength(100.0f).pistonBehavior(PistonBehavior.DESTROY).dropsNothing().liquid().sounds(BlockSoundGroup.INTENTIONALLY_EMPTY)))
+
 
     val BASKING_SHARK_PLUSHIE = register("basking_shark_plushie", createPlushieBlock(PlushieBlock.Variant.BASKING_SHARK, Blocks.GRAY_WOOL))
     val BULL_SHARK_PLUSHIE = register("bull_shark_plushie", createPlushieBlock(PlushieBlock.Variant.BULL_SHARK, Blocks.LIGHT_GRAY_WOOL))
@@ -203,6 +207,7 @@ object HybridAquaticBlocks {
                 .instrument(Instrument.CUSTOM_HEAD)
         )
     }
+
     private fun register(id: String, block: Block): Block {
         return Registry.register(Registries.BLOCK, Identifier(HybridAquatic.MOD_ID, id), block)
     }
