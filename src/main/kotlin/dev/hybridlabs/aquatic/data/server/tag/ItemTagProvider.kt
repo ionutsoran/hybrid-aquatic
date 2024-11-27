@@ -266,13 +266,22 @@ class ItemTagProvider(output: FabricDataOutput, registriesFuture: CompletableFut
             }
 
         setOf(
-            Items.IRON_AXE,
-            Items.IRON_PICKAXE,
-            Items.IRON_SHOVEL,
-            Items.IRON_HOE,
-            Items.IRON_SWORD,
+            HybridAquaticItems.MOON_JELLYFISH_HAT,
+            HybridAquaticItems.MANGLERFISH_LURE,
         ).forEach { item ->
-            getOrCreateTagBuilder(HybridAquaticItemTags.IRON_TOOLS).add(item)
+            getOrCreateTagBuilder(HybridAquaticItemTags.HAT).add(item)
+        }
+
+        setOf(
+            HybridAquaticItems.EEL_SCARF,
+        ).forEach { item ->
+            getOrCreateTagBuilder(HybridAquaticItemTags.SCARF).add(item)
+        }
+
+        setOf(
+            HybridAquaticItems.MANGLERFISH_FIN,
+        ).forEach { item ->
+            getOrCreateTagBuilder(HybridAquaticItemTags.BACK_FIN).add(item)
         }
     }
 }
