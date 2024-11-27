@@ -1,6 +1,5 @@
 package dev.hybridlabs.aquatic.entity.jellyfish
 
-import dev.hybridlabs.aquatic.entity.ai.goal.StayDeepGoal
 import net.minecraft.entity.EntityType
 import net.minecraft.entity.attribute.DefaultAttributeContainer
 import net.minecraft.entity.attribute.EntityAttributes
@@ -11,11 +10,6 @@ class AtollaJellyfishEntity(entityType: EntityType<out AtollaJellyfishEntity>, w
 
     override fun getLimitPerChunk(): Int {
         return 2
-    }
-
-    override fun initGoals() {
-        super.initGoals()
-        goalSelector.add(0, StayDeepGoal(this))
     }
 
     companion object {

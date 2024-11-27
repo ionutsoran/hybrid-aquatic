@@ -218,6 +218,7 @@ open class HybridAquaticCephalopodEntity(
         set(hunger) {
             dataTracker.set(HUNGER, hunger)
         }
+
     private var attemptAttack: Boolean
         get() = dataTracker.get(ATTEMPT_ATTACK)
         set(attemptAttack) {
