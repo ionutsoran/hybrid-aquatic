@@ -36,8 +36,5 @@ abstract class HybridAquaticSharkEntityModel<T : HybridAquaticSharkEntity> (
 
         val pitch = MathHelper.clamp(MathHelper.lerp(deltaTime, animatable.prevPitch, animatable.pitch), -45f, 45f)
         body.rotX = pitch * -MathHelper.RADIANS_PER_DEGREE
-
-        val yaw = MathHelper.clamp(MathHelper.lerp(deltaTime, animatable.prevYaw, animatable.yaw), -10f, 15f)
-        body.rotZ = yaw * -MathHelper.RADIANS_PER_DEGREE
     }
 }
