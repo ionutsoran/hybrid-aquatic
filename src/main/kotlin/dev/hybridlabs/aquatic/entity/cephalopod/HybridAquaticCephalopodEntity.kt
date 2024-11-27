@@ -376,8 +376,8 @@ open class HybridAquaticCephalopodEntity(
                     world.getBlockState(pos).isOf(Blocks.WATER)
         }
 
-        fun getScaleAdjustment(jellyfish : HybridAquaticCephalopodEntity, adjustment : Float): Float {
-            return 1.0f + (jellyfish.size * adjustment)
+        fun getScaleAdjustment(cephalopod : HybridAquaticCephalopodEntity, adjustment : Float): Float {
+            return 1.0f + (cephalopod.size * adjustment)
         }
     }
 
