@@ -10,7 +10,7 @@ import net.minecraft.registry.tag.TagKey
 import net.minecraft.util.Identifier
 
 object HybridAquaticFluidTags {
-    val FLUID = createConventional("fluid")
+    val FLUID = createConventional("fluids")
 
     private fun create(id: String): TagKey<Fluid> {
         return TagKey.of(RegistryKeys.FLUID, Identifier(HybridAquatic.MOD_ID, id))

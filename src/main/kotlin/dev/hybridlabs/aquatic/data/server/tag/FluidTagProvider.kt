@@ -12,8 +12,8 @@ class FluidTagProvider(output: FabricDataOutput, registriesFuture: CompletableFu
 
         setOf(
             HybridAquaticFluids.BRINE,
-        ).forEach { fluid ->
-            getOrCreateTagBuilder(HybridAquaticFluidTags.FLUID).add(fluid)
+        ).forEach { fluids ->
+            getOrCreateTagBuilder(HybridAquaticFluidTags.FLUID).add(fluids)
         }
     }
 }
