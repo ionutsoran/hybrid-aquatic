@@ -9,7 +9,6 @@
     "PlayerEntityMixin",
     "ServerPlayerEntityMixin",
     "SpawnGroupMixin",
-    "TurtleEntityMixin"
   ],
   "injectors": {
     "defaultRequire": 1
