@@ -100,6 +100,10 @@ java {
     targetCompatibility = JavaVersion.VERSION_17
 }
 
+kotlin {
+    jvmToolchain(17)
+}
+
 jar {
     from("LICENSE", "LICENSE_ASSETS")
 }
