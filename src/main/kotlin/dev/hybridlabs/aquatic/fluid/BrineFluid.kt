@@ -4,16 +4,19 @@ import dev.hybridlabs.aquatic.block.HybridAquaticBlocks
 import dev.hybridlabs.aquatic.item.HybridAquaticItems
 import net.minecraft.block.Block
 import net.minecraft.block.BlockState
+import net.minecraft.block.Blocks
 import net.minecraft.block.FluidBlock
 import net.minecraft.fluid.FlowableFluid
 import net.minecraft.fluid.Fluid
 import net.minecraft.fluid.FluidState
 import net.minecraft.item.Item
+import net.minecraft.particle.ParticleTypes
 import net.minecraft.sound.SoundEvent
 import net.minecraft.sound.SoundEvents
 import net.minecraft.state.StateManager
 import net.minecraft.util.math.BlockPos
 import net.minecraft.util.math.Direction
+import net.minecraft.util.math.random.Random
 import net.minecraft.world.BlockView
 import net.minecraft.world.World
 import net.minecraft.world.WorldAccess
@@ -31,7 +34,7 @@ open class BrineFluid : FlowableFluid() {
     }
 
     override fun getFlowSpeed(world: WorldView): Int {
-        return 3
+        return 2
     }
 
     override fun getLevelDecreasePerBlock(world: WorldView): Int {
@@ -74,6 +77,20 @@ open class BrineFluid : FlowableFluid() {
 
     override fun getBucketItem(): Item {
         return HybridAquaticItems.BRINE_BUCKET
+    }
+
+    public override fun randomDisplayTick(world: World, pos: BlockPos, state: FluidState?, random: Random) {
+        val blockPos = pos.up()
+        if (world.getBlockState(blockPos).isOf(Blocks.WATER) && !world.getBlockState(blockPos).isOpaqueFullCube(world, blockPos)) {
+            if (random.nextInt(50) == 0) {
+                val d = pos.x.toDouble() + random.nextDouble()
+                val e = pos.y.toDouble() + 1.0
+                val f = pos.z.toDouble() + random.nextDouble()
+
+                val upwardVelocity = 0.1 + random.nextDouble() * 0.4
+                world.addParticle(ParticleTypes.MYCELIUM, d, e, f, 0.0, upwardVelocity, 0.0)
+            }
+        }
     }
 
     override fun getBucketFillSound(): Optional<SoundEvent> {
