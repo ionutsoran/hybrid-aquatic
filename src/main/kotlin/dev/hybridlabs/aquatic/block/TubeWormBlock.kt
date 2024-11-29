@@ -31,9 +31,9 @@ class TubeWormBlock(settings: Settings) : PlantBlock(settings), Fertilizable, Wa
         val WORM_COUNT_CODEC: Codec<IntProvider> = IntProvider.createValidatingCodec(WORMS.min, WORMS.max)
 
         private val ONE_WORM_SHAPE: VoxelShape = createCuboidShape(6.0, 0.0, 6.0, 10.0, 8.0, 10.0)
-        private val TWO_WORMS_SHAPE: VoxelShape = createCuboidShape(3.0, 0.0, 3.0, 13.0, 8.0, 13.0)
-        private val THREE_WORMS_SHAPE: VoxelShape = createCuboidShape(2.0, 0.0, 2.0, 14.0, 8.0, 14.0)
-        private val FOUR_WORMS_SHAPE: VoxelShape = createCuboidShape(2.0, 0.0, 2.0, 14.0, 10.0, 14.0)
+        private val TWO_WORMS_SHAPE: VoxelShape = createCuboidShape(4.0, 0.0, 4.0, 12.0, 8.0, 12.0)
+        private val THREE_WORMS_SHAPE: VoxelShape = createCuboidShape(4.0, 0.0, 4.0, 12.0, 8.0, 12.0)
+        private val FOUR_WORMS_SHAPE: VoxelShape = createCuboidShape(2.0, 0.0, 2.0, 14.0, 8.0, 14.0)
     }
 
     init {
