@@ -59,13 +59,12 @@ object HybridAquaticClient : ClientModInitializer {
     private fun registerFluidRenderers() {
         FluidRenderHandlerRegistry.INSTANCE.register(HybridAquaticFluids.BRINE, HybridAquaticFluids.FLOWING_BRINE,
             SimpleFluidRenderHandler(
-                Identifier("minecraft:block/water_still"),
-                Identifier("minecraft:block/water_flow"),
-                0x4CC248
+                Identifier("hybrid-aquatic:block/brine_still"),
+                Identifier("hybrid-aquatic:block/brine_flow")
             )
         )
 
-        BlockRenderLayerMap.INSTANCE.putFluids(RenderLayer.getTranslucent(), HybridAquaticFluids.BRINE, HybridAquaticFluids.FLOWING_BRINE);
+        BlockRenderLayerMap.INSTANCE.putFluids(RenderLayer.getTranslucent(), HybridAquaticFluids.BRINE, HybridAquaticFluids.FLOWING_BRINE)
     }
 
     private fun registerGeoRenderers() {

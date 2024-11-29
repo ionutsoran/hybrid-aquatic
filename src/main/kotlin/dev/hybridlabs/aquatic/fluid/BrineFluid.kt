@@ -9,6 +9,8 @@ import net.minecraft.fluid.FlowableFluid
 import net.minecraft.fluid.Fluid
 import net.minecraft.fluid.FluidState
 import net.minecraft.item.Item
+import net.minecraft.sound.SoundEvent
+import net.minecraft.sound.SoundEvents
 import net.minecraft.state.StateManager
 import net.minecraft.util.math.BlockPos
 import net.minecraft.util.math.Direction
@@ -16,6 +18,7 @@ import net.minecraft.world.BlockView
 import net.minecraft.world.World
 import net.minecraft.world.WorldAccess
 import net.minecraft.world.WorldView
+import java.util.*
 
 open class BrineFluid : FlowableFluid() {
     override fun isInfinite(world: World): Boolean {
@@ -32,7 +35,7 @@ open class BrineFluid : FlowableFluid() {
     }
 
     override fun getLevelDecreasePerBlock(world: WorldView): Int {
-        return 2
+        return 1
     }
 
     override fun getLevel(state: FluidState): Int {
@@ -45,6 +48,10 @@ open class BrineFluid : FlowableFluid() {
 
     override fun getBlastResistance(): Float {
         return 100F
+    }
+
+    override fun matchesType(fluid: Fluid): Boolean {
+        return fluid === HybridAquaticFluids.BRINE || fluid === HybridAquaticFluids.FLOWING_BRINE
     }
 
     override fun canBeReplacedWith(
@@ -67,6 +74,10 @@ open class BrineFluid : FlowableFluid() {
 
     override fun getBucketItem(): Item {
         return HybridAquaticItems.BRINE_BUCKET
+    }
+
+    override fun getBucketFillSound(): Optional<SoundEvent> {
+        return Optional.of(SoundEvents.ITEM_BUCKET_FILL)
     }
 
     public override fun toBlockState(state: FluidState): BlockState {
