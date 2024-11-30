@@ -2,10 +2,7 @@ package dev.hybridlabs.aquatic.block
 
 import dev.hybridlabs.aquatic.block.enum.GiantClamState
 import dev.hybridlabs.aquatic.item.HybridAquaticItems
-import net.minecraft.block.Block
-import net.minecraft.block.BlockState
-import net.minecraft.block.ShapeContext
-import net.minecraft.block.Waterloggable
+import net.minecraft.block.*
 import net.minecraft.entity.Entity
 import net.minecraft.entity.LivingEntity
 import net.minecraft.entity.ai.pathing.NavigationType
@@ -18,9 +15,11 @@ import net.minecraft.particle.ParticleTypes
 import net.minecraft.server.world.ServerWorld
 import net.minecraft.state.StateManager
 import net.minecraft.state.property.BooleanProperty
+import net.minecraft.state.property.DirectionProperty
 import net.minecraft.state.property.EnumProperty
 import net.minecraft.state.property.Properties
 import net.minecraft.util.ActionResult
+import net.minecraft.util.BlockRotation
 import net.minecraft.util.Hand
 import net.minecraft.util.hit.BlockHitResult
 import net.minecraft.util.math.BlockPos
@@ -91,6 +90,7 @@ class GiantClamBlock(
         val waterlogged = ctx.world.getFluidState(ctx.blockPos).fluid == Fluids.WATER
         return defaultState.with(WATERLOGGED, waterlogged)
             .with(STATE, if (waterlogged) GiantClamState.CLOSED else GiantClamState.DEAD)
+            .with(FACING, ctx.horizontalPlayerFacing.rotateYClockwise())
     }
 
     override fun getFluidState(state: BlockState): FluidState {
@@ -98,7 +98,7 @@ class GiantClamBlock(
     }
 
     override fun appendProperties(builder: StateManager.Builder<Block, BlockState>) {
-        builder.add(STATE, WATERLOGGED)
+        builder.add(STATE, WATERLOGGED, FACING)
     }
 
     override fun onUse(
@@ -157,7 +157,12 @@ class GiantClamBlock(
         }
     }
 
+    override fun rotate(state: BlockState, rotation: BlockRotation): BlockState {
+        return state.with(FACING, rotation.rotate(state.get(FACING) as Direction)) as BlockState
+    }
+
     companion object {
+        val FACING: DirectionProperty = HorizontalFacingBlock.FACING
         val STATE: EnumProperty<GiantClamState> = EnumProperty.of("state", GiantClamState::class.java, GiantClamState.OPEN, GiantClamState.CLOSED, GiantClamState.DEAD)
         val WATERLOGGED: BooleanProperty = Properties.WATERLOGGED
         private val SHAPE: VoxelShape = createCuboidShape(2.0, 0.0, 2.0, 14.0, 8.0, 14.0)
