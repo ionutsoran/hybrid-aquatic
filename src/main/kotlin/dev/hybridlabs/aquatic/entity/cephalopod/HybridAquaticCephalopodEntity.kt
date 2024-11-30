@@ -3,7 +3,6 @@ package dev.hybridlabs.aquatic.entity.cephalopod
 import dev.hybridlabs.aquatic.entity.fish.HybridAquaticFishEntity
 import dev.hybridlabs.aquatic.entity.fish.ray.HybridAquaticRayEntity
 import dev.hybridlabs.aquatic.entity.shark.HybridAquaticSharkEntity
-import dev.hybridlabs.aquatic.tag.HybridAquaticEntityTags
 import net.minecraft.block.Blocks
 import net.minecraft.entity.*
 import net.minecraft.entity.ai.control.AquaticMoveControl
@@ -54,7 +53,7 @@ open class HybridAquaticCephalopodEntity(
     override fun initGoals() {
         goalSelector.add(0, EscapeDangerGoal(this, 1.25))
         goalSelector.add(3, SwimAroundGoal(this, 1.0, 10))
-        goalSelector.add(2, AttackGoal(this))
+        goalSelector.add(2, CephalopodAttackGoal(this))
         targetSelector.add(1, ActiveTargetGoal(this, LivingEntity::class.java, 10, true, true) { hunger <= 1200 && it.type.isIn(prey) })
     }
 
@@ -109,25 +108,6 @@ open class HybridAquaticCephalopodEntity(
         }
 
         isSprinting = isAttacking
-    }
-
-    private fun getHungerValue(entityType: EntityType<*>): Int {
-        if (entityType.isIn(HybridAquaticEntityTags.CRUSTACEAN))
-            return 150
-        if (entityType.isIn(HybridAquaticEntityTags.JELLYFISH))
-            return 150
-        if (entityType.isIn(HybridAquaticEntityTags.SMALL_PREY))
-            return 300
-        else if (entityType.isIn(HybridAquaticEntityTags.MEDIUM_PREY))
-            return 600
-        else if (entityType.isIn(HybridAquaticEntityTags.LARGE_PREY))
-            return 1200
-
-        return 0
-    }
-
-    open fun eatFish(entityType: EntityType<*>) {
-        hunger += getHungerValue(entityType)
     }
 
     override fun tickWaterBreathingAir(air: Int) {}
@@ -288,7 +268,7 @@ open class HybridAquaticCephalopodEntity(
 
     private var fromFishingNet = false
 
-    internal class AttackGoal(private val cephalopod: HybridAquaticCephalopodEntity) : MeleeAttackGoal(cephalopod, 1.0,true) {
+    internal class CephalopodAttackGoal(private val cephalopod: HybridAquaticCephalopodEntity) : MeleeAttackGoal(cephalopod, 1.0,true) {
         override fun canStart(): Boolean {
             return !cephalopod.fromFishingNet && super.canStart()
         }
@@ -298,16 +278,17 @@ open class HybridAquaticCephalopodEntity(
             if (squaredDistance <= d && this.isCooledDown) {
                 resetCooldown()
                 mob.tryAttack(target)
-                cephalopod.isSprinting = false
+                cephalopod.isSprinting = true
                 cephalopod.attemptAttack = true
 
                 if (target.health <= 0)
-                    cephalopod.eatFish(target.type)
+                    cephalopod.hunger = HybridAquaticSharkEntity.MAX_HUNGER
+                cephalopod.health = cephalopod.maxHealth
             }
         }
 
         override fun getSquaredMaxAttackDistance(entity: LivingEntity): Double {
-            return (1.0f + entity.width).toDouble()
+            return (1.25f + entity.width).toDouble()
         }
 
         override fun start() {
@@ -321,17 +302,6 @@ open class HybridAquaticCephalopodEntity(
         }
     }
 
-    override fun tryAttack(target: Entity?): Boolean {
-        if (super.tryAttack(target)) {
-
-            playSound(SoundEvents.ENTITY_FOX_EAT,1.0F,0.0F)
-
-            return true
-        } else {
-            return false
-        }
-    }
-
     companion object {
         val MOISTNESS: TrackedData<Int> = DataTracker.registerData(HybridAquaticCephalopodEntity::class.java, TrackedDataHandlerRegistry.INTEGER)
         val CEPHALOPOD_SIZE: TrackedData<Int> = DataTracker.registerData(HybridAquaticCephalopodEntity::class.java, TrackedDataHandlerRegistry.INTEGER)
@@ -340,7 +310,7 @@ open class HybridAquaticCephalopodEntity(
         val VARIANT: TrackedData<String> = DataTracker.registerData(HybridAquaticCephalopodEntity::class.java, TrackedDataHandlerRegistry.STRING)
         var VARIANT_DATA: TrackedData<NbtCompound> = DataTracker.registerData(HybridAquaticCephalopodEntity::class.java, TrackedDataHandlerRegistry.NBT_COMPOUND)
 
-        const val MAX_HUNGER = 1200
+        const val MAX_HUNGER = 2400
         const val HUNGER_KEY = "Hunger"
         const val MOISTNESS_KEY = "Moistness"
         const val VARIANT_KEY = "Variant"
