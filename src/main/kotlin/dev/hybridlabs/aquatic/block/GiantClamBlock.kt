@@ -89,7 +89,8 @@ class GiantClamBlock(
 
     override fun getPlacementState(ctx: ItemPlacementContext): BlockState? {
         val waterlogged = ctx.world.getFluidState(ctx.blockPos).fluid == Fluids.WATER
-        return defaultState.with(WATERLOGGED, waterlogged)
+        return defaultState
+            .with(WATERLOGGED, waterlogged)
             .with(STATE, if (waterlogged) GiantClamState.CLOSED else GiantClamState.DEAD)
             .with(FACING, ctx.horizontalPlayerFacing.rotateYClockwise())
     }
