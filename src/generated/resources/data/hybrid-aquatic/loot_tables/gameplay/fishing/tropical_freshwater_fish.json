@@ -7,42 +7,55 @@
         {
           "type": "minecraft:item",
           "name": "hybrid-aquatic:neon_tetra",
-          "weight": 5
+          "weight": 3
         },
         {
           "type": "minecraft:item",
           "name": "hybrid-aquatic:oscar",
-          "weight": 5
+          "weight": 2
         },
         {
           "type": "minecraft:item",
           "name": "hybrid-aquatic:piranha",
-          "weight": 5
+          "weight": 3
         },
         {
           "type": "minecraft:item",
           "name": "hybrid-aquatic:tiger_barb",
-          "weight": 5
+          "weight": 3
         },
         {
           "type": "minecraft:item",
           "name": "hybrid-aquatic:danio",
-          "weight": 5
+          "weight": 3
         },
         {
           "type": "minecraft:item",
           "name": "hybrid-aquatic:betta",
-          "weight": 5
+          "weight": 2
         },
         {
           "type": "minecraft:item",
           "name": "hybrid-aquatic:discus",
-          "weight": 5
+          "weight": 2
         },
         {
           "type": "minecraft:item",
           "name": "hybrid-aquatic:gourami",
-          "weight": 5
+          "weight": 2
+        },
+        {
+          "type": "minecraft:item",
+          "name": "hybrid-aquatic:goldfish"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "hybrid-aquatic:carp",
+          "weight": 4
+        },
+        {
+          "type": "minecraft:item",
+          "name": "hybrid-aquatic:koi"
         }
       ],
       "rolls": 1.0

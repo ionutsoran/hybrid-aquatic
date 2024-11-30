@@ -7,42 +7,40 @@
         {
           "type": "minecraft:item",
           "name": "hybrid-aquatic:anglerfish",
-          "weight": 5
+          "weight": 3
         },
         {
           "type": "minecraft:item",
           "name": "hybrid-aquatic:barreleye",
-          "weight": 5
+          "weight": 3
         },
         {
           "type": "minecraft:item",
           "name": "hybrid-aquatic:dragonfish",
-          "weight": 5
+          "weight": 3
         },
         {
           "type": "minecraft:item",
           "name": "hybrid-aquatic:flashlight_fish",
-          "weight": 5
+          "weight": 4
         },
         {
           "type": "minecraft:item",
           "name": "hybrid-aquatic:ratfish",
-          "weight": 5
+          "weight": 2
         },
         {
           "type": "minecraft:item",
-          "name": "hybrid-aquatic:oarfish",
-          "weight": 5
+          "name": "hybrid-aquatic:oarfish"
         },
         {
           "type": "minecraft:item",
-          "name": "hybrid-aquatic:sunfish",
-          "weight": 5
+          "name": "hybrid-aquatic:sunfish"
         },
         {
           "type": "minecraft:item",
           "name": "hybrid-aquatic:opah",
-          "weight": 5
+          "weight": 2
         }
       ],
       "rolls": 1.0

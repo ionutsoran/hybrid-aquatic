@@ -22,35 +22,35 @@ class FishingLootTableProvider(output: FabricDataOutput) : SimpleFabricLootTable
                     LootPool.builder()
                         .with(
                             ItemEntry.builder(HybridAquaticItems.ANGLERFISH)
-                                .weight(5)
+                                .weight(3)
                         )
                         .with(
                             ItemEntry.builder(HybridAquaticItems.BARRELEYE)
-                                .weight(5)
+                                .weight(3)
                         )
                         .with(
                             ItemEntry.builder(HybridAquaticItems.DRAGONFISH)
-                                .weight(5)
+                                .weight(3)
                         )
                         .with(
                             ItemEntry.builder(HybridAquaticItems.FLASHLIGHT_FISH)
-                                .weight(5)
+                                .weight(4)
                         )
                         .with(
                             ItemEntry.builder(HybridAquaticItems.RATFISH)
-                                .weight(5)
+                                .weight(2)
                         )
                         .with(
                             ItemEntry.builder(HybridAquaticItems.OARFISH)
-                                .weight(5)
+                                .weight(1)
                         )
                         .with(
                             ItemEntry.builder(HybridAquaticItems.SUNFISH)
-                                .weight(5)
+                                .weight(1)
                         )
                         .with(
                             ItemEntry.builder(HybridAquaticItems.OPAH)
-                                .weight(5)
+                                .weight(2)
                         )
                 )
         )
@@ -63,39 +63,39 @@ class FishingLootTableProvider(output: FabricDataOutput) : SimpleFabricLootTable
                     LootPool.builder()
                         .with(
                             ItemEntry.builder(HybridAquaticItems.SURGEONFISH_LINED)
-                                .weight(5)
+                                .weight(3)
                         )
                         .with(
                             ItemEntry.builder(HybridAquaticItems.SURGEONFISH_ORANGESHOULDER)
-                                .weight(5)
+                                .weight(3)
                         )
                         .with(
                             ItemEntry.builder(HybridAquaticItems.SURGEONFISH_SOHAL)
-                                .weight(5)
+                                .weight(3)
                         )
                         .with(
                             ItemEntry.builder(HybridAquaticItems.YELLOW_TANG)
-                                .weight(5)
+                                .weight(3)
                         )
                         .with(
                             ItemEntry.builder(HybridAquaticItems.POWDER_BLUE_TANG)
-                                .weight(5)
+                                .weight(3)
                         )
                         .with(
                             ItemEntry.builder(HybridAquaticItems.BLUE_TANG)
-                                .weight(5)
+                                .weight(3)
                         )
                         .with(
                             ItemEntry.builder(HybridAquaticItems.UNICORNFISH)
-                                .weight(5)
+                                .weight(3)
                         )
                         .with(
                             ItemEntry.builder(HybridAquaticItems.BLUE_SPOTTED_STINGRAY)
-                                .weight(5)
+                                .weight(2)
                         )
                         .with(
                             ItemEntry.builder(HybridAquaticItems.CLOWNFISH)
-                                .weight(5)
+                                .weight(2)
                         )
                         .with(
                             ItemEntry.builder(HybridAquaticItems.COWFISH)
@@ -103,43 +103,51 @@ class FishingLootTableProvider(output: FabricDataOutput) : SimpleFabricLootTable
                         )
                         .with(
                             ItemEntry.builder(HybridAquaticItems.LIONFISH)
-                                .weight(5)
+                                .weight(2)
                         )
                         .with(
                             ItemEntry.builder(HybridAquaticItems.NEEDLEFISH)
-                                .weight(5)
+                                .weight(3)
                         )
                         .with(
                             ItemEntry.builder(HybridAquaticItems.MORAY_EEL)
-                                .weight(5)
+                                .weight(1)
                         )
                         .with(
                             ItemEntry.builder(HybridAquaticItems.PARROTFISH)
-                                .weight(5)
+                                .weight(2)
                         )
                         .with(
                             ItemEntry.builder(HybridAquaticItems.ROCKFISH)
-                                .weight(5)
+                                .weight(3)
                         )
                         .with(
                             ItemEntry.builder(HybridAquaticItems.TRIGGERFISH)
-                                .weight(5)
+                                .weight(3)
                         )
                         .with(
                             ItemEntry.builder(HybridAquaticItems.SEA_BASS)
-                                .weight(5)
+                                .weight(3)
                         )
                         .with(
                             ItemEntry.builder(HybridAquaticItems.SEAHORSE)
-                                .weight(5)
+                                .weight(1)
                         )
                         .with(
                             ItemEntry.builder(HybridAquaticItems.SPOTTED_EAGLE_RAY)
-                                .weight(5)
+                                .weight(2)
                         )
                         .with(
                             ItemEntry.builder(HybridAquaticItems.TOADFISH)
-                                .weight(5)
+                                .weight(1)
+                        )
+                        .with(
+                            ItemEntry.builder(HybridAquaticItems.STONEFISH)
+                                .weight(1)
+                        )
+                        .with(
+                            ItemEntry.builder(HybridAquaticItems.FLASHLIGHT_FISH)
+                                .weight(4)
                         )
                 )
         )
@@ -152,35 +160,47 @@ class FishingLootTableProvider(output: FabricDataOutput) : SimpleFabricLootTable
                     LootPool.builder()
                         .with(
                             ItemEntry.builder(HybridAquaticItems.BLUEFIN_TUNA)
-                                .weight(5)
+                                .weight(2)
                         )
                         .with(
                             ItemEntry.builder(HybridAquaticItems.YELLOWFIN_TUNA)
-                                .weight(5)
+                                .weight(2)
                         )
                         .with(
                             ItemEntry.builder(HybridAquaticItems.MAHI)
-                                .weight(5)
+                                .weight(2)
                         )
                         .with(
                             ItemEntry.builder(HybridAquaticItems.MACKEREL)
-                                .weight(5)
+                                .weight(4)
                         )
                         .with(
                             ItemEntry.builder(HybridAquaticItems.NEEDLEFISH)
-                                .weight(5)
+                                .weight(3)
                         )
                         .with(
                             ItemEntry.builder(HybridAquaticItems.ROCKFISH)
-                                .weight(5)
+                                .weight(3)
                         )
                         .with(
                             ItemEntry.builder(HybridAquaticItems.SEA_BASS)
-                                .weight(5)
+                                .weight(3)
                         )
                         .with(
                             ItemEntry.builder(HybridAquaticItems.SPOTTED_EAGLE_RAY)
-                                .weight(5)
+                                .weight(2)
+                        )
+                        .with(
+                            ItemEntry.builder(HybridAquaticItems.OARFISH)
+                                .weight(1)
+                        )
+                        .with(
+                            ItemEntry.builder(HybridAquaticItems.SUNFISH)
+                                .weight(1)
+                        )
+                        .with(
+                            ItemEntry.builder(HybridAquaticItems.OPAH)
+                                .weight(2)
                         )
                 )
         )
@@ -193,40 +213,52 @@ class FishingLootTableProvider(output: FabricDataOutput) : SimpleFabricLootTable
                     LootPool.builder()
                         .with(
                             ItemEntry.builder(HybridAquaticItems.NEON_TETRA)
-                                .weight(5)
+                                .weight(3)
                         )
                         .with(
                             ItemEntry.builder(HybridAquaticItems.OSCAR)
-                                .weight(5)
+                                .weight(2)
                         )
                         .with(
                             ItemEntry.builder(HybridAquaticItems.PIRANHA)
-                                .weight(5)
+                                .weight(3)
                         )
                         .with(
                             ItemEntry.builder(HybridAquaticItems.TIGER_BARB)
-                                .weight(5)
+                                .weight(3)
                         )
                         .with(
                             ItemEntry.builder(HybridAquaticItems.DANIO)
-                                .weight(5)
+                                .weight(3)
                         )
                         .with(
                             ItemEntry.builder(HybridAquaticItems.BETTA)
-                                .weight(5)
+                                .weight(2)
                         )
                         .with(
                             ItemEntry.builder(HybridAquaticItems.DISCUS)
-                                .weight(5)
+                                .weight(2)
                         )
                         .with(
                             ItemEntry.builder(HybridAquaticItems.GOURAMI)
-                                .weight(5)
+                                .weight(2)
+                        )
+                        .with(
+                            ItemEntry.builder(HybridAquaticItems.GOLDFISH)
+                                .weight(1)
+                        )
+                        .with(
+                            ItemEntry.builder(HybridAquaticItems.CARP)
+                                .weight(4)
+                        )
+                        .with(
+                            ItemEntry.builder(HybridAquaticItems.KOI)
+                                .weight(1)
                         )
                 )
         )
 
-                    // fishing treasure loot table extension
+        // fishing treasure loot table extension
         exporter.accept(
             HybridAquaticLootTables.FISHING_TREASURE_ID,
             LootTable.builder()
