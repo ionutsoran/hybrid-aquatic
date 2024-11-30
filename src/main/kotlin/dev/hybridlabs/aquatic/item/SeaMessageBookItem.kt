@@ -41,7 +41,7 @@ class SeaMessageBookItem(settings: Settings) : Item(settings) {
     companion object {
         const val SEA_MESSAGE_KEY: String = "sea_message"
 
-        fun setSeaMessage(stack: ItemStack, message: SeaMessage, registryManager: DynamicRegistryManager): ItemStack {
+        private fun setSeaMessage(stack: ItemStack, message: SeaMessage, registryManager: DynamicRegistryManager): ItemStack {
             val id = message.getId(registryManager) ?: return stack
 			val nbt = stack.orCreateNbt
             nbt.putString(SEA_MESSAGE_KEY, id.toString())
