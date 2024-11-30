@@ -17,7 +17,7 @@
               "function": "minecraft:set_count"
             }
           ],
-          "name": "hybrid-aquatic:karkinos_claw"
+          "name": "hybrid-aquatic:manglerfish_lure"
         },
         {
           "type": "minecraft:item",
@@ -26,13 +26,13 @@
               "add": false,
               "count": {
                 "type": "minecraft:uniform",
-                "max": 12.0,
-                "min": 4.0
+                "max": 1.0,
+                "min": 1.0
               },
               "function": "minecraft:set_count"
             }
           ],
-          "name": "hybrid-aquatic:raw_crab"
+          "name": "hybrid-aquatic:manglerfish_fin"
         }
       ],
       "rolls": 1.0
