@@ -24,7 +24,7 @@ class FlyingFishEntity(entityType: EntityType<out FlyingFishEntity>, world: Worl
         return 6
     }
     init {
-        this.air = this.maxAir
+        this.air = 300
     }
 
     override fun getMaxAir(): Int {

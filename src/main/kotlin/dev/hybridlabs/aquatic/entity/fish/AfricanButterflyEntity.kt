@@ -25,7 +25,7 @@ class AfricanButterflyEntity(entityType: EntityType<out AfricanButterflyEntity>,
     }
 
     init {
-        this.air = this.maxAir
+        this.air = 300
     }
 
     override fun getMaxAir(): Int {
