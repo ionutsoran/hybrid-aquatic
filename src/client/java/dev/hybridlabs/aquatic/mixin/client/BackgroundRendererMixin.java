@@ -45,6 +45,7 @@ public class BackgroundRendererMixin {
             World world = clientPlayerEntity.getWorld();
             StatusEffectInstance clarityEffect = clientPlayerEntity.getStatusEffect(HybridAquaticStatusEffects.INSTANCE.getCLARITY());
             StatusEffectInstance conduitEffect = clientPlayerEntity.getStatusEffect(StatusEffects.CONDUIT_POWER);
+            StatusEffectInstance toxicShockEffect = clientPlayerEntity.getStatusEffect(HybridAquaticStatusEffects.INSTANCE.getTOXIC_SHOCK());
             StatusEffectInstance thalassophobiaEffect = clientPlayerEntity.getStatusEffect(HybridAquaticStatusEffects.INSTANCE.getTHALASSOPHOBIA());
 
             if (clarityEffect != null) {
@@ -53,6 +54,8 @@ public class BackgroundRendererMixin {
                 new ConduitPowerFogModifier().applyStartEndModifier(fogData, clientPlayerEntity, conduitEffect, viewDistance, tickDelta);
             } else if (thalassophobiaEffect != null) {
                 new ThalassophobiaFogModifier().applyStartEndModifier(fogData, clientPlayerEntity, thalassophobiaEffect, viewDistance, tickDelta);
+            }  else if (toxicShockEffect != null) {
+                new ThalassophobiaFogModifier().applyStartEndModifier(fogData, clientPlayerEntity, toxicShockEffect, viewDistance, tickDelta);
             } else {
                 fogData.fogStart = -8.0F;
                 int topY = world.getSeaLevel();

@@ -98,6 +98,7 @@ class LanguageProvider(output: FabricDataOutput) : FabricLanguageProvider(output
 
         // items
         mapOf(
+            HybridAquaticItems.BRINE_BUCKET to "Brine Bucket",
             HybridAquaticItems.RAW_FISH_STEAK to "Fish Steak",
             HybridAquaticItems.COOKED_FISH_STEAK to "Cooked Fish Steak",
             HybridAquaticItems.RAW_FISH_MEAT to "Raw Fish Meat",
@@ -213,6 +214,7 @@ class LanguageProvider(output: FabricDataOutput) : FabricLanguageProvider(output
             HybridAquaticStatusEffects.BLEEDING to "Bleeding",
             HybridAquaticStatusEffects.CLARITY to "Clarity",
             HybridAquaticStatusEffects.CORROSION to "Corrosion",
+            HybridAquaticStatusEffects.TOXIC_SHOCK to "Toxic Shock",
             HybridAquaticStatusEffects.THALASSOPHOBIA to "Thalassophobia",
             HybridAquaticStatusEffects.BUOYANCY to "Buoyancy",
             HybridAquaticStatusEffects.SPININESS to "Spininess",
