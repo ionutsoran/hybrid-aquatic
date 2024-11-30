@@ -5,7 +5,6 @@ package dev.hybridlabs.aquatic.item
 import dev.hybridlabs.aquatic.HybridAquatic
 import dev.hybridlabs.aquatic.block.HybridAquaticBlocks
 import dev.hybridlabs.aquatic.entity.HybridAquaticEntityTypes
-import dev.hybridlabs.aquatic.fluid.BrineFluid
 import dev.hybridlabs.aquatic.fluid.HybridAquaticFluids
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings
 import net.minecraft.block.Block
@@ -183,7 +182,7 @@ object HybridAquaticItems {
             FabricItemSettings()
                 .food(
                     FoodComponent.Builder()
-                        .hunger(5)
+                        .hunger(4)
                         .saturationModifier(5.0F)
                         .meat()
                         .build()
