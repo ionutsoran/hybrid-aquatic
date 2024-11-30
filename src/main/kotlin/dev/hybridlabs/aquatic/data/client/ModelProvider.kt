@@ -104,6 +104,7 @@ class ModelProvider(output: FabricDataOutput) : FabricModelProvider(output) {
 
     override fun generateItemModels(generator: ItemModelGenerator) {
         setOf(
+            HybridAquaticItems.BUOY,
             HybridAquaticItems.RAW_CRAYFISH,
             HybridAquaticItems.COCONUT_CRAB_CLAW,
             HybridAquaticItems.DUNGENESS_CRAB_CLAW,
