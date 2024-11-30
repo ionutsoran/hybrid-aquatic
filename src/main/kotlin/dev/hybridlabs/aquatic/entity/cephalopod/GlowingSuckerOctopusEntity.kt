@@ -20,11 +20,6 @@ class GlowingSuckerOctopusEntity(entityType: EntityType<out GlowingSuckerOctopus
         }
     }
 
-    override fun initGoals() {
-        super.initGoals()
-        goalSelector.add(1, AttackGoal(this))
-    }
-
     override fun getMaxSize(): Int {
         return 5
     }

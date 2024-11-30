@@ -26,11 +26,6 @@ class ArrowSquidEntity(entityType: EntityType<out ArrowSquidEntity>, world: Worl
         }
     }
 
-    override fun initGoals() {
-        super.initGoals()
-        goalSelector.add(1, AttackGoal(this))
-    }
-
     override fun getMaxSize(): Int {
         return 5
     }

@@ -26,11 +26,6 @@ class FireflySquidEntity(entityType: EntityType<out FireflySquidEntity>, world: 
         }
     }
 
-    override fun initGoals() {
-        super.initGoals()
-        goalSelector.add(1, AttackGoal(this))
-    }
-
     override fun getMaxSize(): Int {
         return 5
     }
