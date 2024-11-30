@@ -1,11 +1,14 @@
 package dev.hybridlabs.aquatic.mixin;
 
+import dev.hybridlabs.aquatic.effect.HybridAquaticStatusEffects;
 import dev.hybridlabs.aquatic.fluid.HybridAquaticFluids;
+import dev.hybridlabs.aquatic.item.HybridAquaticItems;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.fluid.FluidState;
 import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.ModifyVariable;
 import org.spongepowered.asm.mixin.injection.Slice;
@@ -25,14 +28,31 @@ public abstract class EntityMixin {
             )
     )
 
-    public FluidState brine$applyPoisonEffectInBrine(FluidState state) {
+    @Unique
+    public FluidState brine$applyToxicShockInBrine(FluidState state) {
         if ((Object) this instanceof LivingEntity entity) {
             if (state.getFluid() == HybridAquaticFluids.INSTANCE.getBRINE()) {
-                int duration = 100;
-                int amplifier = 1;
-                entity.addStatusEffect(new net.minecraft.entity.effect.StatusEffectInstance(StatusEffects.POISON, duration, amplifier));
+                if (isWearingDivingSet(entity)) {
+                    entity.addStatusEffect(new net.minecraft.entity.effect.StatusEffectInstance(HybridAquaticStatusEffects.INSTANCE.getCORROSION(), 120, 0));
+                } else {
+                    entity.addStatusEffect(new net.minecraft.entity.effect.StatusEffectInstance(HybridAquaticStatusEffects.INSTANCE.getTOXIC_SHOCK(), 240, 0));
+                    entity.addStatusEffect(new net.minecraft.entity.effect.StatusEffectInstance(HybridAquaticStatusEffects.INSTANCE.getCORROSION(), 120, 0));
+                }
             }
         }
         return state;
+    }
+
+    @Unique
+    private boolean isWearingDivingSet(LivingEntity entity) {
+        var helmet = entity.getEquippedStack(EquipmentSlot.HEAD);
+        var chestplate = entity.getEquippedStack(EquipmentSlot.CHEST);
+        var leggings = entity.getEquippedStack(EquipmentSlot.LEGS);
+        var boots = entity.getEquippedStack(EquipmentSlot.FEET);
+
+        return helmet.isOf(HybridAquaticItems.INSTANCE.getDIVING_HELMET()) &&
+                chestplate.isOf(HybridAquaticItems.INSTANCE.getDIVING_SUIT()) &&
+                leggings.isOf(HybridAquaticItems.INSTANCE.getDIVING_LEGGINGS()) &&
+                boots.isOf(HybridAquaticItems.INSTANCE.getDIVING_BOOTS());
     }
 }
