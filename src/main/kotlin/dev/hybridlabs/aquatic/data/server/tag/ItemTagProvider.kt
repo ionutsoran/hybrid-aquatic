@@ -6,7 +6,6 @@ import dev.hybridlabs.aquatic.item.HybridAquaticItems
 import dev.hybridlabs.aquatic.tag.HybridAquaticItemTags
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricTagProvider
-import net.minecraft.item.Items
 import net.minecraft.registry.Registries
 import net.minecraft.registry.RegistryWrapper
 import net.minecraft.registry.tag.ItemTags
@@ -25,8 +24,7 @@ class ItemTagProvider(output: FabricDataOutput, registriesFuture: CompletableFut
             getOrCreateTagBuilder(HybridAquaticItemTags.LURE_ITEMS).add(item)
         }
 
-        //region wood
-
+        //#region wood
         getOrCreateTagBuilder(ItemTags.PLANKS)
             .add(HybridAquaticBlocks.DRIFTWOOD_PLANKS.asItem())
 
@@ -81,7 +79,7 @@ class ItemTagProvider(output: FabricDataOutput, registriesFuture: CompletableFut
         getOrCreateTagBuilder(ItemTags.HOES)
             .add(HybridAquaticItems.SEASHELL_HOE)
 
-        //endregion
+        //#endregion
 
         listOf(
             HybridAquaticItems.KOI,
@@ -229,7 +227,26 @@ class ItemTagProvider(output: FabricDataOutput, registriesFuture: CompletableFut
             HybridAquaticItems.ANGLERFISH,
             HybridAquaticItems.BARRELEYE,
             HybridAquaticItems.CLOWNFISH,
+            HybridAquaticItems.DRAGONFISH,
+            HybridAquaticItems.FLASHLIGHT_FISH,
             HybridAquaticItems.ROCKFISH,
+            HybridAquaticItems.SEA_BASS,
+            HybridAquaticItems.SEAHORSE,
+            HybridAquaticItems.YELLOW_TANG,
+            HybridAquaticItems.POWDER_BLUE_TANG,
+            HybridAquaticItems.SURGEONFISH_SOHAL,
+            HybridAquaticItems.SURGEONFISH_LINED,
+            HybridAquaticItems.SURGEONFISH_ORANGESHOULDER,
+            HybridAquaticItems.MACKEREL,
+            HybridAquaticItems.COWFISH,
+            HybridAquaticItems.TOADFISH,
+            HybridAquaticItems.STONEFISH,
+            HybridAquaticItems.PARROTFISH,
+            HybridAquaticItems.SUNFISH,
+            HybridAquaticItems.CARP,
+            HybridAquaticItems.KOI,
+            HybridAquaticItems.GOLDFISH,
+            HybridAquaticItems.OARFISH,
             HybridAquaticItems.YELLOWFIN_TUNA,
             HybridAquaticItems.BLUEFIN_TUNA,
             HybridAquaticItems.BLUE_TANG,
@@ -240,6 +257,7 @@ class ItemTagProvider(output: FabricDataOutput, registriesFuture: CompletableFut
             HybridAquaticItems.MAHI,
             HybridAquaticItems.NEEDLEFISH,
             HybridAquaticItems.BLUE_SPOTTED_STINGRAY,
+            HybridAquaticItems.SPOTTED_EAGLE_RAY,
             HybridAquaticItems.LIONFISH,
             HybridAquaticItems.MORAY_EEL,
             HybridAquaticItems.PIRANHA,
