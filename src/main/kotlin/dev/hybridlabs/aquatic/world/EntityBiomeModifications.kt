@@ -56,7 +56,6 @@ object EntityBiomeModifications {
         addUndergroundFish(HybridAquaticEntityTypes.ANGLERFISH, listOf(HybridAquaticBiomeTags.TROPICAL_OCEANS), 5, 1, 2)
         addUndergroundFish(HybridAquaticEntityTypes.BARRELEYE, listOf(HybridAquaticBiomeTags.TROPICAL_OCEANS), 1, 1, 1)
         addUndergroundFish(HybridAquaticEntityTypes.DRAGONFISH, listOf(HybridAquaticBiomeTags.TROPICAL_OCEANS), 3, 1, 1)
-        addUndergroundFish(HybridAquaticEntityTypes.FRILLED_SHARK, listOf(HybridAquaticBiomeTags.TROPICAL_OCEANS), 3, 1, 1)
         addUndergroundFish(HybridAquaticEntityTypes.RATFISH, listOf(HybridAquaticBiomeTags.TROPICAL_OCEANS), 3, 1, 2)
         addUndergroundFish(HybridAquaticEntityTypes.SEA_ANGEL, listOf(HybridAquaticBiomeTags.ARCTIC_OCEANS), 1, 1, 1)
 
@@ -96,6 +95,7 @@ object EntityBiomeModifications {
         addShark(HybridAquaticEntityTypes.BULL_SHARK, listOf(HybridAquaticBiomeTags.TROPICAL_OCEANS), 3, 1, 2)
         addShark(HybridAquaticEntityTypes.WHALE_SHARK, listOf(HybridAquaticBiomeTags.TROPICAL_OCEANS), 1, 1, 1)
         addShark(HybridAquaticEntityTypes.BASKING_SHARK, listOf(HybridAquaticBiomeTags.COLD_OCEANS, HybridAquaticBiomeTags.TEMPERATE_OCEANS), 1, 1, 1)
+        addUndergroundShark(HybridAquaticEntityTypes.FRILLED_SHARK, listOf(HybridAquaticBiomeTags.TROPICAL_OCEANS), 3, 1, 1)
 
         // crustaceans
         addCrustacean(HybridAquaticEntityTypes.DUNGENESS_CRAB, listOf(HybridAquaticBiomeTags.SANDY_BEACHES), 5, 1, 2)
@@ -166,6 +166,16 @@ object EntityBiomeModifications {
     }
 
     private fun addShark(
+        entityType: EntityType<*>,
+        spawnTags: List<TagKey<Biome>>,
+        weight: Int,
+        minGroup: Int,
+        maxGroup: Int
+    ) {
+        add(entityType, spawnTags, HybridAquaticSpawnGroup.SHARK.spawnGroup, weight, minGroup, maxGroup)
+    }
+
+    private fun addUndergroundShark(
         entityType: EntityType<*>,
         spawnTags: List<TagKey<Biome>>,
         weight: Int,
