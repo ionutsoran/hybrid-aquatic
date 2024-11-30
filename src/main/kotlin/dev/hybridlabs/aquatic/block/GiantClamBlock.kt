@@ -11,6 +11,7 @@ import net.minecraft.fluid.FluidState
 import net.minecraft.fluid.Fluids
 import net.minecraft.item.ItemPlacementContext
 import net.minecraft.item.ItemStack
+import net.minecraft.item.Items
 import net.minecraft.particle.ParticleTypes
 import net.minecraft.server.world.ServerWorld
 import net.minecraft.state.StateManager
@@ -115,10 +116,11 @@ class GiantClamBlock(
                 pearlTimer = 6000
                 world.setBlockState(pos, state.with(STATE, GiantClamState.CLOSED), 3)
 
-                val itemToDrop = if (world.random.nextFloat() < 0.25) {
-                    ItemStack(HybridAquaticItems.BLACK_PEARL)
-                } else {
-                    ItemStack(HybridAquaticItems.PEARL)
+                val randomValue = world.random.nextFloat()
+                val itemToDrop = when {
+                    randomValue < 0.70 -> ItemStack(HybridAquaticItems.PEARL)
+                    randomValue < 0.95 -> ItemStack(HybridAquaticItems.BLACK_PEARL)
+                    else -> ItemStack(Items.ENDER_PEARL)
                 }
 
                 dropStack(world, pos, itemToDrop)
