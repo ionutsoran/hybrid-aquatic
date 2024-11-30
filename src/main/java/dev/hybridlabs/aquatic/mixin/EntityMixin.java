@@ -15,6 +15,9 @@ import org.spongepowered.asm.mixin.injection.Slice;
 
 @Mixin(Entity.class)
 public abstract class EntityMixin {
+
+    @Unique
+    private int brineEffectTick = 100;
     @ModifyVariable(
             method = "updateMovementInFluid",
             slice = @Slice(
@@ -31,17 +34,31 @@ public abstract class EntityMixin {
     @Unique
     public FluidState brine$applyToxicShockInBrine(FluidState state) {
         if ((Object) this instanceof LivingEntity entity) {
-            if (state.getFluid() == HybridAquaticFluids.INSTANCE.getBRINE()) {
-                if (isWearingDivingSet(entity)) {
-                    entity.addStatusEffect(new net.minecraft.entity.effect.StatusEffectInstance(HybridAquaticStatusEffects.INSTANCE.getCORROSION(), 120, 0));
-                } else {
-                    entity.addStatusEffect(new net.minecraft.entity.effect.StatusEffectInstance(HybridAquaticStatusEffects.INSTANCE.getTOXIC_SHOCK(), 240, 0));
-                    entity.addStatusEffect(new net.minecraft.entity.effect.StatusEffectInstance(HybridAquaticStatusEffects.INSTANCE.getCORROSION(), 120, 0));
+
+            if (state.getFluid() == HybridAquaticFluids.INSTANCE.getBRINE() ||
+                    state.getFluid() == HybridAquaticFluids.INSTANCE.getFLOWING_BRINE()) {
+
+                if (brineEffectTick >= 100) {
+
+                    if (isWearingDivingSet(entity)) {
+                        entity.addStatusEffect(new net.minecraft.entity.effect.StatusEffectInstance(
+                                HybridAquaticStatusEffects.INSTANCE.getCORROSION(), 100, 0));
+                    } else {
+                        entity.addStatusEffect(new net.minecraft.entity.effect.StatusEffectInstance(
+                                HybridAquaticStatusEffects.INSTANCE.getTOXIC_SHOCK(), 100, 0));
+                        entity.addStatusEffect(new net.minecraft.entity.effect.StatusEffectInstance(
+                                HybridAquaticStatusEffects.INSTANCE.getCORROSION(), 100, 0));
+                    }
+
+                    brineEffectTick = 0;
                 }
+
+                brineEffectTick++;
             }
         }
         return state;
     }
+
 
     @Unique
     private boolean isWearingDivingSet(LivingEntity entity) {
