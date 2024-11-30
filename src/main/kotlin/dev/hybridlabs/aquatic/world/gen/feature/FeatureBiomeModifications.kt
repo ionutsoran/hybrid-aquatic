@@ -40,5 +40,11 @@ object FeatureBiomeModifications {
             GenerationStep.Feature.VEGETAL_DECORATION,
             HybridAquaticPlacedFeatures.HYDROTHERMAL_VENT
         )
+
+        BiomeModifications.addFeature(
+            BiomeSelectors.tag(BiomeTags.IS_DEEP_OCEAN),
+            GenerationStep.Feature.LAKES,
+            HybridAquaticPlacedFeatures.BRINE_LAKE
+        )
     }
 }

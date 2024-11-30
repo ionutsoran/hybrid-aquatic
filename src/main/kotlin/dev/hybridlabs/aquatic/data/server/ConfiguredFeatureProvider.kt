@@ -99,6 +99,18 @@ class ConfiguredFeatureProvider(output: FabricDataOutput, registriesFuture: Comp
                 )
             )
         )
+
+        // brine lake
+        entries.add(
+            HybridAquaticConfiguredFeatures.BRINE_LAKE,
+            ConfiguredFeature(
+                Feature.LAKE,
+                LakeFeature.Config(
+                    BlockStateProvider.of(HybridAquaticBlocks.BRINE.defaultState),
+                    BlockStateProvider.of(Blocks.TUFF.defaultState)
+                )
+            )
+        )
     }
 
     override fun getName(): String {
