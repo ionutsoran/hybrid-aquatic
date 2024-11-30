@@ -1,0 +1,112 @@
+{
+  "type": "minecraft:fishing",
+  "pools": [
+    {
+      "bonus_rolls": 0.0,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "hybrid-aquatic:surgeonfish_lined",
+          "weight": 5
+        },
+        {
+          "type": "minecraft:item",
+          "name": "hybrid-aquatic:surgeonfish_orangeshoulder",
+          "weight": 5
+        },
+        {
+          "type": "minecraft:item",
+          "name": "hybrid-aquatic:surgeonfish_sohal",
+          "weight": 5
+        },
+        {
+          "type": "minecraft:item",
+          "name": "hybrid-aquatic:yellow_tang",
+          "weight": 5
+        },
+        {
+          "type": "minecraft:item",
+          "name": "hybrid-aquatic:powder_blue_tang",
+          "weight": 5
+        },
+        {
+          "type": "minecraft:item",
+          "name": "hybrid-aquatic:blue_tang",
+          "weight": 5
+        },
+        {
+          "type": "minecraft:item",
+          "name": "hybrid-aquatic:unicorn_fish",
+          "weight": 5
+        },
+        {
+          "type": "minecraft:item",
+          "name": "hybrid-aquatic:blue_spotted_stingray",
+          "weight": 5
+        },
+        {
+          "type": "minecraft:item",
+          "name": "hybrid-aquatic:clownfish",
+          "weight": 5
+        },
+        {
+          "type": "minecraft:item",
+          "name": "hybrid-aquatic:cowfish",
+          "weight": 5
+        },
+        {
+          "type": "minecraft:item",
+          "name": "hybrid-aquatic:lionfish",
+          "weight": 5
+        },
+        {
+          "type": "minecraft:item",
+          "name": "hybrid-aquatic:needlefish",
+          "weight": 5
+        },
+        {
+          "type": "minecraft:item",
+          "name": "hybrid-aquatic:moray_eel",
+          "weight": 5
+        },
+        {
+          "type": "minecraft:item",
+          "name": "hybrid-aquatic:parrotfish",
+          "weight": 5
+        },
+        {
+          "type": "minecraft:item",
+          "name": "hybrid-aquatic:rockfish",
+          "weight": 5
+        },
+        {
+          "type": "minecraft:item",
+          "name": "hybrid-aquatic:triggerfish",
+          "weight": 5
+        },
+        {
+          "type": "minecraft:item",
+          "name": "hybrid-aquatic:sea_bass",
+          "weight": 5
+        },
+        {
+          "type": "minecraft:item",
+          "name": "hybrid-aquatic:seahorse",
+          "weight": 5
+        },
+        {
+          "type": "minecraft:item",
+          "name": "hybrid-aquatic:spotted_eagle_ray",
+          "weight": 5
+        },
+        {
+          "type": "minecraft:item",
+          "name": "hybrid-aquatic:toadfish",
+          "weight": 5
+        }
+      ],
+      "rolls": 1.0
+    }
+  ],
+  "random_sequence": "hybrid-aquatic:gameplay/fishing/reef_fish"
+}

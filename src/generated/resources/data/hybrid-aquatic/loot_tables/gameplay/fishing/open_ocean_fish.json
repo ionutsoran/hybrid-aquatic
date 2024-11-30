@@ -1,0 +1,52 @@
+{
+  "type": "minecraft:fishing",
+  "pools": [
+    {
+      "bonus_rolls": 0.0,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "hybrid-aquatic:bluefin_tuna",
+          "weight": 5
+        },
+        {
+          "type": "minecraft:item",
+          "name": "hybrid-aquatic:yellowfin_tuna",
+          "weight": 5
+        },
+        {
+          "type": "minecraft:item",
+          "name": "hybrid-aquatic:mahi",
+          "weight": 5
+        },
+        {
+          "type": "minecraft:item",
+          "name": "hybrid-aquatic:mackerel",
+          "weight": 5
+        },
+        {
+          "type": "minecraft:item",
+          "name": "hybrid-aquatic:needlefish",
+          "weight": 5
+        },
+        {
+          "type": "minecraft:item",
+          "name": "hybrid-aquatic:rockfish",
+          "weight": 5
+        },
+        {
+          "type": "minecraft:item",
+          "name": "hybrid-aquatic:sea_bass",
+          "weight": 5
+        },
+        {
+          "type": "minecraft:item",
+          "name": "hybrid-aquatic:spotted_eagle_ray",
+          "weight": 5
+        }
+      ],
+      "rolls": 1.0
+    }
+  ],
+  "random_sequence": "hybrid-aquatic:gameplay/fishing/open_ocean_fish"
+}

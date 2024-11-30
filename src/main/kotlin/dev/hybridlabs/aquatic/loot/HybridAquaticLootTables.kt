@@ -4,7 +4,10 @@ import dev.hybridlabs.aquatic.HybridAquatic
 import net.minecraft.util.Identifier
 
 object HybridAquaticLootTables {
-    val FISHING_FISH_ID = Identifier(HybridAquatic.MOD_ID, "gameplay/fishing/fish")
+    val FISHING_REEF_FISH_ID = Identifier(HybridAquatic.MOD_ID, "gameplay/fishing/reef_fish")
+    val FISHING_DEEP_SEA_FISH_ID = Identifier(HybridAquatic.MOD_ID, "gameplay/fishing/deep_sea_fish")
+    val FISHING_OPEN_OCEAN_FISH_ID = Identifier(HybridAquatic.MOD_ID, "gameplay/fishing/open_ocean_fish")
+    val FISHING_TROPICAL_FRESHWATER_FISH_ID = Identifier(HybridAquatic.MOD_ID, "gameplay/fishing/tropical_freshwater_fish")
     val FISHING_TREASURE_ID = Identifier(HybridAquatic.MOD_ID, "gameplay/fishing/treasure")
     val CRAB_POT_TREASURE_ID = Identifier(HybridAquatic.MOD_ID, "gameplay/crab_pot_treasure")
     val HYBRID_CRATE_TREASURE_ID = Identifier(HybridAquatic.MOD_ID, "gameplay/hybrid_crate_treasure")
