@@ -19,7 +19,9 @@ public enum HybridAquaticSpawnGroup {
 
     CRUSTACEAN_UNDERGROUND("crustacean_underground", 5, true, false, 128),
 
-    CRITTER("ha_critter", 10, true, false, 64);
+    CRITTER("ha_critter", 10, true, false, 64),
+
+    MINIBOSS("ha_miniboss", 10, false, true, 64);
 
     public SpawnGroup spawnGroup;
     public final String name;

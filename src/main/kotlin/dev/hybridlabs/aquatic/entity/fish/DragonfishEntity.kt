@@ -1,4 +1,4 @@
-package dev.hybridlabs.aquatic.entity.fish.deepsea
+package dev.hybridlabs.aquatic.entity.fish
 
 import dev.hybridlabs.aquatic.tag.HybridAquaticEntityTags
 import net.minecraft.entity.EntityType
@@ -7,17 +7,17 @@ import net.minecraft.entity.attribute.EntityAttributes
 import net.minecraft.entity.mob.WaterCreatureEntity
 import net.minecraft.world.World
 
-class AnglerfishEntity(entityType: EntityType<out AnglerfishEntity>, world: World) :
-    HybridAquaticDeepSeaFishEntity(entityType, world, emptyMap(),
+class DragonfishEntity(entityType: EntityType<out DragonfishEntity>, world: World) :
+    HybridAquaticFishEntity(entityType, world, emptyMap(),
         listOf(
-            HybridAquaticEntityTags.SMALL_PREY),
+            HybridAquaticEntityTags.NONE),
         listOf(
             HybridAquaticEntityTags.MEDIUM_PREY,
             HybridAquaticEntityTags.LARGE_PREY,
             HybridAquaticEntityTags.SHARK)) {
 
     override fun getLimitPerChunk(): Int {
-        return 3
+        return 4
     }
 
     companion object {

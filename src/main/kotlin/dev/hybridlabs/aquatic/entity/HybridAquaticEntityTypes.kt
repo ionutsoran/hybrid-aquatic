@@ -8,11 +8,11 @@ import dev.hybridlabs.aquatic.entity.critter.SeaUrchinEntity
 import dev.hybridlabs.aquatic.entity.critter.StarfishEntity
 import dev.hybridlabs.aquatic.entity.crustacean.*
 import dev.hybridlabs.aquatic.entity.fish.*
-import dev.hybridlabs.aquatic.entity.fish.deepsea.*
 import dev.hybridlabs.aquatic.entity.fish.ray.MantaRayEntity
 import dev.hybridlabs.aquatic.entity.fish.ray.StingrayEntity
 import dev.hybridlabs.aquatic.entity.jellyfish.*
 import dev.hybridlabs.aquatic.entity.miniboss.KarkinosEntity
+import dev.hybridlabs.aquatic.entity.miniboss.ManglerfishEntity
 import dev.hybridlabs.aquatic.entity.shark.*
 import dev.hybridlabs.aquatic.utils.HybridAquaticSpawnGroup
 import net.fabricmc.fabric.api.`object`.builder.v1.entity.FabricDefaultAttributeRegistry
@@ -461,11 +461,18 @@ object HybridAquaticEntityTypes {
         GiantIsopodEntity.createMobAttributes()
     )
 
-    val KARKINOS = registerCrustacean(
+    val KARKINOS = registerMiniboss(
         "karkinos",
         ::KarkinosEntity,
         EntityDimensions.fixed(2.25f, 1.25f),
         KarkinosEntity.createMobAttributes()
+    )
+
+    val MANGLERFISH = registerMiniboss(
+        "manglerfish",
+        ::ManglerfishEntity,
+        EntityDimensions.fixed(2.25f, 1.25f),
+        ManglerfishEntity.createMobAttributes()
     )
 
     //critters
@@ -751,6 +758,15 @@ object HybridAquaticEntityTypes {
         attributeContainer: DefaultAttributeContainer.Builder
     ): EntityType<T> {
         return registerCustomSpawnGroup(id, entityFactory, dimensions, attributeContainer, HybridAquaticSpawnGroup.JELLY_UNDERGROUND)
+    }
+
+    private fun <T : LivingEntity> registerMiniboss(
+        id: String,
+        entityFactory: EntityFactory<T>,
+        dimensions: EntityDimensions,
+        attributeContainer: DefaultAttributeContainer.Builder
+    ): EntityType<T> {
+        return registerCustomSpawnGroup(id, entityFactory, dimensions, attributeContainer, HybridAquaticSpawnGroup.MINIBOSS)
     }
 
     /**

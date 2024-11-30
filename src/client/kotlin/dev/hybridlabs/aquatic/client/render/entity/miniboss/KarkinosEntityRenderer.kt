@@ -1,7 +1,6 @@
-package dev.hybridlabs.aquatic.client.render.entity.crustacean
+package dev.hybridlabs.aquatic.client.render.entity.miniboss
 
-import dev.hybridlabs.aquatic.client.model.entity.crustacean.KarkinosEntityModel
-import dev.hybridlabs.aquatic.client.render.entity.miniboss.HybridAquaticMinibossEntityRenderer
+import dev.hybridlabs.aquatic.client.model.entity.miniboss.KarkinosEntityModel
 import dev.hybridlabs.aquatic.entity.miniboss.HybridAquaticMinibossEntity
 import net.minecraft.client.render.entity.EntityRendererFactory.Context
 

@@ -308,8 +308,7 @@ open class HybridAquaticFishEntity(
         return 0
     }
 
-    // region Animations
-
+    //#region Animations
     override fun registerControllers(controllerRegistrar: AnimatableManager.ControllerRegistrar) {
         controllerRegistrar.add(
             AnimationController(

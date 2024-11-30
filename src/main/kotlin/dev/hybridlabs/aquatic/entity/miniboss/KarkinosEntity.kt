@@ -2,6 +2,7 @@ package dev.hybridlabs.aquatic.entity.miniboss
 
 import net.minecraft.enchantment.EnchantmentHelper
 import net.minecraft.enchantment.Enchantments
+import net.minecraft.entity.EntityGroup
 import net.minecraft.entity.EntityType
 import net.minecraft.entity.LivingEntity
 import net.minecraft.entity.ai.control.MoveControl
@@ -25,6 +26,11 @@ import net.minecraft.server.network.ServerPlayerEntity
 import net.minecraft.text.Text
 import net.minecraft.world.Difficulty
 import net.minecraft.world.World
+import software.bernie.geckolib.constant.DefaultAnimations
+import software.bernie.geckolib.core.animation.AnimatableManager
+import software.bernie.geckolib.core.animation.AnimationController
+import software.bernie.geckolib.core.animation.AnimationState
+import software.bernie.geckolib.core.animation.EasingType
 
 class KarkinosEntity(entityType: EntityType<out HybridAquaticMinibossEntity>, world: World) :
     HybridAquaticMinibossEntity(entityType, world) {
@@ -134,6 +140,10 @@ class KarkinosEntity(entityType: EntityType<out HybridAquaticMinibossEntity>, wo
         return damaged
     }
 
+    override fun getGroup(): EntityGroup {
+        return EntityGroup.AQUATIC
+    }
+
     override fun readCustomDataFromNbt(nbt: NbtCompound) {
         if (hasCustomName()) {
             bossBar.name = this.displayName
@@ -144,6 +154,42 @@ class KarkinosEntity(entityType: EntityType<out HybridAquaticMinibossEntity>, wo
     override fun setCustomName(name: Text?) {
         super.setCustomName(name)
         bossBar.name = this.displayName
+    }
+
+    override fun registerControllers(controllerRegistrar: AnimatableManager.ControllerRegistrar) {
+        controllerRegistrar.add(
+            AnimationController(
+                this,
+                "Walk/Run/Idle",
+                20
+            ) { state: AnimationState<HybridAquaticMinibossEntity> ->
+                when {
+                    state.isMoving -> {
+                        state.setAndContinue(if (this.isSprinting) DefaultAnimations.RUN else DefaultAnimations.WALK)
+                    }
+                    else -> {
+                        state.setAndContinue(DefaultAnimations.IDLE)
+                    }
+                }
+            }.setOverrideEasingType(EasingType.EASE_IN_OUT_SINE)
+        )
+        controllerRegistrar.add(
+            AnimationController(
+                this,
+                "Block/Idle",
+                5
+            ) { state: AnimationState<HybridAquaticMinibossEntity> ->
+                when {
+                    this.isBlocking -> {
+                        state.setAndContinue(DefaultAnimations.ATTACK_BLOCK)
+                    }
+                    else -> {
+                        state.setAndContinue(DefaultAnimations.IDLE)
+                    }
+                }
+            }.setOverrideEasingType(EasingType.EASE_IN_OUT_SINE)
+        )
+        controllerRegistrar.add(DefaultAnimations.genericAttackAnimation(this, DefaultAnimations.ATTACK_SWING))
     }
 
     companion object {

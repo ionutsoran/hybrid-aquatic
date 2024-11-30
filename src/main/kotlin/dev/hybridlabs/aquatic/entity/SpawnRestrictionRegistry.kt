@@ -155,6 +155,7 @@ object SpawnRestrictionRegistry {
 
         setOf(
             HybridAquaticEntityTypes.KARKINOS,
+            HybridAquaticEntityTypes.MANGLERFISH,
         ).forEach { registerMiniboss(it) }
     }
 

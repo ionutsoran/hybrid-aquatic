@@ -32,7 +32,7 @@ class PiranhaEntity(entityType: EntityType<out PiranhaEntity>, world: World) :
                 .add(EntityAttributes.GENERIC_MAX_HEALTH, 3.0)
                 .add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 1.0)
                 .add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 2.0)
-                .add(EntityAttributes.GENERIC_ATTACK_SPEED, 2.0)
+                .add(EntityAttributes.GENERIC_ATTACK_SPEED, 4.0)
                 .add(EntityAttributes.GENERIC_ATTACK_KNOCKBACK, 0.0)
                 .add(EntityAttributes.GENERIC_FOLLOW_RANGE, 12.0)
         }
