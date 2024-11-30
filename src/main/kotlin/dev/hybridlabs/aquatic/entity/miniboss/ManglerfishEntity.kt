@@ -104,6 +104,13 @@ class ManglerfishEntity(entityType: EntityType<out HybridAquaticMinibossEntity>,
         bossBar.removePlayer(player)
     }
 
+    override fun mobTick() {
+
+        bossBar.percent = health / maxHealth
+
+        super.mobTick()
+    }
+
     //#endregion
 
     //#region Animations
