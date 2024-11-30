@@ -6,6 +6,7 @@
     "hybrid-aquatic:opah",
     "hybrid-aquatic:tuna",
     "hybrid-aquatic:mahi",
+    "minecraft:player",
     "minecraft:turtle"
   ]
 }

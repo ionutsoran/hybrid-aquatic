@@ -55,6 +55,7 @@ class EntityTypeTagProvider(output: FabricDataOutput, registriesFuture: Completa
                 HybridAquaticEntityTypes.OPAH,
                 HybridAquaticEntityTypes.TUNA,
                 HybridAquaticEntityTypes.MAHI,
+                EntityType.PLAYER,
                 EntityType.TURTLE,
             )
 
