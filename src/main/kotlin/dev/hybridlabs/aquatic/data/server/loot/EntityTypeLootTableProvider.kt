@@ -49,12 +49,14 @@ class EntityTypeLootTableProvider(output: FabricDataOutput) : SimpleFabricLootTa
             pool(
                 LootPool.builder()
                     .with(
-                        ItemEntry.builder(HybridAquaticItems.KARKINOS_CLAW)
-                            .apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(1.0F, 1.0F)))
-                    )
-                    .with(
                         ItemEntry.builder(HybridAquaticItems.RAW_CRAB)
-                            .apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(4.0F, 12.0F)))
+                            .apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(8.0F, 16.0F)))
+                    )
+            )
+            pool(
+                LootPool.builder()
+                    .with(
+                        ItemEntry.builder(HybridAquaticItems.KARKINOS_CLAW)
                     )
             )
         }
@@ -64,11 +66,12 @@ class EntityTypeLootTableProvider(output: FabricDataOutput) : SimpleFabricLootTa
                 LootPool.builder()
                     .with(
                         ItemEntry.builder(HybridAquaticItems.MANGLERFISH_LURE)
-                            .apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(1.0F, 1.0F)))
                     )
+            )
+            pool(
+                LootPool.builder()
                     .with(
                         ItemEntry.builder(HybridAquaticItems.MANGLERFISH_FIN)
-                            .apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(1.0F, 1.0F)))
                     )
             )
         }
