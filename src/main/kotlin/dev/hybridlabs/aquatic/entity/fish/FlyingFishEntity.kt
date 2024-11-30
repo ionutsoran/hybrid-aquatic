@@ -23,6 +23,17 @@ class FlyingFishEntity(entityType: EntityType<out FlyingFishEntity>, world: Worl
     override fun getLimitPerChunk(): Int {
         return 6
     }
+    init {
+        this.air = this.maxAir
+    }
+
+    override fun getMaxAir(): Int {
+        return 1200
+    }
+
+    override fun getAir(): Int {
+        return super.getAir().coerceAtLeast(0)
+    }
 
     override fun initGoals() {
         super.initGoals()
@@ -33,6 +44,13 @@ class FlyingFishEntity(entityType: EntityType<out FlyingFishEntity>, world: Worl
     override fun tick() {
         super.tick()
 
+        if (this.isSubmergedInWater) {
+            this.air = (this.air - 1).coerceAtLeast(0)
+
+        } else {
+            this.air = this.maxAir
+        }
+
         if (!this.isTouchingWater && !isOnGround) {
             if (!isGliding) {
                 startGliding()
@@ -42,6 +60,7 @@ class FlyingFishEntity(entityType: EntityType<out FlyingFishEntity>, world: Worl
             stopGliding()
         }
     }
+
 
     private fun startGliding() {
         isGliding = true

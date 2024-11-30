@@ -24,6 +24,18 @@ class AfricanButterflyEntity(entityType: EntityType<out AfricanButterflyEntity>,
         return 1
     }
 
+    init {
+        this.air = this.maxAir
+    }
+
+    override fun getMaxAir(): Int {
+        return 1200
+    }
+
+    override fun getAir(): Int {
+        return super.getAir().coerceAtLeast(0)
+    }
+
     override fun initGoals() {
         super.initGoals()
         goalSelector.add(2, BreatheAirGoal(this))
@@ -32,6 +44,13 @@ class AfricanButterflyEntity(entityType: EntityType<out AfricanButterflyEntity>,
 
     override fun tick() {
         super.tick()
+
+        if (this.isSubmergedInWater) {
+            this.air = (this.air - 1).coerceAtLeast(0)
+
+        } else {
+            this.air = this.maxAir
+        }
 
         if (!this.isTouchingWater && !isOnGround) {
             if (!isGliding) {
