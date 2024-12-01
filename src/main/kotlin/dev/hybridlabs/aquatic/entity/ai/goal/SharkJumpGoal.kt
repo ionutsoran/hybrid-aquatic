@@ -62,7 +62,7 @@ class SharkJumpGoal(private val shark: HybridAquaticSharkEntity, chance: Int) : 
     override fun start() {
         val direction = shark.movementDirection
         shark.velocity =
-            shark.velocity.add(direction.offsetX.toDouble() * 0.6, 1.4, direction.offsetZ.toDouble() * 0.6)
+            shark.velocity.add(direction.offsetX.toDouble() * 0.6, 1.0, direction.offsetZ.toDouble() * 0.6)
         shark.navigation.stop()
     }
 
