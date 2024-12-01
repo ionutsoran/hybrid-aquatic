@@ -29,8 +29,9 @@ import net.minecraft.world.World
 import software.bernie.geckolib.constant.DefaultAnimations
 import software.bernie.geckolib.core.animation.AnimatableManager
 import software.bernie.geckolib.core.animation.AnimationController
+import software.bernie.geckolib.core.animation.AnimationController.AnimationStateHandler
 import software.bernie.geckolib.core.animation.AnimationState
-import software.bernie.geckolib.core.animation.EasingType
+import software.bernie.geckolib.core.`object`.PlayState
 
 class KarkinosEntity(entityType: EntityType<out HybridAquaticMinibossEntity>, world: World) :
     HybridAquaticMinibossEntity(entityType, world) {
@@ -78,7 +79,7 @@ class KarkinosEntity(entityType: EntityType<out HybridAquaticMinibossEntity>, wo
 
             if (flipTimer <= 0) {
                 isFlipped = false
-                attributes.getCustomInstance(EntityAttributes.GENERIC_MOVEMENT_SPEED)?.baseValue = 0.75
+                attributes.getCustomInstance(EntityAttributes.GENERIC_MOVEMENT_SPEED)?.baseValue = 0.6
                 attributes.getCustomInstance(EntityAttributes.GENERIC_ARMOR_TOUGHNESS)?.baseValue = 5.0
                 attributes.getCustomInstance(EntityAttributes.GENERIC_ARMOR)?.baseValue = 8.0
             } else {
@@ -158,38 +159,23 @@ class KarkinosEntity(entityType: EntityType<out HybridAquaticMinibossEntity>, wo
 
     override fun registerControllers(controllerRegistrar: AnimatableManager.ControllerRegistrar) {
         controllerRegistrar.add(
-            AnimationController(
-                this,
-                "Walk/Run/Idle",
-                20
-            ) { state: AnimationState<HybridAquaticMinibossEntity> ->
-                when {
-                    state.isMoving -> {
-                        state.setAndContinue(if (this.isSprinting) DefaultAnimations.RUN else DefaultAnimations.WALK)
+            AnimationController(this, "Walk/Run/Idle", 0,
+                AnimationStateHandler { state: AnimationState<HybridAquaticMinibossEntity> ->
+                    if (state.isMoving) {
+                        return@AnimationStateHandler state.setAndContinue(if (this.isSprinting) DefaultAnimations.RUN else DefaultAnimations.WALK)
+                    } else {
+                        return@AnimationStateHandler state.setAndContinue(DefaultAnimations.IDLE)
                     }
-                    else -> {
-                        state.setAndContinue(DefaultAnimations.IDLE)
-                    }
-                }
-            }.setOverrideEasingType(EasingType.EASE_IN_OUT_SINE)
+                })
         )
         controllerRegistrar.add(
-            AnimationController(
-                this,
-                "Block/Idle",
-                5
-            ) { state: AnimationState<HybridAquaticMinibossEntity> ->
-                when {
-                    this.isBlocking -> {
-                        state.setAndContinue(DefaultAnimations.ATTACK_BLOCK)
-                    }
-                    else -> {
-                        state.setAndContinue(DefaultAnimations.IDLE)
-                    }
-                }
-            }.setOverrideEasingType(EasingType.EASE_IN_OUT_SINE)
+            AnimationController(this, "Attack", 5,
+                AnimationStateHandler { state: AnimationState<HybridAquaticMinibossEntity> ->
+                    if (this.handSwinging) return@AnimationStateHandler state.setAndContinue(DefaultAnimations.ATTACK_SWING)
+                    state.controller.forceAnimationReset()
+                    PlayState.STOP
+                })
         )
-        controllerRegistrar.add(DefaultAnimations.genericAttackAnimation(this, DefaultAnimations.ATTACK_SWING))
     }
 
     companion object {
@@ -208,7 +194,7 @@ class KarkinosEntity(entityType: EntityType<out HybridAquaticMinibossEntity>, wo
         val FLIPPED: TrackedData<Boolean> = DataTracker.registerData(KarkinosEntity::class.java, TrackedDataHandlerRegistry.BOOLEAN)
     }
 
-    internal open class AttackGoal(private val karkinos: KarkinosEntity) : MeleeAttackGoal(karkinos, 0.7, false) {
+    internal open class AttackGoal(private val karkinos: KarkinosEntity) : MeleeAttackGoal(karkinos, 0.6, false) {
         override fun attack(target: LivingEntity, squaredDistance: Double) {
             val d = getSquaredMaxAttackDistance(target)
             if (squaredDistance <= d && this.isCooledDown) {

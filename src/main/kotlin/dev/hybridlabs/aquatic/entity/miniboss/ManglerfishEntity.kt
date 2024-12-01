@@ -28,7 +28,7 @@ import software.bernie.geckolib.constant.DefaultAnimations
 import software.bernie.geckolib.core.animation.AnimatableManager
 import software.bernie.geckolib.core.animation.AnimationController
 import software.bernie.geckolib.core.animation.AnimationState
-import software.bernie.geckolib.core.animation.EasingType
+import software.bernie.geckolib.core.`object`.PlayState
 
 class ManglerfishEntity(entityType: EntityType<out HybridAquaticMinibossEntity>, world: World) :
     HybridAquaticMinibossEntity(entityType, world) {
@@ -116,40 +116,23 @@ class ManglerfishEntity(entityType: EntityType<out HybridAquaticMinibossEntity>,
     //#region Animations
     override fun registerControllers(controllerRegistrar: AnimatableManager.ControllerRegistrar) {
         controllerRegistrar.add(
-            AnimationController(
-                this,
-                "Walk/Run/Idle",
-                20
-            ) { state: AnimationState<HybridAquaticMinibossEntity> ->
-                when {
-                    state.isMoving -> {
-                        state.setAndContinue(if (this.isSprinting) DefaultAnimations.RUN else DefaultAnimations.SWIM)
+            AnimationController(this, "Walk/Run/Idle", 5,
+                AnimationController.AnimationStateHandler { state: AnimationState<HybridAquaticMinibossEntity> ->
+                    if (state.isMoving) {
+                        return@AnimationStateHandler state.setAndContinue(if (this.isSprinting) DefaultAnimations.RUN else DefaultAnimations.SWIM)
+                    } else {
+                        return@AnimationStateHandler state.setAndContinue(DefaultAnimations.IDLE)
                     }
-
-                    else -> {
-                        state.setAndContinue(DefaultAnimations.IDLE)
-                    }
-                }
-            }
+                })
         )
         controllerRegistrar.add(
-            AnimationController(
-                this,
-                "Block/Idle",
-                5
-            ) { state: AnimationState<HybridAquaticMinibossEntity> ->
-                when {
-                    this.isBlocking -> {
-                        state.setAndContinue(DefaultAnimations.ATTACK_BLOCK)
-                    }
-
-                    else -> {
-                        state.setAndContinue(DefaultAnimations.IDLE)
-                    }
-                }
-            }.setOverrideEasingType(EasingType.EASE_IN_OUT_SINE)
+            AnimationController(this, "Attack", 0,
+                AnimationController.AnimationStateHandler { state: AnimationState<HybridAquaticMinibossEntity> ->
+                    if (this.handSwinging) return@AnimationStateHandler state.setAndContinue(DefaultAnimations.ATTACK_BITE)
+                    state.controller.forceAnimationReset()
+                    PlayState.STOP
+                })
         )
-        controllerRegistrar.add(DefaultAnimations.genericAttackAnimation(this, DefaultAnimations.ATTACK_SWING))
     }
 
     //#endregion

@@ -3,12 +3,7 @@ package dev.hybridlabs.aquatic.entity.miniboss
 import net.minecraft.block.Blocks
 import net.minecraft.entity.Entity
 import net.minecraft.entity.EntityType
-import net.minecraft.entity.LivingEntity
 import net.minecraft.entity.SpawnReason
-import net.minecraft.entity.ai.goal.ActiveTargetGoal
-import net.minecraft.entity.ai.goal.LookAtEntityGoal
-import net.minecraft.entity.ai.goal.MeleeAttackGoal
-import net.minecraft.entity.ai.goal.RevengeGoal
 import net.minecraft.entity.data.DataTracker
 import net.minecraft.entity.data.TrackedData
 import net.minecraft.entity.data.TrackedDataHandlerRegistry
@@ -44,14 +39,6 @@ open class HybridAquaticMinibossEntity(type: EntityType<out HostileEntity>, worl
     override fun initDataTracker() {
         super.initDataTracker()
         dataTracker.startTracking(ATTEMPT_ATTACK, false)
-    }
-
-    override fun initGoals() {
-        super.initGoals()
-        goalSelector.add(1, AttackGoal(this))
-        goalSelector.add(1, LookAtEntityGoal(this, PlayerEntity::class.java, 16.0F))
-        targetSelector.add(1, RevengeGoal(this))
-        targetSelector.add(1, ActiveTargetGoal(this, PlayerEntity::class.java, 10, true, true, null))
     }
 
     override fun writeCustomDataToNbt(nbt: NbtCompound) {
@@ -113,32 +100,7 @@ open class HybridAquaticMinibossEntity(type: EntityType<out HostileEntity>, worl
         return factory
     }
 
-    internal open class AttackGoal(private val miniboss: HybridAquaticMinibossEntity) : MeleeAttackGoal(miniboss, 0.6, false) {
-        override fun attack(target: LivingEntity, squaredDistance: Double) {
-            val d = getSquaredMaxAttackDistance(target)
-            if (squaredDistance <= d && this.isCooledDown) {
-                resetCooldown()
-                mob.tryAttack(target)
-                miniboss.attemptAttack = true
-            }
-        }
 
-        override fun getSquaredMaxAttackDistance(entity: LivingEntity): Double {
-            return (4.0f + entity.width).toDouble()
-        }
-
-        override fun start() {
-            super.start()
-            miniboss.isSprinting = true
-            miniboss.attemptAttack = false
-        }
-
-        override fun stop() {
-            super.stop()
-            miniboss.isSprinting = false
-            miniboss.attemptAttack = false
-        }
-    }
 
     override fun isAngryAt(player: PlayerEntity?): Boolean {
         return true
