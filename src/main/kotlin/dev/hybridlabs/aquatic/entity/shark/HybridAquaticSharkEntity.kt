@@ -336,7 +336,7 @@ open class HybridAquaticSharkEntity(
         }
 
         override fun getSquaredMaxAttackDistance(entity: LivingEntity): Double {
-            return (1.25f + entity.width).toDouble()
+            return (1.5f + entity.width).toDouble()
         }
 
         override fun start() {
