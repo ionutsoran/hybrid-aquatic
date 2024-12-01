@@ -27,11 +27,37 @@ class MahiEntity(entityType: EntityType<out MahiEntity>, world: World) :
         return 2
     }
 
+    //#region Air & Jumping
     override fun initGoals() {
         super.initGoals()
         goalSelector.add(2, BreatheAirGoal(this))
         goalSelector.add(5, FishJumpGoal(this, 10))
     }
+
+    init {
+        this.air = 600
+    }
+
+    override fun getMaxAir(): Int {
+        return 1200
+    }
+
+    override fun getAir(): Int {
+        return super.getAir().coerceAtLeast(0)
+    }
+
+    override fun tick() {
+        super.tick()
+
+        if (this.isSubmergedInWater) {
+            this.air = (this.air - 1).coerceAtLeast(0)
+
+        } else {
+            this.air = this.maxAir
+        }
+    }
+
+    //#endregion
 
     companion object {
         fun createMobAttributes(): DefaultAttributeContainer.Builder {

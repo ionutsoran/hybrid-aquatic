@@ -24,6 +24,13 @@ class AfricanButterflyEntity(entityType: EntityType<out AfricanButterflyEntity>,
         return 1
     }
 
+    //#region Air & Jumping
+    override fun initGoals() {
+        super.initGoals()
+        goalSelector.add(2, BreatheAirGoal(this))
+        targetSelector.add(5, FishJumpGoal(this, 10))
+    }
+
     init {
         this.air = 300
     }
@@ -34,12 +41,6 @@ class AfricanButterflyEntity(entityType: EntityType<out AfricanButterflyEntity>,
 
     override fun getAir(): Int {
         return super.getAir().coerceAtLeast(0)
-    }
-
-    override fun initGoals() {
-        super.initGoals()
-        goalSelector.add(2, BreatheAirGoal(this))
-        targetSelector.add(5, FishJumpGoal(this, 10))
     }
 
     override fun tick() {
@@ -81,6 +82,8 @@ class AfricanButterflyEntity(entityType: EntityType<out AfricanButterflyEntity>,
         )
         this.velocity = newMotion
     }
+
+    //#endergion
 
     companion object {
         fun createMobAttributes(): DefaultAttributeContainer.Builder {

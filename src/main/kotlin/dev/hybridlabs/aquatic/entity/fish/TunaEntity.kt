@@ -12,17 +12,26 @@ import net.minecraft.util.Identifier
 import net.minecraft.world.World
 
 class TunaEntity(entityType: EntityType<out TunaEntity>, world: World) :
-    HybridAquaticSchoolingFishEntity(entityType, world,
+    HybridAquaticSchoolingFishEntity(
+        entityType, world,
         listOf(
             HybridAquaticEntityTags.SMALL_PREY,
-            HybridAquaticEntityTags.CEPHALOPOD,),
+            HybridAquaticEntityTags.CEPHALOPOD,
+        ),
         listOf(
-            HybridAquaticEntityTags.SHARK),
+            HybridAquaticEntityTags.SHARK
+        ),
         variants = hashMapOf(
-        "bluefin" to FishVariant.biomeVariant("bluefin", listOf(HybridAquaticBiomeTags.TEMPERATE_OCEANS),
-            ignore = listOf(FishVariant.Ignore.ANIMATION)),
-        "yellowfin" to FishVariant.biomeVariant("yellowfin", listOf(HybridAquaticBiomeTags.TROPICAL_OCEANS, HybridAquaticBiomeTags.TEMPERATE_OCEANS),
-            ignore = listOf(FishVariant.Ignore.ANIMATION)))) {
+            "bluefin" to FishVariant.biomeVariant(
+                "bluefin", listOf(HybridAquaticBiomeTags.TEMPERATE_OCEANS),
+                ignore = listOf(FishVariant.Ignore.ANIMATION)
+            ),
+            "yellowfin" to FishVariant.biomeVariant(
+                "yellowfin", listOf(HybridAquaticBiomeTags.TROPICAL_OCEANS, HybridAquaticBiomeTags.TEMPERATE_OCEANS),
+                ignore = listOf(FishVariant.Ignore.ANIMATION)
+            )
+        )
+    ) {
 
     public override fun getLootTableId(): Identifier {
         return when (this.variant?.variantName) {
@@ -36,11 +45,37 @@ class TunaEntity(entityType: EntityType<out TunaEntity>, world: World) :
         return 4
     }
 
+    //#region Air & Jumping
     override fun initGoals() {
         super.initGoals()
         goalSelector.add(2, BreatheAirGoal(this))
         goalSelector.add(5, FishJumpGoal(this, 10))
     }
+
+    init {
+        this.air = 600
+    }
+
+    override fun getMaxAir(): Int {
+        return 1200
+    }
+
+    override fun getAir(): Int {
+        return super.getAir().coerceAtLeast(0)
+    }
+
+    override fun tick() {
+        super.tick()
+
+        if (this.isSubmergedInWater) {
+            this.air = (this.air - 1).coerceAtLeast(0)
+
+        } else {
+            this.air = this.maxAir
+        }
+    }
+
+    //#endregion
 
     companion object {
         fun createMobAttributes(): DefaultAttributeContainer.Builder {
@@ -51,6 +86,7 @@ class TunaEntity(entityType: EntityType<out TunaEntity>, world: World) :
                 .add(EntityAttributes.GENERIC_FOLLOW_RANGE, 12.0)
         }
     }
+
     override fun speedModifier(): Double {
         return 0.005
     }

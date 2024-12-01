@@ -600,56 +600,56 @@ object HybridAquaticEntityTypes {
     val BASKING_SHARK = registerShark(
         "basking_shark",
         ::BaskingSharkEntity,
-        EntityDimensions.fixed(2.5f, 1.0f),
+        EntityDimensions.fixed(2.5f, 0.8f),
         BaskingSharkEntity.createMobAttributes()
     )
 
     val BULL_SHARK = registerShark(
         "bull_shark",
         ::BullSharkEntity,
-        EntityDimensions.fixed(1.5f, 0.6f),
+        EntityDimensions.fixed(1.75f, 0.6f),
         BullSharkEntity.createMobAttributes()
     )
 
     val FRILLED_SHARK = registerSharkUnderground(
         "frilled_shark",
         ::FrilledSharkEntity,
-        EntityDimensions.fixed(1.0f, 0.5f),
+        EntityDimensions.fixed(1.25f, 0.5f),
         FrilledSharkEntity.createMobAttributes()
     )
 
     val GREAT_WHITE_SHARK = registerShark(
         "great_white_shark",
         ::GreatWhiteSharkEntity,
-        EntityDimensions.fixed(2.0f, 0.75f),
+        EntityDimensions.fixed(1.75f, 0.6f),
         GreatWhiteSharkEntity.createMobAttributes()
     )
 
     val HAMMERHEAD_SHARK = registerShark(
         "hammerhead_shark",
         ::HammerheadSharkEntity,
-        EntityDimensions.fixed(1.5f, 0.75f),
+        EntityDimensions.fixed(1.5f, 0.6f),
         HammerheadSharkEntity.createMobAttributes()
     )
 
     val THRESHER_SHARK = registerShark(
         "thresher_shark",
         ::ThresherSharkEntity,
-        EntityDimensions.fixed(1.5f, 0.75f),
+        EntityDimensions.fixed(1.5f, 0.5f),
         ThresherSharkEntity.createMobAttributes()
     )
 
     val TIGER_SHARK = registerShark(
         "tiger_shark",
         ::TigerSharkEntity,
-        EntityDimensions.fixed(1.75f, 0.75f),
+        EntityDimensions.fixed(1.75f, 0.6f),
         TigerSharkEntity.createMobAttributes()
     )
 
     val WHALE_SHARK = registerShark(
         "whale_shark",
         ::WhaleSharkEntity,
-        EntityDimensions.fixed(2.5f, 1.0f),
+        EntityDimensions.fixed(2.5f, 0.8f),
         WhaleSharkEntity.createMobAttributes()
     )
 

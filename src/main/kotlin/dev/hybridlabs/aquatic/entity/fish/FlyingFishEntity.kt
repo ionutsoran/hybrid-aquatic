@@ -11,18 +11,30 @@ import net.minecraft.util.math.Vec3d
 import net.minecraft.world.World
 
 class FlyingFishEntity(entityType: EntityType<out FlyingFishEntity>, world: World) :
-    HybridAquaticSchoolingFishEntity(entityType, world,
+    HybridAquaticSchoolingFishEntity(
+        entityType, world,
         listOf(HybridAquaticEntityTags.NONE),
         listOf(
             HybridAquaticEntityTags.MEDIUM_PREY,
             HybridAquaticEntityTags.LARGE_PREY,
-            HybridAquaticEntityTags.SHARK)) {
+            HybridAquaticEntityTags.SHARK
+        )
+    ) {
 
     private var isGliding = false
 
     override fun getLimitPerChunk(): Int {
         return 6
     }
+
+    //#region Air & Jumping
+
+    override fun initGoals() {
+        super.initGoals()
+        goalSelector.add(2, BreatheAirGoal(this))
+        targetSelector.add(5, FishJumpGoal(this, 10))
+    }
+
     init {
         this.air = 300
     }
@@ -33,12 +45,6 @@ class FlyingFishEntity(entityType: EntityType<out FlyingFishEntity>, world: Worl
 
     override fun getAir(): Int {
         return super.getAir().coerceAtLeast(0)
-    }
-
-    override fun initGoals() {
-        super.initGoals()
-        goalSelector.add(2, BreatheAirGoal(this))
-        targetSelector.add(5, FishJumpGoal(this, 10))
     }
 
     override fun tick() {
@@ -81,6 +87,8 @@ class FlyingFishEntity(entityType: EntityType<out FlyingFishEntity>, world: Worl
         )
         this.velocity = newMotion
     }
+
+    //#endregion
 
     companion object {
         fun createMobAttributes(): DefaultAttributeContainer.Builder {

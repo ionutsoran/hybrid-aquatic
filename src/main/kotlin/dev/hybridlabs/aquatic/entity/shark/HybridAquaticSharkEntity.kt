@@ -89,6 +89,7 @@ open class HybridAquaticSharkEntity(
     ): EntityData? {
         this.air = getMaxMoistness()
         pitch = 0.0f
+        yaw = 0.0f
         this.size = this.random.nextBetween(getMinSize(),getMaxSize())
         return super.initialize(world, difficulty, spawnReason, entityData, entityNbt)
     }
@@ -110,7 +111,7 @@ open class HybridAquaticSharkEntity(
             }
         }
 
-        if (!this.isSubmergedInWater) {
+        if (!this.isSubmergedInWater && this.isOnGround) {
             this.pitch = 0.0f
         }
 
