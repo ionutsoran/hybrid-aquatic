@@ -1,8 +1,10 @@
 package dev.hybridlabs.aquatic.entity.fish
 
+import dev.hybridlabs.aquatic.entity.ai.goal.FishJumpGoal
 import dev.hybridlabs.aquatic.tag.HybridAquaticBiomeTags
 import dev.hybridlabs.aquatic.tag.HybridAquaticEntityTags
 import net.minecraft.entity.EntityType
+import net.minecraft.entity.ai.goal.BreatheAirGoal
 import net.minecraft.entity.attribute.DefaultAttributeContainer
 import net.minecraft.entity.attribute.EntityAttributes
 import net.minecraft.entity.mob.WaterCreatureEntity
@@ -20,17 +22,44 @@ class SunfishEntity(entityType: EntityType<out SunfishEntity>, world: World) :
             HybridAquaticEntityTags.SHARK)) {
 
     public override fun getLootTableId(): Identifier {
-        return when (this.variant?.variantName) {
-            "ocean" -> Identifier("hybrid-aquatic", "gameplay/sunfish")
-            "hoodwinker" -> Identifier("hybrid-aquatic", "gameplay/sunfish")
-            "sharptail" -> Identifier("hybrid-aquatic", "gameplay/sunfish")
-            else -> super.getLootTableId()
-        }
+        return Identifier("hybrid-aquatic", "entities/sunfish")
     }
 
     override fun getLimitPerChunk(): Int {
         return 2
     }
+
+    //#region Air & Jumping
+    override fun initGoals() {
+        super.initGoals()
+        goalSelector.add(2, BreatheAirGoal(this))
+        goalSelector.add(5, FishJumpGoal(this, 10))
+    }
+
+    init {
+        this.air = 1200
+    }
+
+    override fun getMaxAir(): Int {
+        return 3800
+    }
+
+    override fun getAir(): Int {
+        return super.getAir().coerceAtLeast(0)
+    }
+
+    override fun tick() {
+        super.tick()
+
+        if (this.isSubmergedInWater) {
+            this.air = (this.air - 1).coerceAtLeast(0)
+
+        } else {
+            this.air = this.maxAir
+        }
+    }
+
+    //#endregion
 
     companion object {
         fun createMobAttributes(): DefaultAttributeContainer.Builder {
