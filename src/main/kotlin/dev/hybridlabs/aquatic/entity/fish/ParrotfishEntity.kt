@@ -19,10 +19,7 @@ class ParrotfishEntity(entityType: EntityType<out ParrotfishEntity>, world: Worl
             HybridAquaticEntityTags.SHARK)) {
 
     public override fun getLootTableId(): Identifier {
-        return when (this.variant?.variantName) {
-            "humphead" -> Identifier("hybrid-aquatic", "gameplay/parrotfish")
-            else -> super.getLootTableId()
-        }
+        return Identifier("hybrid-aquatic", "entities/parrotfish")
     }
 
     override fun getLimitPerChunk(): Int {

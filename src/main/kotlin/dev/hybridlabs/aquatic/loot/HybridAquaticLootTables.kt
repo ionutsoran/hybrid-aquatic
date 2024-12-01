@@ -23,21 +23,16 @@ object HybridAquaticLootTables {
     val TUBE_SPONGE_LOOT_ID = Identifier(HybridAquatic.MOD_ID, "gameplay/tube_sponge_drops")
     val VENT_LOOT_ID = Identifier(HybridAquatic.MOD_ID, "gameplay/vent_drops")
 
-    val BLUE_TANG = Identifier(HybridAquatic.MOD_ID, "gameplay/blue_tang")
-    val SOHAL = Identifier(HybridAquatic.MOD_ID, "gameplay/sohal")
-    val ORANGESHOULDER = Identifier(HybridAquatic.MOD_ID, "gameplay/orangeshoulder")
-    val YELLOW_TANG = Identifier(HybridAquatic.MOD_ID, "gameplay/yellow_tang")
-    val POWDER_BLUE_TANG = Identifier(HybridAquatic.MOD_ID, "gameplay/powder_blue_tang")
-    val UNICORNFISH = Identifier(HybridAquatic.MOD_ID, "gameplay/unicornfish")
-
-    val PARROTFISH = Identifier(HybridAquatic.MOD_ID, "gameplay/parrotfish")
-    val SEAHORSE = Identifier(HybridAquatic.MOD_ID, "gameplay/seahorse")
-
-    val SUNFISH = Identifier(HybridAquatic.MOD_ID, "gameplay/sunfish")
+    val SURGEONFISH_UNICORNFISH = Identifier(HybridAquatic.MOD_ID, "gameplay/surgeonfish_unicornfish")
+    val SURGEONFISH_SOHAL = Identifier(HybridAquatic.MOD_ID, "gameplay/surgeonfish_sohal")
+    val SURGEONFISH_ORANGESHOULDER = Identifier(HybridAquatic.MOD_ID, "gameplay/surgeonfish_orangeshoulder")
+    val SURGEONFISH_LINED = Identifier(HybridAquatic.MOD_ID, "gameplay/surgeonfish_lined")
+    val SURGEONFISH_YELLOW_TANG = Identifier(HybridAquatic.MOD_ID, "gameplay/surgeonfish_yellow_tang")
+    val SURGEONFISH_BLUE_TANG = Identifier(HybridAquatic.MOD_ID, "gameplay/surgeonfish_blue_tang")
+    val SURGEONFISH_POWDER_BLUE_TANG = Identifier(HybridAquatic.MOD_ID, "gameplay/surgeonfish_powder_blue_tang")
 
     val KOI = Identifier(HybridAquatic.MOD_ID, "gameplay/koi")
     val CARP = Identifier(HybridAquatic.MOD_ID, "gameplay/carp")
-    val GOLDFISH = Identifier(HybridAquatic.MOD_ID, "gameplay/goldfish")
 
     val CLAWED_LOBSTER = Identifier(HybridAquatic.MOD_ID, "gameplay/clawed_lobster")
     val CLAWLESS_LOBSTER = Identifier(HybridAquatic.MOD_ID, "gameplay/clawless_lobster")
@@ -53,7 +48,6 @@ object HybridAquaticLootTables {
 
     val BLUE_SPOTTED_STINGRAY = Identifier(HybridAquatic.MOD_ID, "gameplay/blue_spotted_stingray")
     val SPOTTED_EAGLE_RAY = Identifier(HybridAquatic.MOD_ID, "gameplay/spotted_eagle_ray")
-    val SEABASS_BLACK = Identifier(HybridAquatic.MOD_ID, "gameplay/seabass_black")
 
     val YELLOWFIN = Identifier(HybridAquatic.MOD_ID, "gameplay/yellowfin")
     val BLUEFIN = Identifier(HybridAquatic.MOD_ID, "gameplay/bluefin")

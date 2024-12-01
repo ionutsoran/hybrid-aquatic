@@ -27,13 +27,13 @@ class SurgeonfishEntity(entityType: EntityType<out SurgeonfishEntity>, world: Wo
 
     public override fun getLootTableId(): Identifier {
         return when (this.variant?.variantName) {
-            "blue_tang" -> Identifier("hybrid-aquatic", "gameplay/blue_tang")
-            "yellow_tang" -> Identifier("hybrid-aquatic", "gameplay/yellow_tang")
-            "powder_blue_tang" -> Identifier("hybrid-aquatic", "gameplay/powder_blue_tang")
-            "sohal" -> Identifier("hybrid-aquatic", "gameplay/sohal")
-            "orangeshoulder" -> Identifier("hybrid-aquatic", "gameplay/orangeshoulder")
-            "lined" -> Identifier("hybrid-aquatic", "gameplay/lined")
-            "unicornfish" -> Identifier("hybrid-aquatic", "gameplay/unicornfish")
+            "blue_tang" -> Identifier("hybrid-aquatic", "gameplay/surgeonfish_blue_tang")
+            "yellow_tang" -> Identifier("hybrid-aquatic", "gameplay/surgeonfish_yellow_tang")
+            "powder_blue_tang" -> Identifier("hybrid-aquatic", "gameplay/surgeonfish_powder_blue_tang")
+            "sohal" -> Identifier("hybrid-aquatic", "gameplay/surgeonfish_sohal")
+            "orangeshoulder" -> Identifier("hybrid-aquatic", "gameplay/surgeonfish_orangeshoulder")
+            "lined" -> Identifier("hybrid-aquatic", "gameplay/surgeonfish_lined")
+            "unicornfish" -> Identifier("hybrid-aquatic", "gameplay/surgeonfish_unicornfish")
             else -> super.getLootTableId()
         }
     }

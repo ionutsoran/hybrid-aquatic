@@ -6,6 +6,7 @@ import net.minecraft.entity.EntityType
 import net.minecraft.entity.attribute.DefaultAttributeContainer
 import net.minecraft.entity.attribute.EntityAttributes
 import net.minecraft.entity.mob.WaterCreatureEntity
+import net.minecraft.util.Identifier
 import net.minecraft.world.World
 
 class BettaEntity(entityType: EntityType<out BettaEntity>, world: World) :
@@ -34,9 +35,14 @@ class BettaEntity(entityType: EntityType<out BettaEntity>, world: World) :
             HybridAquaticEntityTags.LARGE_PREY,
             HybridAquaticEntityTags.SHARK)) {
 
+    public override fun getLootTableId(): Identifier {
+        return Identifier("hybrid-aquatic", "entities/betta")
+    }
+
     override fun getLimitPerChunk(): Int {
         return 2
     }
+
     companion object {
         fun createMobAttributes(): DefaultAttributeContainer.Builder {
             return WaterCreatureEntity.createMobAttributes()

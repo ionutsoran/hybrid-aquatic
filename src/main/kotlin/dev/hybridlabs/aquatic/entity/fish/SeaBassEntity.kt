@@ -21,10 +21,7 @@ class SeaBassEntity(entityType: EntityType<out SeaBassEntity>, world: World) :
             HybridAquaticEntityTags.SHARK)) {
 
     public override fun getLootTableId(): Identifier {
-        return when (this.variant?.variantName) {
-            "black" -> Identifier("hybrid-aquatic", "gameplay/seabass_black")
-            else -> super.getLootTableId()
-        }
+        return Identifier("hybrid-aquatic", "entity/sea_bass")
     }
 
     override fun getLimitPerChunk(): Int {

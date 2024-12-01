@@ -22,10 +22,7 @@ class GoldfishEntity(entityType: EntityType<out GoldfishEntity>, world: World) :
             HybridAquaticEntityTags.SHARK)) {
 
     public override fun getLootTableId(): Identifier {
-        return when (this.variant?.variantName) {
-            "shubunkin" -> Identifier("hybrid-aquatic", "gameplay/goldfish")
-            else -> super.getLootTableId()
-        }
+        return Identifier("hybrid-aquatic", "entities/goldfish")
     }
 
     override fun getLimitPerChunk(): Int {

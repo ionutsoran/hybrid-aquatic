@@ -15,7 +15,8 @@ import net.minecraft.loot.provider.number.UniformLootNumberProvider
 import net.minecraft.util.Identifier
 import java.util.function.BiConsumer
 
-class GenericLootTableProvider(output: FabricDataOutput) : SimpleFabricLootTableProvider(output, LootContextTypes.GENERIC) {
+class GenericLootTableProvider(output: FabricDataOutput) :
+    SimpleFabricLootTableProvider(output, LootContextTypes.GENERIC) {
     override fun accept(exporter: BiConsumer<Identifier, LootTable.Builder>) {
         exporter.accept(
             HybridAquaticLootTables.CRAB_POT_TREASURE_ID,
@@ -519,7 +520,7 @@ class GenericLootTableProvider(output: FabricDataOutput) : SimpleFabricLootTable
         )
 
         exporter.accept(
-            HybridAquaticLootTables.BLUE_TANG,
+            HybridAquaticLootTables.SURGEONFISH_BLUE_TANG,
             LootTable.builder()
                 .pool(
                     LootPool.builder()
@@ -537,7 +538,7 @@ class GenericLootTableProvider(output: FabricDataOutput) : SimpleFabricLootTable
         )
 
         exporter.accept(
-            HybridAquaticLootTables.UNICORNFISH,
+            HybridAquaticLootTables.SURGEONFISH_UNICORNFISH,
             LootTable.builder()
                 .pool(
                     LootPool.builder()
@@ -546,7 +547,7 @@ class GenericLootTableProvider(output: FabricDataOutput) : SimpleFabricLootTable
         )
 
         exporter.accept(
-            HybridAquaticLootTables.SOHAL,
+            HybridAquaticLootTables.SURGEONFISH_SOHAL,
             LootTable.builder()
                 .pool(
                     LootPool.builder()
@@ -555,7 +556,16 @@ class GenericLootTableProvider(output: FabricDataOutput) : SimpleFabricLootTable
         )
 
         exporter.accept(
-            HybridAquaticLootTables.ORANGESHOULDER,
+            HybridAquaticLootTables.SURGEONFISH_LINED,
+            LootTable.builder()
+                .pool(
+                    LootPool.builder()
+                        .with(ItemEntry.builder(HybridAquaticItems.SURGEONFISH_LINED))
+                )
+        )
+
+        exporter.accept(
+            HybridAquaticLootTables.SURGEONFISH_ORANGESHOULDER,
             LootTable.builder()
                 .pool(
                     LootPool.builder()
@@ -564,7 +574,7 @@ class GenericLootTableProvider(output: FabricDataOutput) : SimpleFabricLootTable
         )
 
         exporter.accept(
-            HybridAquaticLootTables.POWDER_BLUE_TANG,
+            HybridAquaticLootTables.SURGEONFISH_POWDER_BLUE_TANG,
             LootTable.builder()
                 .pool(
                     LootPool.builder()
@@ -573,38 +583,11 @@ class GenericLootTableProvider(output: FabricDataOutput) : SimpleFabricLootTable
         )
 
         exporter.accept(
-            HybridAquaticLootTables.YELLOW_TANG,
+            HybridAquaticLootTables.SURGEONFISH_YELLOW_TANG,
             LootTable.builder()
                 .pool(
                     LootPool.builder()
                         .with(ItemEntry.builder(HybridAquaticItems.YELLOW_TANG))
-                )
-        )
-
-        exporter.accept(
-            HybridAquaticLootTables.SEAHORSE,
-            LootTable.builder()
-                .pool(
-                    LootPool.builder()
-                        .with(ItemEntry.builder(HybridAquaticItems.SEAHORSE))
-                )
-        )
-
-        exporter.accept(
-            HybridAquaticLootTables.SUNFISH,
-            LootTable.builder()
-                .pool(
-                    LootPool.builder()
-                        .with(ItemEntry.builder(HybridAquaticItems.SUNFISH))
-                )
-        )
-
-        exporter.accept(
-            HybridAquaticLootTables.GOLDFISH,
-            LootTable.builder()
-                .pool(
-                    LootPool.builder()
-                        .with(ItemEntry.builder(HybridAquaticItems.GOLDFISH))
                 )
         )
 
@@ -623,24 +606,6 @@ class GenericLootTableProvider(output: FabricDataOutput) : SimpleFabricLootTable
                 .pool(
                     LootPool.builder()
                         .with(ItemEntry.builder(HybridAquaticItems.CARP))
-                )
-        )
-
-        exporter.accept(
-            HybridAquaticLootTables.PARROTFISH,
-            LootTable.builder()
-                .pool(
-                    LootPool.builder()
-                        .with(ItemEntry.builder(HybridAquaticItems.PARROTFISH))
-                )
-        )
-
-        exporter.accept(
-            HybridAquaticLootTables.SEABASS_BLACK,
-            LootTable.builder()
-                .pool(
-                    LootPool.builder()
-                        .with(ItemEntry.builder(HybridAquaticItems.SEA_BASS))
                 )
         )
 
