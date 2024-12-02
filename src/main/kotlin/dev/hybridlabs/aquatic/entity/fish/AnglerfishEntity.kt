@@ -42,6 +42,7 @@ class AnglerfishEntity(entityType: EntityType<out AnglerfishEntity>, world: Worl
                 .add(EntityAttributes.GENERIC_FOLLOW_RANGE, 32.0)
         }
     }
+
     internal class FollowManglerfishGoal(
         private val mob: PathAwareEntity,
         private val speed: Double,
