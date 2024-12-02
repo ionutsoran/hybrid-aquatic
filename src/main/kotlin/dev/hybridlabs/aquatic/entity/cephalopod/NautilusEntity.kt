@@ -1,13 +1,10 @@
 package dev.hybridlabs.aquatic.entity.cephalopod
 
-import dev.hybridlabs.aquatic.entity.ai.goal.StayDeepGoal
 import dev.hybridlabs.aquatic.tag.HybridAquaticEntityTags
 import net.minecraft.entity.EntityType
 import net.minecraft.entity.attribute.DefaultAttributeContainer
 import net.minecraft.entity.attribute.EntityAttributes
 import net.minecraft.entity.mob.WaterCreatureEntity
-import net.minecraft.sound.SoundEvent
-import net.minecraft.sound.SoundEvents
 import net.minecraft.world.World
 
 class NautilusEntity(entityType: EntityType<out NautilusEntity>, world: World) :
@@ -18,11 +15,6 @@ class NautilusEntity(entityType: EntityType<out NautilusEntity>, world: World) :
         HybridAquaticEntityTags.NONE,
         HybridAquaticEntityTags.SHARK
     ) {
-
-    override fun initGoals() {
-        super.initGoals()
-        goalSelector.add(0, StayDeepGoal(this))
-    }
 
     companion object {
         fun createMobAttributes(): DefaultAttributeContainer.Builder {

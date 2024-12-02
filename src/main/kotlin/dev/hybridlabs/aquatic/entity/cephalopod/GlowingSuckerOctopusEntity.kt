@@ -9,6 +9,7 @@ import net.minecraft.world.World
 
 class GlowingSuckerOctopusEntity(entityType: EntityType<out GlowingSuckerOctopusEntity>, world: World) :
     HybridAquaticCephalopodEntity(entityType, world, emptyMap(), HybridAquaticEntityTags.CRUSTACEAN, HybridAquaticEntityTags.SHARK) {
+
     companion object {
         fun createMobAttributes(): DefaultAttributeContainer.Builder {
             return WaterCreatureEntity.createMobAttributes()
