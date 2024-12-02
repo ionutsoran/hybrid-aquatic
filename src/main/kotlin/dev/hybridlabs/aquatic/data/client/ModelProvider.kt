@@ -160,6 +160,7 @@ class ModelProvider(output: FabricDataOutput) : FabricModelProvider(output) {
             HybridAquaticItems.MORAY_EEL,
             HybridAquaticItems.NEEDLEFISH,
             HybridAquaticItems.MACKEREL,
+            HybridAquaticItems.FLYING_FISH,
             HybridAquaticItems.OPAH,
             HybridAquaticItems.OARFISH,
             HybridAquaticItems.OSCAR,

@@ -144,6 +144,7 @@ object  HybridAquaticItemGroups {
             entries.add(HybridAquaticItems.SURGEONFISH_LINED)
             entries.add(HybridAquaticItems.SEAHORSE)
             entries.add(HybridAquaticItems.MACKEREL)
+            entries.add(HybridAquaticItems.FLYING_FISH)
             entries.add(HybridAquaticItems.COWFISH)
             entries.add(HybridAquaticItems.TOADFISH)
             entries.add(HybridAquaticItems.STONEFISH)

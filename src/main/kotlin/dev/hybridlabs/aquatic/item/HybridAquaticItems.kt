@@ -333,6 +333,19 @@ object HybridAquaticItems {
         )
     )
 
+    val FLYING_FISH = register("flying_fish",
+        Item(
+            FabricItemSettings()
+                .food(
+                    FoodComponent.Builder()
+                        .hunger(1)
+                        .saturationModifier(0.4F)
+                        .meat()
+                        .build()
+                )
+        )
+    )
+
     val PIRANHA = register("piranha",
         Item(
             FabricItemSettings()

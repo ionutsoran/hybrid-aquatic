@@ -149,6 +149,10 @@ class FishingLootTableProvider(output: FabricDataOutput) : SimpleFabricLootTable
                             ItemEntry.builder(HybridAquaticItems.FLASHLIGHT_FISH)
                                 .weight(4)
                         )
+                        .with(
+                            ItemEntry.builder(HybridAquaticItems.FLYING_FISH)
+                                .weight(4)
+                        )
                 )
         )
 
@@ -201,6 +205,14 @@ class FishingLootTableProvider(output: FabricDataOutput) : SimpleFabricLootTable
                         .with(
                             ItemEntry.builder(HybridAquaticItems.OPAH)
                                 .weight(2)
+                        )
+                        .with(
+                            ItemEntry.builder(HybridAquaticItems.FLASHLIGHT_FISH)
+                                .weight(4)
+                        )
+                        .with(
+                            ItemEntry.builder(HybridAquaticItems.FLYING_FISH)
+                                .weight(4)
                         )
                 )
         )

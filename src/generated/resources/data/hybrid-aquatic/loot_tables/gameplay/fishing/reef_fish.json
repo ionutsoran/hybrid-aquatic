@@ -109,6 +109,11 @@
           "type": "minecraft:item",
           "name": "hybrid-aquatic:flashlight_fish",
           "weight": 4
+        },
+        {
+          "type": "minecraft:item",
+          "name": "hybrid-aquatic:flying_fish",
+          "weight": 4
         }
       ],
       "rolls": 1.0
