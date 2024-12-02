@@ -21,6 +21,7 @@ import net.minecraft.entity.data.DataTracker
 import net.minecraft.entity.data.TrackedData
 import net.minecraft.entity.data.TrackedDataHandlerRegistry
 import net.minecraft.entity.mob.WaterCreatureEntity
+import net.minecraft.entity.passive.ParrotEntity
 import net.minecraft.entity.player.PlayerEntity
 import net.minecraft.nbt.NbtCompound
 import net.minecraft.registry.tag.TagKey
@@ -39,7 +40,8 @@ import software.bernie.geckolib.core.animatable.instance.AnimatableInstanceCache
 import software.bernie.geckolib.core.animation.AnimatableManager
 import software.bernie.geckolib.core.animation.AnimationController
 import software.bernie.geckolib.core.animation.AnimationState
-import software.bernie.geckolib.core.animation.EasingType
+import software.bernie.geckolib.core.animation.RawAnimation
+import software.bernie.geckolib.core.`object`.PlayState
 import software.bernie.geckolib.util.GeckoLibUtil
 
 @Suppress("DEPRECATION", "LeakingThis", "UNUSED_PARAMETER")
@@ -54,6 +56,8 @@ open class HybridAquaticCrustaceanEntity(
 ) : WaterCreatureEntity(type, world), GeoEntity {
     private val factory = GeckoLibUtil.createInstanceCache(this)
     private var fromFishingNet = false
+    private var songPlaying = false
+    private var songSource: BlockPos? = null
 
     var size: Int
         get() = dataTracker.get(CRUSTACEAN_SIZE)
@@ -165,6 +169,33 @@ open class HybridAquaticCrustaceanEntity(
         stepHeight = 1.0F
     }
 
+
+    override fun tickMovement() {
+        if (this.songSource == null || !songSource!!.isWithinDistance(
+                this.pos,
+                3.5
+            ) || !world.getBlockState(this.songSource).isOf(Blocks.JUKEBOX)
+        ) {
+            this.songPlaying = false
+            this.songSource = null
+        }
+
+        if (world.random.nextInt(400) == 0) {
+            ParrotEntity.imitateNearbyMob(this.world, this)
+        }
+
+        super.tickMovement()
+    }
+
+    override fun setNearbySongPlaying(songPosition: BlockPos?, playing: Boolean) {
+        this.songSource = songPosition
+        this.songPlaying = playing
+    }
+
+    private fun isSongPlaying(): Boolean {
+        return this.songPlaying
+    }
+
     override fun hasNoDrag(): Boolean {
         return false
     }
@@ -253,31 +284,44 @@ open class HybridAquaticCrustaceanEntity(
         return !fromFishingNet && !hasCustomName()
     }
 
+    //#region Animations
+    override fun registerControllers(controllerRegistrar: AnimatableManager.ControllerRegistrar) {
+        controllerRegistrar.add(
+            AnimationController(this, "Walk/Run/Idle", 5,
+                AnimationController.AnimationStateHandler { state: AnimationState<HybridAquaticCrustaceanEntity> ->
+                    if (state.isMoving) {
+                        return@AnimationStateHandler state.setAndContinue(DefaultAnimations.WALK)
+                    } else {
+                        return@AnimationStateHandler state.setAndContinue(DefaultAnimations.IDLE)
+                    }
+                })
+        )
+        controllerRegistrar.add(
+            AnimationController(this, "Dance", 5,
+                AnimationController.AnimationStateHandler { state: AnimationState<HybridAquaticCrustaceanEntity> ->
+                    if (isSongPlaying()) {
+                        return@AnimationStateHandler state.setAndContinue(DANCE)
+                    } else {
+                        PlayState.STOP
+                    }
+                })
+        )
+    }
+
     override fun getAnimatableInstanceCache(): AnimatableInstanceCache {
         return factory
     }
 
-    override fun registerControllers(controllerRegistrar: AnimatableManager.ControllerRegistrar) {
-        controllerRegistrar.add(
-            AnimationController(
-                this,
-                "Walk/Idle",
-                20
-            ) { state: AnimationState<HybridAquaticCrustaceanEntity> ->
-                if (state.isMoving) {
-                    state.setAndContinue(DefaultAnimations.WALK)
-                } else {
-                    state.setAndContinue(DefaultAnimations.IDLE)
-                }
-            }.setOverrideEasingType(EasingType.EASE_IN_OUT_SINE)
-        )
-    }
+    //#endregion
 
     companion object {
         val CRUSTACEAN_SIZE: TrackedData<Int> = DataTracker.registerData(HybridAquaticCrustaceanEntity::class.java, TrackedDataHandlerRegistry.INTEGER)
         val ATTEMPT_ATTACK: TrackedData<Boolean> = DataTracker.registerData(HybridAquaticCrustaceanEntity::class.java, TrackedDataHandlerRegistry.BOOLEAN)
         val VARIANT: TrackedData<String> = DataTracker.registerData(HybridAquaticCrustaceanEntity::class.java, TrackedDataHandlerRegistry.STRING)
         var VARIANT_DATA: TrackedData<NbtCompound> = DataTracker.registerData(HybridAquaticCrustaceanEntity::class.java, TrackedDataHandlerRegistry.NBT_COMPOUND)
+
+        val DANCE: RawAnimation = RawAnimation.begin().thenPlay("misc.dance")
+        val WAVE: RawAnimation = RawAnimation.begin().thenPlay("misc.wave")
 
         fun canSpawn(
             type: EntityType<out WaterCreatureEntity?>?,
