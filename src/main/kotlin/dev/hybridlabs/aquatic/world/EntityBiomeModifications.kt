@@ -182,7 +182,7 @@ object EntityBiomeModifications {
         minGroup: Int,
         maxGroup: Int
     ) {
-        add(entityType, spawnTags, HybridAquaticSpawnGroup.SHARK.spawnGroup, weight, minGroup, maxGroup)
+        add(entityType, spawnTags, HybridAquaticSpawnGroup.SHARK_UNDERGROUND.spawnGroup, weight, minGroup, maxGroup)
     }
 
     private fun addJelly(

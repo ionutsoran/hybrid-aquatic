@@ -667,7 +667,7 @@ object HybridAquaticEntityTypes {
         dimensions: EntityDimensions,
         attributeContainer: DefaultAttributeContainer.Builder
     ): EntityType<T> {
-        return registerCustomSpawnGroup(id, entityFactory, dimensions, attributeContainer, HybridAquaticSpawnGroup.SHARK)
+        return registerCustomSpawnGroup(id, entityFactory, dimensions, attributeContainer, HybridAquaticSpawnGroup.SHARK_UNDERGROUND)
     }
 
     private fun <T : LivingEntity> registerCritter(
