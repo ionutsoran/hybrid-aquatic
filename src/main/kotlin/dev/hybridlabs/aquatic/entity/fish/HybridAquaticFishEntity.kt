@@ -39,7 +39,6 @@ import software.bernie.geckolib.core.animatable.instance.AnimatableInstanceCache
 import software.bernie.geckolib.core.animation.AnimatableManager
 import software.bernie.geckolib.core.animation.AnimationController
 import software.bernie.geckolib.core.animation.AnimationState
-import software.bernie.geckolib.core.animation.EasingType
 import software.bernie.geckolib.util.GeckoLibUtil
 
 @Suppress("LeakingThis", "UNUSED_PARAMETER")
@@ -131,7 +130,7 @@ open class HybridAquaticFishEntity(
             return
         }
 
-        if (isWet) {
+        if (isSubmergedInWater) {
             moistness = getMaxMoistness()
         } else {
             moistness -= 1
@@ -310,17 +309,14 @@ open class HybridAquaticFishEntity(
     //#region Animations
     override fun registerControllers(controllerRegistrar: AnimatableManager.ControllerRegistrar) {
         controllerRegistrar.add(
-            AnimationController(
-                this,
-                "Swim/Idle",
-                20
-            ) { state: AnimationState<HybridAquaticFishEntity> ->
-                if (state.isMoving) {
-                    state.setAndContinue(DefaultAnimations.SWIM)
-                } else {
-                    state.setAndContinue(DefaultAnimations.IDLE)
-                }
-            }.setOverrideEasingType(EasingType.EASE_IN_OUT_SINE)
+            AnimationController(this, "Swim/Idle", 5,
+                AnimationController.AnimationStateHandler { state: AnimationState<HybridAquaticFishEntity> ->
+                    if (state.isMoving) {
+                        return@AnimationStateHandler state.setAndContinue(DefaultAnimations.SWIM)
+                    } else {
+                        return@AnimationStateHandler state.setAndContinue(DefaultAnimations.IDLE)
+                    }
+                })
         )
     }
 

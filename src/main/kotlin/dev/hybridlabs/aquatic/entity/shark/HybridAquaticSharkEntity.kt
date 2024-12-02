@@ -37,7 +37,6 @@ import software.bernie.geckolib.core.animatable.instance.AnimatableInstanceCache
 import software.bernie.geckolib.core.animation.AnimatableManager
 import software.bernie.geckolib.core.animation.AnimationController
 import software.bernie.geckolib.core.animation.AnimationState
-import software.bernie.geckolib.core.animation.EasingType
 import software.bernie.geckolib.util.GeckoLibUtil
 import java.util.*
 
@@ -234,23 +233,17 @@ open class HybridAquaticSharkEntity(
     //#region Animations
     override fun registerControllers(controllerRegistrar: AnimatableManager.ControllerRegistrar) {
         controllerRegistrar.add(
-            AnimationController(
-                this,
-                "Swim/Run",
-                20
-            ) { state: AnimationState<HybridAquaticSharkEntity> ->
-                if (!this.isSubmergedInWater && isOnGround) {
-                    state.setAndContinue(DefaultAnimations.SIT)
-                } else {
+            AnimationController(this, "Walk/Run/Idle", 0,
+                AnimationController.AnimationStateHandler { state: AnimationState<HybridAquaticSharkEntity> ->
                     if (state.isMoving) {
-                        state.setAndContinue(if (this.isSprinting) DefaultAnimations.RUN else DefaultAnimations.SWIM)
+                        return@AnimationStateHandler state.setAndContinue(if (this.isSprinting) DefaultAnimations.RUN else DefaultAnimations.SWIM)
                     } else {
-                        state.setAndContinue(DefaultAnimations.SWIM)
+                        return@AnimationStateHandler state.setAndContinue(DefaultAnimations.SWIM)
                     }
-                }
-            }.setOverrideEasingType(EasingType.EASE_IN_OUT_SINE)
+                })
         )
-        controllerRegistrar.add(DefaultAnimations.genericAttackAnimation(this, DefaultAnimations.ATTACK_BITE))
+        controllerRegistrar.add(
+            DefaultAnimations.genericAttackAnimation(this, DefaultAnimations.ATTACK_BITE))
     }
 
     override fun getAnimatableInstanceCache(): AnimatableInstanceCache {

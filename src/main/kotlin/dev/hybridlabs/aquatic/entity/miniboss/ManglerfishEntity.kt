@@ -28,7 +28,6 @@ import software.bernie.geckolib.constant.DefaultAnimations
 import software.bernie.geckolib.core.animation.AnimatableManager
 import software.bernie.geckolib.core.animation.AnimationController
 import software.bernie.geckolib.core.animation.AnimationState
-import software.bernie.geckolib.core.`object`.PlayState
 
 class ManglerfishEntity(entityType: EntityType<out HybridAquaticMinibossEntity>, world: World) :
     HybridAquaticMinibossEntity(entityType, world) {
@@ -126,13 +125,7 @@ class ManglerfishEntity(entityType: EntityType<out HybridAquaticMinibossEntity>,
                 })
         )
         controllerRegistrar.add(
-            AnimationController(this, "Attack", 0,
-                AnimationController.AnimationStateHandler { state: AnimationState<HybridAquaticMinibossEntity> ->
-                    if (this.handSwinging) return@AnimationStateHandler state.setAndContinue(DefaultAnimations.ATTACK_BITE)
-                    state.controller.forceAnimationReset()
-                    PlayState.STOP
-                })
-        )
+            DefaultAnimations.genericAttackAnimation(this, DefaultAnimations.ATTACK_BITE))
     }
 
     //#endregion
