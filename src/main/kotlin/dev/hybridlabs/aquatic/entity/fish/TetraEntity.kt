@@ -1,5 +1,6 @@
 package dev.hybridlabs.aquatic.entity.fish
 
+import dev.hybridlabs.aquatic.tag.HybridAquaticBiomeTags
 import dev.hybridlabs.aquatic.tag.HybridAquaticEntityTags
 import net.minecraft.entity.EntityType
 import net.minecraft.entity.attribute.DefaultAttributeContainer
@@ -14,7 +15,18 @@ class TetraEntity(entityType: EntityType<out TetraEntity>, world: World) :
         listOf(
             HybridAquaticEntityTags.MEDIUM_PREY,
             HybridAquaticEntityTags.LARGE_PREY,
-            HybridAquaticEntityTags.SHARK)) {
+            HybridAquaticEntityTags.SHARK),
+        variants = hashMapOf(
+            "neon" to FishVariant.biomeVariant(
+                "neon", listOf(HybridAquaticBiomeTags.JUNGLE, HybridAquaticBiomeTags.MARSHES, HybridAquaticBiomeTags.TROPICAL_RIVERS),
+                ignore = listOf(FishVariant.Ignore.ANIMATION, FishVariant.Ignore.MODEL)
+            ),
+            "cave" to FishVariant.biomeVariant(
+                "cave", listOf(HybridAquaticBiomeTags.CAVES),
+                ignore = listOf(FishVariant.Ignore.ANIMATION, FishVariant.Ignore.MODEL)
+            )
+        )
+    ) {
 
     override fun getLimitPerChunk(): Int {
         return 4
@@ -26,7 +38,7 @@ class TetraEntity(entityType: EntityType<out TetraEntity>, world: World) :
                 .add(EntityAttributes.GENERIC_MAX_HEALTH, 2.0)
                 .add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.8)
                 .add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 1.0)
-                .add(EntityAttributes.GENERIC_FOLLOW_RANGE, 12.0)
+                .add(EntityAttributes.GENERIC_FOLLOW_RANGE, 8.0)
         }
     }
 }

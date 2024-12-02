@@ -94,6 +94,7 @@ class BiomeTagProvider(output: FabricDataOutput, registriesFuture: CompletableFu
             .addOptional(Identifier("terralith", "warm_river"))
             .addOptional(Identifier("regions_unexplored", "tropical_river"))
             .addOptional(Identifier("regions_unexplored", "muddy_river"))
+            .addOptional(Identifier("regions_unexplored", "cold_river"))
 
         getOrCreateTagBuilder(HybridAquaticBiomeTags.TROPICAL_RIVERS)
             .addOptional(Identifier("wythers", "jungle_river"))
@@ -105,5 +106,15 @@ class BiomeTagProvider(output: FabricDataOutput, registriesFuture: CompletableFu
             .add(BiomeKeys.CHERRY_GROVE)
             .addOptional(Identifier("regions_unexplored", "mauve_hills"))
             .addOptional(Identifier("regions_unexplored", "magnolia_woodland"))
+
+        getOrCreateTagBuilder(HybridAquaticBiomeTags.CAVES)
+            .add(BiomeKeys.LUSH_CAVES)
+            .add(BiomeKeys.DRIPSTONE_CAVES)
+            .add(BiomeKeys.DEEP_DARK)
+            .addOptional(Identifier("regions_unexplored", "redstone_caves"))
+            .addOptional(Identifier("regions_unexplored", "bioshroom_caves"))
+            .addOptional(Identifier("regions_unexplored", "scorching_caves"))
+            .addOptional(Identifier("regions_unexplored", "ancient_delta"))
+            .addOptional(Identifier("regions_unexplored", "prismachasm"))
     }
 }
