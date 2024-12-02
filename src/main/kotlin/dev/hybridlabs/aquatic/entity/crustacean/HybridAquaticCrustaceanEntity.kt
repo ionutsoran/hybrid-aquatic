@@ -15,6 +15,7 @@ import net.minecraft.entity.ai.goal.WanderAroundGoal
 import net.minecraft.entity.ai.pathing.EntityNavigation
 import net.minecraft.entity.ai.pathing.MobNavigation
 import net.minecraft.entity.ai.pathing.PathNodeType
+import net.minecraft.entity.attribute.EntityAttributes
 import net.minecraft.entity.damage.DamageSource
 import net.minecraft.entity.data.DataTracker
 import net.minecraft.entity.data.TrackedData
@@ -57,6 +58,10 @@ open class HybridAquaticCrustaceanEntity(
     private var fromFishingNet = false
     private var songPlaying = false
     private var songSource: BlockPos? = null
+
+    private var isHiding: Boolean = false
+    private var hidingTimer: Int = 0
+    private var lastDamageTime: Long = 0
 
     var size: Int
         get() = dataTracker.get(CRUSTACEAN_SIZE)
@@ -168,7 +173,6 @@ open class HybridAquaticCrustaceanEntity(
         stepHeight = 1.0F
     }
 
-
     override fun tickMovement() {
         if (this.songSource == null || !songSource!!.isWithinDistance(
                 this.pos,
@@ -201,6 +205,42 @@ open class HybridAquaticCrustaceanEntity(
 
     override fun shouldSwimInFluids(): Boolean {
         return false
+    }
+
+    private fun startHiding() {
+        isHiding = true
+        hidingTimer = 200
+    }
+
+    override fun tick() {
+        super.tick()
+
+        if (this is HermitCrabEntity && isHiding) {
+            hidingTimer--
+
+            if (hidingTimer <= 0 && (world.time - lastDamageTime) >= 200) {
+                isHiding = false
+                attributes.getCustomInstance(EntityAttributes.GENERIC_MOVEMENT_SPEED)?.baseValue = 0.3
+                attributes.getCustomInstance(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE)?.baseValue = 0.0
+                attributes.getCustomInstance(EntityAttributes.GENERIC_ARMOR_TOUGHNESS)?.baseValue = 5.0
+                attributes.getCustomInstance(EntityAttributes.GENERIC_ARMOR)?.baseValue = 5.0
+            } else {
+                attributes.getCustomInstance(EntityAttributes.GENERIC_MOVEMENT_SPEED)?.baseValue = 0.0
+                attributes.getCustomInstance(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE)?.baseValue = 1.0
+                attributes.getCustomInstance(EntityAttributes.GENERIC_ARMOR_TOUGHNESS)?.baseValue = 50.0
+                attributes.getCustomInstance(EntityAttributes.GENERIC_ARMOR)?.baseValue = 50.0
+            }
+        }
+    }
+
+    override fun damage(source: DamageSource?, amount: Float): Boolean {
+        if (this is HermitCrabEntity && !isHiding) {
+                startHiding()
+            }
+
+            lastDamageTime = world.time
+
+            return super.damage(source, amount)
     }
 
     // end region
@@ -286,12 +326,22 @@ open class HybridAquaticCrustaceanEntity(
     //#region Animations
     override fun registerControllers(controllerRegistrar: AnimatableManager.ControllerRegistrar) {
         controllerRegistrar.add(
-            AnimationController(this, "Walk/Run/Idle", 5,
+            AnimationController(this, "Walk/Idle", 5,
                 AnimationController.AnimationStateHandler { state: AnimationState<HybridAquaticCrustaceanEntity> ->
                     if (state.isMoving) {
                         return@AnimationStateHandler state.setAndContinue(DefaultAnimations.WALK)
                     } else {
                         return@AnimationStateHandler state.setAndContinue(DefaultAnimations.IDLE)
+                    }
+                })
+        )
+        controllerRegistrar.add(
+            AnimationController(this, "Hide", 5,
+                AnimationController.AnimationStateHandler { state: AnimationState<HybridAquaticCrustaceanEntity> ->
+                    if (this.isHiding) {
+                        return@AnimationStateHandler state.setAndContinue(HIDE)
+                    } else {
+                        PlayState.STOP
                     }
                 })
         )
@@ -321,6 +371,7 @@ open class HybridAquaticCrustaceanEntity(
 
         val DANCE: RawAnimation = RawAnimation.begin().thenPlay("misc.dance")
         val WAVE: RawAnimation = RawAnimation.begin().thenPlay("misc.wave")
+        val HIDE: RawAnimation = RawAnimation.begin().thenPlay("misc.hide")
 
         fun canSpawn(
             type: EntityType<out WaterCreatureEntity?>?,

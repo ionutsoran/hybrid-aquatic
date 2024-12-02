@@ -174,7 +174,7 @@
 				}
 			}
 		},
-		"hide": {
+		"misc.hide": {
 			"loop": "hold_on_last_frame",
 			"animation_length": 0.5,
 			"bones": {
