@@ -65,7 +65,7 @@ class ThresherSharkEntity(entityType: EntityType<out ThresherSharkEntity>, world
     override fun tryAttack(target: Entity?): Boolean {
         if (super.tryAttack(target)) {
 
-            playSound(SoundEvents.ENTITY_FOX_BITE,5.0F,0.0F)
+            playSound(SoundEvents.ENTITY_FOX_BITE,1.0F,0.0F)
 
             if (target is LivingEntity) {
                 var i = 0
