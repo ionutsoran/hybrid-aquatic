@@ -2,6 +2,7 @@ package dev.hybridlabs.aquatic.entity.critter
 
 import dev.hybridlabs.aquatic.entity.critter.HybridAquaticCritterEntity.VariantCollisionRules.ExclusionStatus.EXCLUSIVE
 import dev.hybridlabs.aquatic.entity.critter.HybridAquaticCritterEntity.VariantCollisionRules.ExclusionStatus.INCLUSIVE
+import net.minecraft.block.Blocks
 import net.minecraft.entity.EntityData
 import net.minecraft.entity.EntityType
 import net.minecraft.entity.SpawnReason
@@ -293,12 +294,12 @@ open class HybridAquaticCritterEntity(
             pos: BlockPos,
             random: Random?
         ): Boolean {
-            val topY = world.seaLevel - 6
-            val bottomY = world.seaLevel - 40
+            val topY = world.seaLevel
+            val bottomY = world.seaLevel - 124
 
             return pos.y in bottomY..topY &&
-                    world.getBlockState(pos.down()).isSolidBlock(world, pos.down()) &&
-                    world.isWater(pos)
+                    world.getBlockState(pos.down()).isSolid &&
+                    world.getBlockState(pos).isOf(Blocks.WATER)
         }
 
         fun getScaleAdjustment(critter : HybridAquaticCritterEntity, adjustment : Float): Float {

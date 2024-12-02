@@ -325,11 +325,12 @@ open class HybridAquaticCephalopodEntity(
             random: Random?
         ): Boolean {
             val topY = world.seaLevel
-            val bottomY = world.seaLevel - 24
+            val bottomY = world.seaLevel - 16
 
             return pos.y in bottomY..topY &&
                     world.getFluidState(pos.down()).isIn(FluidTags.WATER) &&
-                    world.getBlockState(pos.up()).isOf(Blocks.WATER)
+                    world.getBlockState(pos.up()).isOf(Blocks.WATER) &&
+                    world.isSkyVisibleAllowingSea(pos)
         }
 
         @Suppress("UNUSED_PARAMETER", "DEPRECATION")
@@ -340,8 +341,11 @@ open class HybridAquaticCephalopodEntity(
             pos: BlockPos,
             random: Random?
         ): Boolean {
-            return pos.y <= world.seaLevel - 32 &&
-                    world.getBaseLightLevel(pos, 0) == 0 &&
+            val topY = world.seaLevel - 16
+            val bottomY = world.seaLevel - 124
+
+            return pos.y in bottomY..topY &&
+                    world.getLightLevel(pos, 0) == 0 &&
                     world.getBlockState(pos).isOf(Blocks.WATER)
         }
 

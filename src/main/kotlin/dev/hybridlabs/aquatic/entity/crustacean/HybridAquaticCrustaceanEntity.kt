@@ -3,7 +3,6 @@ package dev.hybridlabs.aquatic.entity.crustacean
 import dev.hybridlabs.aquatic.entity.cephalopod.HybridAquaticCephalopodEntity
 import dev.hybridlabs.aquatic.entity.fish.HybridAquaticFishEntity
 import dev.hybridlabs.aquatic.entity.shark.HybridAquaticSharkEntity
-import dev.hybridlabs.aquatic.tag.HybridAquaticBlockTags
 import net.minecraft.block.Blocks
 import net.minecraft.entity.EntityData
 import net.minecraft.entity.EntityGroup
@@ -330,11 +329,11 @@ open class HybridAquaticCrustaceanEntity(
             pos: BlockPos,
             random: Random?
         ): Boolean {
-            val topY = world.seaLevel + 3
-            val bottomY = world.seaLevel - 48
+            val topY = world.seaLevel + 5
+            val bottomY = world.seaLevel - 16
 
             return pos.y in bottomY..topY &&
-                    world.getBlockState(pos.down()).isIn(HybridAquaticBlockTags.CRABS_SPAWN_ON) &&
+                    world.getBlockState(pos.down()).isSolid &&
                     (world.isWater(pos) || world.isAir(pos))
         }
 
@@ -345,13 +344,13 @@ open class HybridAquaticCrustaceanEntity(
             pos: BlockPos,
             random: Random?
         ): Boolean {
-            val topY = world.seaLevel + 6
-            val bottomY = world.seaLevel - 48
+            val topY = world.seaLevel - 16
+            val bottomY = world.seaLevel - 124
 
             return pos.y in bottomY..topY &&
-                    world.getBaseLightLevel(pos, 0) == 0 &&
+                    world.getLightLevel(pos, 0) == 0 &&
                     world.getBlockState(pos).isOf(Blocks.WATER) &&
-                    world.getBlockState(pos.down()).isIn(HybridAquaticBlockTags.CRABS_SPAWN_ON)
+                    world.getBlockState(pos.down()).isSolid
         }
 
         fun getScaleAdjustment(crustacean : HybridAquaticCrustaceanEntity, adjustment : Float): Float {
