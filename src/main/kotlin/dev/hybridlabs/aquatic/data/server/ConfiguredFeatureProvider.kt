@@ -10,6 +10,7 @@ import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricDynamicRegistryProvider
 import net.minecraft.block.Blocks
 import net.minecraft.registry.RegistryWrapper
+import net.minecraft.registry.entry.RegistryEntryList
 import net.minecraft.state.property.Properties
 import net.minecraft.util.math.intprovider.ConstantIntProvider
 import net.minecraft.util.math.intprovider.UniformIntProvider
@@ -108,6 +109,20 @@ class ConfiguredFeatureProvider(output: FabricDataOutput, registriesFuture: Comp
                 LakeFeature.Config(
                     BlockStateProvider.of(HybridAquaticBlocks.BRINE.defaultState),
                     BlockStateProvider.of(Blocks.TUFF.defaultState)
+                )
+            )
+        )
+
+        entries.add(
+            HybridAquaticConfiguredFeatures.DEEP_OCEAN_VEGETATION,
+            ConfiguredFeature(
+                Feature.SIMPLE_RANDOM_SELECTOR,
+                SimpleRandomFeatureConfig(
+                    RegistryEntryList.of(
+                        entries.ref(HybridAquaticPlacedFeatures.DEEP_CORAL_TREE),
+                        entries.ref(HybridAquaticPlacedFeatures.DEEP_CORAL_CLAW),
+                        entries.ref(HybridAquaticPlacedFeatures.DEEP_CORAL_MUSHROOM)
+                    )
                 )
             )
         )

@@ -21,6 +21,7 @@ import dev.hybridlabs.aquatic.tag.HybridAquaticBiomeTags
 import dev.hybridlabs.aquatic.utils.HybridAquaticCustomTrades.registerCustomTrades
 import dev.hybridlabs.aquatic.world.EntityBiomeModifications
 import dev.hybridlabs.aquatic.world.gen.feature.FeatureBiomeModifications
+import dev.hybridlabs.aquatic.world.gen.feature.HybridAquaticConfiguredFeatures
 import dev.hybridlabs.aquatic.world.gen.feature.HybridAquaticFeatures
 import dev.hybridlabs.aquatic.world.gen.feature.HybridAquaticPlacedFeatures
 import net.fabricmc.api.ModInitializer
@@ -73,6 +74,7 @@ object HybridAquatic : ModInitializer {
 
         HybridAquaticFeatures
         HybridAquaticPlacedFeatures
+        HybridAquaticConfiguredFeatures
 
         HybridAquaticNetworking
 

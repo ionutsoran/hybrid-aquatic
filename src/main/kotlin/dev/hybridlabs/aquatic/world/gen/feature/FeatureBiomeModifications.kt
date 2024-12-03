@@ -46,5 +46,11 @@ object FeatureBiomeModifications {
             GenerationStep.Feature.LAKES,
             HybridAquaticPlacedFeatures.BRINE_LAKE
         )
+
+        BiomeModifications.addFeature(
+            BiomeSelectors.tag(BiomeTags.IS_DEEP_OCEAN),
+            GenerationStep.Feature.LAKES,
+            HybridAquaticPlacedFeatures.BRINE_LAKE
+        )
     }
 }
