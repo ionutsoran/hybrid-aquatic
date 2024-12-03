@@ -83,6 +83,7 @@ class EntityTypeTagProvider(output: FabricDataOutput, registriesFuture: Completa
         // cephalopods
         getOrCreateTagBuilder(HybridAquaticEntityTags.CEPHALOPOD)
             .add(
+                HybridAquaticEntityTypes.ARROW_SQUID,
                 HybridAquaticEntityTypes.CUTTLEFISH,
                 HybridAquaticEntityTypes.FIREFLY_SQUID,
                 HybridAquaticEntityTypes.GLOWING_SUCKER_OCTOPUS,
@@ -175,6 +176,10 @@ class EntityTypeTagProvider(output: FabricDataOutput, registriesFuture: Completa
                 HybridAquaticEntityTypes.BARRELEYE,
                 HybridAquaticEntityTypes.DRAGONFISH,
                 HybridAquaticEntityTypes.RATFISH,
+                EntityType.COD,
+                EntityType.SALMON,
+                EntityType.TROPICAL_FISH,
+                EntityType.AXOLOTL,
             )
 
         // entities that you can catch with the fishing net

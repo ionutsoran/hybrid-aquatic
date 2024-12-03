@@ -36,6 +36,10 @@
     "hybrid-aquatic:anglerfish",
     "hybrid-aquatic:barreleye",
     "hybrid-aquatic:dragonfish",
-    "hybrid-aquatic:ratfish"
+    "hybrid-aquatic:ratfish",
+    "minecraft:cod",
+    "minecraft:salmon",
+    "minecraft:tropical_fish",
+    "minecraft:axolotl"
   ]
 }
