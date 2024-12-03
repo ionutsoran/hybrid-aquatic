@@ -101,6 +101,11 @@ class ConfiguredFeatureProvider(output: FabricDataOutput, registriesFuture: Comp
             )
         )
 
+        // deep coral
+        entries.add(HybridAquaticConfiguredFeatures.DEEP_CORAL_TREE, ConfiguredFeature(HybridAquaticFeatures.DEEP_CORAL_TREE, DefaultFeatureConfig()))
+        entries.add(HybridAquaticConfiguredFeatures.DEEP_CORAL_CLAW, ConfiguredFeature(HybridAquaticFeatures.DEEP_CORAL_CLAW, DefaultFeatureConfig()))
+        entries.add(HybridAquaticConfiguredFeatures.DEEP_CORAL_MUSHROOM, ConfiguredFeature(HybridAquaticFeatures.DEEP_CORAL_MUSHROOM, DefaultFeatureConfig()))
+
         // brine lake
         entries.add(
             HybridAquaticConfiguredFeatures.BRINE_LAKE,

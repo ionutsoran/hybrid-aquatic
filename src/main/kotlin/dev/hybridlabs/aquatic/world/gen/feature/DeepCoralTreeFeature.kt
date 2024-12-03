@@ -8,7 +8,7 @@ import net.minecraft.util.math.random.Random
 import net.minecraft.world.WorldAccess
 import net.minecraft.world.gen.feature.DefaultFeatureConfig
 
-class DeepCoralTreeFeature(codec: Codec<DefaultFeatureConfig?>?) : DeepCoralFeature(codec) {
+class DeepCoralTreeFeature(codec: Codec<DefaultFeatureConfig>) : DeepCoralFeature(codec) {
     override fun generateDeepCoral(world: WorldAccess, random: Random, pos: BlockPos, state: BlockState): Boolean {
         val mutable = pos.mutableCopy()
         val i = random.nextInt(3) + 1

@@ -8,7 +8,7 @@ import net.minecraft.util.math.random.Random
 import net.minecraft.world.WorldAccess
 import net.minecraft.world.gen.feature.DefaultFeatureConfig
 
-class DeepCoralMushroomFeature(codec: Codec<DefaultFeatureConfig?>?) : DeepCoralFeature(codec) {
+class DeepCoralMushroomFeature(codec: Codec<DefaultFeatureConfig>) : DeepCoralFeature(codec) {
     override fun generateDeepCoral(world: WorldAccess, random: Random, pos: BlockPos, state: BlockState): Boolean {
         val i = random.nextInt(3) + 3
         val j = random.nextInt(3) + 3

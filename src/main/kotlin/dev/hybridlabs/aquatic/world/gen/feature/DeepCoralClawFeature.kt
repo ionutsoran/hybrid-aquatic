@@ -10,7 +10,7 @@ import net.minecraft.world.WorldAccess
 import net.minecraft.world.gen.feature.DefaultFeatureConfig
 import java.util.stream.Stream
 
-class DeepCoralClawFeature(codec: Codec<DefaultFeatureConfig?>?) : DeepCoralFeature(codec) {
+class DeepCoralClawFeature(codec: Codec<DefaultFeatureConfig>) : DeepCoralFeature(codec) {
     override fun generateDeepCoral(world: WorldAccess, random: Random, pos: BlockPos, state: BlockState): Boolean {
         if (!this.generateDeepCoralPiece(world, random, pos, state)) {
             return false
