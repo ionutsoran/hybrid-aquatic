@@ -14,6 +14,7 @@ import net.minecraft.entity.damage.DamageSource
 import net.minecraft.entity.data.DataTracker
 import net.minecraft.entity.data.TrackedData
 import net.minecraft.entity.data.TrackedDataHandlerRegistry
+import net.minecraft.entity.effect.StatusEffectInstance
 import net.minecraft.entity.mob.Angerable
 import net.minecraft.entity.mob.WaterCreatureEntity
 import net.minecraft.entity.player.PlayerEntity
@@ -27,10 +28,7 @@ import net.minecraft.util.math.BlockPos
 import net.minecraft.util.math.Vec3d
 import net.minecraft.util.math.intprovider.UniformIntProvider
 import net.minecraft.util.math.random.Random
-import net.minecraft.world.LocalDifficulty
-import net.minecraft.world.ServerWorldAccess
-import net.minecraft.world.World
-import net.minecraft.world.WorldAccess
+import net.minecraft.world.*
 import software.bernie.geckolib.animatable.GeoEntity
 import software.bernie.geckolib.constant.DefaultAnimations
 import software.bernie.geckolib.core.animatable.instance.AnimatableInstanceCache
@@ -340,6 +338,30 @@ open class HybridAquaticSharkEntity(
         override fun stop() {
             super.stop()
             shark.attemptAttack = false
+        }
+    }
+
+    override fun tryAttack(target: Entity?): Boolean {
+        if (super.tryAttack(target)) {
+
+            playSound(SoundEvents.ENTITY_FOX_BITE,1.0F,0.0F)
+
+            if (target is LivingEntity) {
+                var i = 0
+                if (world.difficulty == Difficulty.NORMAL) {
+                    i = 7
+                } else if (world.difficulty == Difficulty.HARD) {
+                    i = 15
+                }
+
+                if (i > 0) {
+                    target.addStatusEffect(StatusEffectInstance(HybridAquaticStatusEffects.BLEEDING, i * 20, 0), this)
+                }
+            }
+
+            return true
+        } else {
+            return false
         }
     }
 
