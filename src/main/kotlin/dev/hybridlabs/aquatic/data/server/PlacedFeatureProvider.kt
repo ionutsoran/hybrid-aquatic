@@ -72,6 +72,7 @@ class PlacedFeatureProvider(output: FabricDataOutput, registriesFuture: Completa
             HybridAquaticPlacedFeatures.HYDROTHERMAL_VENT,
             PlacedFeature(entries.ref(HybridAquaticConfiguredFeatures.HYDROTHERMAL_VENT_PATCH),
                 listOf(
+                    NoiseBasedCountPlacementModifier.of(10, 400.0, 0.0),
                     SquarePlacementModifier.of(),
                     PlacedFeatures.BOTTOM_TO_120_RANGE,
                     SurfaceThresholdFilterPlacementModifier.of(Heightmap.Type.OCEAN_FLOOR_WG, Int.MIN_VALUE, -32),
@@ -90,6 +91,36 @@ class PlacedFeatureProvider(output: FabricDataOutput, registriesFuture: Completa
                     SquarePlacementModifier.of(),
                     HeightmapPlacementModifier.of(Heightmap.Type.OCEAN_FLOOR_WG),
                     BiomePlacementModifier.of(),
+                )
+            )
+        )
+
+        entries.add(
+            HybridAquaticPlacedFeatures.DEEP_CORAL_MUSHROOM,
+            PlacedFeature(entries.ref(HybridAquaticConfiguredFeatures.DEEP_CORAL_MUSHROOM),
+                listOf(
+                    SquarePlacementModifier.of(),
+                    HeightmapPlacementModifier.of(Heightmap.Type.OCEAN_FLOOR_WG),
+                )
+            )
+        )
+
+        entries.add(
+            HybridAquaticPlacedFeatures.DEEP_CORAL_TREE,
+            PlacedFeature(entries.ref(HybridAquaticConfiguredFeatures.DEEP_CORAL_TREE),
+                listOf(
+                    SquarePlacementModifier.of(),
+                    HeightmapPlacementModifier.of(Heightmap.Type.OCEAN_FLOOR_WG),
+                )
+            )
+        )
+
+        entries.add(
+            HybridAquaticPlacedFeatures.DEEP_CORAL_CLAW,
+            PlacedFeature(entries.ref(HybridAquaticConfiguredFeatures.DEEP_CORAL_CLAW),
+                listOf(
+                    SquarePlacementModifier.of(),
+                    HeightmapPlacementModifier.of(Heightmap.Type.OCEAN_FLOOR_WG),
                 )
             )
         )

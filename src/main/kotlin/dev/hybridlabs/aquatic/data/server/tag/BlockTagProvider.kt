@@ -57,20 +57,16 @@ class BlockTagProvider(output: FabricDataOutput, registriesFuture: CompletableFu
             .add(HybridAquaticBlocks.STRIPPED_DRIFTWOOD_WOOD)
 
         getOrCreateTagBuilder(BlockTags.CORAL_BLOCKS)
-            .add(HybridAquaticBlocks.LOPHELIA_CORAL_BLOCK)
-            .add(HybridAquaticBlocks.THORN_CORAL_BLOCK)
+            .add(HybridAquaticBlocks.BUTTON_CORAL_BLOCK)
 
         getOrCreateTagBuilder(BlockTags.CORALS)
-            .add(HybridAquaticBlocks.LOPHELIA_CORAL)
-            .add(HybridAquaticBlocks.THORN_CORAL)
+            .add(HybridAquaticBlocks.BUTTON_CORAL)
 
         getOrCreateTagBuilder(BlockTags.CORAL_PLANTS)
-            .add(HybridAquaticBlocks.LOPHELIA_CORAL_FAN)
-            .add(HybridAquaticBlocks.THORN_CORAL_FAN)
+            .add(HybridAquaticBlocks.BUTTON_CORAL_FAN)
 
         getOrCreateTagBuilder(BlockTags.WALL_CORALS)
-            .add(HybridAquaticBlocks.LOPHELIA_CORAL_WALL_FAN)
-            .add(HybridAquaticBlocks.THORN_CORAL_WALL_FAN)
+            .add(HybridAquaticBlocks.BUTTON_CORAL_WALL_FAN)
 
         getOrCreateTagBuilder(HybridAquaticBlockTags.DEEP_CORALS)
             .forceAddTag(HybridAquaticBlockTags.DEEP_CORAL_PLANTS)

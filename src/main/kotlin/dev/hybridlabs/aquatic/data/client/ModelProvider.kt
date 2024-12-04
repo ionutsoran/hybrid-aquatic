@@ -16,90 +16,125 @@ import net.minecraft.registry.Registries
 import net.minecraft.util.Identifier
 
 class ModelProvider(output: FabricDataOutput) : FabricModelProvider(output) {
-    override fun generateBlockStateModels(generator: BlockStateModelGenerator) { generator.run {
-        // plushies
-        Registries.BLOCK
-            .filterIsInstance<PlushieBlock>()
-            .forEach { block ->
+    override fun generateBlockStateModels(generator: BlockStateModelGenerator) {
+        generator.run {
+            // plushies
+            Registries.BLOCK
+                .filterIsInstance<PlushieBlock>()
+                .forEach { block ->
+                    excludeFromSimpleItemModelGeneration(block)
+
+                    registerBuiltinWithParticle(block, TextureMap.getId(block.particleBlock))
+                    registerParentedItemModel(block, TEMPLATE_PLUSHIE)
+                }
+
+            // fluids
+            Registries.BLOCK
+                .filterIsInstance<FluidBlock>()
+                .forEach { block ->
+                    val id = Registries.BLOCK.getId(block)
+                    if (id.namespace == HybridAquatic.MOD_ID) {
+                        registerSimpleState(block)
+                    }
+                }
+
+            // spawn eggs
+            Registries.ITEM
+                .filter(filterHybridAquatic(Registries.ITEM))
+                .forEach { item ->
+                    if (item is SpawnEggItem) {
+                        registerParentedItemModel(item, ModelIds.getMinecraftNamespacedItem("template_spawn_egg"))
+                    }
+                }
+
+            // builtin
+            mapOf(
+                HybridAquaticBlocks.ANEMONE to (null to TEMPLATE_ANEMONE),
+                HybridAquaticBlocks.MESSAGE_IN_A_BOTTLE to (Blocks.GLASS to TEMPLATE_MESSAGE_IN_A_BOTTLE),
+            ).forEach { (block, info) ->
+                val (particleBlock, template) = info
+
                 excludeFromSimpleItemModelGeneration(block)
 
-                registerBuiltinWithParticle(block, TextureMap.getId(block.particleBlock))
-                registerParentedItemModel(block, TEMPLATE_PLUSHIE)
+                particleBlock?.let { b -> registerBuiltinWithParticle(block, TextureMap.getId(b)) }
+                registerParentedItemModel(block, template)
             }
 
-        // fluids
-        Registries.BLOCK
-            .filterIsInstance<FluidBlock>()
-            .forEach { block ->
-                val id = Registries.BLOCK.getId(block)
-                if (id.namespace == HybridAquatic.MOD_ID) {
-                    registerSimpleState(block)
-                }
-            }
+            registerBuiltinWithParticle(
+                HybridAquaticBlocks.ANEMONE,
+                TextureMap.getSubId(HybridAquaticBlocks.ANEMONE, "_top")
+            )
 
-        // spawn eggs
-        Registries.ITEM
-            .filter(filterHybridAquatic(Registries.ITEM))
-            .forEach { item ->
-                if (item is SpawnEggItem) {
-                    registerParentedItemModel(item, ModelIds.getMinecraftNamespacedItem("template_spawn_egg"))
-                }
-            }
+            // simple cubes
+            setOf(
+                HybridAquaticBlocks.HYBRID_CRATE,
+                HybridAquaticBlocks.DRIFTWOOD_CRATE,
+                HybridAquaticBlocks.OAK_CRATE,
+                HybridAquaticBlocks.SPRUCE_CRATE,
+                HybridAquaticBlocks.BIRCH_CRATE,
+                HybridAquaticBlocks.DARK_OAK_CRATE,
+                HybridAquaticBlocks.JUNGLE_CRATE,
+                HybridAquaticBlocks.ACACIA_CRATE,
+                HybridAquaticBlocks.MANGROVE_CRATE,
+                HybridAquaticBlocks.CHERRY_CRATE,
+            ).forEach(generator::registerSimpleCubeAll)
 
-        // builtin
-        mapOf(
-            HybridAquaticBlocks.ANEMONE to (null to TEMPLATE_ANEMONE),
-            HybridAquaticBlocks.MESSAGE_IN_A_BOTTLE to (Blocks.GLASS to TEMPLATE_MESSAGE_IN_A_BOTTLE),
-        ).forEach { (block, info) ->
-            val (particleBlock, template) = info
+            // wood
+            val driftwoodPool = registerCubeAllModelTexturePool(HybridAquaticBlocks.DRIFTWOOD_PLANKS)
 
-            excludeFromSimpleItemModelGeneration(block)
+            registerLog(HybridAquaticBlocks.DRIFTWOOD_LOG).log(HybridAquaticBlocks.DRIFTWOOD_LOG)
+                .wood(HybridAquaticBlocks.DRIFTWOOD_WOOD)
+            registerLog(HybridAquaticBlocks.STRIPPED_DRIFTWOOD_LOG).log(HybridAquaticBlocks.STRIPPED_DRIFTWOOD_LOG)
+                .wood(HybridAquaticBlocks.STRIPPED_DRIFTWOOD_WOOD)
 
-            particleBlock?.let { b -> registerBuiltinWithParticle(block, TextureMap.getId(b)) }
-            registerParentedItemModel(block, template)
+            registerDoor(HybridAquaticBlocks.DRIFTWOOD_DOOR)
+            registerTrapdoor(HybridAquaticBlocks.DRIFTWOOD_TRAPDOOR)
+
+            driftwoodPool.stairs(HybridAquaticBlocks.DRIFTWOOD_STAIRS)
+            driftwoodPool.slab(HybridAquaticBlocks.DRIFTWOOD_SLAB)
+            driftwoodPool.button(HybridAquaticBlocks.DRIFTWOOD_BUTTON)
+            driftwoodPool.pressurePlate(HybridAquaticBlocks.DRIFTWOOD_PRESSURE_PLATE)
+            driftwoodPool.fence(HybridAquaticBlocks.DRIFTWOOD_FENCE)
+            driftwoodPool.fenceGate(HybridAquaticBlocks.DRIFTWOOD_FENCE_GATE)
+
+            registerTorch(HybridAquaticBlocks.GLOWSTICK, HybridAquaticBlocks.WALL_GLOWSTICK)
+
+            registerParentedItemModel(
+                HybridAquaticBlocks.CRAB_POT,
+                ModelIds.getBlockModelId(HybridAquaticBlocks.CRAB_POT)
+            )
+
+            registerCoral(
+                HybridAquaticBlocks.LOPHELIA_CORAL,
+                HybridAquaticBlocks.DEAD_LOPHELIA_CORAL,
+                HybridAquaticBlocks.LOPHELIA_CORAL_BLOCK,
+                HybridAquaticBlocks.DEAD_LOPHELIA_CORAL_BLOCK,
+                HybridAquaticBlocks.LOPHELIA_CORAL_FAN,
+                HybridAquaticBlocks.DEAD_LOPHELIA_CORAL_FAN,
+                HybridAquaticBlocks.LOPHELIA_CORAL_WALL_FAN,
+                HybridAquaticBlocks.DEAD_LOPHELIA_CORAL_WALL_FAN
+            )
+            registerCoral(
+                HybridAquaticBlocks.BUTTON_CORAL,
+                HybridAquaticBlocks.DEAD_BUTTON_CORAL,
+                HybridAquaticBlocks.BUTTON_CORAL_BLOCK,
+                HybridAquaticBlocks.DEAD_BUTTON_CORAL_BLOCK,
+                HybridAquaticBlocks.BUTTON_CORAL_FAN,
+                HybridAquaticBlocks.DEAD_BUTTON_CORAL_FAN,
+                HybridAquaticBlocks.BUTTON_CORAL_WALL_FAN,
+                HybridAquaticBlocks.DEAD_BUTTON_CORAL_WALL_FAN
+            )
+            registerCoral(
+                HybridAquaticBlocks.THORN_CORAL,
+                HybridAquaticBlocks.DEAD_THORN_CORAL,
+                HybridAquaticBlocks.THORN_CORAL_BLOCK,
+                HybridAquaticBlocks.DEAD_THORN_CORAL_BLOCK,
+                HybridAquaticBlocks.THORN_CORAL_FAN,
+                HybridAquaticBlocks.DEAD_THORN_CORAL_FAN,
+                HybridAquaticBlocks.THORN_CORAL_WALL_FAN,
+                HybridAquaticBlocks.DEAD_THORN_CORAL_WALL_FAN
+            )
         }
-
-        registerBuiltinWithParticle(HybridAquaticBlocks.ANEMONE, TextureMap.getSubId(HybridAquaticBlocks.ANEMONE, "_top"))
-
-        // simple cubes
-        setOf(
-            HybridAquaticBlocks.HYBRID_CRATE,
-            HybridAquaticBlocks.DRIFTWOOD_CRATE,
-            HybridAquaticBlocks.OAK_CRATE,
-            HybridAquaticBlocks.SPRUCE_CRATE,
-            HybridAquaticBlocks.BIRCH_CRATE,
-            HybridAquaticBlocks.DARK_OAK_CRATE,
-            HybridAquaticBlocks.JUNGLE_CRATE,
-            HybridAquaticBlocks.ACACIA_CRATE,
-            HybridAquaticBlocks.MANGROVE_CRATE,
-            HybridAquaticBlocks.CHERRY_CRATE,
-        ).forEach(generator::registerSimpleCubeAll)
-
-        // wood
-        val driftwoodPool = registerCubeAllModelTexturePool(HybridAquaticBlocks.DRIFTWOOD_PLANKS)
-
-        registerLog(HybridAquaticBlocks.DRIFTWOOD_LOG).log(HybridAquaticBlocks.DRIFTWOOD_LOG)
-            .wood(HybridAquaticBlocks.DRIFTWOOD_WOOD)
-        registerLog(HybridAquaticBlocks.STRIPPED_DRIFTWOOD_LOG).log(HybridAquaticBlocks.STRIPPED_DRIFTWOOD_LOG)
-            .wood(HybridAquaticBlocks.STRIPPED_DRIFTWOOD_WOOD)
-
-        registerDoor(HybridAquaticBlocks.DRIFTWOOD_DOOR)
-        registerTrapdoor(HybridAquaticBlocks.DRIFTWOOD_TRAPDOOR)
-
-        driftwoodPool.stairs(HybridAquaticBlocks.DRIFTWOOD_STAIRS)
-        driftwoodPool.slab(HybridAquaticBlocks.DRIFTWOOD_SLAB)
-        driftwoodPool.button(HybridAquaticBlocks.DRIFTWOOD_BUTTON)
-        driftwoodPool.pressurePlate(HybridAquaticBlocks.DRIFTWOOD_PRESSURE_PLATE)
-        driftwoodPool.fence(HybridAquaticBlocks.DRIFTWOOD_FENCE)
-        driftwoodPool.fenceGate(HybridAquaticBlocks.DRIFTWOOD_FENCE_GATE)
-
-        registerTorch(HybridAquaticBlocks.GLOWSTICK, HybridAquaticBlocks.WALL_GLOWSTICK)
-
-        registerParentedItemModel(HybridAquaticBlocks.CRAB_POT, ModelIds.getBlockModelId(HybridAquaticBlocks.CRAB_POT))
-
-        registerCoral(HybridAquaticBlocks.LOPHELIA_CORAL, HybridAquaticBlocks.DEAD_LOPHELIA_CORAL, HybridAquaticBlocks.LOPHELIA_CORAL_BLOCK, HybridAquaticBlocks.DEAD_LOPHELIA_CORAL_BLOCK, HybridAquaticBlocks.LOPHELIA_CORAL_FAN, HybridAquaticBlocks.DEAD_LOPHELIA_CORAL_FAN, HybridAquaticBlocks.LOPHELIA_CORAL_WALL_FAN, HybridAquaticBlocks.DEAD_LOPHELIA_CORAL_WALL_FAN)
-        registerCoral(HybridAquaticBlocks.THORN_CORAL, HybridAquaticBlocks.DEAD_THORN_CORAL, HybridAquaticBlocks.THORN_CORAL_BLOCK, HybridAquaticBlocks.DEAD_THORN_CORAL_BLOCK, HybridAquaticBlocks.THORN_CORAL_FAN, HybridAquaticBlocks.DEAD_THORN_CORAL_FAN, HybridAquaticBlocks.THORN_CORAL_WALL_FAN, HybridAquaticBlocks.DEAD_THORN_CORAL_WALL_FAN)
-    }
     }
 
     override fun generateItemModels(generator: ItemModelGenerator) {
