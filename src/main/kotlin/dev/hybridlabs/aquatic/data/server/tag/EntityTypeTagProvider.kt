@@ -6,6 +6,7 @@ import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricTagProvider
 import net.minecraft.entity.EntityType
 import net.minecraft.registry.RegistryWrapper
+import net.minecraft.registry.tag.EntityTypeTags
 import java.util.concurrent.CompletableFuture
 
 class EntityTypeTagProvider(output: FabricDataOutput, registriesFuture: CompletableFuture<RegistryWrapper.WrapperLookup>) : FabricTagProvider.EntityTypeTagProvider(output, registriesFuture) {
@@ -95,6 +96,16 @@ class EntityTypeTagProvider(output: FabricDataOutput, registriesFuture: Completa
             )
 
         getOrCreateTagBuilder(HybridAquaticEntityTags.NONE)
+
+        getOrCreateTagBuilder(EntityTypeTags.AXOLOTL_HUNT_TARGETS)
+            .add(
+                HybridAquaticEntityTypes.TETRA,
+                HybridAquaticEntityTypes.DANIO,
+                HybridAquaticEntityTypes.TIGER_BARB,
+                HybridAquaticEntityTypes.BETTA,
+                HybridAquaticEntityTypes.OSCAR,
+                HybridAquaticEntityTypes.DISCUS,
+            )
 
         // sharks
         getOrCreateTagBuilder(HybridAquaticEntityTags.SHARK)
