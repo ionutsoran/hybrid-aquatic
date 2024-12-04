@@ -127,10 +127,9 @@ class ConfiguredFeatureProvider(output: FabricDataOutput, registriesFuture: Comp
         entries.add(
             HybridAquaticConfiguredFeatures.BRINE_LAKE,
             ConfiguredFeature(
-                Feature.LAKE,
-                LakeFeature.Config(
-                    BlockStateProvider.of(HybridAquaticBlocks.BRINE.defaultState),
-                    BlockStateProvider.of(Blocks.TUFF.defaultState)
+                HybridAquaticFeatures.BRINE_LAKE_FEATURE, BrineLakeFeatureConfig(
+                    SimpleBlockStateProvider.of(Blocks.TUFF),
+                    SimpleBlockStateProvider.of(HybridAquaticBlocks.BRINE),
                 )
             )
         )
