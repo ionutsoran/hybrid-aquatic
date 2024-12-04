@@ -31,7 +31,6 @@ public abstract class EntityMixin {
             )
     )
 
-    @Unique
     public FluidState brine$applyToxicShockInBrine(FluidState state) {
         if ((Object) this instanceof LivingEntity entity) {
 
