@@ -56,6 +56,10 @@
         {
           "type": "minecraft:item",
           "name": "hybrid-aquatic:koi"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "hybrid-aquatic:dorado"
         }
       ],
       "rolls": 1.0

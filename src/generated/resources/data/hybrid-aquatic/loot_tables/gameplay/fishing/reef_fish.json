@@ -114,6 +114,16 @@
           "type": "minecraft:item",
           "name": "hybrid-aquatic:flying_fish",
           "weight": 4
+        },
+        {
+          "type": "minecraft:item",
+          "name": "hybrid-aquatic:squirrel_fish",
+          "weight": 4
+        },
+        {
+          "type": "minecraft:item",
+          "name": "hybrid-aquatic:coral_grouper",
+          "weight": 4
         }
       ],
       "rolls": 1.0

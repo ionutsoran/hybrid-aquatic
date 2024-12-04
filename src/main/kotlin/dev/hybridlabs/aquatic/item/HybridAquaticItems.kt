@@ -515,6 +515,19 @@ object HybridAquaticItems {
         )
     )
 
+    val SQUIRREL_FISH = register("squirrel_fish",
+        Item(
+            FabricItemSettings()
+                .food(
+                    FoodComponent.Builder()
+                        .hunger(1)
+                        .saturationModifier(0.2F)
+                        .meat()
+                        .build()
+                )
+        )
+    )
+
     val GOURAMI = register("gourami",
         Item(
             FabricItemSettings()
@@ -819,6 +832,45 @@ object HybridAquaticItems {
     )
 
     val PARROTFISH = register("parrotfish",
+        Item(
+            FabricItemSettings()
+                .food(
+                    FoodComponent.Builder()
+                        .hunger(2)
+                        .saturationModifier(0.4F)
+                        .meat()
+                        .build()
+                )
+        )
+    )
+
+    val CORAL_GROUPER = register("coral_grouper",
+        Item(
+            FabricItemSettings()
+                .food(
+                    FoodComponent.Builder()
+                        .hunger(2)
+                        .saturationModifier(0.4F)
+                        .meat()
+                        .build()
+                )
+        )
+    )
+
+    val COELACANTH = register("coelacanth",
+        Item(
+            FabricItemSettings()
+                .food(
+                    FoodComponent.Builder()
+                        .hunger(2)
+                        .saturationModifier(0.4F)
+                        .meat()
+                        .build()
+                )
+        )
+    )
+
+    val DORADO = register("dorado",
         Item(
             FabricItemSettings()
                 .food(

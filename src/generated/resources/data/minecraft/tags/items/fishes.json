@@ -45,6 +45,10 @@
     "hybrid-aquatic:discus",
     "hybrid-aquatic:ratfish",
     "hybrid-aquatic:flying_fish",
-    "hybrid-aquatic:tiger_barb"
+    "hybrid-aquatic:tiger_barb",
+    "hybrid-aquatic:coelacanth",
+    "hybrid-aquatic:coral_grouper",
+    "hybrid-aquatic:squirrel_fish",
+    "hybrid-aquatic:dorado"
   ]
 }

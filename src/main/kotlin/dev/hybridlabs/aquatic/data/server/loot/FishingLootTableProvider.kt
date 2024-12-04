@@ -52,6 +52,10 @@ class FishingLootTableProvider(output: FabricDataOutput) : SimpleFabricLootTable
                             ItemEntry.builder(HybridAquaticItems.OPAH)
                                 .weight(2)
                         )
+                        .with(
+                            ItemEntry.builder(HybridAquaticItems.COELACANTH)
+                                .weight(2)
+                        )
                 )
         )
 
@@ -151,6 +155,14 @@ class FishingLootTableProvider(output: FabricDataOutput) : SimpleFabricLootTable
                         )
                         .with(
                             ItemEntry.builder(HybridAquaticItems.FLYING_FISH)
+                                .weight(4)
+                        )
+                        .with(
+                            ItemEntry.builder(HybridAquaticItems.SQUIRREL_FISH)
+                                .weight(4)
+                        )
+                        .with(
+                            ItemEntry.builder(HybridAquaticItems.CORAL_GROUPER)
                                 .weight(4)
                         )
                 )
@@ -265,6 +277,10 @@ class FishingLootTableProvider(output: FabricDataOutput) : SimpleFabricLootTable
                         )
                         .with(
                             ItemEntry.builder(HybridAquaticItems.KOI)
+                                .weight(1)
+                        )
+                        .with(
+                            ItemEntry.builder(HybridAquaticItems.DORADO)
                                 .weight(1)
                         )
                 )
