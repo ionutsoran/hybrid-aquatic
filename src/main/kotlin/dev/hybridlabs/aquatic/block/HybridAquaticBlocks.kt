@@ -134,6 +134,20 @@ object HybridAquaticBlocks {
         .hardness(1.0F)
         .sounds(BlockSoundGroup.CORAL)))
 
+    val DEAD_SUN_CORAL_BLOCK = register("dead_sun_coral_block", DeadCoralBlock(FabricBlockSettings.copyOf(Blocks.DEAD_FIRE_CORAL_BLOCK)
+        .mapColor(MapColor.OFF_WHITE)
+        .instrument(Instrument.BASEDRUM)
+        .requiresTool()
+        .hardness(1.0F)
+        .sounds(BlockSoundGroup.CORAL)))
+
+    val SUN_CORAL_BLOCK = register("sun_coral_block", CoralBlockBlock(DEAD_SUN_CORAL_BLOCK, FabricBlockSettings.copyOf(Blocks.FIRE_CORAL_BLOCK)
+        .mapColor(MapColor.PURPLE)
+        .instrument(Instrument.BASEDRUM)
+        .requiresTool()
+        .hardness(1.0F)
+        .sounds(BlockSoundGroup.CORAL)))
+
     val DEAD_LOPHELIA_CORAL_FAN = register("dead_lophelia_coral_fan", DeadCoralFanBlock(FabricBlockSettings.copyOf(Blocks.DEAD_FIRE_CORAL_FAN)))
 
     val LOPHELIA_CORAL_FAN = register("lophelia_coral_fan", CoralFanBlock(DEAD_LOPHELIA_CORAL_FAN, FabricBlockSettings.copyOf(Blocks.FIRE_CORAL_FAN)))
@@ -145,6 +159,18 @@ object HybridAquaticBlocks {
     val LOPHELIA_CORAL = register("lophelia_coral", CoralBlock(DEAD_LOPHELIA_CORAL, FabricBlockSettings.copyOf(Blocks.FIRE_CORAL)))
 
     val LOPHELIA_CORAL_WALL_FAN = register("lophelia_coral_wall_fan", CoralWallFanBlock(DEAD_LOPHELIA_CORAL_WALL_FAN, FabricBlockSettings.copyOf(Blocks.FIRE_CORAL_WALL_FAN).dropsLike(LOPHELIA_CORAL)))
+
+    val DEAD_SUN_CORAL_FAN = register("dead_sun_coral_fan", DeadCoralFanBlock(FabricBlockSettings.copyOf(Blocks.DEAD_FIRE_CORAL_FAN)))
+
+    val SUN_CORAL_FAN = register("sun_coral_fan", CoralFanBlock(DEAD_SUN_CORAL_FAN, FabricBlockSettings.copyOf(Blocks.FIRE_CORAL_FAN)))
+
+    val DEAD_SUN_CORAL = register("dead_sun_coral", DeadCoralBlock(FabricBlockSettings.copyOf(Blocks.DEAD_FIRE_CORAL)))
+
+    val DEAD_SUN_CORAL_WALL_FAN = register("dead_sun_coral_wall_fan", DeadCoralWallFanBlock(FabricBlockSettings.copyOf(Blocks.DEAD_FIRE_CORAL_WALL_FAN).dropsLike(DEAD_LOPHELIA_CORAL)))
+
+    val SUN_CORAL = register("sun_coral", CoralBlock(DEAD_SUN_CORAL, FabricBlockSettings.copyOf(Blocks.FIRE_CORAL)))
+
+    val SUN_CORAL_WALL_FAN = register("sun_coral_wall_fan", CoralWallFanBlock(DEAD_SUN_CORAL_WALL_FAN, FabricBlockSettings.copyOf(Blocks.FIRE_CORAL_WALL_FAN).dropsLike(LOPHELIA_CORAL)))
 
     val DEAD_BUTTON_CORAL_FAN = register("dead_button_coral_fan", DeadCoralFanBlock(FabricBlockSettings.copyOf(Blocks.DEAD_FIRE_CORAL_FAN)))
 

@@ -1,6 +1,7 @@
 {
   "replace": false,
   "values": [
-    "hybrid-aquatic:button_coral_block"
+    "hybrid-aquatic:button_coral_block",
+    "hybrid-aquatic:sun_coral_block"
   ]
 }

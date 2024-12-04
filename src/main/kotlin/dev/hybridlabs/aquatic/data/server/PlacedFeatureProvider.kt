@@ -76,7 +76,7 @@ class PlacedFeatureProvider(output: FabricDataOutput, registriesFuture: Completa
                     SquarePlacementModifier.of(),
                     PlacedFeatures.BOTTOM_TO_120_RANGE,
                     SurfaceThresholdFilterPlacementModifier.of(Heightmap.Type.OCEAN_FLOOR_WG, Int.MIN_VALUE, -32),
-                    CountPlacementModifier.of(4),
+                    CountPlacementModifier.of(1),
                     BiomePlacementModifier.of()
                 )
             )

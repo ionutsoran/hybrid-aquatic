@@ -47,15 +47,19 @@ class BlockTagProvider(output: FabricDataOutput, registriesFuture: CompletableFu
 
         getOrCreateTagBuilder(BlockTags.CORAL_BLOCKS)
             .add(HybridAquaticBlocks.BUTTON_CORAL_BLOCK)
+            .add(HybridAquaticBlocks.SUN_CORAL_BLOCK)
 
         getOrCreateTagBuilder(BlockTags.CORALS)
             .add(HybridAquaticBlocks.BUTTON_CORAL)
+            .add(HybridAquaticBlocks.SUN_CORAL)
 
         getOrCreateTagBuilder(BlockTags.CORAL_PLANTS)
             .add(HybridAquaticBlocks.BUTTON_CORAL_FAN)
+            .add(HybridAquaticBlocks.SUN_CORAL_FAN)
 
         getOrCreateTagBuilder(BlockTags.WALL_CORALS)
             .add(HybridAquaticBlocks.BUTTON_CORAL_WALL_FAN)
+            .add(HybridAquaticBlocks.SUN_CORAL_WALL_FAN)
 
         getOrCreateTagBuilder(HybridAquaticBlockTags.DEEP_CORALS)
             .forceAddTag(HybridAquaticBlockTags.DEEP_CORAL_PLANTS)

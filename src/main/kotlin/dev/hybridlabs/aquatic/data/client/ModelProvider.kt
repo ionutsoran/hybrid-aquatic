@@ -114,6 +114,7 @@ class ModelProvider(output: FabricDataOutput) : FabricModelProvider(output) {
                 HybridAquaticBlocks.LOPHELIA_CORAL_WALL_FAN,
                 HybridAquaticBlocks.DEAD_LOPHELIA_CORAL_WALL_FAN
             )
+
             registerCoral(
                 HybridAquaticBlocks.BUTTON_CORAL,
                 HybridAquaticBlocks.DEAD_BUTTON_CORAL,
@@ -124,6 +125,7 @@ class ModelProvider(output: FabricDataOutput) : FabricModelProvider(output) {
                 HybridAquaticBlocks.BUTTON_CORAL_WALL_FAN,
                 HybridAquaticBlocks.DEAD_BUTTON_CORAL_WALL_FAN
             )
+
             registerCoral(
                 HybridAquaticBlocks.THORN_CORAL,
                 HybridAquaticBlocks.DEAD_THORN_CORAL,
@@ -133,6 +135,17 @@ class ModelProvider(output: FabricDataOutput) : FabricModelProvider(output) {
                 HybridAquaticBlocks.DEAD_THORN_CORAL_FAN,
                 HybridAquaticBlocks.THORN_CORAL_WALL_FAN,
                 HybridAquaticBlocks.DEAD_THORN_CORAL_WALL_FAN
+            )
+
+            registerCoral(
+                HybridAquaticBlocks.SUN_CORAL,
+                HybridAquaticBlocks.DEAD_SUN_CORAL,
+                HybridAquaticBlocks.SUN_CORAL_BLOCK,
+                HybridAquaticBlocks.DEAD_SUN_CORAL_BLOCK,
+                HybridAquaticBlocks.SUN_CORAL_FAN,
+                HybridAquaticBlocks.DEAD_SUN_CORAL_FAN,
+                HybridAquaticBlocks.SUN_CORAL_WALL_FAN,
+                HybridAquaticBlocks.DEAD_SUN_CORAL_WALL_FAN
             )
         }
     }
