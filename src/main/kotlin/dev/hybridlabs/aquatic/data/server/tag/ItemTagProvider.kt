@@ -66,18 +66,23 @@ class ItemTagProvider(output: FabricDataOutput, registriesFuture: CompletableFut
 
         getOrCreateTagBuilder(ItemTags.SWORDS)
             .add(HybridAquaticItems.SEASHELL_SPEAR)
+            .add(HybridAquaticItems.CORAL_BLADE)
 
         getOrCreateTagBuilder(ItemTags.SHOVELS)
             .add(HybridAquaticItems.SEASHELL_SHOVEL)
+            .add(HybridAquaticItems.CORAL_SHOVEL)
 
         getOrCreateTagBuilder(ItemTags.AXES)
             .add(HybridAquaticItems.SEASHELL_AXE)
+            .add(HybridAquaticItems.CORAL_AXE)
 
         getOrCreateTagBuilder(ItemTags.PICKAXES)
             .add(HybridAquaticItems.SEASHELL_PICKAXE)
+            .add(HybridAquaticItems.CORAL_PICKAXE)
 
         getOrCreateTagBuilder(ItemTags.HOES)
             .add(HybridAquaticItems.SEASHELL_HOE)
+            .add(HybridAquaticItems.CORAL_HOE)
 
         //#endregion
 
@@ -94,6 +99,7 @@ class ItemTagProvider(output: FabricDataOutput, registriesFuture: CompletableFut
             HybridAquaticItems.UNICORNFISH,
             HybridAquaticItems.COWFISH,
             HybridAquaticItems.TIGER_BARB,
+            HybridAquaticItems.FLYING_FISH,
             HybridAquaticItems.OSCAR,
             HybridAquaticItems.FLASHLIGHT_FISH,
             HybridAquaticItems.SURGEONFISH_ORANGESHOULDER,
@@ -267,6 +273,7 @@ class ItemTagProvider(output: FabricDataOutput, registriesFuture: CompletableFut
             HybridAquaticItems.BETTA,
             HybridAquaticItems.DISCUS,
             HybridAquaticItems.RATFISH,
+            HybridAquaticItems.FLYING_FISH,
             HybridAquaticItems.TIGER_BARB,
         ).forEach { item ->
             getOrCreateTagBuilder(ItemTags.FISHES).add(item)
