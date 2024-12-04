@@ -33,17 +33,6 @@ class BlockTagProvider(output: FabricDataOutput, registriesFuture: CompletableFu
             .add(Blocks.GRAVEL)
             .add(Blocks.SUSPICIOUS_GRAVEL)
 
-        getOrCreateTagBuilder(HybridAquaticBlockTags.CRABS_SPAWN_ON)
-            .add(Blocks.SAND)
-            .add(Blocks.MUD)
-            .add(Blocks.STONE)
-            .add(Blocks.GRAVEL)
-            .add(Blocks.DIRT)
-            .add(Blocks.GRASS_BLOCK)
-            .add(Blocks.MUDDY_MANGROVE_ROOTS)
-            .add(Blocks.MANGROVE_ROOTS)
-            .add(Blocks.GRAVEL)
-
         getOrCreateTagBuilder(BlockTags.WOODEN_FENCES)
             .add(HybridAquaticBlocks.DRIFTWOOD_FENCE)
 
@@ -86,6 +75,8 @@ class BlockTagProvider(output: FabricDataOutput, registriesFuture: CompletableFu
             .add(HybridAquaticBlocks.THORN_CORAL_WALL_FAN)
 
         getOrCreateTagBuilder(BlockTags.PICKAXE_MINEABLE)
+            .add(HybridAquaticBlocks.BUTTON_CORAL_BLOCK)
+            .add(HybridAquaticBlocks.DEAD_BUTTON_CORAL_BLOCK)
             .add(HybridAquaticBlocks.LOPHELIA_CORAL_BLOCK)
             .add(HybridAquaticBlocks.DEAD_LOPHELIA_CORAL_BLOCK)
             .add(HybridAquaticBlocks.THORN_CORAL_BLOCK)
@@ -96,7 +87,6 @@ class BlockTagProvider(output: FabricDataOutput, registriesFuture: CompletableFu
         getOrCreateTagBuilder(BlockTags.LOGS)
             .add(HybridAquaticBlocks.DRIFTWOOD_LOG)
             .add(HybridAquaticBlocks.STRIPPED_DRIFTWOOD_LOG)
-
 
         // plushies
         Registries.BLOCK

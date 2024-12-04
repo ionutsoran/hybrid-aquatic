@@ -20,8 +20,6 @@ object HybridAquaticBlockTags {
 
     val CRAB_DIGGABLE_BLOCKS = create("crab_diggable_blocks")
 
-    val CRABS_SPAWN_ON = create("crabs_spawn_on")
-
     val DEEP_CORAL_PLANTS = create("deep_coral_plants")
     val DEEP_CORAL_BLOCKS = create("deep_coral_blocks")
     val DEEP_CORALS = create("deep_corals")
