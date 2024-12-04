@@ -2,10 +2,6 @@
   "feature": "hybrid-aquatic:brine_lake",
   "placement": [
     {
-      "type": "minecraft:rarity_filter",
-      "chance": 5
-    },
-    {
       "type": "minecraft:in_square"
     },
     {

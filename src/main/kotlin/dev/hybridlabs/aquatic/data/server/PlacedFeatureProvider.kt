@@ -87,9 +87,8 @@ class PlacedFeatureProvider(output: FabricDataOutput, registriesFuture: Completa
             HybridAquaticPlacedFeatures.BRINE_LAKE,
             PlacedFeature(entries.ref(HybridAquaticConfiguredFeatures.BRINE_LAKE),
                 listOf(
-                    RarityFilterPlacementModifier.of(5),
                     SquarePlacementModifier.of(),
-                    HeightmapPlacementModifier.of(Heightmap.Type.OCEAN_FLOOR_WG),
+                    PlacedFeatures.OCEAN_FLOOR_WG_HEIGHTMAP,
                     BiomePlacementModifier.of(),
                 )
             )
