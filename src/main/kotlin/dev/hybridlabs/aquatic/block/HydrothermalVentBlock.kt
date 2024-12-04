@@ -13,8 +13,6 @@ import net.minecraft.fluid.FluidState
 import net.minecraft.fluid.Fluids
 import net.minecraft.item.ItemPlacementContext
 import net.minecraft.particle.ParticleTypes
-import net.minecraft.sound.SoundCategory
-import net.minecraft.sound.SoundEvents
 import net.minecraft.state.StateManager
 import net.minecraft.state.property.BooleanProperty
 import net.minecraft.state.property.EnumProperty
@@ -86,18 +84,6 @@ class HydrothermalVentBlock(
     override fun randomDisplayTick(state: BlockState, world: World, pos: BlockPos, random: Random) {
         if (state.get(THICKNESS) == Thickness.TIP && state.get(WATERLOGGED)) {
             spawnSmokeParticle(world, pos, random)
-        }
-        if (random.nextInt(10) == 0 && state.get(WATERLOGGED)) {
-            world.playSound(
-                pos.x.toDouble() + 0.5,
-                pos.y.toDouble() + 0.5,
-                pos.z.toDouble() + 0.5,
-                SoundEvents.BLOCK_LAVA_POP,
-                SoundCategory.BLOCKS,
-                0.5f + random.nextFloat(),
-                random.nextFloat() * 0.7f + 0.6f,
-                false
-            )
         }
 
         if (state.get(THICKNESS) == Thickness.TIP && state.get(WATERLOGGED) && this.emitsParticles && random.nextInt(5) == 0) {
