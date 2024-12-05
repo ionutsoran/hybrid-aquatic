@@ -29,8 +29,7 @@ import net.minecraft.world.World
 import software.bernie.geckolib.constant.DefaultAnimations
 import software.bernie.geckolib.core.animation.AnimatableManager
 import software.bernie.geckolib.core.animation.AnimationController
-import software.bernie.geckolib.core.animation.AnimationController.AnimationStateHandler
-import software.bernie.geckolib.core.animation.AnimationState
+import software.bernie.geckolib.core.animation.RawAnimation
 import software.bernie.geckolib.core.`object`.PlayState
 
 class KarkinosEntity(entityType: EntityType<out HybridAquaticMinibossEntity>, world: World) :
@@ -159,26 +158,27 @@ class KarkinosEntity(entityType: EntityType<out HybridAquaticMinibossEntity>, wo
 
     override fun registerControllers(controllerRegistrar: AnimatableManager.ControllerRegistrar) {
         controllerRegistrar.add(
-            AnimationController(this, "Walk/Run/Idle", 0,
-                AnimationStateHandler { state: AnimationState<HybridAquaticMinibossEntity> ->
-                    if (state.isMoving) {
-                        return@AnimationStateHandler state.setAndContinue(if (this.isSprinting) DefaultAnimations.RUN else DefaultAnimations.WALK)
-                    } else {
-                        return@AnimationStateHandler state.setAndContinue(DefaultAnimations.IDLE)
-                    }
-                })
+            DefaultAnimations.genericWalkRunIdleController(this)
         )
         controllerRegistrar.add(
-            AnimationController(this, "Attack", 5,
-                AnimationStateHandler { state: AnimationState<HybridAquaticMinibossEntity> ->
-                    if (this.handSwinging) return@AnimationStateHandler state.setAndContinue(DefaultAnimations.ATTACK_SWING)
-                    state.controller.forceAnimationReset()
+            AnimationController(this, 5) { state ->
+                if (isFlipped) {
+                    state.setAndContinue(FLIP)
+                    PlayState.CONTINUE
+                } else {
                     PlayState.STOP
-                })
+                }
+            }
+        )
+        controllerRegistrar.add(
+            DefaultAnimations.genericAttackAnimation(this, DefaultAnimations.ATTACK_SWING)
         )
     }
 
     companion object {
+
+        val FLIP: RawAnimation = RawAnimation.begin().thenPlay("misc.flip")
+
         fun createMobAttributes(): DefaultAttributeContainer.Builder {
             return WaterCreatureEntity.createMobAttributes()
                 .add(EntityAttributes.GENERIC_MAX_HEALTH, 300.0)
@@ -191,7 +191,8 @@ class KarkinosEntity(entityType: EntityType<out HybridAquaticMinibossEntity>, wo
                 .add(EntityAttributes.GENERIC_ARMOR, 8.0)
         }
 
-        val FLIPPED: TrackedData<Boolean> = DataTracker.registerData(KarkinosEntity::class.java, TrackedDataHandlerRegistry.BOOLEAN)
+        val FLIPPED: TrackedData<Boolean> =
+            DataTracker.registerData(KarkinosEntity::class.java, TrackedDataHandlerRegistry.BOOLEAN)
     }
 
     internal open class AttackGoal(private val karkinos: KarkinosEntity) : MeleeAttackGoal(karkinos, 0.6, false) {
@@ -227,7 +228,8 @@ class KarkinosEntity(entityType: EntityType<out HybridAquaticMinibossEntity>, wo
         }
     }
 
-    class KarkinosWanderAroundGoal(private val karkinos: KarkinosEntity, speed: Double) : WanderAroundGoal(karkinos, speed) {
+    class KarkinosWanderAroundGoal(private val karkinos: KarkinosEntity, speed: Double) :
+        WanderAroundGoal(karkinos, speed) {
         override fun shouldContinue(): Boolean {
             return !karkinos.isFlipped && super.shouldContinue()
         }

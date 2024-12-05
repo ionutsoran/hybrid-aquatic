@@ -34,7 +34,6 @@ import software.bernie.geckolib.constant.DefaultAnimations
 import software.bernie.geckolib.core.animatable.instance.AnimatableInstanceCache
 import software.bernie.geckolib.core.animation.AnimatableManager
 import software.bernie.geckolib.core.animation.AnimationController
-import software.bernie.geckolib.core.animation.AnimationState
 import software.bernie.geckolib.util.GeckoLibUtil
 import java.util.*
 
@@ -231,18 +230,19 @@ open class HybridAquaticSharkEntity(
     //#region Animations
     override fun registerControllers(controllerRegistrar: AnimatableManager.ControllerRegistrar) {
         controllerRegistrar.add(
-            AnimationController(this, "Walk/Run/Idle", 0,
-                AnimationController.AnimationStateHandler { state: AnimationState<HybridAquaticSharkEntity> ->
-                    if (state.isMoving) {
-                        return@AnimationStateHandler state.setAndContinue(if (this.isSprinting) DefaultAnimations.RUN else DefaultAnimations.SWIM)
-                    } else {
-                        return@AnimationStateHandler state.setAndContinue(DefaultAnimations.SWIM)
-                    }
-                })
+            AnimationController(this, "Swim/Charge/Idle", 0) { state ->
+                val animation = when {
+                    state.isMoving -> if (this.isSprinting) DefaultAnimations.RUN else DefaultAnimations.SWIM
+                    else -> DefaultAnimations.SWIM
+                }
+                state.setAndContinue(animation)
+            }
         )
         controllerRegistrar.add(
-            DefaultAnimations.genericAttackAnimation(this, DefaultAnimations.ATTACK_BITE))
+            DefaultAnimations.genericAttackAnimation(this, DefaultAnimations.ATTACK_BITE)
+        )
     }
+
 
     override fun getAnimatableInstanceCache(): AnimatableInstanceCache {
         return factory
