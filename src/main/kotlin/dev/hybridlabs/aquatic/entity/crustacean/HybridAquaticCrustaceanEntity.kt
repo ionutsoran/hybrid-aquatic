@@ -10,7 +10,6 @@ import net.minecraft.entity.EntityType
 import net.minecraft.entity.SpawnReason
 import net.minecraft.entity.ai.control.MoveControl
 import net.minecraft.entity.ai.goal.EscapeDangerGoal
-import net.minecraft.entity.ai.goal.FleeEntityGoal
 import net.minecraft.entity.ai.goal.WanderAroundGoal
 import net.minecraft.entity.ai.pathing.EntityNavigation
 import net.minecraft.entity.ai.pathing.MobNavigation
@@ -22,7 +21,6 @@ import net.minecraft.entity.data.TrackedData
 import net.minecraft.entity.data.TrackedDataHandlerRegistry
 import net.minecraft.entity.mob.WaterCreatureEntity
 import net.minecraft.entity.passive.ParrotEntity
-import net.minecraft.entity.player.PlayerEntity
 import net.minecraft.nbt.NbtCompound
 import net.minecraft.registry.tag.TagKey
 import net.minecraft.sound.SoundEvent
@@ -102,7 +100,6 @@ open class HybridAquaticCrustaceanEntity(
     override fun initGoals() {
         super.initGoals()
         goalSelector.add(1, EscapeDangerGoal(this, 1.0))
-        goalSelector.add(2, FleeEntityGoal(this, PlayerEntity::class.java, 8.0f, 1.0, 1.0))
         goalSelector.add(3, WanderAroundGoal(this, 0.4))
     }
 
