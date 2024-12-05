@@ -85,7 +85,12 @@ class GiantClamBlock(
         context: ShapeContext
     ): VoxelShape = COLLISION_SHAPE
 
-    override fun getOutlineShape(state: BlockState, world: BlockView, pos: BlockPos, context: ShapeContext): VoxelShape = SHAPE
+    override fun getOutlineShape(
+        state: BlockState,
+        world: BlockView,
+        pos: BlockPos,
+        context: ShapeContext
+    ): VoxelShape = SHAPE
 
     override fun getPlacementState(ctx: ItemPlacementContext): BlockState? {
         val waterlogged = ctx.world.getFluidState(ctx.blockPos).fluid == Fluids.WATER
@@ -139,10 +144,10 @@ class GiantClamBlock(
         if (currentState == GiantClamState.OPEN) {
             world.setBlockState(pos, state.with(STATE, GiantClamState.CLOSED), 3)
             pearlTimer = 6000
-        }
 
-        if (!entity.bypassesSteppingEffects() && entity is LivingEntity) {
-            entity.damage(world.damageSources.inWall(), 4.0f)
+            if (!entity.bypassesSteppingEffects() && entity is LivingEntity) {
+                entity.damage(world.damageSources.inWall(), 4.0f)
+            }
         }
 
         super.onSteppedOn(world, pos, state, entity)
@@ -166,7 +171,13 @@ class GiantClamBlock(
 
     companion object {
         val FACING: DirectionProperty = HorizontalFacingBlock.FACING
-        val STATE: EnumProperty<GiantClamState> = EnumProperty.of("state", GiantClamState::class.java, GiantClamState.OPEN, GiantClamState.CLOSED, GiantClamState.DEAD)
+        val STATE: EnumProperty<GiantClamState> = EnumProperty.of(
+            "state",
+            GiantClamState::class.java,
+            GiantClamState.OPEN,
+            GiantClamState.CLOSED,
+            GiantClamState.DEAD
+        )
         val WATERLOGGED: BooleanProperty = Properties.WATERLOGGED
         private val SHAPE: VoxelShape = createCuboidShape(2.0, 0.0, 2.0, 14.0, 8.0, 14.0)
         private val COLLISION_SHAPE: VoxelShape = createCuboidShape(2.0, 0.0, 2.0, 14.0, 8.0, 14.0)
