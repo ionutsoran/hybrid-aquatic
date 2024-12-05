@@ -59,7 +59,7 @@
         },
         {
           "type": "minecraft:item",
-          "name": "hybrid-aquatic:dorado"
+          "name": "hybrid-aquatic:golden_dorado"
         }
       ],
       "rolls": 1.0

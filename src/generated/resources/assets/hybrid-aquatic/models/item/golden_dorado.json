@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "hybrid-aquatic:item/dorado"
+    "layer0": "hybrid-aquatic:item/golden_dorado"
   }
 }
