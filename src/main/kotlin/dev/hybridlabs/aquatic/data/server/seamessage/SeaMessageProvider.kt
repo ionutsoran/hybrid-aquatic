@@ -32,17 +32,15 @@ class SeaMessageProvider(output: FabricDataOutput, registriesFuture: Completable
             GeneratedSeaMessageData("poyo", "I hate litterbugs.", "Poyo"),
             GeneratedSeaMessageData("rick_roll", "Never gonna give you up!\nNever gonna let you down!\nNever gonna run around and desert you!"),
             GeneratedSeaMessageData("bold_muddy", "AW MAN I DROWNED!", "Bold Muddy"),
-            GeneratedSeaMessageData("kaupenjoe", "It is better to sail the seven sea, than to get STDs.", "Kaupenjoe"),
-            GeneratedSeaMessageData("catpenjoe", "If you wanna get a catgirl, you first have to become a catboy.", "Catpenjoe"),
-            GeneratedSeaMessageData("fishenjoe", "Give a man a fish and you'll feed him for a day,\nkill a man and you'll have one less homeless person begging you for fish.", "Fishenjoe"),
+            GeneratedSeaMessageData("catpenjoe", "If you wanna get a catgirl, you first have to become a catboy.", "Kaupenjoe"),
             GeneratedSeaMessageData("willowshine", "Beware the fish girl", "Willowshine"),
             GeneratedSeaMessageData("loss", "| ||\n|| |_"),
-            GeneratedSeaMessageData("duunch", "Do I know you?", "Duunc_h"),
             GeneratedSeaMessageData("warranty", "We've been trying to reach you about your car's extended warranty.", englishTitle = "IMPORTANT: PLEASE READ"),
             GeneratedSeaMessageData("poke", "I like cheese", "Poke", englishTitle = "Cheese"),
             GeneratedSeaMessageData("one_piece", "THE ONE PIECE IS REAL", "Poke", englishTitle = "One Piece"),
             GeneratedSeaMessageData("mylo", "Mylo, you are the best friend I could have ever hoped to have. \nRest in peace, my sweet prince. I hope you have sweet dreams and find the peace you deserve.", "MysticKoko", englishTitle = "The Best Boy"),
             GeneratedSeaMessageData("womp_womp", "womp womp", "MrPress", englishTitle = "Catchphrase"),
+            GeneratedSeaMessageData("crocodile", "It's always the crocodile you don't see you have to worry about.", "Jeremy Wade", englishTitle = "The Unseen Crocodile"),
         )
     }
 }
