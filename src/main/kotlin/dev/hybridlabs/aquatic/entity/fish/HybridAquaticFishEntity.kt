@@ -8,10 +8,7 @@ import net.minecraft.block.Blocks
 import net.minecraft.entity.*
 import net.minecraft.entity.ai.control.AquaticMoveControl
 import net.minecraft.entity.ai.control.YawAdjustingLookControl
-import net.minecraft.entity.ai.goal.ActiveTargetGoal
-import net.minecraft.entity.ai.goal.EscapeDangerGoal
-import net.minecraft.entity.ai.goal.MeleeAttackGoal
-import net.minecraft.entity.ai.goal.SwimAroundGoal
+import net.minecraft.entity.ai.goal.*
 import net.minecraft.entity.ai.pathing.EntityNavigation
 import net.minecraft.entity.ai.pathing.PathNodeType
 import net.minecraft.entity.ai.pathing.SwimNavigation
@@ -19,7 +16,9 @@ import net.minecraft.entity.damage.DamageSource
 import net.minecraft.entity.data.DataTracker
 import net.minecraft.entity.data.TrackedData
 import net.minecraft.entity.data.TrackedDataHandlerRegistry
+import net.minecraft.entity.mob.GuardianEntity
 import net.minecraft.entity.mob.WaterCreatureEntity
+import net.minecraft.entity.player.PlayerEntity
 import net.minecraft.nbt.NbtCompound
 import net.minecraft.registry.tag.FluidTags
 import net.minecraft.registry.tag.TagKey
@@ -56,9 +55,12 @@ open class HybridAquaticFishEntity(
 
     override fun initGoals() {
         super.initGoals()
-        goalSelector.add(0, EscapeDangerGoal(this, 1.25))
         goalSelector.add(4, SwimAroundGoal(this, 1.0, 10))
+        goalSelector.add(4, LookAroundGoal(this))
+        goalSelector.add(5, LookAtEntityGoal(this, PlayerEntity::class.java, 6.0f))
         goalSelector.add(1, FishAttackGoal(this))
+        goalSelector.add(9, FleeEntityGoal(this, GuardianEntity::class.java, 8.0f, 1.0, 1.0))
+        goalSelector.add(9, FleeEntityGoal(this, PlayerEntity::class.java, 8.0f, 1.0, 1.0))
         targetSelector.add(3, ActiveTargetGoal(this, LivingEntity::class.java, 10, true, true) { entity: LivingEntity -> prey.any { preyType -> entity.type.isIn(preyType) } && hunger < MAX_HUNGER / 4 })
     }
 
@@ -122,6 +124,10 @@ open class HybridAquaticFishEntity(
 
         this.size = this.random.nextBetween(getMinSize(), getMaxSize())
         return super.initialize(world, difficulty, spawnReason, entityData, entityNbt)
+    }
+
+    override fun createNavigation(world: World): EntityNavigation {
+        return SwimNavigation(this, world)
     }
 
     override fun tick() {
@@ -214,10 +220,11 @@ open class HybridAquaticFishEntity(
         return 10
     }
 
+    //#region SFX
     open val flopSound: SoundEvent = SoundEvents.ENTITY_PUFFER_FISH_FLOP
 
     override fun getSwimSound(): SoundEvent {
-        return SoundEvents.ENTITY_FISH_SWIM
+        return SoundEvents.ENTITY_DOLPHIN_SWIM
     }
 
     override fun getHurtSound(source: DamageSource): SoundEvent {
@@ -236,11 +243,9 @@ open class HybridAquaticFishEntity(
         return SoundEvents.ENTITY_DOLPHIN_SPLASH
     }
 
-    override fun createNavigation(world: World): EntityNavigation {
-        return SwimNavigation(this, world)
-    }
+    //#region end
 
-    // region Properties
+    //#region Properties
 
     private var moistness: Int
         get() = dataTracker.get(MOISTNESS)
