@@ -2,6 +2,7 @@ package dev.hybridlabs.aquatic.entity.fish
 
 import dev.hybridlabs.aquatic.tag.HybridAquaticEntityTags
 import net.minecraft.entity.EntityType
+import net.minecraft.entity.ai.goal.RevengeGoal
 import net.minecraft.entity.attribute.DefaultAttributeContainer
 import net.minecraft.entity.attribute.EntityAttributes
 import net.minecraft.entity.mob.WaterCreatureEntity
@@ -17,6 +18,11 @@ class GoldenDoradoEntity(entityType: EntityType<out GoldenDoradoEntity>, world: 
 
     override fun getLimitPerChunk(): Int {
         return 1
+    }
+
+    override fun initGoals() {
+        super.initGoals()
+        targetSelector.add(1, RevengeGoal(this, *arrayOfNulls(0)).setGroupRevenge(*arrayOfNulls(0)))
     }
 
     companion object {
