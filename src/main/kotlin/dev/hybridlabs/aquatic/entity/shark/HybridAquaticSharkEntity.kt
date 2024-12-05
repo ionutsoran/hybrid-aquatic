@@ -260,7 +260,7 @@ open class HybridAquaticSharkEntity(
     }
 
     override fun getAmbientSound(): SoundEvent {
-        return SoundEvents.ENTITY_COD_AMBIENT
+        return SoundEvents.ENTITY_TROPICAL_FISH_AMBIENT
     }
 
     //#endregion

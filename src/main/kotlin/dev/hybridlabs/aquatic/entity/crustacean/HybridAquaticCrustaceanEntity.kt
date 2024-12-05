@@ -280,6 +280,10 @@ open class HybridAquaticCrustaceanEntity(
         return this.distanceTraveled + 0.25f
     }
 
+    override fun getAmbientSound(): SoundEvent? {
+        return SoundEvents.ENTITY_TURTLE_AMBIENT_LAND
+    }
+
     override fun getHurtSound(source: DamageSource): SoundEvent {
         return SoundEvents.ENTITY_TURTLE_EGG_CRACK
     }
