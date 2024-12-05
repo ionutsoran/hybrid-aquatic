@@ -291,6 +291,13 @@ object HybridAquaticEntityTypes {
         TunaEntity.createMobAttributes()
     )
 
+    val GOLDEN_DORADO = registerFish(
+        "golden_dorado",
+        ::GoldenDoradoEntity,
+        EntityDimensions.fixed(1.0f, 0.7f),
+        GoldenDoradoEntity.createMobAttributes()
+    )
+
     val DANIO = registerFish(
         "danio",
         ::DanioEntity,

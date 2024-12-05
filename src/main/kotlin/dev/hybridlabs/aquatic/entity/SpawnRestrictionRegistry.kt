@@ -56,6 +56,7 @@ object SpawnRestrictionRegistry {
             HybridAquaticEntityTypes.CARP,
             HybridAquaticEntityTypes.STINGRAY,
             HybridAquaticEntityTypes.MANTA_RAY,
+            HybridAquaticEntityTypes.GOLDEN_DORADO,
         ).forEach { registerFish(it) }
 
         // underground fish
