@@ -194,6 +194,7 @@ class LanguageProvider(output: FabricDataOutput) : FabricLanguageProvider(output
             HybridAquaticItems.PEARL to "Pearl",
             HybridAquaticItems.BLACK_PEARL to "Black Pearl",
             HybridAquaticItems.SULFUR to "Sulfur",
+            HybridAquaticItems.CORAL_CHUNK to "Coral Chunk",
             HybridAquaticItems.BARBED_HOOK to "Barbed Hook",
             HybridAquaticItems.GLOWING_HOOK to "Glowing Hook",
             HybridAquaticItems.MAGNETIC_HOOK to "Magnetic Hook",
