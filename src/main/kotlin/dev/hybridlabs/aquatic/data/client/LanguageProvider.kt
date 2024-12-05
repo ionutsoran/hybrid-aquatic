@@ -134,7 +134,7 @@ class LanguageProvider(output: FabricDataOutput) : FabricLanguageProvider(output
             HybridAquaticItems.SQUIRREL_FISH to "Squirrel Fish",
             HybridAquaticItems.COELACANTH to "Coelacanth",
             HybridAquaticItems.CORAL_GROUPER to "Coral Grouper",
-            HybridAquaticItems.DORADO to "Dorado",
+            HybridAquaticItems.GOLDEN_DORADO to "Golden Dorado",
             HybridAquaticItems.MAHI to "Mahi",
             HybridAquaticItems.YELLOWFIN_TUNA to "Yellowfin Tuna",
             HybridAquaticItems.BLUEFIN_TUNA to "Bluefin Tuna",

@@ -212,7 +212,7 @@ class ModelProvider(output: FabricDataOutput) : FabricModelProvider(output) {
             HybridAquaticItems.SQUIRREL_FISH,
             HybridAquaticItems.CORAL_GROUPER,
             HybridAquaticItems.COELACANTH,
-            HybridAquaticItems.DORADO,
+            HybridAquaticItems.GOLDEN_DORADO,
             HybridAquaticItems.OPAH,
             HybridAquaticItems.OARFISH,
             HybridAquaticItems.OSCAR,

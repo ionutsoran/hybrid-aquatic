@@ -870,7 +870,7 @@ object HybridAquaticItems {
         )
     )
 
-    val DORADO = register("dorado",
+    val GOLDEN_DORADO = register("golden_dorado",
         Item(
             FabricItemSettings()
                 .food(

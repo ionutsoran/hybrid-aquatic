@@ -168,7 +168,7 @@ object  HybridAquaticItemGroups {
             entries.add(HybridAquaticItems.COWFISH)
             entries.add(HybridAquaticItems.TOADFISH)
             entries.add(HybridAquaticItems.STONEFISH)
-            entries.add(HybridAquaticItems.DORADO)
+            entries.add(HybridAquaticItems.GOLDEN_DORADO)
             entries.add(HybridAquaticItems.LIONFISH)
             entries.add(HybridAquaticItems.BLUE_SPOTTED_STINGRAY)
             entries.add(HybridAquaticItems.SPOTTED_EAGLE_RAY)
