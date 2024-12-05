@@ -4,5 +4,6 @@ import dev.hybridlabs.aquatic.client.model.entity.cephalopod.CuttlefishEntityMod
 import dev.hybridlabs.aquatic.entity.cephalopod.CuttlefishEntity
 import net.minecraft.client.render.entity.EntityRendererFactory.Context
 
-class CuttlefishEntityRenderer(context: Context) : HybridAquaticCephalopodEntityRenderer<CuttlefishEntity>(context, CuttlefishEntityModel(), true, false)
+class CuttlefishEntityRenderer(context: Context) :
+    HybridAquaticCephalopodEntityRenderer<CuttlefishEntity>(context, CuttlefishEntityModel(), true, false)
 

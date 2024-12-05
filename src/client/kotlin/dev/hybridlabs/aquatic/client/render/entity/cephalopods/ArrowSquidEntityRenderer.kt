@@ -4,4 +4,5 @@ import dev.hybridlabs.aquatic.client.model.entity.cephalopod.ArrowSquidEntityMod
 import dev.hybridlabs.aquatic.entity.cephalopod.HybridAquaticCephalopodEntity
 import net.minecraft.client.render.entity.EntityRendererFactory.Context
 
-class ArrowSquidEntityRenderer(context: Context) : HybridAquaticCephalopodEntityRenderer<HybridAquaticCephalopodEntity>(context, ArrowSquidEntityModel(), true, false)
+class ArrowSquidEntityRenderer(context: Context) :
+    HybridAquaticCephalopodEntityRenderer<HybridAquaticCephalopodEntity>(context, ArrowSquidEntityModel(), true, false)

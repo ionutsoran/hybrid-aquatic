@@ -4,4 +4,5 @@ import dev.hybridlabs.aquatic.client.model.entity.cephalopod.UmbrellaOctopusEnti
 import dev.hybridlabs.aquatic.entity.cephalopod.HybridAquaticCephalopodEntity
 import net.minecraft.client.render.entity.EntityRendererFactory.Context
 
-class UmbrellaOctopusEntityRenderer(context: Context) : HybridAquaticCephalopodEntityRenderer<HybridAquaticCephalopodEntity>(context, UmbrellaOctopusEntityModel(), true, false)
+class UmbrellaOctopusEntityRenderer(context: Context) :
+    HybridAquaticCephalopodEntityRenderer<HybridAquaticCephalopodEntity>(context, UmbrellaOctopusEntityModel(), true, false)
