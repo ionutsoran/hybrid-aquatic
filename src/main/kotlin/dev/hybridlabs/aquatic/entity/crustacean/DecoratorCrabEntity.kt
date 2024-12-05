@@ -17,46 +17,42 @@ import net.minecraft.world.event.GameEvent
 import kotlin.random.Random
 
 class DecoratorCrabEntity(entityType: EntityType<out HybridAquaticCrustaceanEntity>, world: World) :
-    HybridAquaticCrustaceanEntity(
-        entityType, world, true, false, emptyMap()) {
+    HybridAquaticCrustaceanEntity(entityType, world, true, false, emptyMap()) {
 
-    private var coralTimer = -1
-    var randomValue = Random.nextInt(0, 10)
+    private var coralTimer = 0
+    private var hasCoral = true
+    var coralType = Random.nextInt(1, 10)
 
-    public override fun getLootTableId(): Identifier {
+    override fun getLootTableId(): Identifier {
         return Identifier("hybrid-aquatic", "entities/decorator_crab")
     }
 
     override fun interactMob(player: PlayerEntity, hand: Hand?): ActionResult {
         val itemStack = player.getStackInHand(hand)
-        if (!itemStack.isEmpty && itemStack.isOf(Items.SHEARS)) {
-            if (randomValue != 9) {
-                if (!world.isClient) {
-                    this.playSound(SoundEvents.ENTITY_SHEEP_SHEAR, 1.0f, 1.0f)
-                    this.emitGameEvent(GameEvent.SHEAR, player)
-                    itemStack.damage(1, player) { it.sendToolBreakStatus(hand) }
-                    randomValue = 9
-                    coralTimer = 3600
-                    dropStack(ItemStack(HybridAquaticItems.CORAL_CHUNK))
-                    return ActionResult.SUCCESS
-                } else {
-                    return ActionResult.CONSUME
-                }
-            } else {
-                return ActionResult.PASS
+        if (!itemStack.isEmpty && itemStack.isOf(Items.SHEARS) && hasCoral) {
+            if (!world.isClient) {
+                this.playSound(SoundEvents.ENTITY_SHEEP_SHEAR, 1.0f, 1.0f)
+                this.emitGameEvent(GameEvent.SHEAR, player)
+                itemStack.damage(1, player) { it.sendToolBreakStatus(hand) }
+                hasCoral = false
+                coralType = 0
+                coralTimer = 0
+                dropStack(ItemStack(HybridAquaticItems.CORAL_CHUNK))
+                return ActionResult.SUCCESS
             }
-        } else {
-            return super.interactMob(player, hand)
+            return ActionResult.CONSUME
         }
+        return super.interactMob(player, hand)
     }
 
     override fun tick() {
         super.tick()
-
-        if (coralTimer > 0) {
-            coralTimer--
-            if (coralTimer == 0) {
-                randomValue = Random.nextInt(1, 9)
+        if (!hasCoral) {
+            coralTimer++
+            if (coralTimer == 3600) {
+                hasCoral = true
+                coralType = Random.nextInt(1, 10)
+                coralTimer = 0
             }
         }
     }
