@@ -1,14 +1,15 @@
 package dev.hybridlabs.aquatic.client.render.entity.crustacean
 
 import dev.hybridlabs.aquatic.client.model.entity.crustacean.DecoratorCrabEntityModel
+import dev.hybridlabs.aquatic.entity.crustacean.DecoratorCrabEntity
 import dev.hybridlabs.aquatic.entity.crustacean.HybridAquaticCrustaceanEntity
 import net.minecraft.client.render.VertexConsumerProvider
 import net.minecraft.client.render.entity.EntityRendererFactory.Context
 import net.minecraft.client.util.math.MatrixStack
 
-class DecoratorCrabEntityRenderer(context: Context) : HybridAquaticCrustaceanEntityRenderer<HybridAquaticCrustaceanEntity>(context, DecoratorCrabEntityModel()) {
+class DecoratorCrabEntityRenderer(context: Context) : HybridAquaticCrustaceanEntityRenderer<DecoratorCrabEntity>(context, DecoratorCrabEntityModel()) {
     override fun render(
-        entity: HybridAquaticCrustaceanEntity?,
+        entity: DecoratorCrabEntity?,
         entityYaw: Float,
         partialTick: Float,
         poseStack: MatrixStack?,
