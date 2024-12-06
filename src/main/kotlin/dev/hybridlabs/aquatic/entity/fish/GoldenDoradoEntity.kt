@@ -30,12 +30,9 @@ class GoldenDoradoEntity(entityType: EntityType<out GoldenDoradoEntity>, world: 
         fun createMobAttributes(): DefaultAttributeContainer.Builder {
             return WaterCreatureEntity.createMobAttributes()
                 .add(EntityAttributes.GENERIC_MAX_HEALTH, 12.0)
-                .add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 1.0)
+                .add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.8)
                 .add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 6.0)
                 .add(EntityAttributes.GENERIC_FOLLOW_RANGE, 16.0)
         }
-    }
-    override fun speedModifier(): Double {
-        return 0.005
     }
 }
