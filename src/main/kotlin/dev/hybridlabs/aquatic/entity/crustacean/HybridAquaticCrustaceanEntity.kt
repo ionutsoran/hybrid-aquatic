@@ -274,14 +274,10 @@ open class HybridAquaticCrustaceanEntity(
         return false
     }
 
-    // region sounds
+    //#region SFX
 
     override fun calculateNextStepSoundDistance(): Float {
         return this.distanceTraveled + 0.25f
-    }
-
-    override fun getAmbientSound(): SoundEvent? {
-        return SoundEvents.ENTITY_TURTLE_AMBIENT_LAND
     }
 
     override fun getHurtSound(source: DamageSource): SoundEvent {
@@ -292,11 +288,11 @@ open class HybridAquaticCrustaceanEntity(
         return SoundEvents.ENTITY_TURTLE_EGG_BREAK
     }
 
+    //#endregion
+
     override fun createNavigation(world: World): EntityNavigation {
         return MobNavigation(this, world)
     }
-
-    // endregion
 
     // region water breathing
 
