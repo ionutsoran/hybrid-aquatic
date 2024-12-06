@@ -16,6 +16,10 @@
     {
       "id": "regions_unexplored:tropical_river",
       "required": false
+    },
+    {
+      "id": "riverredux:tropical_river",
+      "required": false
     }
   ]
 }

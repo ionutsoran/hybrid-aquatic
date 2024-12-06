@@ -95,12 +95,17 @@ class BiomeTagProvider(output: FabricDataOutput, registriesFuture: CompletableFu
             .addOptional(Identifier("regions_unexplored", "tropical_river"))
             .addOptional(Identifier("regions_unexplored", "muddy_river"))
             .addOptional(Identifier("regions_unexplored", "cold_river"))
+            .addOptional(Identifier("riverredux", "sandy_river"))
+            .addOptional(Identifier("riverredux", "gravelly_river"))
+            .addOptional(Identifier("riverredux", "tropical_river"))
+            .addOptional(Identifier("riverredux", "carved_river"))
 
         getOrCreateTagBuilder(HybridAquaticBiomeTags.TROPICAL_RIVERS)
             .addOptional(Identifier("wythers", "jungle_river"))
             .addOptional(Identifier("wythers", "tropical_forest_river"))
             .addOptional(Identifier("terralith", "warm_river"))
             .addOptional(Identifier("regions_unexplored", "tropical_river"))
+            .addOptional(Identifier("riverredux", "tropical_river"))
 
         getOrCreateTagBuilder(HybridAquaticBiomeTags.CHERRY)
             .add(BiomeKeys.CHERRY_GROVE)

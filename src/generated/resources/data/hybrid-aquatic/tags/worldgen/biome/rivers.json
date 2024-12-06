@@ -25,6 +25,22 @@
     {
       "id": "regions_unexplored:cold_river",
       "required": false
+    },
+    {
+      "id": "riverredux:sandy_river",
+      "required": false
+    },
+    {
+      "id": "riverredux:gravelly_river",
+      "required": false
+    },
+    {
+      "id": "riverredux:tropical_river",
+      "required": false
+    },
+    {
+      "id": "riverredux:carved_river",
+      "required": false
     }
   ]
 }
