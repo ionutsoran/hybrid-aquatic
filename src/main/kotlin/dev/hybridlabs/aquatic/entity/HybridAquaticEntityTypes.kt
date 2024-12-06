@@ -294,8 +294,15 @@ object HybridAquaticEntityTypes {
     val GOLDEN_DORADO = registerFish(
         "golden_dorado",
         ::GoldenDoradoEntity,
-        EntityDimensions.fixed(1.0f, 0.7f),
+        EntityDimensions.fixed(1.0f, 0.6f),
         GoldenDoradoEntity.createMobAttributes()
+    )
+
+    val COELACANTH = registerFishUnderground(
+        "coelacanth",
+        ::CoelacanthEntity,
+        EntityDimensions.fixed(1.0f, 0.6f),
+        CoelacanthEntity.createMobAttributes()
     )
 
     val DANIO = registerFish(

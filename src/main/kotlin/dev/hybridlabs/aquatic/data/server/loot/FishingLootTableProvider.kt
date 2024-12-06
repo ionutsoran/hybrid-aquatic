@@ -54,7 +54,7 @@ class FishingLootTableProvider(output: FabricDataOutput) : SimpleFabricLootTable
                         )
                         .with(
                             ItemEntry.builder(HybridAquaticItems.COELACANTH)
-                                .weight(2)
+                                .weight(1)
                         )
                 )
         )

@@ -61,6 +61,8 @@ class LiveCatchEnchantment : Enchantment(Rarity.RARE, EnchantmentTarget.FISHING_
             HybridAquaticItems.SPOTTED_EAGLE_RAY to HybridAquaticEntityTypes.STINGRAY,
             HybridAquaticItems.MORAY_EEL to HybridAquaticEntityTypes.MORAY_EEL,
             HybridAquaticItems.NEEDLEFISH to HybridAquaticEntityTypes.NEEDLEFISH,
+            HybridAquaticItems.COELACANTH to HybridAquaticEntityTypes.COELACANTH,
+            HybridAquaticItems.GOLDEN_DORADO to HybridAquaticEntityTypes.GOLDEN_DORADO,
 
             HybridAquaticItems.MAHI to HybridAquaticEntityTypes.MAHI,
             HybridAquaticItems.YELLOWFIN_TUNA to HybridAquaticEntityTypes.TUNA,

@@ -66,6 +66,7 @@ object SpawnRestrictionRegistry {
             HybridAquaticEntityTypes.BARRELEYE,
             HybridAquaticEntityTypes.SEA_ANGEL,
             HybridAquaticEntityTypes.RATFISH,
+            HybridAquaticEntityTypes.COELACANTH,
             ).forEach { registerFishUnderground(it) }
 
         // cephalopods

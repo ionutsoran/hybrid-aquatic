@@ -502,7 +502,6 @@ class EntityTypeLootTableProvider(output: FabricDataOutput) : SimpleFabricLootTa
             )
         }
 
-        // small fish
         export(exporter, HybridAquaticEntityTypes.ANGLERFISH) {
             pool(
                 LootPool.builder()
@@ -765,7 +764,6 @@ class EntityTypeLootTableProvider(output: FabricDataOutput) : SimpleFabricLootTa
             )
         }
 
-        // medium fish
         export(exporter, HybridAquaticEntityTypes.MAHI) {
             pool(
                 LootPool.builder()
@@ -843,12 +841,33 @@ class EntityTypeLootTableProvider(output: FabricDataOutput) : SimpleFabricLootTa
             )
         }
 
-        // large fish
         export(exporter, HybridAquaticEntityTypes.SUNFISH) {
             pool(
                 LootPool.builder()
                     .with(
                         ItemEntry.builder(HybridAquaticItems.SUNFISH)
+                            .apply(LootingEnchantLootFunction.builder(UniformLootNumberProvider.create(0.0F, 1.0F)))
+                            .apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(1.0F, 1.0F)))
+                    )
+            )
+        }
+
+        export(exporter, HybridAquaticEntityTypes.COELACANTH) {
+            pool(
+                LootPool.builder()
+                    .with(
+                        ItemEntry.builder(HybridAquaticItems.COELACANTH)
+                            .apply(LootingEnchantLootFunction.builder(UniformLootNumberProvider.create(0.0F, 1.0F)))
+                            .apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(1.0F, 1.0F)))
+                    )
+            )
+        }
+
+        export(exporter, HybridAquaticEntityTypes.GOLDEN_DORADO) {
+            pool(
+                LootPool.builder()
+                    .with(
+                        ItemEntry.builder(HybridAquaticItems.GOLDEN_DORADO)
                             .apply(LootingEnchantLootFunction.builder(UniformLootNumberProvider.create(0.0F, 1.0F)))
                             .apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(1.0F, 1.0F)))
                     )

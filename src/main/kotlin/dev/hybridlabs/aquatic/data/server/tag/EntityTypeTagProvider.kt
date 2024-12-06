@@ -56,6 +56,8 @@ class EntityTypeTagProvider(output: FabricDataOutput, registriesFuture: Completa
                 HybridAquaticEntityTypes.OPAH,
                 HybridAquaticEntityTypes.TUNA,
                 HybridAquaticEntityTypes.MAHI,
+                HybridAquaticEntityTypes.COELACANTH,
+                HybridAquaticEntityTypes.GOLDEN_DORADO,
                 EntityType.PLAYER,
                 EntityType.TURTLE,
             )
@@ -187,6 +189,8 @@ class EntityTypeTagProvider(output: FabricDataOutput, registriesFuture: Completa
                 HybridAquaticEntityTypes.BARRELEYE,
                 HybridAquaticEntityTypes.DRAGONFISH,
                 HybridAquaticEntityTypes.RATFISH,
+                HybridAquaticEntityTypes.GOLDEN_DORADO,
+                HybridAquaticEntityTypes.COELACANTH,
                 EntityType.COD,
                 EntityType.SALMON,
                 EntityType.TROPICAL_FISH,

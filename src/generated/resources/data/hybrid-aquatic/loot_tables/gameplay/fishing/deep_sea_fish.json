@@ -44,8 +44,7 @@
         },
         {
           "type": "minecraft:item",
-          "name": "hybrid-aquatic:coelacanth",
-          "weight": 2
+          "name": "hybrid-aquatic:coelacanth"
         }
       ],
       "rolls": 1.0

@@ -306,6 +306,7 @@ class LanguageProvider(output: FabricDataOutput) : FabricLanguageProvider(output
             HybridAquaticEntityTypes.FLASHLIGHT_FISH to "Flashlight Fish",
             HybridAquaticEntityTypes.FLYING_FISH to "Flying Fish",
             HybridAquaticEntityTypes.LIONFISH to "Lionfish",
+            HybridAquaticEntityTypes.COELACANTH to "Coelacanth",
             HybridAquaticEntityTypes.OARFISH to "Oarfish",
             HybridAquaticEntityTypes.OPAH to "Opah",
             HybridAquaticEntityTypes.PIRANHA to "Piranha",
