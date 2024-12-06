@@ -6,6 +6,7 @@ import dev.hybridlabs.aquatic.data.client.ModelProvider
 import dev.hybridlabs.aquatic.data.server.ConfiguredFeatureProvider
 import dev.hybridlabs.aquatic.data.server.PlacedFeatureProvider
 import dev.hybridlabs.aquatic.data.server.RecipeProvider
+import dev.hybridlabs.aquatic.data.server.AdvancementProvider
 import dev.hybridlabs.aquatic.data.server.loot.BlockLootTableProvider
 import dev.hybridlabs.aquatic.data.server.loot.EntityTypeLootTableProvider
 import dev.hybridlabs.aquatic.data.server.loot.FishingLootTableProvider
@@ -27,6 +28,7 @@ object HybridAquaticDataGenerator : DataGeneratorEntrypoint {
         pack.addProvider(::EntityTypeLootTableProvider)
         pack.addProvider(::FishingLootTableProvider)
         pack.addProvider(::GenericLootTableProvider)
+        pack.addProvider(::AdvancementProvider)
         pack.addProvider(::FluidTagProvider)
         pack.addProvider(::BiomeTagProvider)
         pack.addProvider(::BlockTagProvider)
