@@ -55,13 +55,14 @@ open class HybridAquaticFishEntity(
 
     override fun initGoals() {
         super.initGoals()
-        goalSelector.add(4, SwimAroundGoal(this, 1.0, 10))
-        goalSelector.add(4, LookAroundGoal(this))
-        goalSelector.add(5, LookAtEntityGoal(this, PlayerEntity::class.java, 6.0f))
-        goalSelector.add(1, FishAttackGoal(this))
-        goalSelector.add(9, FleeEntityGoal(this, GuardianEntity::class.java, 8.0f, 1.0, 1.0))
-        goalSelector.add(9, FleeEntityGoal(this, PlayerEntity::class.java, 8.0f, 1.0, 1.0))
-        targetSelector.add(3, ActiveTargetGoal(this, LivingEntity::class.java, 10, true, true) { entity: LivingEntity -> prey.any { preyType -> entity.type.isIn(preyType) } && hunger < MAX_HUNGER / 4 })
+        goalSelector.add(0, MoveIntoWaterGoal(this))
+        goalSelector.add(1, SwimAroundGoal(this, 1.0, 10))
+        goalSelector.add(1, LookAroundGoal(this))
+        goalSelector.add(2, LookAtEntityGoal(this, PlayerEntity::class.java, 6.0f))
+        goalSelector.add(3, FleeEntityGoal(this, GuardianEntity::class.java, 8.0f, 1.0, 1.0))
+        goalSelector.add(3, FleeEntityGoal(this, PlayerEntity::class.java, 8.0f, 1.0, 1.0))
+        goalSelector.add(4, FishAttackGoal(this))
+        targetSelector.add(1, ActiveTargetGoal(this, LivingEntity::class.java, 10, true, true) { entity: LivingEntity -> prey.any { preyType -> entity.type.isIn(preyType) } && hunger < MAX_HUNGER / 4 })
     }
 
     override fun initDataTracker() {
