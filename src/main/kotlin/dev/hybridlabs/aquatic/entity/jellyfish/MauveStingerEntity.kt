@@ -6,7 +6,8 @@ import net.minecraft.entity.attribute.EntityAttributes
 import net.minecraft.entity.mob.WaterCreatureEntity
 import net.minecraft.world.World
 
-class MauveStingerEntity(entityType: EntityType<out MauveStingerEntity>, world: World) : HybridAquaticJellyfishEntity(entityType, world, true) {
+class MauveStingerEntity(entityType: EntityType<out MauveStingerEntity>, world: World) :
+    HybridAquaticJellyfishEntity(entityType, world, true, 0) {
 
     override fun getLimitPerChunk(): Int {
         return 3
@@ -22,7 +23,7 @@ class MauveStingerEntity(entityType: EntityType<out MauveStingerEntity>, world: 
         }
     }
 
-    override fun getMaxSize() : Int {
+    override fun getMaxSize(): Int {
         return 5
     }
 

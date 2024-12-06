@@ -40,7 +40,8 @@ import software.bernie.geckolib.util.GeckoLibUtil
 open class HybridAquaticJellyfishEntity(
     type: EntityType<out HybridAquaticJellyfishEntity>,
     world: World,
-    private val isVenomous: Boolean
+    private val isVenomous: Boolean,
+    private val venomLevel: Int
 
 ) : WaterCreatureEntity(type, world), GeoEntity {
     private val factory = GeckoLibUtil.createInstanceCache(this)
@@ -207,7 +208,7 @@ open class HybridAquaticJellyfishEntity(
 
             val attacker = source?.attacker
             if (attacker is PlayerEntity && isVenomous && attacker.mainHandStack.isEmpty) {
-                attacker.addStatusEffect(StatusEffectInstance(StatusEffects.POISON, 200, 0))
+                attacker.addStatusEffect(StatusEffectInstance(StatusEffects.POISON, 200, venomLevel))
             }
 
             return true

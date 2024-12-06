@@ -6,7 +6,8 @@ import net.minecraft.entity.attribute.EntityAttributes
 import net.minecraft.entity.mob.WaterCreatureEntity
 import net.minecraft.world.World
 
-class CauliflowerJellyfishEntity(entityType: EntityType<out CauliflowerJellyfishEntity>, world: World) : HybridAquaticJellyfishEntity(entityType, world, false) {
+class CauliflowerJellyfishEntity(entityType: EntityType<out CauliflowerJellyfishEntity>, world: World) :
+    HybridAquaticJellyfishEntity(entityType, world, false, 0) {
 
     override fun getLimitPerChunk(): Int {
         return 2
@@ -22,7 +23,7 @@ class CauliflowerJellyfishEntity(entityType: EntityType<out CauliflowerJellyfish
         }
     }
 
-    override fun getMaxSize() : Int {
+    override fun getMaxSize(): Int {
         return 5
     }
 

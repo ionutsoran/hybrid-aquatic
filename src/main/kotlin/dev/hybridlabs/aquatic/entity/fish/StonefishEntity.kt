@@ -6,11 +6,9 @@ import net.minecraft.entity.LivingEntity
 import net.minecraft.entity.attribute.DefaultAttributeContainer
 import net.minecraft.entity.attribute.EntityAttributes
 import net.minecraft.entity.damage.DamageSource
-import net.minecraft.entity.damage.DamageTypes
 import net.minecraft.entity.effect.StatusEffectInstance
 import net.minecraft.entity.effect.StatusEffects
 import net.minecraft.entity.mob.WaterCreatureEntity
-import net.minecraft.registry.tag.DamageTypeTags
 import net.minecraft.world.World
 
 class StonefishEntity(entityType: EntityType<out StonefishEntity>, world: World) :
@@ -36,17 +34,17 @@ class StonefishEntity(entityType: EntityType<out StonefishEntity>, world: World)
         }
     }
 
-    override fun damage(source: DamageSource, amount: Float): Boolean {
-        return if (world.isClient) {
-            false
-        } else {
-            if (!source.isIn(DamageTypeTags.AVOIDS_GUARDIAN_THORNS) && !source.isOf(DamageTypes.THORNS)) {
-                val attacker = source.source
-                if (attacker is LivingEntity) {
-                    attacker.addStatusEffect(StatusEffectInstance(StatusEffects.POISON, 400, 2), this)
-                }
+    override fun damage(source: DamageSource?, amount: Float): Boolean {
+        if (super.damage(source, amount)) {
+
+            val attacker = source?.attacker
+            if (attacker is LivingEntity && attacker.mainHandStack.isEmpty) {
+                attacker.addStatusEffect(StatusEffectInstance(StatusEffects.POISON, 200, 2))
             }
-            super.damage(source, amount)
+
+            return true
         }
+
+        return false
     }
 }

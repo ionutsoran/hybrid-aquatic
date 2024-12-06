@@ -6,7 +6,8 @@ import net.minecraft.entity.attribute.EntityAttributes
 import net.minecraft.entity.mob.WaterCreatureEntity
 import net.minecraft.world.World
 
-class BarrelJellyfishEntity(entityType: EntityType<out BarrelJellyfishEntity>, world: World) : HybridAquaticJellyfishEntity(entityType, world, false) {
+class BarrelJellyfishEntity(entityType: EntityType<out BarrelJellyfishEntity>, world: World) :
+    HybridAquaticJellyfishEntity(entityType, world, false, 0) {
 
     override fun getLimitPerChunk(): Int {
         return 2
@@ -23,7 +24,7 @@ class BarrelJellyfishEntity(entityType: EntityType<out BarrelJellyfishEntity>, w
         }
     }
 
-    override fun getMaxSize() : Int {
+    override fun getMaxSize(): Int {
         return 5
     }
 

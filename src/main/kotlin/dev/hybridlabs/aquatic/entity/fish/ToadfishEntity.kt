@@ -9,6 +9,7 @@ import net.minecraft.entity.ai.goal.Goal
 import net.minecraft.entity.ai.goal.SwimAroundGoal
 import net.minecraft.entity.attribute.DefaultAttributeContainer
 import net.minecraft.entity.attribute.EntityAttributes
+import net.minecraft.entity.damage.DamageSource
 import net.minecraft.entity.data.DataTracker
 import net.minecraft.entity.data.TrackedData
 import net.minecraft.entity.data.TrackedDataHandlerRegistry
@@ -106,6 +107,20 @@ class ToadfishEntity(entityType: EntityType<out ToadfishEntity>, world: World) :
             }
             nearbyEntities.forEach { sting(it) }
         }
+    }
+
+    override fun damage(source: DamageSource?, amount: Float): Boolean {
+        if (super.damage(source, amount)) {
+
+            val attacker = source?.attacker
+            if (attacker is LivingEntity && attacker.mainHandStack.isEmpty) {
+                attacker.addStatusEffect(StatusEffectInstance(StatusEffects.POISON, 200, 1))
+            }
+
+            return true
+        }
+
+        return false
     }
 
     private fun sting(mob: MobEntity) {
