@@ -102,7 +102,7 @@ class ItemTagProvider(output: FabricDataOutput, registriesFuture: CompletableFut
             HybridAquaticItems.FLYING_FISH,
             HybridAquaticItems.OSCAR,
             HybridAquaticItems.FLASHLIGHT_FISH,
-            HybridAquaticItems.SQUIRREL_FISH,
+            HybridAquaticItems.SQUIRRELFISH,
             HybridAquaticItems.SURGEONFISH_ORANGESHOULDER,
             HybridAquaticItems.SURGEONFISH_SOHAL,
             HybridAquaticItems.SURGEONFISH_LINED,
@@ -197,7 +197,7 @@ class ItemTagProvider(output: FabricDataOutput, registriesFuture: CompletableFut
             HybridAquaticItems.FLYING_FISH,
             HybridAquaticItems.GOLDEN_DORADO,
             HybridAquaticItems.COELACANTH,
-            HybridAquaticItems.SQUIRREL_FISH,
+            HybridAquaticItems.SQUIRRELFISH,
             HybridAquaticItems.CORAL_GROUPER,
             HybridAquaticItems.GOURAMI,
             HybridAquaticItems.LIONFISH,
@@ -286,7 +286,7 @@ class ItemTagProvider(output: FabricDataOutput, registriesFuture: CompletableFut
             HybridAquaticItems.TIGER_BARB,
             HybridAquaticItems.COELACANTH,
             HybridAquaticItems.CORAL_GROUPER,
-            HybridAquaticItems.SQUIRREL_FISH,
+            HybridAquaticItems.SQUIRRELFISH,
             HybridAquaticItems.GOLDEN_DORADO,
         ).forEach { item ->
             getOrCreateTagBuilder(ItemTags.FISHES).add(item)

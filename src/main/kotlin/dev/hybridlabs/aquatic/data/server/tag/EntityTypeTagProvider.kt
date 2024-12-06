@@ -29,6 +29,7 @@ class EntityTypeTagProvider(output: FabricDataOutput, registriesFuture: Completa
                 HybridAquaticEntityTypes.CUTTLEFISH,
                 HybridAquaticEntityTypes.AFRICAN_BUTTERFLY,
                 HybridAquaticEntityTypes.FLYING_FISH,
+                HybridAquaticEntityTypes.SQUIRRELFISH,
                 EntityType.SALMON,
                 EntityType.COD,
                 EntityType.TROPICAL_FISH
@@ -161,6 +162,7 @@ class EntityTypeTagProvider(output: FabricDataOutput, registriesFuture: Completa
                 HybridAquaticEntityTypes.DANIO,
                 HybridAquaticEntityTypes.DISCUS,
                 HybridAquaticEntityTypes.FLASHLIGHT_FISH,
+                HybridAquaticEntityTypes.SQUIRRELFISH,
                 HybridAquaticEntityTypes.FLYING_FISH,
                 HybridAquaticEntityTypes.GOLDFISH,
                 HybridAquaticEntityTypes.GOURAMI,

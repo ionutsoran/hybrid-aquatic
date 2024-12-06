@@ -26,6 +26,7 @@ object HybridAquaticEntityRenderers {
     val GOLDEN_DORADO = EntityRendererRegistry.register(HybridAquaticEntityTypes.GOLDEN_DORADO, ::GoldenDoradoEntityRenderer)
     val COELACANTH = EntityRendererRegistry.register(HybridAquaticEntityTypes.COELACANTH, ::CoelacanthEntityRenderer)
     val FLASHLIGHT_FISH = EntityRendererRegistry.register(HybridAquaticEntityTypes.FLASHLIGHT_FISH, ::FlashlightFishEntityRenderer)
+    val SQUIRRELFISH = EntityRendererRegistry.register(HybridAquaticEntityTypes.SQUIRRELFISH, ::SquirrelfishEntityRenderer)
     val FLYING_FISH = EntityRendererRegistry.register(HybridAquaticEntityTypes.FLYING_FISH, ::FlyingFishEntityRenderer)
     val LIONFISH = EntityRendererRegistry.register(HybridAquaticEntityTypes.LIONFISH, ::LionfishEntityRenderer)
     val OARFISH = EntityRendererRegistry.register(HybridAquaticEntityTypes.OARFISH, ::OarfishEntityRenderer)

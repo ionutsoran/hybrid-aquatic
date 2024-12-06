@@ -515,7 +515,7 @@ object HybridAquaticItems {
         )
     )
 
-    val SQUIRREL_FISH = register("squirrel_fish",
+    val SQUIRRELFISH = register("squirrelfish",
         Item(
             FabricItemSettings()
                 .food(
@@ -1037,6 +1037,7 @@ object HybridAquaticItems {
     val DISCUS_SPAWN_EGG = registerSpawnEgg("discus_spawn_egg", HybridAquaticEntityTypes.DISCUS, 0xeeeecd, 0xf4a957)
     val DRAGONFISH_SPAWN_EGG = registerSpawnEgg("dragonfish_spawn_egg", HybridAquaticEntityTypes.DRAGONFISH, 0x2e2e33, 0xfffaa9)
     val FLASHLIGHT_FISH_SPAWN_EGG = registerSpawnEgg("flashlight_fish_spawn_egg", HybridAquaticEntityTypes.FLASHLIGHT_FISH, 0x5c433e, 0xfffaa9)
+    val SQUIRRELFISH_FISH_SPAWN_EGG = registerSpawnEgg("squirrelfish_spawn_egg", HybridAquaticEntityTypes.SQUIRRELFISH, 0x9b3f3d, 0xcfa184)
     val FLYING_FISH_SPAWN_EGG = registerSpawnEgg("flying_fish_spawn_egg", HybridAquaticEntityTypes.FLYING_FISH, 0x7c93e1, 0xfbf7e6)
     val GOLDFISH_SPAWN_EGG = registerSpawnEgg("goldfish_spawn_egg", HybridAquaticEntityTypes.GOLDFISH, 0xefedf6, 0xff9166)
     val GOURAMI_SPAWN_EGG = registerSpawnEgg("gourami_spawn_egg", HybridAquaticEntityTypes.GOURAMI, 0x7bb6cf, 0x722a37)

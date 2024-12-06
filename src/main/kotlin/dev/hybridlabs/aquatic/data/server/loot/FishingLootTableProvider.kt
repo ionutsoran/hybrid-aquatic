@@ -158,12 +158,12 @@ class FishingLootTableProvider(output: FabricDataOutput) : SimpleFabricLootTable
                                 .weight(4)
                         )
                         .with(
-                            ItemEntry.builder(HybridAquaticItems.SQUIRREL_FISH)
+                            ItemEntry.builder(HybridAquaticItems.SQUIRRELFISH)
                                 .weight(4)
                         )
                         .with(
                             ItemEntry.builder(HybridAquaticItems.CORAL_GROUPER)
-                                .weight(4)
+                                .weight(2)
                         )
                 )
         )
