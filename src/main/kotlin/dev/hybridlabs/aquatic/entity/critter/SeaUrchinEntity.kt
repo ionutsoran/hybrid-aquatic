@@ -1,20 +1,16 @@
 package dev.hybridlabs.aquatic.entity.critter
 
 import dev.hybridlabs.aquatic.entity.HybridAquaticEntityTypes
-import dev.hybridlabs.aquatic.tag.HybridAquaticBiomeTags
 import net.minecraft.block.Blocks
 import net.minecraft.entity.EntityType
 import net.minecraft.entity.LivingEntity
 import net.minecraft.entity.attribute.DefaultAttributeContainer
 import net.minecraft.entity.attribute.EntityAttributes
 import net.minecraft.entity.damage.DamageSource
-import net.minecraft.entity.damage.DamageTypes
 import net.minecraft.entity.mob.PathAwareEntity
 import net.minecraft.registry.tag.BiomeTags
-import net.minecraft.registry.tag.DamageTypeTags
 import net.minecraft.util.math.BlockPos
 import net.minecraft.world.World
-import net.minecraft.world.biome.Biome
 import software.bernie.geckolib.core.animatable.GeoAnimatable
 import software.bernie.geckolib.core.animation.AnimationState
 import software.bernie.geckolib.core.`object`.PlayState
@@ -57,18 +53,18 @@ class SeaUrchinEntity(entityType: EntityType<out SeaUrchinEntity>, world: World)
         return PlayState.CONTINUE
     }
 
-    override fun damage(source: DamageSource, amount: Float): Boolean {
-        return if (world.isClient) {
-            false
-        } else {
-            if (!source.isIn(DamageTypeTags.AVOIDS_GUARDIAN_THORNS) && !source.isOf(DamageTypes.THORNS)) {
-                val attacker = source.source
-                if (attacker is LivingEntity) {
-                    attacker.damage(this.damageSources.thorns(this), 2.0f)
-                }
+    override fun damage(source: DamageSource?, amount: Float): Boolean {
+        if (super.damage(source, amount)) {
+
+            val attacker = source?.attacker
+            if (attacker is LivingEntity && attacker.mainHandStack.isEmpty) {
+                attacker.damage(this.damageSources.thorns(this), 2.0f)
             }
-            super.damage(source, amount)
+
+            return true
         }
+
+        return false
     }
 
     override fun tick() {
