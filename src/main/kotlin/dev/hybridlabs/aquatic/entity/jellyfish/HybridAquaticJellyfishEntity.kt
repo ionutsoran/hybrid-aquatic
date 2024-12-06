@@ -222,7 +222,7 @@ open class HybridAquaticJellyfishEntity(
 
         if (player is ServerPlayerEntity && isVenomous && !player.hasVehicle()) {
             player.damage(this.damageSources.mobAttack(this), 1.0f)
-            player.addStatusEffect(StatusEffectInstance(StatusEffects.POISON, 100, 0), this)
+            player.addStatusEffect(StatusEffectInstance(StatusEffects.POISON, 100, venomLevel), this)
         }
     }
 
