@@ -36,13 +36,6 @@ class SeaCucumberEntity(entityType: EntityType<out SeaCucumberEntity>, world: Wo
         return PlayState.CONTINUE
     }
 
-    override fun tick() {
-        super.tick()
-        if (!isWet) {
-            this.speed = 0.01F
-        }
-    }
-
     override fun getMaxSize() : Int {
         return 5
     }

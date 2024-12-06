@@ -78,6 +78,10 @@ open class HybridAquaticCritterEntity(
         if (!world.isClient) {
             this.setClimbingWall(this.horizontalCollision)
         }
+
+        if (!isWet) {
+            this.speed = 0.01F
+        }
     }
 
     private fun setClimbingWall(climbing: Boolean) {
