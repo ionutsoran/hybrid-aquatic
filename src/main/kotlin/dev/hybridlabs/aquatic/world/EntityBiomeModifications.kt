@@ -16,16 +16,16 @@ import net.minecraft.world.biome.Biome
 object EntityBiomeModifications {
     init {
         // fish
-        addFish(HybridAquaticEntityTypes.AFRICAN_BUTTERFLY, listOf(HybridAquaticBiomeTags.JUNGLE, HybridAquaticBiomeTags.MARSHES), 2, 1, 1)
+        addFish(HybridAquaticEntityTypes.AFRICAN_BUTTERFLY, listOf(HybridAquaticBiomeTags.JUNGLE, HybridAquaticBiomeTags.MARSHES, HybridAquaticBiomeTags.MANGROVES), 2, 1, 1)
         addFish(HybridAquaticEntityTypes.GOLDEN_DORADO, listOf(HybridAquaticBiomeTags.TROPICAL_RIVERS, HybridAquaticBiomeTags.RIVERS, HybridAquaticBiomeTags.JUNGLE), 1, 1, 1)
-        addFish(HybridAquaticEntityTypes.TETRA, listOf(HybridAquaticBiomeTags.JUNGLE, HybridAquaticBiomeTags.MARSHES, HybridAquaticBiomeTags.TROPICAL_RIVERS, HybridAquaticBiomeTags.CAVES), 3, 2, 3)
-        addFish(HybridAquaticEntityTypes.TIGER_BARB, listOf(HybridAquaticBiomeTags.JUNGLE, HybridAquaticBiomeTags.SWAMP,  HybridAquaticBiomeTags.MARSHES, HybridAquaticBiomeTags.TROPICAL_RIVERS), 3, 2, 3)
-        addFish(HybridAquaticEntityTypes.GOURAMI, listOf(HybridAquaticBiomeTags.JUNGLE, HybridAquaticBiomeTags.MARSHES, HybridAquaticBiomeTags.TROPICAL_RIVERS), 3, 1, 1)
-        addFish(HybridAquaticEntityTypes.DISCUS, listOf(HybridAquaticBiomeTags.JUNGLE, HybridAquaticBiomeTags.TROPICAL_RIVERS), 3, 1, 1)
+        addFish(HybridAquaticEntityTypes.TETRA, listOf(HybridAquaticBiomeTags.JUNGLE, HybridAquaticBiomeTags.MARSHES, HybridAquaticBiomeTags.MANGROVES, HybridAquaticBiomeTags.TROPICAL_RIVERS, HybridAquaticBiomeTags.CAVES), 3, 2, 3)
+        addFish(HybridAquaticEntityTypes.TIGER_BARB, listOf(HybridAquaticBiomeTags.JUNGLE, HybridAquaticBiomeTags.SWAMP, HybridAquaticBiomeTags.MANGROVES, HybridAquaticBiomeTags.MARSHES, HybridAquaticBiomeTags.TROPICAL_RIVERS), 3, 2, 3)
+        addFish(HybridAquaticEntityTypes.GOURAMI, listOf(HybridAquaticBiomeTags.JUNGLE, HybridAquaticBiomeTags.MANGROVES, HybridAquaticBiomeTags.MARSHES, HybridAquaticBiomeTags.TROPICAL_RIVERS), 3, 1, 1)
+        addFish(HybridAquaticEntityTypes.DISCUS, listOf(HybridAquaticBiomeTags.JUNGLE, HybridAquaticBiomeTags.MANGROVES, HybridAquaticBiomeTags.TROPICAL_RIVERS), 3, 1, 1)
         addFish(HybridAquaticEntityTypes.PIRANHA, listOf(HybridAquaticBiomeTags.JUNGLE, HybridAquaticBiomeTags.TROPICAL_RIVERS), 3, 2, 5)
-        addFish(HybridAquaticEntityTypes.OSCAR, listOf(HybridAquaticBiomeTags.JUNGLE, HybridAquaticBiomeTags.TROPICAL_RIVERS), 1, 1, 1)
-        addFish(HybridAquaticEntityTypes.DANIO, listOf(HybridAquaticBiomeTags.JUNGLE, HybridAquaticBiomeTags.MARSHES, HybridAquaticBiomeTags.TROPICAL_RIVERS), 3, 2, 3)
-        addFish(HybridAquaticEntityTypes.BETTA, listOf(HybridAquaticBiomeTags.SWAMP, HybridAquaticBiomeTags.MARSHES), 1, 1, 1)
+        addFish(HybridAquaticEntityTypes.OSCAR, listOf(HybridAquaticBiomeTags.JUNGLE, HybridAquaticBiomeTags.MANGROVES, HybridAquaticBiomeTags.TROPICAL_RIVERS), 1, 1, 1)
+        addFish(HybridAquaticEntityTypes.DANIO, listOf(HybridAquaticBiomeTags.JUNGLE, HybridAquaticBiomeTags.MANGROVES, HybridAquaticBiomeTags.MARSHES, HybridAquaticBiomeTags.TROPICAL_RIVERS), 3, 2, 3)
+        addFish(HybridAquaticEntityTypes.BETTA, listOf(HybridAquaticBiomeTags.SWAMP, HybridAquaticBiomeTags.MANGROVES, HybridAquaticBiomeTags.MARSHES), 1, 1, 1)
         addFish(HybridAquaticEntityTypes.GOLDFISH, listOf(HybridAquaticBiomeTags.CHERRY), 5, 1, 2)
         addFish(HybridAquaticEntityTypes.CARP, listOf(HybridAquaticBiomeTags.CHERRY, HybridAquaticBiomeTags.RIVERS), 5, 1, 2)
         addFish(HybridAquaticEntityTypes.MANTA_RAY, listOf(HybridAquaticBiomeTags.TEMPERATE_OCEANS, HybridAquaticBiomeTags.TROPICAL_OCEANS), 1, 1, 1)
@@ -75,14 +75,15 @@ object EntityBiomeModifications {
 
         // jellies
         addJelly(HybridAquaticEntityTypes.BARREL_JELLYFISH, listOf(HybridAquaticBiomeTags.TEMPERATE_OCEANS, HybridAquaticBiomeTags.TROPICAL_OCEANS), 5, 1, 2)
-        addJelly(HybridAquaticEntityTypes.MOON_JELLYFISH, listOf(HybridAquaticBiomeTags.TEMPERATE_OCEANS, HybridAquaticBiomeTags.TROPICAL_OCEANS, HybridAquaticBiomeTags.REEF), 5, 3, 5)
-        addJelly(HybridAquaticEntityTypes.FRIED_EGG_JELLYFISH, listOf(HybridAquaticBiomeTags.TEMPERATE_OCEANS), 5, 1, 2)
-        addJelly(HybridAquaticEntityTypes.CAULIFLOWER_JELLYFISH, listOf(HybridAquaticBiomeTags.TROPICAL_OCEANS), 3, 1, 2)
+        addJelly(HybridAquaticEntityTypes.MOON_JELLYFISH, listOf(HybridAquaticBiomeTags.TEMPERATE_OCEANS, HybridAquaticBiomeTags.TROPICAL_OCEANS, HybridAquaticBiomeTags.REEF, HybridAquaticBiomeTags.SANDY_BEACHES), 5, 3, 5)
+        addJelly(HybridAquaticEntityTypes.FRIED_EGG_JELLYFISH, listOf(HybridAquaticBiomeTags.TEMPERATE_OCEANS), 5, 1, 3)
+        addJelly(HybridAquaticEntityTypes.CAULIFLOWER_JELLYFISH, listOf(HybridAquaticBiomeTags.TROPICAL_OCEANS), 5, 1, 3)
         addJelly(HybridAquaticEntityTypes.COMPASS_JELLYFISH, listOf(HybridAquaticBiomeTags.TEMPERATE_OCEANS), 3, 2, 3)
         addJelly(HybridAquaticEntityTypes.BLUE_JELLYFISH, listOf(HybridAquaticBiomeTags.COLD_OCEANS, HybridAquaticBiomeTags.TEMPERATE_OCEANS), 3, 1, 2)
         addJelly(HybridAquaticEntityTypes.SEA_NETTLE, listOf(HybridAquaticBiomeTags.TROPICAL_OCEANS), 5, 3, 5)
-        addJelly(HybridAquaticEntityTypes.NOMURA_JELLYFISH, listOf(HybridAquaticBiomeTags.ARCTIC_OCEANS, HybridAquaticBiomeTags.COLD_OCEANS), 1, 1, 1)
-        addJelly(HybridAquaticEntityTypes.LIONS_MANE_JELLYFISH, listOf(HybridAquaticBiomeTags.ARCTIC_OCEANS, HybridAquaticBiomeTags.COLD_OCEANS), 1, 1, 1)
+        addJelly(HybridAquaticEntityTypes.NOMURA_JELLYFISH, listOf(HybridAquaticBiomeTags.ARCTIC_OCEANS, HybridAquaticBiomeTags.COLD_OCEANS), 1, 1, 2)
+        addJelly(HybridAquaticEntityTypes.LIONS_MANE_JELLYFISH, listOf(HybridAquaticBiomeTags.ARCTIC_OCEANS, HybridAquaticBiomeTags.COLD_OCEANS), 1, 1, 2)
+        addJelly(HybridAquaticEntityTypes.BOX_JELLYFISH, listOf(HybridAquaticBiomeTags.MANGROVES, HybridAquaticBiomeTags.REEF, HybridAquaticBiomeTags.TROPICAL_OCEANS, HybridAquaticBiomeTags.SANDY_BEACHES), 1, 1, 1)
 
         // underground jellies
         addUndergroundJelly(HybridAquaticEntityTypes.ATOLLA_JELLYFISH, listOf(BiomeTags.IS_DEEP_OCEAN), 1, 1, 1)
@@ -122,7 +123,7 @@ object EntityBiomeModifications {
 
         //critters
         addCritter(HybridAquaticEntityTypes.NUDIBRANCH, listOf(HybridAquaticBiomeTags.ARCTIC_OCEANS, HybridAquaticBiomeTags.COLD_OCEANS, HybridAquaticBiomeTags.TEMPERATE_OCEANS, HybridAquaticBiomeTags.TROPICAL_OCEANS, HybridAquaticBiomeTags.REEF), 3, 1, 2)
-        addCritter(HybridAquaticEntityTypes.STARFISH, listOf(HybridAquaticBiomeTags.ARCTIC_OCEANS, HybridAquaticBiomeTags.COLD_OCEANS, HybridAquaticBiomeTags.TEMPERATE_OCEANS, HybridAquaticBiomeTags.TROPICAL_OCEANS, HybridAquaticBiomeTags.REEF), 5, 1, 3)
+        addCritter(HybridAquaticEntityTypes.STARFISH, listOf(HybridAquaticBiomeTags.ARCTIC_OCEANS, HybridAquaticBiomeTags.COLD_OCEANS, HybridAquaticBiomeTags.TEMPERATE_OCEANS, HybridAquaticBiomeTags.TROPICAL_OCEANS, HybridAquaticBiomeTags.REEF, HybridAquaticBiomeTags.SANDY_BEACHES), 5, 1, 3)
         addCritter(HybridAquaticEntityTypes.SEA_CUCUMBER, listOf(BiomeTags.IS_OCEAN, BiomeTags.IS_DEEP_OCEAN), 3, 1, 3)
         addCritter(HybridAquaticEntityTypes.SEA_URCHIN, listOf(HybridAquaticBiomeTags.ARCTIC_OCEANS, HybridAquaticBiomeTags.COLD_OCEANS, HybridAquaticBiomeTags.TEMPERATE_OCEANS, HybridAquaticBiomeTags.TROPICAL_OCEANS, HybridAquaticBiomeTags.REEF), 5, 1, 3)
     }

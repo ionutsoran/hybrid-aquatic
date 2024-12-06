@@ -1089,6 +1089,7 @@ object HybridAquaticItems {
     val MOON_JELLYFISH_SPAWN_EGG = registerSpawnEgg("moon_jellyfish_spawn_egg", HybridAquaticEntityTypes.MOON_JELLYFISH, 0xa293f3, 0xe0caf8)
     val NOMURA_JELLYFISH_SPAWN_EGG = registerSpawnEgg("nomura_jellyfish_spawn_egg", HybridAquaticEntityTypes.NOMURA_JELLYFISH, 0xe5dccf, 0x64353b)
     val SEA_NETTLE_SPAWN_EGG = registerSpawnEgg("sea_nettle_spawn_egg", HybridAquaticEntityTypes.SEA_NETTLE, 0xf7bc78, 0x76435f)
+    val BOX_JELLYFISH_SPAWN_EGG = registerSpawnEgg("box_jellyfish_spawn_egg", HybridAquaticEntityTypes.BOX_JELLYFISH, 0x9ba6de, 0xebeff8)
 
     // crustacean spawn eggs
     val COCONUT_CRAB_SPAWN_EGG = registerSpawnEgg("coconut_crab_spawn_egg", HybridAquaticEntityTypes.COCONUT_CRAB, 0x3e2d25, 0x3c546d)

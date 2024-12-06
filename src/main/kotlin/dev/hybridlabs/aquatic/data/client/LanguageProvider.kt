@@ -376,6 +376,7 @@ class LanguageProvider(output: FabricDataOutput) : FabricLanguageProvider(output
             HybridAquaticEntityTypes.SEA_URCHIN to "Sea Urchin",
             HybridAquaticEntityTypes.STARFISH to "Starfish",
             HybridAquaticEntityTypes.SEA_NETTLE to "Sea Nettle",
+            HybridAquaticEntityTypes.BOX_JELLYFISH to "Box Jellyfish",
             HybridAquaticEntityTypes.FRIED_EGG_JELLYFISH to "Fried Egg Jellyfish",
             HybridAquaticEntityTypes.CAULIFLOWER_JELLYFISH to "Cauliflower Jellyfish",
             HybridAquaticEntityTypes.NOMURA_JELLYFISH to "Nomura Jellyfish",

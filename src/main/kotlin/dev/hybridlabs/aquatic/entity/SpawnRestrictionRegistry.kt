@@ -96,6 +96,7 @@ object SpawnRestrictionRegistry {
             HybridAquaticEntityTypes.LIONS_MANE_JELLYFISH,
             HybridAquaticEntityTypes.NOMURA_JELLYFISH,
             HybridAquaticEntityTypes.BARREL_JELLYFISH,
+            HybridAquaticEntityTypes.BOX_JELLYFISH,
         ).forEach { registerJelly(it) }
 
         setOf(

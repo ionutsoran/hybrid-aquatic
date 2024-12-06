@@ -149,6 +149,7 @@ class EntityTypeTagProvider(output: FabricDataOutput, registriesFuture: Completa
                 HybridAquaticEntityTypes.MOON_JELLYFISH,
                 HybridAquaticEntityTypes.NOMURA_JELLYFISH,
                 HybridAquaticEntityTypes.SEA_NETTLE,
+                HybridAquaticEntityTypes.BOX_JELLYFISH,
             )
 
         // fish

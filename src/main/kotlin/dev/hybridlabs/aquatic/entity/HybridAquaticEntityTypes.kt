@@ -554,6 +554,13 @@ object HybridAquaticEntityTypes {
         BarrelJellyfishEntity.createMobAttributes()
     )
 
+    val BOX_JELLYFISH = registerJelly(
+        "box_jellyfish",
+        ::BoxJellyfishEntity,
+        EntityDimensions.fixed(0.25f, 0.25f),
+        BoxJellyfishEntity.createMobAttributes()
+    )
+
     val BLUE_JELLYFISH = registerJelly(
         "blue_jellyfish",
         ::BlueJellyfishEntity,
