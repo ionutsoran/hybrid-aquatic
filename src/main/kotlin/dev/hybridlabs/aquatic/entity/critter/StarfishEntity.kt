@@ -2,8 +2,12 @@ package dev.hybridlabs.aquatic.entity.critter
 
 import dev.hybridlabs.aquatic.tag.HybridAquaticBiomeTags
 import net.minecraft.entity.EntityType
+import net.minecraft.entity.LivingEntity
 import net.minecraft.entity.attribute.DefaultAttributeContainer
 import net.minecraft.entity.attribute.EntityAttributes
+import net.minecraft.entity.damage.DamageSource
+import net.minecraft.entity.effect.StatusEffectInstance
+import net.minecraft.entity.effect.StatusEffects
 import net.minecraft.entity.mob.WaterCreatureEntity
 import net.minecraft.world.World
 import software.bernie.geckolib.core.animatable.GeoAnimatable
@@ -69,12 +73,21 @@ class StarfishEntity(entityType: EntityType<out StarfishEntity>, world: World) :
         return PlayState.CONTINUE
     }
 
-    override fun tick() {
-        super.tick()
-        if (!isWet) {
-            this.speed = 0.01F
+    override fun damage(source: DamageSource?, amount: Float): Boolean {
+        if (super.damage(source, amount)) {
+
+            val attacker = source?.attacker
+            if (this.variant?.variantName == "crown_of_thorns" && attacker is LivingEntity && attacker.mainHandStack.isEmpty) {
+                attacker.damage(this.damageSources.thorns(this), 2.0f)
+                attacker.addStatusEffect(StatusEffectInstance(StatusEffects.POISON, 200, 1))
+            }
+
+            return true
         }
+
+        return false
     }
+
     override fun getMaxSize() : Int {
         return 5
     }
