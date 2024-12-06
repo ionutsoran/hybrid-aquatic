@@ -22,6 +22,11 @@ data class GeneratedSeaMessageData(
      * The english translation of the message title.
      */
     val englishTitle: String? = null,
+
+    /**
+     * Whether this sea message is infinite.
+     */
+    val infinite: Boolean = false,
 ) {
     /**
      * The automated translation key for this message.

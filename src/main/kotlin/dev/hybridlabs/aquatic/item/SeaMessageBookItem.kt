@@ -31,11 +31,11 @@ class SeaMessageBookItem(settings: Settings) : Item(settings) {
         }
     }
 
-    override fun use(world: World, user: PlayerEntity, hand: Hand): TypedActionResult<ItemStack> {
-        val itemStack = user.getStackInHand(hand)
-        user.useBook(itemStack, hand)
-        user.incrementStat(Stats.USED.getOrCreateStat(this))
-        return TypedActionResult.success(itemStack, world.isClient)
+    override fun use(world: World, player: PlayerEntity, hand: Hand): TypedActionResult<ItemStack> {
+        val stack = player.getStackInHand(hand)
+        player.useBook(stack, hand)
+        player.incrementStat(Stats.USED.getOrCreateStat(this))
+        return TypedActionResult.success(stack, world.isClient)
     }
 
     companion object {

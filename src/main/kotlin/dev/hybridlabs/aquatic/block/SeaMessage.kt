@@ -19,7 +19,12 @@ data class SeaMessage(
     /**
      * Whether this message has a title.
      */
-    val hasTitle: Boolean = false,
+    val hasTitle: Boolean,
+
+    /**
+     * Whether this message is infinite.
+     */
+    val infinite: Boolean,
 
     /**
      * The author of this message.
@@ -41,8 +46,9 @@ data class SeaMessage(
         val CODEC: Codec<SeaMessage> = RecordCodecBuilder.create { instance ->
             instance.group(
                 Codec.STRING.fieldOf("translation_key").forGetter(SeaMessage::translationKey),
-                Codec.BOOL.fieldOf("has_title").forGetter(SeaMessage::hasTitle),
-                Codec.STRING.optionalFieldOf("author").forGetter(SeaMessage::author)
+                Codec.BOOL.fieldOf("has_title").orElse(false).forGetter(SeaMessage::hasTitle),
+                Codec.BOOL.fieldOf("infinite").orElse(false).forGetter(SeaMessage::infinite),
+                Codec.STRING.optionalFieldOf("author").orElse(Optional.empty()).forGetter(SeaMessage::author)
             ).apply(instance, ::SeaMessage)
         }
     }
