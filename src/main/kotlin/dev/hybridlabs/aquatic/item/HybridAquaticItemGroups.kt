@@ -204,7 +204,8 @@ object  HybridAquaticItemGroups {
             entries.add(HybridAquaticItems.PEARL)
             entries.add(HybridAquaticItems.BLACK_PEARL)
             entries.add(HybridAquaticItems.SULFUR)
-            entries.add(HybridAquaticItems.SPONGE_CHUNK)
+            entries.add(HybridAquaticItems.TUBE_SPONGE)
+            entries.add(HybridAquaticItems.BUOY)
             entries.add(HybridAquaticItems.CUTTLEBONE)
             entries.add(HybridAquaticItems.SEA_URCHIN_SPINE)
 

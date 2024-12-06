@@ -71,20 +71,6 @@ class BlockLootTableProvider(output: FabricDataOutput) : FabricBlockLootTablePro
 
         //endregion
 
-
-        // living sponge
-        addDrop(HybridAquaticBlocks.TUBE_SPONGE) { block ->
-            LootTable.builder().pool(
-                LootPool.builder().with(
-                    AlternativeEntry.builder(
-                        ItemEntry.builder(block).conditionally(WITH_SILK_TOUCH),
-                        LootTableEntry.builder(HybridAquaticLootTables.TUBE_SPONGE_LOOT_ID)
-                    )
-                )
-            )
-        }
-
-
         // thermal vents
         addDrop(HybridAquaticBlocks.HYDROTHERMAL_VENT) { block ->
             LootTable.builder().pool(

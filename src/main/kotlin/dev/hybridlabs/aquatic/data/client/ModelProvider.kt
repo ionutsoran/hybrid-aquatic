@@ -153,6 +153,7 @@ class ModelProvider(output: FabricDataOutput) : FabricModelProvider(output) {
     override fun generateItemModels(generator: ItemModelGenerator) {
         setOf(
             HybridAquaticItems.BUOY,
+            HybridAquaticItems.TUBE_SPONGE,
             HybridAquaticItems.RAW_CRAYFISH,
             HybridAquaticItems.COCONUT_CRAB_CLAW,
             HybridAquaticItems.DUNGENESS_CRAB_CLAW,
@@ -181,7 +182,6 @@ class ModelProvider(output: FabricDataOutput) : FabricModelProvider(output) {
             HybridAquaticItems.COOKED_TENTACLE,
             HybridAquaticItems.GLOW_SLIME,
             HybridAquaticItems.SHARK_TOOTH,
-            HybridAquaticItems.SPONGE_CHUNK,
             HybridAquaticItems.BRINE_BUCKET,
             HybridAquaticItems.PEARL,
             HybridAquaticItems.BLACK_PEARL,

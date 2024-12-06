@@ -190,7 +190,6 @@ class LanguageProvider(output: FabricDataOutput) : FabricLanguageProvider(output
             HybridAquaticItems.CUTTLEBONE to "Cuttlebone",
             HybridAquaticItems.SEA_URCHIN_SPINE to "Sea Urchin Spine",
             HybridAquaticItems.SHARK_TOOTH to "Shark Tooth",
-            HybridAquaticItems.SPONGE_CHUNK to "Sponge Chunk",
             HybridAquaticItems.PEARL to "Pearl",
             HybridAquaticItems.BLACK_PEARL to "Black Pearl",
             HybridAquaticItems.SULFUR to "Sulfur",

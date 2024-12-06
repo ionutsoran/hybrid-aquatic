@@ -23,11 +23,11 @@ class RecipeProvider(output: FabricDataOutput) : FabricRecipeProvider(output) {
     override fun generate(exporter: Consumer<RecipeJsonProvider>) {
         // misc recipes
         ShapedRecipeJsonBuilder.create(RecipeCategory.BUILDING_BLOCKS, Blocks.SPONGE)
-            .pattern("SSS")
-            .pattern("SSS")
-            .pattern("SSS")
-            .input('S', HybridAquaticItems.SPONGE_CHUNK)
-            .criterion("has_sponge_chunk", InventoryChangedCriterion.Conditions.items(HybridAquaticItems.SPONGE_CHUNK))
+            .pattern("SS ")
+            .pattern("SS ")
+            .pattern("   ")
+            .input('S', HybridAquaticItems.TUBE_SPONGE)
+            .criterion("has_tube_sponge", InventoryChangedCriterion.Conditions.items(HybridAquaticItems.TUBE_SPONGE))
             .offerTo(exporter)
 
         ShapedRecipeJsonBuilder.create(RecipeCategory.BUILDING_BLOCKS, HybridAquaticItems.BUOY,2)

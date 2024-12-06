@@ -486,19 +486,6 @@ class GenericLootTableProvider(output: FabricDataOutput) :
         )
 
         exporter.accept(
-            HybridAquaticLootTables.TUBE_SPONGE_LOOT_ID,
-            LootTable.builder()
-                .randomSequenceId(HybridAquaticLootTables.TUBE_SPONGE_LOOT_ID)
-                .pool(
-                    LootPool.builder()
-                        .with(
-                            ItemEntry.builder(HybridAquaticItems.SPONGE_CHUNK)
-                                .apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(1.0f, 2.0f)))
-                        )
-                )
-        )
-
-        exporter.accept(
             HybridAquaticLootTables.VENT_LOOT_ID,
             LootTable.builder()
                 .randomSequenceId(HybridAquaticLootTables.VENT_LOOT_ID)

@@ -33,6 +33,7 @@ object HybridAquaticItems {
     val MOON_JELLYFISH_HAT: Item = register("moon_jellyfish_hat", MoonJellyfishArmorItem(HybridAquaticArmorMaterials.MOONJELLYFISH, ArmorItem.Type.HELMET, FabricItemSettings().maxCount(1)))
 
     val ANEMONE = registerBlockItem("anemone", HybridAquaticBlocks.ANEMONE)
+    val TUBE_SPONGE = registerBlockItem("tube_sponge", HybridAquaticBlocks.TUBE_SPONGE)
     val BUOY = registerPlaceableInWaterBlockItem("buoy", HybridAquaticBlocks.BUOY)
     val MESSAGE_IN_A_BOTTLE = register("message_in_a_bottle", MessageInABottleItem(FabricItemSettings()))
     val SEA_MESSAGE_BOOK = register("sea_message_book", SeaMessageBookItem(FabricItemSettings()))
@@ -41,7 +42,6 @@ object HybridAquaticItems {
     val GLOW_SLIME = register("glow_slime", Item(FabricItemSettings()))
     val SEA_URCHIN_SPINE = register("sea_urchin_spine", Item(FabricItemSettings()))
     val SHARK_TOOTH = register("shark_tooth", Item(FabricItemSettings()))
-    val SPONGE_CHUNK = register("sponge_chunk", Item(FabricItemSettings()))
     val SULFUR = register("sulfur", Item(FabricItemSettings()))
     val CORAL_CHUNK = register("coral_chunk", Item(FabricItemSettings()))
     val PEARL = register("pearl", Item(FabricItemSettings()))
@@ -984,7 +984,6 @@ object HybridAquaticItems {
     val ACACIA_CRATE = registerBlockItem("acacia_crate", HybridAquaticBlocks.ACACIA_CRATE)
     val MANGROVE_CRATE = registerBlockItem("mangrove_crate", HybridAquaticBlocks.MANGROVE_CRATE)
     val CHERRY_CRATE = registerBlockItem("cherry_crate", HybridAquaticBlocks.CHERRY_CRATE)
-    val TUBE_SPONGE = registerBlockItem("tube_sponge", HybridAquaticBlocks.TUBE_SPONGE)
     val GIANT_CLAM = registerBlockItem("giant_clam", HybridAquaticBlocks.GIANT_CLAM)
     val DRIFTWOOD_PLANKS = registerBlockItem("driftwood_planks", HybridAquaticBlocks.DRIFTWOOD_PLANKS)
     val DRIFTWOOD_LOG = registerBlockItem("driftwood_log", HybridAquaticBlocks.DRIFTWOOD_LOG)
