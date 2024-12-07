@@ -1,13 +1,11 @@
 {
   "parent": "hybrid-aquatic:root",
   "criteria": {
-    "obtain_glowstick": {
+    "has_crab_claw": {
       "conditions": {
         "items": [
           {
-            "items": [
-              "hybrid-aquatic:glowstick"
-            ]
+            "tag": "hybrid-aquatic:claw"
           }
         ]
       },
@@ -18,21 +16,21 @@
     "announce_to_chat": true,
     "background": "minecraft:textures/gui/advancements/backgrounds/adventure.png",
     "description": {
-      "translate": "advancements.hybrid-aquatic.glowstick.description"
+      "translate": "advancements.hybrid-aquatic.crab_claw.description"
     },
-    "frame": "task",
+    "frame": "goal",
     "hidden": false,
     "icon": {
-      "item": "hybrid-aquatic:glowstick"
+      "item": "hybrid-aquatic:dungeness_crab_claw"
     },
     "show_toast": true,
     "title": {
-      "translate": "advancements.hybrid-aquatic.glowstick.title"
+      "translate": "advancements.hybrid-aquatic.crab_claw.title"
     }
   },
   "requirements": [
     [
-      "obtain_glowstick"
+      "has_crab_claw"
     ]
   ],
   "sends_telemetry_event": true

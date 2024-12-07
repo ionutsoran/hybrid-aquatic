@@ -3,6 +3,7 @@ package dev.hybridlabs.aquatic.data.server
 import dev.hybridlabs.aquatic.block.HybridAquaticBlocks.BRINE
 import dev.hybridlabs.aquatic.entity.HybridAquaticEntityTypes
 import dev.hybridlabs.aquatic.item.HybridAquaticItems
+import dev.hybridlabs.aquatic.tag.HybridAquaticItemTags
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricAdvancementProvider
 import net.minecraft.advancement.Advancement
@@ -12,6 +13,7 @@ import net.minecraft.advancement.criterion.InventoryChangedCriterion
 import net.minecraft.advancement.criterion.OnKilledCriterion
 import net.minecraft.block.Blocks.WATER
 import net.minecraft.predicate.entity.EntityPredicate
+import net.minecraft.predicate.item.ItemPredicate
 import net.minecraft.text.Text
 import net.minecraft.util.Identifier
 import java.util.function.Consumer
@@ -27,7 +29,7 @@ class AdvancementProvider(output: FabricDataOutput) : FabricAdvancementProvider(
                 AdvancementFrame.TASK,
                 true,
                 true,
-                true
+                false
             )
             .criterion(
                 "enter_water",
@@ -46,11 +48,11 @@ class AdvancementProvider(output: FabricDataOutput) : FabricAdvancementProvider(
                 AdvancementFrame.TASK,
                 true,
                 true,
-                true
+                false
             )
             .criterion(
                 "obtain_glowstick",
-                InventoryChangedCriterion.Conditions.items(HybridAquaticItems.BUOY)
+                InventoryChangedCriterion.Conditions.items(HybridAquaticItems.GLOWSTICK)
             )
             .build(Identifier("hybrid-aquatic", "glowstick"))
         consumer?.accept(glowstickAdvancement)
@@ -65,7 +67,7 @@ class AdvancementProvider(output: FabricDataOutput) : FabricAdvancementProvider(
                 AdvancementFrame.TASK,
                 true,
                 true,
-                true
+                false
             )
             .criterion(
                 "obtain_buoy",
@@ -107,7 +109,7 @@ class AdvancementProvider(output: FabricDataOutput) : FabricAdvancementProvider(
                 AdvancementFrame.TASK,
                 true,
                 true,
-                true
+                false
             )
             .criterion(
                 "enter_brine",
@@ -154,8 +156,29 @@ class AdvancementProvider(output: FabricDataOutput) : FabricAdvancementProvider(
             .build(Identifier("hybrid-aquatic", "black_pearl"))
         consumer?.accept(obtainBlackPearlAdvancement)
 
-        val ominousHookAdvancement = Advancement.Builder.create()
+        val crabClawAdvancement = Advancement.Builder.create()
             .parent(rootAdvancement)
+            .display(
+                HybridAquaticItems.DUNGENESS_CRAB_CLAW,
+                Text.translatable("advancements.hybrid-aquatic.crab_claw.title"),
+                Text.translatable("advancements.hybrid-aquatic.crab_claw.description"),
+                Identifier("textures/gui/advancements/backgrounds/adventure.png"),
+                AdvancementFrame.GOAL,
+                true,
+                true,
+                false
+            )
+            .criterion(
+                "has_crab_claw",
+                InventoryChangedCriterion.Conditions.items(
+                    ItemPredicate.Builder.create().tag(HybridAquaticItemTags.CRAB_CLAW).build()
+                )
+            )
+            .build(Identifier("hybrid-aquatic", "crab_claw"))
+        consumer?.accept(crabClawAdvancement)
+
+        val ominousHookAdvancement = Advancement.Builder.create()
+            .parent(crabClawAdvancement)
             .display(
                 HybridAquaticItems.OMINOUS_HOOK,
                 Text.translatable("advancements.hybrid-aquatic.ominous_hook.title"),
@@ -164,7 +187,7 @@ class AdvancementProvider(output: FabricDataOutput) : FabricAdvancementProvider(
                 AdvancementFrame.GOAL,
                 true,
                 true,
-                false
+                true
             )
             .criterion(
                 "obtain_ominous_hook",

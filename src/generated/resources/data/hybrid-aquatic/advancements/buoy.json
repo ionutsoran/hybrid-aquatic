@@ -21,7 +21,7 @@
       "translate": "advancements.hybrid-aquatic.buoy.description"
     },
     "frame": "task",
-    "hidden": true,
+    "hidden": false,
     "icon": {
       "item": "hybrid-aquatic:buoy"
     },
