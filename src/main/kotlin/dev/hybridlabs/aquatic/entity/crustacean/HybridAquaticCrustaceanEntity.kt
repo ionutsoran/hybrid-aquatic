@@ -322,16 +322,11 @@ open class HybridAquaticCrustaceanEntity(
 
     //#region Animations
     override fun registerControllers(controllerRegistrar: AnimatableManager.ControllerRegistrar) {
+
         controllerRegistrar.add(
-            AnimationController(this, "Walk/Idle", 5,
-                AnimationController.AnimationStateHandler { state: AnimationState<HybridAquaticCrustaceanEntity> ->
-                    if (state.isMoving) {
-                        return@AnimationStateHandler state.setAndContinue(DefaultAnimations.WALK)
-                    } else {
-                        return@AnimationStateHandler state.setAndContinue(DefaultAnimations.IDLE)
-                    }
-                })
+            DefaultAnimations.genericWalkIdleController(this)
         )
+
         controllerRegistrar.add(
             AnimationController(this, "Hide", 5,
                 AnimationController.AnimationStateHandler { state: AnimationState<HybridAquaticCrustaceanEntity> ->
