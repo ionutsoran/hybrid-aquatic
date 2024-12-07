@@ -120,6 +120,7 @@ class AdvancementProvider(output: FabricDataOutput) : FabricAdvancementProvider(
         consumer?.accept(divingSuitAdvancement)
 
         val brineAdvancement = Advancement.Builder.create()
+            .parent(divingSuitAdvancement)
             .display(
                 HybridAquaticItems.BRINE_BUCKET,
                 Text.translatable("advancements.hybrid-aquatic.brine.title"),

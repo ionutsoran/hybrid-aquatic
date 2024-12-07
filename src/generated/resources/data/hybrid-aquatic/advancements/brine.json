@@ -1,4 +1,5 @@
 {
+  "parent": "hybrid-aquatic:diving_suit",
   "criteria": {
     "enter_brine": {
       "conditions": {
