@@ -118,7 +118,7 @@ object EntityBiomeModifications {
 
         //underground crustaceans
         addUndergroundCrustacean(HybridAquaticEntityTypes.YETI_CRAB, listOf(HybridAquaticBiomeTags.ARCTIC_OCEANS), 3, 2, 2)
-        addUndergroundCrustacean(HybridAquaticEntityTypes.GIANT_ISOPOD, listOf(HybridAquaticBiomeTags.COLD_OCEANS), 1, 1, 1)
+        addUndergroundCrustacean(HybridAquaticEntityTypes.GIANT_ISOPOD, listOf(HybridAquaticBiomeTags.COLD_OCEANS), 3, 1, 3)
         addUndergroundCrustacean(HybridAquaticEntityTypes.SPIDER_CRAB, listOf(HybridAquaticBiomeTags.TEMPERATE_OCEANS, HybridAquaticBiomeTags.COLD_OCEANS), 3, 1, 2)
 
         //critters
