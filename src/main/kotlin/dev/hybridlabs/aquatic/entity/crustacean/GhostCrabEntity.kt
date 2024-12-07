@@ -8,7 +8,7 @@ import net.minecraft.entity.mob.WaterCreatureEntity
 import net.minecraft.world.World
 
 class GhostCrabEntity(entityType: EntityType<out HybridAquaticCrustaceanEntity>, world: World) :
-    HybridAquaticCrustaceanEntity(entityType, world, false, false, variants = hashMapOf(
+    HybridAquaticCrustaceanEntity(entityType, world, false, false, true, variants = hashMapOf(
         "purple" to CrustaceanVariant.biomeVariant("purple", HybridAquaticBiomeTags.SANDY_BEACHES,
             ignore = listOf(CrustaceanVariant.Ignore.MODEL, CrustaceanVariant.Ignore.ANIMATION)),
         "yellow" to CrustaceanVariant.biomeVariant("yellow", HybridAquaticBiomeTags.SANDY_BEACHES,

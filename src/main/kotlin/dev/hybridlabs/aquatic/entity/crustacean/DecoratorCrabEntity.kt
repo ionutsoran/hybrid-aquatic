@@ -17,7 +17,7 @@ import net.minecraft.world.event.GameEvent
 import kotlin.random.Random
 
 class DecoratorCrabEntity(entityType: EntityType<out HybridAquaticCrustaceanEntity>, world: World) :
-    HybridAquaticCrustaceanEntity(entityType, world, true, false, emptyMap()) {
+    HybridAquaticCrustaceanEntity(entityType, world, true, false, false, emptyMap()) {
 
     private var coralTimer = 0
     private var hasCoral = true

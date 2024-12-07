@@ -46,8 +46,9 @@ import software.bernie.geckolib.util.GeckoLibUtil
 open class HybridAquaticCrustaceanEntity(
     type: EntityType<out HybridAquaticCrustaceanEntity>,
     world: World,
-    isAquatic: Boolean,
-    isTerrestrial: Boolean,
+    open val isAquatic: Boolean,
+    open val isTerrestrial: Boolean,
+    open val canDance: Boolean,
     private val variants: Map<String, CrustaceanVariant> = mutableMapOf(),
     open val assumeDefault: Boolean = false,
     open val collisionRules: List<HybridAquaticFishEntity.VariantCollisionRules> = listOf(),
@@ -340,7 +341,7 @@ open class HybridAquaticCrustaceanEntity(
         controllerRegistrar.add(
             AnimationController(this, "Dance", 5,
                 AnimationController.AnimationStateHandler { state: AnimationState<HybridAquaticCrustaceanEntity> ->
-                    if (isSongPlaying()) {
+                    if (this.canDance && isSongPlaying() && !state.isMoving) {
                         return@AnimationStateHandler state.setAndContinue(DANCE)
                     } else {
                         PlayState.STOP

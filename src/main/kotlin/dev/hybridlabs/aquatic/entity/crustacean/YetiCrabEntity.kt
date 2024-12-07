@@ -9,7 +9,7 @@ import net.minecraft.util.math.BlockPos
 import net.minecraft.world.World
 
 class YetiCrabEntity(entityType: EntityType<out HybridAquaticCrustaceanEntity>, world: World) :
-    HybridAquaticCrustaceanEntity(entityType, world, true, false, emptyMap()) {
+    HybridAquaticCrustaceanEntity(entityType, world, true, false, false, emptyMap()) {
 
     private var targetVentPos: BlockPos? = null
 
