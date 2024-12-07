@@ -338,6 +338,7 @@ open class HybridAquaticCrustaceanEntity(
                     }
                 })
         )
+
         controllerRegistrar.add(
             AnimationController(this, "Dance", 5,
                 AnimationController.AnimationStateHandler { state: AnimationState<HybridAquaticCrustaceanEntity> ->
@@ -363,7 +364,6 @@ open class HybridAquaticCrustaceanEntity(
         var VARIANT_DATA: TrackedData<NbtCompound> = DataTracker.registerData(HybridAquaticCrustaceanEntity::class.java, TrackedDataHandlerRegistry.NBT_COMPOUND)
 
         val DANCE: RawAnimation = RawAnimation.begin().thenPlay("misc.dance")
-        val WAVE: RawAnimation = RawAnimation.begin().thenPlay("misc.wave")
         val HIDE: RawAnimation = RawAnimation.begin().thenPlay("misc.hide")
 
         fun canSpawn(
