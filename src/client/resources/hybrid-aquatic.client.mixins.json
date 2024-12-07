@@ -10,8 +10,7 @@
         "FishingBobberEntityRendererMixin",
         "HeadFeatureRendererMixin",
         "InGameHudMixin",
-        "SkullBlockEntityRendererMixin",
-        "WeatherDisplayMixin"
+        "SkullBlockEntityRendererMixin"
     ],
     "injectors": {
         "defaultRequire": 1
