@@ -135,7 +135,7 @@ class AdvancementProvider(output: FabricDataOutput) : FabricAdvancementProvider(
                 EnterBlockCriterion.Conditions.block(BRINE)
             )
             .build(Identifier("hybrid-aquatic", "brine"))
-        consumer?.accept(divingSuitAdvancement)
+        consumer?.accept(brineAdvancement)
 
         val obtainPearlAdvancement = Advancement.Builder.create()
             .parent(rootAdvancement)
