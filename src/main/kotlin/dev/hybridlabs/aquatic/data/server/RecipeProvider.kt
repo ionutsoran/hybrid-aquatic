@@ -268,7 +268,7 @@ class RecipeProvider(output: FabricDataOutput) : FabricRecipeProvider(output) {
             .criterion("has_glow_ink_sac", InventoryChangedCriterion.Conditions.items(Items.GLOW_INK_SAC))
             .offerTo(exporter)
 
-        ShapelessRecipeJsonBuilder.create(RecipeCategory.BUILDING_BLOCKS, HybridAquaticItems.GLOWSTICK)
+        ShapelessRecipeJsonBuilder.create(RecipeCategory.BUILDING_BLOCKS, HybridAquaticItems.GLOWSTICK, 4)
             .input(Items.STICK)
             .input(HybridAquaticItems.GLOW_SLIME)
             .criterion("has_stick", InventoryChangedCriterion.Conditions.items(Items.STICK))
