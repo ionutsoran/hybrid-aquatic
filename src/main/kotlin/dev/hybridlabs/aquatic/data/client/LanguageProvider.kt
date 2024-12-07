@@ -68,7 +68,7 @@ class LanguageProvider(output: FabricDataOutput) : FabricLanguageProvider(output
             "advancements.hybrid-aquatic.black_pearl.title" to "The Black Pearl",
             "advancements.hybrid-aquatic.black_pearl.description" to "What the Black Pearl really is... is freedom",
 
-            "advancements.hybrid-aquatic.crab_claw.title" to "Eight More To Go",
+            "advancements.hybrid-aquatic.crab_claw.title" to "Clawsome",
             "advancements.hybrid-aquatic.crab_claw.description" to "Obtain any crab claw",
 
             "advancements.hybrid-aquatic.ominous_hook.title" to "Hook, Line, and Pincher",
