@@ -41,6 +41,9 @@ class LanguageProvider(output: FabricDataOutput) : FabricLanguageProvider(output
             "advancements.hybrid-aquatic.enter_water.title" to "Hybrid Aquatic",
             "advancements.hybrid-aquatic.enter_water.description" to "Discover an expanded world beneath the waves",
 
+            "advancements.hybrid-aquatic.fishing_net.title" to "Not Quite A Bucket",
+            "advancements.hybrid-aquatic.fishing_net.description" to "Craft a fishing net to pick up and transport sea creatures",
+
             "advancements.hybrid-aquatic.glowstick.title" to "Better Than Torches!",
             "advancements.hybrid-aquatic.glowstick.description" to "Craft a glowstick to light your way in the deep sea",
 

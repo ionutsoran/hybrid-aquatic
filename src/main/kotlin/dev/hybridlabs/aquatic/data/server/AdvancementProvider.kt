@@ -38,6 +38,25 @@ class AdvancementProvider(output: FabricDataOutput) : FabricAdvancementProvider(
             .build(Identifier("hybrid-aquatic", "root"))
         consumer?.accept(rootAdvancement)
 
+        val fishingNetAdvancement = Advancement.Builder.create()
+            .parent(rootAdvancement)
+            .display(
+                HybridAquaticItems.FISHING_NET,
+                Text.translatable("advancements.hybrid-aquatic.fishing_net.title"),
+                Text.translatable("advancements.hybrid-aquatic.fishing_net.description"),
+                Identifier("textures/gui/advancements/backgrounds/adventure.png"),
+                AdvancementFrame.TASK,
+                true,
+                true,
+                false
+            )
+            .criterion(
+                "fishing_net",
+                InventoryChangedCriterion.Conditions.items(HybridAquaticItems.FISHING_NET)
+            )
+            .build(Identifier("hybrid-aquatic", "fishing_net"))
+        consumer?.accept(fishingNetAdvancement)
+
         val glowstickAdvancement = Advancement.Builder.create()
             .parent(rootAdvancement)
             .display(
