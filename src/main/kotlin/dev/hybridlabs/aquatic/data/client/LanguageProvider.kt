@@ -68,7 +68,7 @@ class LanguageProvider(output: FabricDataOutput) : FabricLanguageProvider(output
             "advancements.hybrid-aquatic.black_pearl.title" to "The Black Pearl",
             "advancements.hybrid-aquatic.black_pearl.description" to "What the Black Pearl really is... is freedom",
 
-            "advancements.hybrid-aquatic.crab_claw.title" to "Clawsome",
+            "advancements.hybrid-aquatic.crab_claw.title" to "Clawesome",
             "advancements.hybrid-aquatic.crab_claw.description" to "Obtain any crab claw",
 
             "advancements.hybrid-aquatic.ominous_hook.title" to "Hook, Line, and Pincher",
@@ -76,6 +76,12 @@ class LanguageProvider(output: FabricDataOutput) : FabricLanguageProvider(output
 
             "advancements.hybrid-aquatic.kill_karkinos.title" to "A Herculean Task",
             "advancements.hybrid-aquatic.kill_karkinos.description" to "Defeat Karkinos",
+
+            "advancements.hybrid-aquatic.boat.title" to "Set Sail",
+            "advancements.hybrid-aquatic.boat.description" to "Craft a boat and explore the oceans of Minecraft",
+
+            "advancements.hybrid-aquatic.bigger_boat.title" to "We're Gonna Need A Bigger Boat",
+            "advancements.hybrid-aquatic.bigger_boat.description" to "Kill a shark",
         ).forEach { (key, translation) ->
             builder.add(key, translation)
         }

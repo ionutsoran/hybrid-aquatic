@@ -1,11 +1,11 @@
 {
-  "parent": "hybrid-aquatic:boat",
+  "parent": "hybrid-aquatic:root",
   "criteria": {
-    "has_hook": {
+    "has_boat": {
       "conditions": {
         "items": [
           {
-            "tag": "hybrid-aquatic:lure_items"
+            "tag": "minecraft:boats"
           }
         ]
       },
@@ -16,22 +16,21 @@
     "announce_to_chat": true,
     "background": "minecraft:textures/gui/advancements/backgrounds/adventure.png",
     "description": {
-      "translate": "advancements.hybrid-aquatic.hook.description"
+      "translate": "advancements.hybrid-aquatic.boat.description"
     },
     "frame": "task",
     "hidden": false,
     "icon": {
-      "item": "hybrid-aquatic:barbed_hook",
-      "nbt": "{Damage:0}"
+      "item": "minecraft:oak_boat"
     },
     "show_toast": true,
     "title": {
-      "translate": "advancements.hybrid-aquatic.hook.title"
+      "translate": "advancements.hybrid-aquatic.boat.title"
     }
   },
   "requirements": [
     [
-      "has_hook"
+      "has_boat"
     ]
   ],
   "sends_telemetry_event": true

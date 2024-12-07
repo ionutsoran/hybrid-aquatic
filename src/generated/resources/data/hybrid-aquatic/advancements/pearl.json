@@ -1,5 +1,5 @@
 {
-  "parent": "hybrid-aquatic:root",
+  "parent": "hybrid-aquatic:diving_suit",
   "criteria": {
     "obtain_pearl": {
       "conditions": {

@@ -1,5 +1,5 @@
 {
-  "parent": "hybrid-aquatic:root",
+  "parent": "hybrid-aquatic:boat",
   "criteria": {
     "obtain_glowstick": {
       "conditions": {

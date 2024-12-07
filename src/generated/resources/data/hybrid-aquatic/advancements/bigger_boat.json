@@ -1,14 +1,14 @@
 {
-  "parent": "hybrid-aquatic:ominous_hook",
+  "parent": "hybrid-aquatic:boat",
   "criteria": {
-    "kill_karkinos": {
+    "kill_shark": {
       "conditions": {
         "entity": [
           {
             "condition": "minecraft:entity_properties",
             "entity": "this",
             "predicate": {
-              "type": "hybrid-aquatic:karkinos"
+              "type": "#hybrid-aquatic:sharks"
             }
           }
         ]
@@ -20,21 +20,21 @@
     "announce_to_chat": true,
     "background": "minecraft:textures/gui/advancements/backgrounds/adventure.png",
     "description": {
-      "translate": "advancements.hybrid-aquatic.kill_karkinos.description"
+      "translate": "advancements.hybrid-aquatic.bigger_boat.description"
     },
-    "frame": "challenge",
-    "hidden": true,
+    "frame": "goal",
+    "hidden": false,
     "icon": {
-      "item": "hybrid-aquatic:karkinos_claw"
+      "item": "hybrid-aquatic:shark_tooth"
     },
     "show_toast": true,
     "title": {
-      "translate": "advancements.hybrid-aquatic.kill_karkinos.title"
+      "translate": "advancements.hybrid-aquatic.bigger_boat.title"
     }
   },
   "requirements": [
     [
-      "kill_karkinos"
+      "kill_shark"
     ]
   ],
   "sends_telemetry_event": true

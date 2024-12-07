@@ -3,6 +3,7 @@ package dev.hybridlabs.aquatic.data.server
 import dev.hybridlabs.aquatic.block.HybridAquaticBlocks.BRINE
 import dev.hybridlabs.aquatic.entity.HybridAquaticEntityTypes
 import dev.hybridlabs.aquatic.item.HybridAquaticItems
+import dev.hybridlabs.aquatic.tag.HybridAquaticEntityTags
 import dev.hybridlabs.aquatic.tag.HybridAquaticItemTags
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricAdvancementProvider
@@ -12,8 +13,10 @@ import net.minecraft.advancement.criterion.EnterBlockCriterion
 import net.minecraft.advancement.criterion.InventoryChangedCriterion
 import net.minecraft.advancement.criterion.OnKilledCriterion
 import net.minecraft.block.Blocks.WATER
+import net.minecraft.item.Items
 import net.minecraft.predicate.entity.EntityPredicate
 import net.minecraft.predicate.item.ItemPredicate
+import net.minecraft.registry.tag.ItemTags
 import net.minecraft.text.Text
 import net.minecraft.util.Identifier
 import java.util.function.Consumer
@@ -38,6 +41,27 @@ class AdvancementProvider(output: FabricDataOutput) : FabricAdvancementProvider(
             .build(Identifier("hybrid-aquatic", "root"))
         consumer?.accept(rootAdvancement)
 
+        val boatAdvancement = Advancement.Builder.create()
+            .parent(rootAdvancement)
+            .display(
+                Items.OAK_BOAT,
+                Text.translatable("advancements.hybrid-aquatic.boat.title"),
+                Text.translatable("advancements.hybrid-aquatic.boat.description"),
+                Identifier("textures/gui/advancements/backgrounds/adventure.png"),
+                AdvancementFrame.TASK,
+                true,
+                true,
+                false
+            )
+            .criterion(
+                "has_boat",
+                InventoryChangedCriterion.Conditions.items(
+                    ItemPredicate.Builder.create().tag(ItemTags.BOATS).build()
+                )
+            )
+            .build(Identifier("hybrid-aquatic", "boat"))
+        consumer?.accept(boatAdvancement)
+
         val fishingNetAdvancement = Advancement.Builder.create()
             .parent(rootAdvancement)
             .display(
@@ -58,7 +82,7 @@ class AdvancementProvider(output: FabricDataOutput) : FabricAdvancementProvider(
         consumer?.accept(fishingNetAdvancement)
 
         val glowstickAdvancement = Advancement.Builder.create()
-            .parent(rootAdvancement)
+            .parent(boatAdvancement)
             .display(
                 HybridAquaticItems.GLOWSTICK,
                 Text.translatable("advancements.hybrid-aquatic.glowstick.title"),
@@ -77,7 +101,7 @@ class AdvancementProvider(output: FabricDataOutput) : FabricAdvancementProvider(
         consumer?.accept(glowstickAdvancement)
 
         val buoyAdvancement = Advancement.Builder.create()
-            .parent(glowstickAdvancement)
+            .parent(boatAdvancement)
             .display(
                 HybridAquaticItems.BUOY,
                 Text.translatable("advancements.hybrid-aquatic.buoy.title"),
@@ -96,7 +120,7 @@ class AdvancementProvider(output: FabricDataOutput) : FabricAdvancementProvider(
         consumer?.accept(buoyAdvancement)
 
         val divingSuitAdvancement = Advancement.Builder.create()
-            .parent(buoyAdvancement)
+            .parent(boatAdvancement)
             .display(
                 HybridAquaticItems.DIVING_HELMET,
                 Text.translatable("advancements.hybrid-aquatic.diving_suit.title"),
@@ -139,7 +163,7 @@ class AdvancementProvider(output: FabricDataOutput) : FabricAdvancementProvider(
         consumer?.accept(brineAdvancement)
 
         val obtainPearlAdvancement = Advancement.Builder.create()
-            .parent(rootAdvancement)
+            .parent(divingSuitAdvancement)
             .display(
                 HybridAquaticItems.PEARL,
                 Text.translatable("advancements.hybrid-aquatic.pearl.title"),
@@ -177,7 +201,7 @@ class AdvancementProvider(output: FabricDataOutput) : FabricAdvancementProvider(
         consumer?.accept(obtainBlackPearlAdvancement)
 
         val fishingHookAdvancement = Advancement.Builder.create()
-            .parent(rootAdvancement)
+            .parent(fishingNetAdvancement)
             .display(
                 HybridAquaticItems.BARBED_HOOK,
                 Text.translatable("advancements.hybrid-aquatic.hook.title"),
@@ -262,7 +286,7 @@ class AdvancementProvider(output: FabricDataOutput) : FabricAdvancementProvider(
                 HybridAquaticItems.KARKINOS_CLAW,
                 Text.translatable("advancements.hybrid-aquatic.kill_karkinos.title"),
                 Text.translatable("advancements.hybrid-aquatic.kill_karkinos.description"),
-                Identifier("textures/gui/advancements/backgrounds/water.png"),
+                Identifier("textures/gui/advancements/backgrounds/adventure.png"),
                 AdvancementFrame.CHALLENGE,
                 true,
                 true,
@@ -276,6 +300,27 @@ class AdvancementProvider(output: FabricDataOutput) : FabricAdvancementProvider(
             )
             .build(Identifier("hybrid-aquatic", "kill_karkinos"))
         consumer?.accept(killKarkinosAdvancement)
+
+        val killSharkAdvancement = Advancement.Builder.create()
+            .parent(boatAdvancement)
+            .display(
+                HybridAquaticItems.SHARK_TOOTH,
+                Text.translatable("advancements.hybrid-aquatic.bigger_boat.title"),
+                Text.translatable("advancements.hybrid-aquatic.bigger_boat.description"),
+                Identifier("textures/gui/advancements/backgrounds/adventure.png"),
+                AdvancementFrame.GOAL,
+                true,
+                true,
+                false
+            )
+            .criterion(
+                "kill_shark",
+                OnKilledCriterion.Conditions.createPlayerKilledEntity(
+                    EntityPredicate.Builder.create().type(HybridAquaticEntityTags.SHARK).build()
+                )
+            )
+            .build(Identifier("hybrid-aquatic", "bigger_boat"))
+        consumer?.accept(killSharkAdvancement)
 
     }
 }
