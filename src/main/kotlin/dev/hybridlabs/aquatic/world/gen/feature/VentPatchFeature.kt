@@ -19,6 +19,7 @@ import net.minecraft.world.gen.stateprovider.BlockStateProvider
 import kotlin.math.max
 import kotlin.math.sqrt
 
+@Suppress("NAME_SHADOWING")
 class VentPatchFeature(codec: Codec<VentPatchFeatureConfig>) : Feature<VentPatchFeatureConfig>(codec) {
     override fun generate(context: FeatureContext<VentPatchFeatureConfig>): Boolean {
         var generated = false
@@ -88,7 +89,7 @@ class VentPatchFeature(codec: Codec<VentPatchFeatureConfig>) : Feature<VentPatch
         return true
     }
 
-    fun generateHydrothermalVent(
+    private fun generateHydrothermalVent(
         world: WorldAccess,
         pos: BlockPos,
         cycle: Int,
@@ -105,7 +106,7 @@ class VentPatchFeature(codec: Codec<VentPatchFeatureConfig>) : Feature<VentPatch
         )
     }
 
-    fun getHydrothermalVentThickness(cycle: Int, height: Int): Thickness {
+    private fun getHydrothermalVentThickness(cycle: Int, height: Int): Thickness {
         if (cycle == 0) {
             return Thickness.BASE
         }
@@ -123,7 +124,7 @@ class VentPatchFeature(codec: Codec<VentPatchFeatureConfig>) : Feature<VentPatch
         return max(minVentHeight, (minVentHeight + (maxVentHeight - minVentHeight) * heightMultiplier).toInt())
     }
 
-    fun generateTubeWormPatch(
+    private fun generateTubeWormPatch(
         world: WorldAccess,
         pos: BlockPos,
         random: Random,

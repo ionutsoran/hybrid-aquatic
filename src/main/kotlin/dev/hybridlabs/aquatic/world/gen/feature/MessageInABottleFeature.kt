@@ -6,7 +6,6 @@ import dev.hybridlabs.aquatic.block.entity.MessageInABottleBlockEntity
 import dev.hybridlabs.aquatic.item.SeaMessageBookItem
 import dev.hybridlabs.aquatic.registry.HybridAquaticRegistryKeys
 import net.minecraft.block.Block
-import net.minecraft.fluid.Fluids
 import net.minecraft.state.property.Properties
 import net.minecraft.util.math.Direction
 import net.minecraft.world.gen.feature.Feature
