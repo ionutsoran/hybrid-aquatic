@@ -84,13 +84,13 @@ class ConfiguredFeatureProvider(output: FabricDataOutput, registriesFuture: Comp
             )
         )
 
-        // hydrothermal vents
+        // thermal vents
         entries.add(
-            HybridAquaticConfiguredFeatures.HYDROTHERMAL_VENT_PATCH,
+            HybridAquaticConfiguredFeatures.THERMAL_VENT_PATCH,
             ConfiguredFeature(
                 HybridAquaticFeatures.VENT_PATCH, VentPatchFeatureConfig(
                     SimpleBlockStateProvider.of(Blocks.TUFF),
-                    SimpleBlockStateProvider.of(HybridAquaticBlocks.HYDROTHERMAL_VENT),
+                    SimpleBlockStateProvider.of(HybridAquaticBlocks.THERMAL_VENT),
                     SimpleBlockStateProvider.of(HybridAquaticBlocks.TUBE_WORM),
                     UniformIntProvider.create(2, 5),
                     ConstantIntProvider.create(5),

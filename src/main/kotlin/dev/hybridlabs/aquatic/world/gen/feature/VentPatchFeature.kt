@@ -1,7 +1,7 @@
 package dev.hybridlabs.aquatic.world.gen.feature
 
 import com.mojang.serialization.Codec
-import dev.hybridlabs.aquatic.block.HydrothermalVentBlock
+import dev.hybridlabs.aquatic.block.ThermalVentBlock
 import dev.hybridlabs.aquatic.block.TubeWormBlock
 import net.minecraft.block.Block
 import net.minecraft.block.BlockState
@@ -100,7 +100,7 @@ class VentPatchFeature(codec: Codec<VentPatchFeatureConfig>) : Feature<VentPatch
             pos,
             state
                 .with(Properties.WATERLOGGED, world.isWater(pos))
-                .with(HydrothermalVentBlock.THICKNESS, thickness),
+                .with(ThermalVentBlock.THICKNESS, thickness),
             Block.NOTIFY_LISTENERS
         )
     }

@@ -211,7 +211,7 @@ object HybridAquaticBlocks {
         .luminance(GlowstickBlock::luminance)
         .nonOpaque()))
 
-    val HYDROTHERMAL_VENT = register("hydrothermal_vent", HydrothermalVentBlock(
+    val THERMAL_VENT = register("hydrothermal_vent_shaft", ThermalVentBlock(
         true, 2, FabricBlockSettings.copyOf(Blocks.TUFF)
         .nonOpaque()
         .hardness(0.5F)

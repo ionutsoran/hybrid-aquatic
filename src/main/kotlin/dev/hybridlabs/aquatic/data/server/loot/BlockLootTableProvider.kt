@@ -72,7 +72,7 @@ class BlockLootTableProvider(output: FabricDataOutput) : FabricBlockLootTablePro
         //endregion
 
         // thermal vents
-        addDrop(HybridAquaticBlocks.HYDROTHERMAL_VENT) { block ->
+        addDrop(HybridAquaticBlocks.THERMAL_VENT) { block ->
             LootTable.builder().pool(
                 LootPool.builder().with(
                     AlternativeEntry.builder(

@@ -35,7 +35,7 @@ class YetiCrabEntity(entityType: EntityType<out HybridAquaticCrustaceanEntity>, 
     override fun tick() {
         super.tick()
 
-        if (targetVentPos == null || world.getBlockState(targetVentPos).isOf(HybridAquaticBlocks.HYDROTHERMAL_VENT)) {
+        if (targetVentPos == null || world.getBlockState(targetVentPos).isOf(HybridAquaticBlocks.THERMAL_VENT)) {
             targetVentPos = findNearbyVentBlock()
         }
 
@@ -59,7 +59,7 @@ class YetiCrabEntity(entityType: EntityType<out HybridAquaticCrustaceanEntity>, 
                     val blockPos = BlockPos((x + i).toInt(), (y + j).toInt(), (z + k).toInt())
                     val blockState = world.getBlockState(blockPos)
 
-                    if (blockState.isOf(HybridAquaticBlocks.HYDROTHERMAL_VENT)) {
+                    if (blockState.isOf(HybridAquaticBlocks.THERMAL_VENT)) {
                         return blockPos
                     }
                 }

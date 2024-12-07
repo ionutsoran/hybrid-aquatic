@@ -1,11 +1,11 @@
 {
-  "feature": "hybrid-aquatic:hydrothermal_vent_patch",
+  "feature": "hybrid-aquatic:thermal_vent_patch",
   "placement": [
     {
       "type": "minecraft:noise_based_count",
       "noise_factor": 200.0,
       "noise_offset": 0.0,
-      "noise_to_count_ratio": 10
+      "noise_to_count_ratio": 5
     },
     {
       "type": "minecraft:in_square"

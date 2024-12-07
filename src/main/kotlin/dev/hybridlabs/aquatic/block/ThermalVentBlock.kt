@@ -28,7 +28,7 @@ import net.minecraft.world.WorldAccess
 import net.minecraft.world.WorldView
 
 @Suppress("DEPRECATION", "SameParameterValue", "OVERRIDE_DEPRECATION")
-class HydrothermalVentBlock(
+class ThermalVentBlock(
     private val emitsParticles: Boolean,
     private val fireDamage: Int,
     settings: Settings?
