@@ -56,6 +56,12 @@ class LanguageProvider(output: FabricDataOutput) : FabricLanguageProvider(output
             "advancements.hybrid-aquatic.brine.title" to "You Were Supposed To Be A Hero",
             "advancements.hybrid-aquatic.brine.description" to "Dive into a pool of Brine",
 
+            "advancements.hybrid-aquatic.hook.title" to "Hooked!",
+            "advancements.hybrid-aquatic.hook.description" to "Craft a hook to help you catch fish faster",
+
+            "advancements.hybrid-aquatic.creeper_hook.title" to "An Explosive Catch",
+            "advancements.hybrid-aquatic.creeper_hook.description" to "Also try The Creeper's Code!",
+
             "advancements.hybrid-aquatic.pearl.title" to "Pearly Whites",
             "advancements.hybrid-aquatic.pearl.description" to "Obtain a pearl from a giant clam",
 

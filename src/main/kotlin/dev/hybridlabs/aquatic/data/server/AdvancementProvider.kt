@@ -176,6 +176,46 @@ class AdvancementProvider(output: FabricDataOutput) : FabricAdvancementProvider(
             .build(Identifier("hybrid-aquatic", "black_pearl"))
         consumer?.accept(obtainBlackPearlAdvancement)
 
+        val fishingHookAdvancement = Advancement.Builder.create()
+            .parent(rootAdvancement)
+            .display(
+                HybridAquaticItems.BARBED_HOOK,
+                Text.translatable("advancements.hybrid-aquatic.hook.title"),
+                Text.translatable("advancements.hybrid-aquatic.hook.description"),
+                Identifier("textures/gui/advancements/backgrounds/adventure.png"),
+                AdvancementFrame.TASK,
+                true,
+                true,
+                false
+            )
+            .criterion(
+                "has_hook",
+                InventoryChangedCriterion.Conditions.items(
+                    ItemPredicate.Builder.create().tag(HybridAquaticItemTags.LURE_ITEMS).build()
+                )
+            )
+            .build(Identifier("hybrid-aquatic", "hook"))
+        consumer?.accept(fishingHookAdvancement)
+
+        val creeperHookAdvancement = Advancement.Builder.create()
+            .parent(fishingHookAdvancement)
+            .display(
+                HybridAquaticItems.CREEPERMAGNET_HOOK,
+                Text.translatable("advancements.hybrid-aquatic.creeper_hook.title"),
+                Text.translatable("advancements.hybrid-aquatic.creeper_hook.description"),
+                Identifier("textures/gui/advancements/backgrounds/adventure.png"),
+                AdvancementFrame.GOAL,
+                true,
+                true,
+                true
+            )
+            .criterion(
+                "has_creeper_hook",
+                InventoryChangedCriterion.Conditions.items(HybridAquaticItems.CREEPERMAGNET_HOOK)
+            )
+            .build(Identifier("hybrid-aquatic", "creeper_hook"))
+        consumer?.accept(creeperHookAdvancement)
+
         val crabClawAdvancement = Advancement.Builder.create()
             .parent(rootAdvancement)
             .display(
