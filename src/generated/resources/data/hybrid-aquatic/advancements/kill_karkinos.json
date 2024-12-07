@@ -23,7 +23,7 @@
       "translate": "advancements.hybrid-aquatic.kill_karkinos.description"
     },
     "frame": "challenge",
-    "hidden": false,
+    "hidden": true,
     "icon": {
       "item": "hybrid-aquatic:karkinos_claw"
     },

@@ -1,7 +1,7 @@
 {
-  "parent": "hybrid-aquatic:root",
+  "parent": "hybrid-aquatic:buoy",
   "criteria": {
-    "diving_suit": {
+    "obtain_diving_suit": {
       "conditions": {
         "items": [
           {
@@ -48,7 +48,7 @@
   },
   "requirements": [
     [
-      "diving_suit"
+      "obtain_diving_suit"
     ]
   ],
   "sends_telemetry_event": true

@@ -40,15 +40,29 @@ class LanguageProvider(output: FabricDataOutput) : FabricLanguageProvider(output
         mapOf(
             "advancements.hybrid-aquatic.enter_water.title" to "Hybrid Aquatic",
             "advancements.hybrid-aquatic.enter_water.description" to "Discover an expanded world beneath the waves",
+
+            "advancements.hybrid-aquatic.glowstick.title" to "Better Than Torches!",
+            "advancements.hybrid-aquatic.glowstick.description" to "Craft a glowstick to light your way in the deep sea",
+
+            "advancements.hybrid-aquatic.buoy.title" to "Oh Buoy!",
+            "advancements.hybrid-aquatic.buoy.description" to "Craft a buoy to guide sailors across the sea",
+
             "advancements.hybrid-aquatic.diving_suit.title" to "Diving In",
             "advancements.hybrid-aquatic.diving_suit.description" to "Obtain a full set of diving gear",
+
+            "advancements.hybrid-aquatic.brine.title" to "You Were Supposed To Be A Hero",
+            "advancements.hybrid-aquatic.brine.description" to "Dive into a pool of Brine",
+
             "advancements.hybrid-aquatic.pearl.title" to "Pearly Whites",
             "advancements.hybrid-aquatic.pearl.description" to "Obtain a pearl from a giant clam",
+
             "advancements.hybrid-aquatic.black_pearl.title" to "The Black Pearl",
             "advancements.hybrid-aquatic.black_pearl.description" to "What the Black Pearl really is... is freedom.",
+
             "advancements.hybrid-aquatic.ominous_hook.title" to "Hook, Line, and Pincher",
             "advancements.hybrid-aquatic.ominous_hook.description" to "Obtain an Ominous Hook",
-            "advancements.hybrid-aquatic.kill_karkinos.title" to "Kill Karkinos",
+
+            "advancements.hybrid-aquatic.kill_karkinos.title" to "A Herculean Task",
             "advancements.hybrid-aquatic.kill_karkinos.description" to "Defeat Karkinos",
         ).forEach { (key, translation) ->
             builder.add(key, translation)

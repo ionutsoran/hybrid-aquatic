@@ -1,5 +1,6 @@
 package dev.hybridlabs.aquatic.data.server
 
+import dev.hybridlabs.aquatic.block.HybridAquaticBlocks.BRINE
 import dev.hybridlabs.aquatic.entity.HybridAquaticEntityTypes
 import dev.hybridlabs.aquatic.item.HybridAquaticItems
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput
@@ -35,8 +36,46 @@ class AdvancementProvider(output: FabricDataOutput) : FabricAdvancementProvider(
             .build(Identifier("hybrid-aquatic", "root"))
         consumer?.accept(rootAdvancement)
 
-        val divingSuitAdvancement = Advancement.Builder.create()
+        val glowstickAdvancement = Advancement.Builder.create()
             .parent(rootAdvancement)
+            .display(
+                HybridAquaticItems.GLOWSTICK,
+                Text.translatable("advancements.hybrid-aquatic.glowstick.title"),
+                Text.translatable("advancements.hybrid-aquatic.glowstick.description"),
+                Identifier("textures/gui/advancements/backgrounds/adventure.png"),
+                AdvancementFrame.TASK,
+                true,
+                true,
+                true
+            )
+            .criterion(
+                "obtain_glowstick",
+                InventoryChangedCriterion.Conditions.items(HybridAquaticItems.BUOY)
+            )
+            .build(Identifier("hybrid-aquatic", "glowstick"))
+        consumer?.accept(glowstickAdvancement)
+
+        val buoyAdvancement = Advancement.Builder.create()
+            .parent(glowstickAdvancement)
+            .display(
+                HybridAquaticItems.BUOY,
+                Text.translatable("advancements.hybrid-aquatic.buoy.title"),
+                Text.translatable("advancements.hybrid-aquatic.buoy.description"),
+                Identifier("textures/gui/advancements/backgrounds/adventure.png"),
+                AdvancementFrame.TASK,
+                true,
+                true,
+                true
+            )
+            .criterion(
+                "obtain_buoy",
+                InventoryChangedCriterion.Conditions.items(HybridAquaticItems.BUOY)
+            )
+            .build(Identifier("hybrid-aquatic", "buoy"))
+        consumer?.accept(buoyAdvancement)
+
+        val divingSuitAdvancement = Advancement.Builder.create()
+            .parent(buoyAdvancement)
             .display(
                 HybridAquaticItems.DIVING_HELMET,
                 Text.translatable("advancements.hybrid-aquatic.diving_suit.title"),
@@ -48,7 +87,7 @@ class AdvancementProvider(output: FabricDataOutput) : FabricAdvancementProvider(
                 false
             )
             .criterion(
-                "diving_suit",
+                "obtain_diving_suit",
                 InventoryChangedCriterion.Conditions.items(
                     HybridAquaticItems.DIVING_HELMET,
                     HybridAquaticItems.DIVING_SUIT,
@@ -57,6 +96,24 @@ class AdvancementProvider(output: FabricDataOutput) : FabricAdvancementProvider(
                 )
             )
             .build(Identifier("hybrid-aquatic", "diving_suit"))
+        consumer?.accept(divingSuitAdvancement)
+
+        val brineAdvancement = Advancement.Builder.create()
+            .display(
+                HybridAquaticItems.BRINE_BUCKET,
+                Text.translatable("advancements.hybrid-aquatic.brine.title"),
+                Text.translatable("advancements.hybrid-aquatic.brine.description"),
+                Identifier("textures/gui/advancements/backgrounds/adventure.png"),
+                AdvancementFrame.TASK,
+                true,
+                true,
+                true
+            )
+            .criterion(
+                "enter_brine",
+                EnterBlockCriterion.Conditions.block(BRINE)
+            )
+            .build(Identifier("hybrid-aquatic", "brine"))
         consumer?.accept(divingSuitAdvancement)
 
         val obtainPearlAdvancement = Advancement.Builder.create()
@@ -126,7 +183,7 @@ class AdvancementProvider(output: FabricDataOutput) : FabricAdvancementProvider(
                 AdvancementFrame.CHALLENGE,
                 true,
                 true,
-                false
+                true
             )
             .criterion(
                 "kill_karkinos",
