@@ -58,6 +58,10 @@ object  HybridAquaticItemGroups {
             entries.add(HybridAquaticBlocks.MANGROVE_CRATE)
             entries.add(HybridAquaticBlocks.CHERRY_CRATE)
 
+            entries.add(HybridAquaticItems.GREEN_SEAWEED)
+            entries.add(HybridAquaticItems.RED_SEAWEED)
+            entries.add(HybridAquaticItems.BROWN_SEAWEED)
+
             entries.add(HybridAquaticItems.BUTTON_CORAL_BLOCK)
             entries.add(HybridAquaticItems.SUN_CORAL_BLOCK)
             entries.add(HybridAquaticItems.LOPHELIA_CORAL_BLOCK)

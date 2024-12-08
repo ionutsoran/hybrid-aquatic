@@ -93,6 +93,11 @@ object HybridAquaticItems {
 
     val ANEMONE = registerBlockItem("anemone", HybridAquaticBlocks.ANEMONE)
     val TUBE_SPONGE = registerBlockItem("tube_sponge", HybridAquaticBlocks.TUBE_SPONGE)
+
+    val BROWN_SEAWEED = registerBlockItem("brown_seaweed", HybridAquaticBlocks.BROWN_SEAWEED)
+    val RED_SEAWEED = registerBlockItem("red_seaweed", HybridAquaticBlocks.RED_SEAWEED)
+    val GREEN_SEAWEED = registerBlockItem("green_seaweed", HybridAquaticBlocks.GREEN_SEAWEED)
+
     val BUOY = registerPlaceableInWaterBlockItem("buoy", HybridAquaticBlocks.BUOY)
     val MESSAGE_IN_A_BOTTLE = register("message_in_a_bottle", MessageInABottleItem(FabricItemSettings()))
     val SEA_MESSAGE_BOOK = register("sea_message_book", SeaMessageBookItem(FabricItemSettings()))

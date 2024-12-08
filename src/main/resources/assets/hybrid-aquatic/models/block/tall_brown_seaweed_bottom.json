@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/template_seagrass",
+  "textures": {
+    "texture": "hybrid-aquatic:block/tall_brown_seaweed_bottom"
+  }
+}

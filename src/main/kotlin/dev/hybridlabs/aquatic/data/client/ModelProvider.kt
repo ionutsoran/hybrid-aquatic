@@ -147,12 +147,30 @@ class ModelProvider(output: FabricDataOutput) : FabricModelProvider(output) {
                 HybridAquaticBlocks.SUN_CORAL_WALL_FAN,
                 HybridAquaticBlocks.DEAD_SUN_CORAL_WALL_FAN
             )
+
+            registerTintableCrossBlockState(
+                HybridAquaticBlocks.BROWN_SEAWEED,
+                BlockStateModelGenerator.TintType.NOT_TINTED,
+            )
+
+            registerTintableCrossBlockState(
+                HybridAquaticBlocks.GREEN_SEAWEED,
+                BlockStateModelGenerator.TintType.NOT_TINTED,
+            )
+
+            registerTintableCrossBlockState(
+                HybridAquaticBlocks.RED_SEAWEED,
+                BlockStateModelGenerator.TintType.NOT_TINTED,
+            )
         }
     }
 
     override fun generateItemModels(generator: ItemModelGenerator) {
         setOf(
             HybridAquaticItems.BUOY,
+            HybridAquaticItems.RED_SEAWEED,
+            HybridAquaticItems.GREEN_SEAWEED,
+            HybridAquaticItems.BROWN_SEAWEED,
             HybridAquaticItems.TUBE_SPONGE,
             HybridAquaticItems.RAW_CRAYFISH,
             HybridAquaticItems.COCONUT_CRAB_CLAW,

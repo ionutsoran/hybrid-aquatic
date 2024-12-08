@@ -1,3 +1,5 @@
+@file:Suppress("UNUSED_PARAMETER")
+
 package dev.hybridlabs.aquatic
 
 import com.mojang.brigadier.CommandDispatcher
@@ -110,33 +112,47 @@ object HybridAquaticClient : ClientModInitializer {
         )
         registry.putBlocks(
             RenderLayer.getCutout(),
+            HybridAquaticBlocks.RED_SEAWEED,
+            HybridAquaticBlocks.TALL_RED_SEAWEED,
+
+            HybridAquaticBlocks.BROWN_SEAWEED,
+            HybridAquaticBlocks.TALL_BROWN_SEAWEED,
+
+            HybridAquaticBlocks.GREEN_SEAWEED,
+            HybridAquaticBlocks.TALL_GREEN_SEAWEED,
+
             HybridAquaticBlocks.CRAB_POT,
             HybridAquaticBlocks.GIANT_CLAM,
             HybridAquaticBlocks.TUBE_WORM,
+
             HybridAquaticBlocks.LOPHELIA_CORAL,
             HybridAquaticBlocks.LOPHELIA_CORAL_FAN,
             HybridAquaticBlocks.LOPHELIA_CORAL_WALL_FAN,
             HybridAquaticBlocks.DEAD_LOPHELIA_CORAL,
             HybridAquaticBlocks.DEAD_LOPHELIA_CORAL_FAN,
             HybridAquaticBlocks.DEAD_LOPHELIA_CORAL_WALL_FAN,
+
             HybridAquaticBlocks.SUN_CORAL,
             HybridAquaticBlocks.SUN_CORAL_FAN,
             HybridAquaticBlocks.SUN_CORAL_WALL_FAN,
             HybridAquaticBlocks.DEAD_SUN_CORAL,
             HybridAquaticBlocks.DEAD_SUN_CORAL_FAN,
             HybridAquaticBlocks.DEAD_SUN_CORAL_WALL_FAN,
+
             HybridAquaticBlocks.BUTTON_CORAL,
             HybridAquaticBlocks.BUTTON_CORAL_FAN,
             HybridAquaticBlocks.BUTTON_CORAL_WALL_FAN,
             HybridAquaticBlocks.DEAD_BUTTON_CORAL,
             HybridAquaticBlocks.DEAD_BUTTON_CORAL_FAN,
             HybridAquaticBlocks.DEAD_BUTTON_CORAL_WALL_FAN,
+
             HybridAquaticBlocks.THORN_CORAL,
             HybridAquaticBlocks.THORN_CORAL_FAN,
             HybridAquaticBlocks.THORN_CORAL_WALL_FAN,
             HybridAquaticBlocks.DEAD_THORN_CORAL,
             HybridAquaticBlocks.DEAD_THORN_CORAL_FAN,
             HybridAquaticBlocks.DEAD_THORN_CORAL_WALL_FAN,
+
             HybridAquaticBlocks.DRIFTWOOD_DOOR,
             HybridAquaticBlocks.DRIFTWOOD_TRAPDOOR,
             HybridAquaticBlocks.GLOWSTICK,

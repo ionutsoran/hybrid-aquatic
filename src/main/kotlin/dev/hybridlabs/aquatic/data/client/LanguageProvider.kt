@@ -114,6 +114,16 @@ class LanguageProvider(output: FabricDataOutput) : FabricLanguageProvider(output
             HybridAquaticBlocks.CHERRY_CRATE to "Cherry Crate",
             HybridAquaticBlocks.BUOY to "Buoy",
             HybridAquaticBlocks.GIANT_CLAM to "Giant Clam",
+
+            HybridAquaticBlocks.RED_SEAWEED to "Red Seaweed",
+            HybridAquaticBlocks.TALL_RED_SEAWEED to "Tall Red Seaweed",
+
+            HybridAquaticBlocks.BROWN_SEAWEED to "Brown Seaweed",
+            HybridAquaticBlocks.TALL_BROWN_SEAWEED to "Tall Brown Seaweed",
+
+            HybridAquaticBlocks.GREEN_SEAWEED to "Green Seaweed",
+            HybridAquaticBlocks.TALL_GREEN_SEAWEED to "Tall Green Seaweed",
+
             HybridAquaticBlocks.LOPHELIA_CORAL_BLOCK to "Lophelia Coral Block",
             HybridAquaticBlocks.DEAD_LOPHELIA_CORAL_BLOCK to "Dead Lophelia Coral Block",
             HybridAquaticBlocks.LOPHELIA_CORAL to "Lophelia Coral",
