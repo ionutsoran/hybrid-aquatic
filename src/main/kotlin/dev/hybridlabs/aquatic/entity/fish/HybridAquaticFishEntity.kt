@@ -17,6 +17,7 @@ import net.minecraft.entity.data.DataTracker
 import net.minecraft.entity.data.TrackedData
 import net.minecraft.entity.data.TrackedDataHandlerRegistry
 import net.minecraft.entity.mob.GuardianEntity
+import net.minecraft.entity.mob.HostileEntity.isSpawnDark
 import net.minecraft.entity.mob.WaterCreatureEntity
 import net.minecraft.entity.player.PlayerEntity
 import net.minecraft.nbt.NbtCompound
@@ -382,35 +383,38 @@ open class HybridAquaticFishEntity(
         @Suppress("UNUSED_PARAMETER", "DEPRECATION")
         fun canSpawn(
             type: EntityType<out WaterCreatureEntity>,
-            world: WorldAccess,
-            reason: SpawnReason?,
+            world: ServerWorldAccess,
+            reason: SpawnReason,
             pos: BlockPos,
-            random: Random?
+            random: Random
         ): Boolean {
             val topY = world.seaLevel
-            val bottomY = world.seaLevel - 16
+            val bottomY = world.seaLevel - 24
 
             return pos.y in bottomY..topY &&
+                    world.getFluidState(pos).isIn(FluidTags.WATER) &&
                     world.getFluidState(pos.down()).isIn(FluidTags.WATER) &&
-                    world.getBlockState(pos).isOf(Blocks.WATER) &&
-                    world.isSkyVisibleAllowingSea(pos)
+                    world.getBlockState(pos.up()).isOf(Blocks.WATER) &&
+                    world.isSkyVisibleAllowingSea(pos) &&
+                    !isSpawnDark(world, pos, random)
         }
 
         @Suppress("UNUSED_PARAMETER", "DEPRECATION")
         fun canUndergroundSpawn(
-            type: EntityType<out WaterCreatureEntity?>?,
-            world: WorldAccess,
-            reason: SpawnReason?,
+            type: EntityType<out WaterCreatureEntity>,
+            world: ServerWorldAccess,
+            reason: SpawnReason,
             pos: BlockPos,
-            random: Random?
+            random: Random
         ): Boolean {
-            val topY = world.seaLevel - 16
-            val bottomY = world.seaLevel - 124
+            val topY = world.seaLevel - 24
+            val bottomY = world.seaLevel - 128
 
             return pos.y in bottomY..topY &&
-                    world.getLightLevel(pos, 0) == 0 &&
+                    world.getFluidState(pos).isIn(FluidTags.WATER) &&
                     world.getFluidState(pos.down()).isIn(FluidTags.WATER) &&
-                    world.getBlockState(pos).isOf(Blocks.WATER)
+                    world.getBlockState(pos.up()).isOf(Blocks.WATER) &&
+                    isSpawnDark(world, pos, random)
         }
 
         fun getScaleAdjustment(fish: HybridAquaticFishEntity, adjustment: Float): Float {

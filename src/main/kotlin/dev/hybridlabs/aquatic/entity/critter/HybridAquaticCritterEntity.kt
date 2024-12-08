@@ -2,7 +2,6 @@ package dev.hybridlabs.aquatic.entity.critter
 
 import dev.hybridlabs.aquatic.entity.critter.HybridAquaticCritterEntity.VariantCollisionRules.ExclusionStatus.EXCLUSIVE
 import dev.hybridlabs.aquatic.entity.critter.HybridAquaticCritterEntity.VariantCollisionRules.ExclusionStatus.INCLUSIVE
-import net.minecraft.block.Blocks
 import net.minecraft.entity.EntityData
 import net.minecraft.entity.EntityType
 import net.minecraft.entity.SpawnReason
@@ -20,6 +19,7 @@ import net.minecraft.entity.data.TrackedData
 import net.minecraft.entity.data.TrackedDataHandlerRegistry
 import net.minecraft.entity.mob.WaterCreatureEntity
 import net.minecraft.nbt.NbtCompound
+import net.minecraft.registry.tag.FluidTags
 import net.minecraft.registry.tag.TagKey
 import net.minecraft.sound.SoundEvent
 import net.minecraft.sound.SoundEvents
@@ -292,18 +292,18 @@ open class HybridAquaticCritterEntity(
         val CRITTER_FLAGS: TrackedData<Byte> = DataTracker.registerData(HybridAquaticCritterEntity::class.java, TrackedDataHandlerRegistry.BYTE)
 
         fun canSpawn(
-            type: EntityType<out WaterCreatureEntity?>?,
-            world: WorldAccess,
-            reason: SpawnReason?,
+            type: EntityType<out WaterCreatureEntity>,
+            world: ServerWorldAccess,
+            reason: SpawnReason,
             pos: BlockPos,
-            random: Random?
+            random: Random
         ): Boolean {
             val topY = world.seaLevel
-            val bottomY = world.seaLevel - 124
+            val bottomY = world.seaLevel - 128
 
             return pos.y in bottomY..topY &&
                     world.getBlockState(pos.down()).isSolid &&
-                    world.getBlockState(pos).isOf(Blocks.WATER)
+                    world.getFluidState(pos).isIn(FluidTags.WATER)
         }
 
         fun getScaleAdjustment(critter : HybridAquaticCritterEntity, adjustment : Float): Float {

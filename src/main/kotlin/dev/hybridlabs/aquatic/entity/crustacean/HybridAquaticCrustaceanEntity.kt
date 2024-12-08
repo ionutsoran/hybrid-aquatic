@@ -19,8 +19,8 @@ import net.minecraft.entity.damage.DamageSource
 import net.minecraft.entity.data.DataTracker
 import net.minecraft.entity.data.TrackedData
 import net.minecraft.entity.data.TrackedDataHandlerRegistry
+import net.minecraft.entity.mob.HostileEntity.isSpawnDark
 import net.minecraft.entity.mob.WaterCreatureEntity
-import net.minecraft.entity.passive.ParrotEntity
 import net.minecraft.nbt.NbtCompound
 import net.minecraft.registry.tag.TagKey
 import net.minecraft.sound.SoundEvent
@@ -181,24 +181,16 @@ open class HybridAquaticCrustaceanEntity(
             this.songSource = null
         }
 
-        if (world.random.nextInt(400) == 0) {
-            ParrotEntity.imitateNearbyMob(this.world, this)
-        }
-
         super.tickMovement()
     }
 
-    override fun setNearbySongPlaying(songPosition: BlockPos?, playing: Boolean) {
+    override fun setNearbySongPlaying(songPosition: BlockPos, playing: Boolean) {
         this.songSource = songPosition
         this.songPlaying = playing
     }
 
     private fun isSongPlaying(): Boolean {
         return this.songPlaying
-    }
-
-    override fun hasNoDrag(): Boolean {
-        return false
     }
 
     override fun shouldSwimInFluids(): Boolean {
@@ -231,7 +223,7 @@ open class HybridAquaticCrustaceanEntity(
         }
     }
 
-    override fun damage(source: DamageSource?, amount: Float): Boolean {
+    override fun damage(source: DamageSource, amount: Float): Boolean {
         if (this is HermitCrabEntity && !isHiding) {
                 startHiding()
             }
@@ -243,7 +235,7 @@ open class HybridAquaticCrustaceanEntity(
 
     // end region
 
-    override fun getGroup(): EntityGroup? {
+    override fun getGroup(): EntityGroup {
         return EntityGroup.AQUATIC
     }
 
@@ -367,34 +359,35 @@ open class HybridAquaticCrustaceanEntity(
         val HIDE: RawAnimation = RawAnimation.begin().thenPlay("misc.hide")
 
         fun canSpawn(
-            type: EntityType<out WaterCreatureEntity?>?,
-            world: WorldAccess,
-            reason: SpawnReason?,
+            type: EntityType<out WaterCreatureEntity>,
+            world: ServerWorldAccess,
+            reason: SpawnReason,
             pos: BlockPos,
-            random: Random?
+            random: Random
         ): Boolean {
             val topY = world.seaLevel + 5
-            val bottomY = world.seaLevel - 16
+            val bottomY = world.seaLevel - 24
 
             return pos.y in bottomY..topY &&
                     world.getBlockState(pos.down()).isSolid &&
-                    (world.isWater(pos) || world.isAir(pos))
+                    (world.isWater(pos) || world.isAir(pos)) &&
+                    !isSpawnDark(world, pos, random)
         }
 
         fun canUndergroundSpawn(
-            type: EntityType<out WaterCreatureEntity?>?,
-            world: WorldAccess,
-            reason: SpawnReason?,
+            type: EntityType<out WaterCreatureEntity>,
+            world: ServerWorldAccess,
+            reason: SpawnReason,
             pos: BlockPos,
-            random: Random?
+            random: Random
         ): Boolean {
-            val topY = world.seaLevel - 16
-            val bottomY = world.seaLevel - 124
+            val topY = world.seaLevel - 24
+            val bottomY = world.seaLevel - 128
 
             return pos.y in bottomY..topY &&
-                    world.getLightLevel(pos, 0) == 0 &&
+                    world.getBlockState(pos.down()).isSolid &&
                     world.getBlockState(pos).isOf(Blocks.WATER) &&
-                    world.getBlockState(pos.down()).isSolid
+                    isSpawnDark(world, pos, random)
         }
 
         fun getScaleAdjustment(crustacean : HybridAquaticCrustaceanEntity, adjustment : Float): Float {
