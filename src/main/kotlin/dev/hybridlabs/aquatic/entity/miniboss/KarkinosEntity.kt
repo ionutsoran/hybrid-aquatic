@@ -74,7 +74,7 @@ class KarkinosEntity(entityType: EntityType<out HybridAquaticMinibossEntity>, wo
     }
 
     override fun hasNoDrag(): Boolean {
-        return true
+        return false
     }
 
     private fun getHandSwingDuration(): Int {
