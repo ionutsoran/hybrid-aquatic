@@ -140,6 +140,7 @@ object  HybridAquaticItemGroups {
             entries.add(HybridAquaticItems.COOKED_LOBSTER)
             entries.add(HybridAquaticItems.RAW_LOBSTER_TAIL)
             entries.add(HybridAquaticItems.COOKED_LOBSTER_TAIL)
+            entries.add(HybridAquaticItems.UNI)
 
             entries.add(HybridAquaticItems.BETTA)
             entries.add(HybridAquaticItems.DANIO)

@@ -175,7 +175,7 @@ class KarkinosEntity(entityType: EntityType<out HybridAquaticMinibossEntity>, wo
     }
 
     override fun getGroup(): EntityGroup {
-        return EntityGroup.AQUATIC
+        return EntityGroup.ARTHROPOD
     }
 
     override fun readCustomDataFromNbt(nbt: NbtCompound) {
