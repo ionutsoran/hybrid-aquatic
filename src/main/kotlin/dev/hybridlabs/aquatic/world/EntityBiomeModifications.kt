@@ -84,8 +84,6 @@ object EntityBiomeModifications {
         addJelly(HybridAquaticEntityTypes.NOMURA_JELLYFISH, listOf(HybridAquaticBiomeTags.ARCTIC_OCEANS, HybridAquaticBiomeTags.COLD_OCEANS), 1, 1, 2)
         addJelly(HybridAquaticEntityTypes.LIONS_MANE_JELLYFISH, listOf(HybridAquaticBiomeTags.ARCTIC_OCEANS, HybridAquaticBiomeTags.COLD_OCEANS), 1, 1, 2)
         addJelly(HybridAquaticEntityTypes.BOX_JELLYFISH, listOf(HybridAquaticBiomeTags.MANGROVES, HybridAquaticBiomeTags.REEF, HybridAquaticBiomeTags.TROPICAL_OCEANS, HybridAquaticBiomeTags.SANDY_BEACHES), 1, 1, 1)
-
-        // underground jellies
         addUndergroundJelly(HybridAquaticEntityTypes.ATOLLA_JELLYFISH, listOf(BiomeTags.IS_DEEP_OCEAN), 1, 1, 1)
         addUndergroundJelly(HybridAquaticEntityTypes.BIG_RED_JELLYFISH, listOf(BiomeTags.IS_DEEP_OCEAN), 2, 1, 1)
         addUndergroundJelly(HybridAquaticEntityTypes.COSMIC_JELLYFISH, listOf(BiomeTags.IS_DEEP_OCEAN), 2, 1, 1)
