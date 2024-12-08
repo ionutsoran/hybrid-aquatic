@@ -20,16 +20,17 @@ import net.minecraft.entity.mob.HostileEntity.isSpawnDark
 import net.minecraft.entity.mob.WaterCreatureEntity
 import net.minecraft.entity.player.PlayerEntity
 import net.minecraft.nbt.NbtCompound
+import net.minecraft.predicate.entity.EntityPredicates
 import net.minecraft.registry.tag.FluidTags
 import net.minecraft.registry.tag.TagKey
 import net.minecraft.sound.SoundEvent
 import net.minecraft.sound.SoundEvents
+import net.minecraft.util.Hand
 import net.minecraft.util.TimeHelper
 import net.minecraft.util.math.BlockPos
 import net.minecraft.util.math.Vec3d
 import net.minecraft.util.math.intprovider.UniformIntProvider
 import net.minecraft.util.math.random.Random
-import net.minecraft.world.Difficulty
 import net.minecraft.world.LocalDifficulty
 import net.minecraft.world.ServerWorldAccess
 import net.minecraft.world.World
@@ -75,9 +76,25 @@ open class HybridAquaticSharkEntity(
         goalSelector.add(4, LookAroundGoal(this))
         goalSelector.add(5, LookAtEntityGoal(this, PlayerEntity::class.java, 6.0f))
         goalSelector.add(1, SharkAttackGoal(this))
-        targetSelector.add(2, ActiveTargetGoal(this, PlayerEntity::class.java, 10, true, true) { entity: LivingEntity -> shouldAngerAt(entity) || shouldProximityAttack(entity as PlayerEntity) && !isPassive})
-        targetSelector.add(1, ActiveTargetGoal(this, LivingEntity::class.java, 10, true, true) { it.hasStatusEffect(HybridAquaticStatusEffects.BLEEDING) && it !is HybridAquaticSharkEntity && !isPassive})
-        targetSelector.add(3, ActiveTargetGoal(this, LivingEntity::class.java, 10, true, true) { entity: LivingEntity -> prey.any { preyType -> entity.type.isIn(preyType) } && hunger < MAX_HUNGER / 4 })
+        targetSelector.add(
+            2,
+            ActiveTargetGoal(this, PlayerEntity::class.java, 10, true, true) { entity: LivingEntity ->
+                shouldAngerAt(entity) || shouldProximityAttack(entity as PlayerEntity) && !isPassive
+            })
+        targetSelector.add(
+            1,
+            ActiveTargetGoal(this, LivingEntity::class.java, 10, true, true) {
+                it.hasStatusEffect(HybridAquaticStatusEffects.BLEEDING) && it !is HybridAquaticSharkEntity && !isPassive
+            })
+        targetSelector.add(
+            3,
+            ActiveTargetGoal(
+                this,
+                LivingEntity::class.java,
+                10,
+                true,
+                true
+            ) { entity: LivingEntity -> prey.any { preyType -> entity.type.isIn(preyType) } && hunger < MAX_HUNGER / 4 })
     }
 
     override fun initialize(
@@ -90,7 +107,7 @@ open class HybridAquaticSharkEntity(
         this.air = getMaxMoistness()
         pitch = 0.0f
         yaw = 0.0f
-        this.size = this.random.nextBetween(getMinSize(),getMaxSize())
+        this.size = this.random.nextBetween(getMinSize(), getMaxSize())
         return super.initialize(world, difficulty, spawnReason, entityData, entityNbt)
     }
 
@@ -194,11 +211,11 @@ open class HybridAquaticSharkEntity(
             dataTracker.set(SHARK_SIZE, size)
         }
 
-    protected open fun getMinSize() : Int {
+    protected open fun getMinSize(): Int {
         return 0
     }
 
-    protected open fun getMaxSize() : Int {
+    protected open fun getMaxSize(): Int {
         return 0
     }
 
@@ -305,63 +322,85 @@ open class HybridAquaticSharkEntity(
         }
     }
 
-    private var attemptAttack: Boolean
-        get() = dataTracker.get(ATTEMPT_ATTACK)
-        set(attemptAttack) {
-            dataTracker.set(ATTEMPT_ATTACK, attemptAttack)
+    private fun getHandSwingDuration(): Int {
+        return 20
+    }
+
+    override fun tickHandSwing() {
+        val i = this.getHandSwingDuration()
+        if (this.handSwinging) {
+            ++this.handSwingTicks
+            if (this.handSwingTicks >= i) {
+                this.handSwingTicks = 0
+                this.handSwinging = false
+            }
+        } else {
+            this.handSwingTicks = 0
         }
 
-    internal class SharkAttackGoal(private val shark: HybridAquaticSharkEntity) : MeleeAttackGoal(shark, 1.0,true) {
+        this.handSwingProgress = handSwingTicks.toFloat() / i.toFloat()
+    }
+
+    override fun getHandSwingProgress(tickDelta: Float): Float {
+        var f = this.handSwingProgress - this.lastHandSwingProgress
+        if (f < 0.0f) {
+            ++f
+        }
+
+        return this.lastHandSwingProgress + f * tickDelta
+    }
+
+    internal class SharkAttackGoal(private val shark: HybridAquaticSharkEntity) : MeleeAttackGoal(shark, 1.0, true) {
         override fun canStart(): Boolean {
             return !shark.fromFishingNet && super.canStart()
         }
 
         override fun attack(target: LivingEntity, squaredDistance: Double) {
             val d = getSquaredMaxAttackDistance(target)
-            if (squaredDistance <= d && this.isCooledDown) {
+            if (squaredDistance <= d && this.cooldown <= 0) {
                 resetCooldown()
-                mob.tryAttack(target)
-                shark.isSprinting = true
-                shark.attemptAttack = true
+                shark.swingHand(Hand.MAIN_HAND)
+                shark.tryAttack(target)
+                shark.playSound(SoundEvents.ENTITY_FOX_BITE, 0.5F, 0.0F)
+                target.addStatusEffect(StatusEffectInstance(HybridAquaticStatusEffects.BLEEDING, 200, 0), shark)
 
                 if (target.health <= 0)
                     shark.hunger = MAX_HUNGER
-                    shark.health = shark.maxHealth
+                shark.health = shark.maxHealth
             }
         }
 
         override fun getSquaredMaxAttackDistance(entity: LivingEntity): Double {
-            return (2.5f + entity.width).toDouble()
+            return (shark.width * 2.0 + entity.width)
         }
 
         override fun start() {
             super.start()
-            shark.attemptAttack = false
+            shark.isSprinting = true
+            shark.handSwinging = false
+            shark.handSwingTicks = 0
         }
 
         override fun stop() {
-            super.stop()
-            shark.attemptAttack = false
+            val livingEntity = shark.target
+            if (!EntityPredicates.EXCEPT_CREATIVE_OR_SPECTATOR.test(livingEntity)) {
+                shark.target = null
+            }
+
+            shark.isSprinting = false
+            shark.isAttacking = false
+            shark.navigation.stop()
+        }
+
+        override fun shouldRunEveryTick(): Boolean {
+            return true
         }
     }
 
     override fun tryAttack(target: Entity?): Boolean {
         if (super.tryAttack(target)) {
 
-            playSound(SoundEvents.ENTITY_FOX_BITE,1.0F,0.0F)
-
-            if (target is LivingEntity) {
-                var i = 0
-                if (world.difficulty == Difficulty.NORMAL) {
-                    i = 7
-                } else if (world.difficulty == Difficulty.HARD) {
-                    i = 15
-                }
-
-                if (i > 0) {
-                    target.addStatusEffect(StatusEffectInstance(HybridAquaticStatusEffects.BLEEDING, i * 20, 0), this)
-                }
-            }
+            playSound(SoundEvents.ENTITY_FOX_BITE, 1.0F, 0.0F)
 
             return true
         } else {
@@ -375,10 +414,14 @@ open class HybridAquaticSharkEntity(
         const val MAX_HUNGER = 2400
         const val HUNGER_KEY = "Hunger"
 
-        val SHARK_SIZE: TrackedData<Int> = DataTracker.registerData(HybridAquaticSharkEntity::class.java, TrackedDataHandlerRegistry.INTEGER)
-        val MOISTNESS: TrackedData<Int> = DataTracker.registerData(HybridAquaticSharkEntity::class.java, TrackedDataHandlerRegistry.INTEGER)
-        val HUNGER: TrackedData<Int> = DataTracker.registerData(HybridAquaticSharkEntity::class.java, TrackedDataHandlerRegistry.INTEGER)
-        val ATTEMPT_ATTACK: TrackedData<Boolean> = DataTracker.registerData(HybridAquaticSharkEntity::class.java, TrackedDataHandlerRegistry.BOOLEAN)
+        val SHARK_SIZE: TrackedData<Int> =
+            DataTracker.registerData(HybridAquaticSharkEntity::class.java, TrackedDataHandlerRegistry.INTEGER)
+        val MOISTNESS: TrackedData<Int> =
+            DataTracker.registerData(HybridAquaticSharkEntity::class.java, TrackedDataHandlerRegistry.INTEGER)
+        val HUNGER: TrackedData<Int> =
+            DataTracker.registerData(HybridAquaticSharkEntity::class.java, TrackedDataHandlerRegistry.INTEGER)
+        val ATTEMPT_ATTACK: TrackedData<Boolean> =
+            DataTracker.registerData(HybridAquaticSharkEntity::class.java, TrackedDataHandlerRegistry.BOOLEAN)
         val ANGER_TIME_RANGE: UniformIntProvider = TimeHelper.betweenSeconds(10, 30)
 
         fun canSpawn(
@@ -417,7 +460,7 @@ open class HybridAquaticSharkEntity(
                     isSpawnDark(world, pos, random)
         }
 
-        fun getScaleAdjustment(shark : HybridAquaticSharkEntity, adjustment : Float): Float {
+        fun getScaleAdjustment(shark: HybridAquaticSharkEntity, adjustment: Float): Float {
             return 1.0f + (shark.size * adjustment)
         }
     }

@@ -15,11 +15,13 @@ import net.minecraft.entity.damage.DamageSource
 import net.minecraft.entity.mob.WaterCreatureEntity
 import net.minecraft.entity.player.PlayerEntity
 import net.minecraft.nbt.NbtCompound
+import net.minecraft.predicate.entity.EntityPredicates
 import net.minecraft.server.network.ServerPlayerEntity
 import net.minecraft.sound.SoundCategory
 import net.minecraft.sound.SoundEvent
 import net.minecraft.sound.SoundEvents
 import net.minecraft.text.Text
+import net.minecraft.util.Hand
 import net.minecraft.world.Difficulty
 import net.minecraft.world.LocalDifficulty
 import net.minecraft.world.ServerWorldAccess
@@ -125,7 +127,8 @@ class ManglerfishEntity(entityType: EntityType<out HybridAquaticMinibossEntity>,
                 })
         )
         controllerRegistrar.add(
-            DefaultAnimations.genericAttackAnimation(this, DefaultAnimations.ATTACK_BITE))
+            DefaultAnimations.genericAttackAnimation(this, DefaultAnimations.ATTACK_BITE)
+        )
     }
 
     //#endregion
@@ -160,33 +163,69 @@ class ManglerfishEntity(entityType: EntityType<out HybridAquaticMinibossEntity>,
         }
     }
 
+    private fun getHandSwingDuration(): Int {
+        return 20
+    }
+
+    override fun tickHandSwing() {
+        val i = this.getHandSwingDuration()
+        if (this.handSwinging) {
+            ++this.handSwingTicks
+            if (this.handSwingTicks >= i) {
+                this.handSwingTicks = 0
+                this.handSwinging = false
+            }
+        } else {
+            this.handSwingTicks = 0
+        }
+
+        this.handSwingProgress = handSwingTicks.toFloat() / i.toFloat()
+    }
+
+    override fun getHandSwingProgress(tickDelta: Float): Float {
+        var f = this.handSwingProgress - this.lastHandSwingProgress
+        if (f < 0.0f) {
+            ++f
+        }
+
+        return this.lastHandSwingProgress + f * tickDelta
+    }
+
     internal open class ManglerfishAttackGoal(private val manglerfish: ManglerfishEntity) :
         MeleeAttackGoal(manglerfish, 0.7, false) {
         override fun attack(target: LivingEntity, squaredDistance: Double) {
             val d = getSquaredMaxAttackDistance(target)
-            if (squaredDistance <= d && this.isCooledDown) {
+            if (squaredDistance <= d && this.cooldown <= 0) {
                 resetCooldown()
-                mob.tryAttack(target)
-                manglerfish.attemptAttack = true
+                manglerfish.swingHand(Hand.MAIN_HAND)
+                manglerfish.tryAttack(target)
             }
-            if (!this.isCooledDown)
-                manglerfish.handSwinging
         }
 
         override fun getSquaredMaxAttackDistance(entity: LivingEntity): Double {
-            return (4.0f + entity.width).toDouble()
+            return (manglerfish.width * 2.0 + entity.width)
         }
 
         override fun start() {
             super.start()
             manglerfish.isSprinting = true
-            manglerfish.attemptAttack = false
+            manglerfish.handSwinging = false
+            manglerfish.handSwingTicks = 0
         }
 
         override fun stop() {
-            super.stop()
+            val livingEntity = manglerfish.target
+            if (!EntityPredicates.EXCEPT_CREATIVE_OR_SPECTATOR.test(livingEntity)) {
+                manglerfish.target = null
+            }
+
             manglerfish.isSprinting = false
-            manglerfish.attemptAttack = false
+            manglerfish.isAttacking = false
+            manglerfish.navigation.stop()
+        }
+
+        override fun shouldRunEveryTick(): Boolean {
+            return true
         }
     }
 
