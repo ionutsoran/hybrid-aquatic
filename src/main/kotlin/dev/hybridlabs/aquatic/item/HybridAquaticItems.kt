@@ -176,6 +176,19 @@ object HybridAquaticItems {
     val KARKINOS_CLAW = register("karkinos_claw", KarkinosClawItem(FabricItemSettings().maxCount(1)))
 
     // food items
+    val UNI = register("uni",
+        Item(
+            FabricItemSettings()
+                .food(
+                    FoodComponent.Builder()
+                        .hunger(2)
+                        .saturationModifier(0.4F)
+                        .meat()
+                        .build()
+                )
+        )
+    )
+
     val RAW_SHRIMP = register("raw_shrimp",
         Item(
             FabricItemSettings()

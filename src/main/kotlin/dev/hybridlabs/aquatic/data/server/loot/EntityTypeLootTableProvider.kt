@@ -355,6 +355,14 @@ class EntityTypeLootTableProvider(output: FabricDataOutput) : SimpleFabricLootTa
                             .apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(0.0F, 2.0F)))
                     )
             )
+            pool(
+                LootPool.builder()
+                    .with(
+                        ItemEntry.builder(HybridAquaticItems.UNI)
+                            .apply(LootingEnchantLootFunction.builder(UniformLootNumberProvider.create(0.0F, 1.0F)))
+                            .apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(0.0F, 3.0F)))
+                    )
+            )
         }
 
         // end region

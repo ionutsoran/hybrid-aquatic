@@ -9,6 +9,7 @@ import net.minecraft.entity.attribute.EntityAttributes
 import net.minecraft.entity.damage.DamageSource
 import net.minecraft.entity.mob.PathAwareEntity
 import net.minecraft.registry.tag.BiomeTags
+import net.minecraft.util.Identifier
 import net.minecraft.util.math.BlockPos
 import net.minecraft.world.World
 import software.bernie.geckolib.core.animatable.GeoAnimatable
@@ -33,6 +34,10 @@ class SeaUrchinEntity(entityType: EntityType<out SeaUrchinEntity>, world: World)
             ignore = listOf(CritterVariant.Ignore.MODEL, CritterVariant.Ignore.ANIMATION)),
         "long_red" to CritterVariant.biomeVariant("long_red", listOf(BiomeTags.IS_OCEAN, BiomeTags.IS_DEEP_OCEAN),
             ignore = listOf(CritterVariant.Ignore.MODEL, CritterVariant.Ignore.ANIMATION)),)) {
+
+    public override fun getLootTableId(): Identifier {
+        return Identifier("hybrid-aquatic", "entities/sea_urchin")
+    }
 
     private var timeUntilNextBreak = 0
     private var spawnUrchinOnNextBreak = false
