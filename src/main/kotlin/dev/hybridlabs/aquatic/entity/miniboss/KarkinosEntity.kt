@@ -22,8 +22,10 @@ import net.minecraft.entity.data.TrackedDataHandlerRegistry
 import net.minecraft.entity.mob.WaterCreatureEntity
 import net.minecraft.entity.player.PlayerEntity
 import net.minecraft.nbt.NbtCompound
+import net.minecraft.predicate.entity.EntityPredicates
 import net.minecraft.server.network.ServerPlayerEntity
 import net.minecraft.text.Text
+import net.minecraft.util.Hand
 import net.minecraft.world.Difficulty
 import net.minecraft.world.World
 import software.bernie.geckolib.constant.DefaultAnimations
@@ -48,7 +50,7 @@ class KarkinosEntity(entityType: EntityType<out HybridAquaticMinibossEntity>, wo
     private val flipDuration: Int = 60
     private var bossBar: ServerBossBar = ServerBossBar(displayName, BossBar.Color.RED, BossBar.Style.NOTCHED_20)
 
-    var isFlipped: Boolean
+    private var isFlipped: Boolean
         get() = dataTracker.get(FLIPPED)
         set(bool) = dataTracker.set(FLIPPED, bool)
 
@@ -58,10 +60,10 @@ class KarkinosEntity(entityType: EntityType<out HybridAquaticMinibossEntity>, wo
     }
 
     override fun initGoals() {
-        goalSelector.add(1, AttackGoal(this))
-        goalSelector.add(1, LookAtEntityGoal(this, PlayerEntity::class.java, 12.0f))
-        goalSelector.add(4, KarkinosWanderAroundGoal(this, 0.3))
-        goalSelector.add(4, LookAroundGoal(this))
+        goalSelector.add(1, KarkinosAttackGoal(this))
+        goalSelector.add(4, WanderAroundFarGoal(this, 0.3))
+        goalSelector.add(5, LookAroundGoal(this))
+        goalSelector.add(8, LookAtEntityGoal(this, PlayerEntity::class.java, 16.0f))
         targetSelector.add(1, RevengeGoal(this))
         targetSelector.add(2, ActiveTargetGoal(this, PlayerEntity::class.java, 10, true, true, null))
     }
@@ -69,6 +71,38 @@ class KarkinosEntity(entityType: EntityType<out HybridAquaticMinibossEntity>, wo
     private fun beFlipped() {
         isFlipped = true
         flipTimer = flipDuration
+    }
+
+    override fun hasNoDrag(): Boolean {
+        return true
+    }
+
+    private fun getHandSwingDuration(): Int {
+        return 40
+    }
+
+    override fun tickHandSwing() {
+        val i = this.getHandSwingDuration()
+        if (this.handSwinging) {
+            ++this.handSwingTicks
+            if (this.handSwingTicks >= i) {
+                this.handSwingTicks = 0
+                this.handSwinging = false
+            }
+        } else {
+            this.handSwingTicks = 0
+        }
+
+        this.handSwingProgress = handSwingTicks.toFloat() / i.toFloat()
+    }
+
+    override fun getHandSwingProgress(tickDelta: Float): Float {
+        var f = this.handSwingProgress - this.lastHandSwingProgress
+        if (f < 0.0f) {
+            ++f
+        }
+
+        return this.lastHandSwingProgress + f * tickDelta
     }
 
     override fun mobTick() {
@@ -156,12 +190,10 @@ class KarkinosEntity(entityType: EntityType<out HybridAquaticMinibossEntity>, wo
         bossBar.name = this.displayName
     }
 
-    override fun registerControllers(controllerRegistrar: AnimatableManager.ControllerRegistrar) {
-        controllerRegistrar.add(
-            DefaultAnimations.genericWalkRunIdleController(this)
-        )
-        controllerRegistrar.add(
-            AnimationController(this, 5) { state ->
+    override fun registerControllers(controllers: AnimatableManager.ControllerRegistrar) {
+        controllers.add(DefaultAnimations.genericWalkRunIdleController(this))
+        controllers.add(DefaultAnimations.genericAttackAnimation(this, DefaultAnimations.ATTACK_SWING))
+        controllers.add(AnimationController(this, 5) { state ->
                 if (isFlipped) {
                     state.setAndContinue(FLIP)
                     PlayState.CONTINUE
@@ -169,9 +201,6 @@ class KarkinosEntity(entityType: EntityType<out HybridAquaticMinibossEntity>, wo
                     PlayState.STOP
                 }
             }
-        )
-        controllerRegistrar.add(
-            DefaultAnimations.genericAttackAnimation(this, DefaultAnimations.ATTACK_SWING)
         )
     }
 
@@ -195,41 +224,42 @@ class KarkinosEntity(entityType: EntityType<out HybridAquaticMinibossEntity>, wo
             DataTracker.registerData(KarkinosEntity::class.java, TrackedDataHandlerRegistry.BOOLEAN)
     }
 
-    internal open class AttackGoal(private val karkinos: KarkinosEntity) : MeleeAttackGoal(karkinos, 0.6, false) {
+    internal open class KarkinosAttackGoal(private val karkinos: KarkinosEntity) : MeleeAttackGoal(karkinos, 0.6, false) {
         override fun attack(target: LivingEntity, squaredDistance: Double) {
             val d = getSquaredMaxAttackDistance(target)
-            if (squaredDistance <= d && this.isCooledDown) {
+            if (squaredDistance <= d && this.cooldown <= 0) {
                 resetCooldown()
-                mob.tryAttack(target)
-                karkinos.attemptAttack = true
+                karkinos.swingHand(Hand.MAIN_HAND)
+                karkinos.tryAttack(target)
             }
-            if (!this.isCooledDown)
-                karkinos.handSwinging
         }
 
         override fun getSquaredMaxAttackDistance(entity: LivingEntity): Double {
-            return (4.0f + entity.width).toDouble()
+            return (karkinos.width * 2.0 + entity.width)
         }
 
         override fun start() {
             super.start()
             karkinos.isSprinting = true
-            karkinos.attemptAttack = false
+            karkinos.handSwinging = false
+            karkinos.handSwingTicks = 0
         }
 
         override fun stop() {
-            super.stop()
+            val livingEntity = karkinos.target
+            if (!EntityPredicates.EXCEPT_CREATIVE_OR_SPECTATOR.test(livingEntity)) {
+                karkinos.target = null
+            }
+
             karkinos.isSprinting = false
-            karkinos.attemptAttack = false
+            karkinos.isAttacking = false
+            karkinos.navigation.stop()
         }
 
-        override fun shouldContinue(): Boolean {
-            return !karkinos.isFlipped && super.shouldContinue()
+        override fun shouldRunEveryTick(): Boolean {
+            return true
         }
-    }
 
-    class KarkinosWanderAroundGoal(private val karkinos: KarkinosEntity, speed: Double) :
-        WanderAroundGoal(karkinos, speed) {
         override fun shouldContinue(): Boolean {
             return !karkinos.isFlipped && super.shouldContinue()
         }

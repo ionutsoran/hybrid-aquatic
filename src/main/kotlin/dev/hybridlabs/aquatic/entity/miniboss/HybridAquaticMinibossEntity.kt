@@ -1,7 +1,6 @@
 package dev.hybridlabs.aquatic.entity.miniboss
 
 import net.minecraft.block.Blocks
-import net.minecraft.entity.Entity
 import net.minecraft.entity.EntityType
 import net.minecraft.entity.SpawnReason
 import net.minecraft.entity.data.DataTracker
@@ -16,19 +15,15 @@ import net.minecraft.util.math.random.Random
 import net.minecraft.world.World
 import net.minecraft.world.WorldAccess
 import software.bernie.geckolib.animatable.GeoEntity
-import software.bernie.geckolib.core.animatable.GeoAnimatable
 import software.bernie.geckolib.core.animatable.instance.AnimatableInstanceCache
-import software.bernie.geckolib.core.animation.AnimatableManager
-import software.bernie.geckolib.core.animation.AnimationController
-import software.bernie.geckolib.core.animation.AnimationState
-import software.bernie.geckolib.core.`object`.PlayState
 import software.bernie.geckolib.util.GeckoLibUtil
 
 
 @Suppress("LeakingThis", "UNUSED_PARAMETER", "DEPRECATION")
-open class HybridAquaticMinibossEntity(type: EntityType<out HostileEntity>, world: World) : HostileEntity(type, world), GeoEntity {
+abstract class HybridAquaticMinibossEntity(type: EntityType<out HostileEntity>, world: World) : HostileEntity(type, world), GeoEntity {
 
     private val factory = GeckoLibUtil.createInstanceCache(this)
+
     private var attackTick = 0
     var attemptAttack: Boolean
         get() = dataTracker.get(ATTEMPT_ATTACK)
@@ -63,12 +58,6 @@ open class HybridAquaticMinibossEntity(type: EntityType<out HostileEntity>, worl
         super.tickMovement()
     }
 
-    override fun tryAttack(target: Entity?): Boolean {
-        this.attackTick = 10
-        world.sendEntityStatus(this, 4.toByte())
-        return super.tryAttack(target)
-    }
-
     override fun isPushedByFluids(): Boolean {
         return false
     }
@@ -81,29 +70,12 @@ open class HybridAquaticMinibossEntity(type: EntityType<out HostileEntity>, worl
         return true
     }
 
-    open fun <E : GeoAnimatable> predicate(event: AnimationState<E>): PlayState {
-        return PlayState.STOP
-    }
-
-    override fun registerControllers(controllerRegistrar: AnimatableManager.ControllerRegistrar) {
-        controllerRegistrar.add(
-            AnimationController(
-                this,
-                "controller",
-                5,
-                ::predicate
-            )
-        )
+    override fun isAngryAt(player: PlayerEntity?): Boolean {
+        return true
     }
 
     override fun getAnimatableInstanceCache(): AnimatableInstanceCache {
         return factory
-    }
-
-
-
-    override fun isAngryAt(player: PlayerEntity?): Boolean {
-        return true
     }
 
     companion object {
@@ -114,9 +86,9 @@ open class HybridAquaticMinibossEntity(type: EntityType<out HostileEntity>, worl
         fun canSpawn(
             type: EntityType<out HostileEntity>,
             world: WorldAccess,
-            reason: SpawnReason?,
+            reason: SpawnReason,
             pos: BlockPos,
-            random: Random?
+            random: Random
         ): Boolean {
             val topY = world.seaLevel
             val bottomY = world.seaLevel - 24
@@ -127,4 +99,3 @@ open class HybridAquaticMinibossEntity(type: EntityType<out HostileEntity>, worl
         }
     }
 }
-
