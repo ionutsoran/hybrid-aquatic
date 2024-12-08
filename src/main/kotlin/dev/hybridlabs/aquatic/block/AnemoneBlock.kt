@@ -30,7 +30,8 @@ import net.minecraft.world.WorldAccess
 @Suppress("DEPRECATION", "OVERRIDE_DEPRECATION")
 class AnemoneBlock(settings: Settings) : PlantBlock(settings), BlockEntityProvider, Waterloggable {
     init {
-        defaultState = stateManager.defaultState.with(WATERLOGGED, false)
+        defaultState = stateManager.defaultState
+            .with(WATERLOGGED, true)
     }
 
     override fun onEntityCollision(state: BlockState, world: World, pos: BlockPos, entity: Entity) {
@@ -70,7 +71,11 @@ class AnemoneBlock(settings: Settings) : PlantBlock(settings), BlockEntityProvid
     }
 
     override fun canPlantOnTop(floor: BlockState, world: BlockView, pos: BlockPos): Boolean {
-        return !floor.getCollisionShape(world, pos).getFace(Direction.UP).isEmpty || floor.isSideSolidFullSquare(world, pos, Direction.UP)
+        return !floor.getCollisionShape(world, pos).getFace(Direction.UP).isEmpty || floor.isSideSolidFullSquare(
+            world,
+            pos,
+            Direction.UP
+        )
     }
 
     override fun getStateForNeighborUpdate(
@@ -107,13 +112,21 @@ class AnemoneBlock(settings: Settings) : PlantBlock(settings), BlockEntityProvid
         return COLLISION_SHAPE
     }
 
-    override fun getOutlineShape(state: BlockState, world: BlockView, pos: BlockPos, context: ShapeContext): VoxelShape {
+    override fun getOutlineShape(
+        state: BlockState,
+        world: BlockView,
+        pos: BlockPos,
+        context: ShapeContext
+    ): VoxelShape {
         return SHAPE
     }
 
     override fun getPlacementState(ctx: ItemPlacementContext): BlockState? {
         val fluidState = ctx.world.getFluidState(ctx.blockPos)
-        return if (fluidState.isIn(FluidTags.WATER)) defaultState.with(WATERLOGGED, ctx.world.getFluidState(ctx.blockPos).isOf(Fluids.WATER)) else null
+        return if (fluidState.isIn(FluidTags.WATER)) defaultState.with(
+            WATERLOGGED,
+            ctx.world.getFluidState(ctx.blockPos).isOf(Fluids.WATER)
+        ) else null
     }
 
     override fun getFluidState(state: BlockState): FluidState {

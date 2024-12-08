@@ -11,6 +11,9 @@ import net.minecraft.world.gen.feature.PlacedFeature
  */
 object HybridAquaticPlacedFeatures {
     val ANEMONE_PATCH = register("anemone_patch")
+    val BROWN_SEAWEED_PATCH = register("brown_seaweed_patch")
+    val RED_SEAWEED_PATCH = register("red_seaweed_patch")
+    val GREEN_SEAWEED_PATCH = register("green_seaweed_patch")
     val GIANT_CLAM_PATCH = register("giant_clam_patch")
     val THERMAL_VENT_PATCH = register("thermal_vent_patch")
     val TUBE_SPONGE_PATCH = register("sponge_patch")

@@ -18,6 +18,24 @@ object FeatureBiomeModifications {
         )
 
         BiomeModifications.addFeature(
+            BiomeSelectors.tag(HybridAquaticBiomeTags.TROPICAL_OCEANS),
+            GenerationStep.Feature.VEGETAL_DECORATION,
+            HybridAquaticPlacedFeatures.BROWN_SEAWEED_PATCH
+        )
+
+        BiomeModifications.addFeature(
+            BiomeSelectors.tag(HybridAquaticBiomeTags.TROPICAL_OCEANS),
+            GenerationStep.Feature.VEGETAL_DECORATION,
+            HybridAquaticPlacedFeatures.RED_SEAWEED_PATCH
+        )
+
+        BiomeModifications.addFeature(
+            BiomeSelectors.tag(HybridAquaticBiomeTags.TROPICAL_OCEANS),
+            GenerationStep.Feature.VEGETAL_DECORATION,
+            HybridAquaticPlacedFeatures.GREEN_SEAWEED_PATCH
+        )
+
+        BiomeModifications.addFeature(
             BiomeSelectors.tag(HybridAquaticBiomeTags.REEF),
             GenerationStep.Feature.VEGETAL_DECORATION,
             HybridAquaticPlacedFeatures.GIANT_CLAM_PATCH

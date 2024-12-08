@@ -28,6 +28,42 @@ class PlacedFeatureProvider(output: FabricDataOutput, registriesFuture: Completa
             )
         )
 
+        entries.add(
+            HybridAquaticPlacedFeatures.BROWN_SEAWEED_PATCH,
+            PlacedFeature(entries.ref(HybridAquaticConfiguredFeatures.BROWN_SEAWEED_PATCH),
+                listOf(
+                    SquarePlacementModifier.of(),
+                    PlacedFeatures.OCEAN_FLOOR_WG_HEIGHTMAP,
+                    CountPlacementModifier.of(1),
+                    BiomePlacementModifier.of()
+                )
+            )
+        )
+
+        entries.add(
+            HybridAquaticPlacedFeatures.RED_SEAWEED_PATCH,
+            PlacedFeature(entries.ref(HybridAquaticConfiguredFeatures.RED_SEAWEED_PATCH),
+                listOf(
+                    SquarePlacementModifier.of(),
+                    PlacedFeatures.OCEAN_FLOOR_WG_HEIGHTMAP,
+                    CountPlacementModifier.of(1),
+                    BiomePlacementModifier.of()
+                )
+            )
+        )
+
+        entries.add(
+            HybridAquaticPlacedFeatures.GREEN_SEAWEED_PATCH,
+            PlacedFeature(entries.ref(HybridAquaticConfiguredFeatures.GREEN_SEAWEED_PATCH),
+                listOf(
+                    SquarePlacementModifier.of(),
+                    PlacedFeatures.OCEAN_FLOOR_WG_HEIGHTMAP,
+                    CountPlacementModifier.of(1),
+                    BiomePlacementModifier.of()
+                )
+            )
+        )
+
         // giant clam patch
         entries.add(
             HybridAquaticPlacedFeatures.GIANT_CLAM_PATCH,

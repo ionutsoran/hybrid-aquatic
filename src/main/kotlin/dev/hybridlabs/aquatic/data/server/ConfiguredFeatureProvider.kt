@@ -4,20 +4,25 @@ package dev.hybridlabs.aquatic.data.server
 
 import dev.hybridlabs.aquatic.block.HybridAquaticBlocks
 import dev.hybridlabs.aquatic.block.TubeWormBlock
-import dev.hybridlabs.aquatic.tag.HybridAquaticBlockTags
 import dev.hybridlabs.aquatic.world.gen.feature.*
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricDynamicRegistryProvider
+import net.minecraft.block.BlockState
 import net.minecraft.block.Blocks
+import net.minecraft.block.HorizontalFacingBlock
+import net.minecraft.fluid.Fluids
 import net.minecraft.registry.RegistryWrapper
 import net.minecraft.registry.entry.RegistryEntryList
 import net.minecraft.state.property.Properties
+import net.minecraft.util.collection.DataPool
+import net.minecraft.util.math.Direction
 import net.minecraft.util.math.intprovider.ConstantIntProvider
 import net.minecraft.util.math.intprovider.UniformIntProvider
 import net.minecraft.world.gen.blockpredicate.BlockPredicate
 import net.minecraft.world.gen.feature.*
 import net.minecraft.world.gen.stateprovider.BlockStateProvider
 import net.minecraft.world.gen.stateprovider.SimpleBlockStateProvider
+import net.minecraft.world.gen.stateprovider.WeightedBlockStateProvider
 import java.util.concurrent.CompletableFuture
 
 class ConfiguredFeatureProvider(output: FabricDataOutput, registriesFuture: CompletableFuture<RegistryWrapper.WrapperLookup>) : FabricDynamicRegistryProvider(output, registriesFuture) {
@@ -31,9 +36,57 @@ class ConfiguredFeatureProvider(output: FabricDataOutput, registriesFuture: Comp
                     PlacedFeatures.createEntry(
                         Feature.SIMPLE_BLOCK,
                         SimpleBlockFeatureConfig(
-                            BlockStateProvider.of(HybridAquaticBlocks.ANEMONE.defaultState.with(Properties.WATERLOGGED, true))
+                            BlockStateProvider.of(HybridAquaticBlocks.ANEMONE.defaultState)
                         ),
-                        BlockPredicate.matchingBlockTag(HybridAquaticBlockTags.ANEMONES_GENERATE_IN)
+                        BlockPredicate.matchingFluids(Fluids.WATER)
+                    )
+                )
+            )
+        )
+
+        entries.add(
+            HybridAquaticConfiguredFeatures.BROWN_SEAWEED_PATCH,
+            ConfiguredFeature(
+                Feature.FLOWER, RandomPatchFeatureConfig(
+                    10, 5, 2,
+                    PlacedFeatures.createEntry(
+                        Feature.SIMPLE_BLOCK,
+                        SimpleBlockFeatureConfig(
+                            BlockStateProvider.of(HybridAquaticBlocks.BROWN_SEAWEED.defaultState)
+                        ),
+                        BlockPredicate.matchingFluids(Fluids.WATER)
+                    )
+                )
+            )
+        )
+
+        entries.add(
+            HybridAquaticConfiguredFeatures.RED_SEAWEED_PATCH,
+            ConfiguredFeature(
+                Feature.FLOWER, RandomPatchFeatureConfig(
+                    10, 5, 2,
+                    PlacedFeatures.createEntry(
+                        Feature.SIMPLE_BLOCK,
+                        SimpleBlockFeatureConfig(
+                            BlockStateProvider.of(HybridAquaticBlocks.RED_SEAWEED.defaultState)
+                        ),
+                        BlockPredicate.matchingFluids(Fluids.WATER)
+                    )
+                )
+            )
+        )
+
+        entries.add(
+            HybridAquaticConfiguredFeatures.GREEN_SEAWEED_PATCH,
+            ConfiguredFeature(
+                Feature.FLOWER, RandomPatchFeatureConfig(
+                    10, 5, 2,
+                    PlacedFeatures.createEntry(
+                        Feature.SIMPLE_BLOCK,
+                        SimpleBlockFeatureConfig(
+                            BlockStateProvider.of(HybridAquaticBlocks.GREEN_SEAWEED.defaultState)
+                        ),
+                        BlockPredicate.matchingFluids(Fluids.WATER)
                     )
                 )
             )
@@ -51,7 +104,7 @@ class ConfiguredFeatureProvider(output: FabricDataOutput, registriesFuture: Comp
                         SimpleBlockFeatureConfig(
                             BlockStateProvider.of(HybridAquaticBlocks.TUBE_SPONGE.defaultState.with(Properties.WATERLOGGED, true))
                         ),
-                        BlockPredicate.matchingBlockTag(HybridAquaticBlockTags.TUBE_SPONGE_GENERATE_IN)
+                        BlockPredicate.matchingFluids(Fluids.WATER)
                     )
                 )
             )
@@ -66,9 +119,14 @@ class ConfiguredFeatureProvider(output: FabricDataOutput, registriesFuture: Comp
                     PlacedFeatures.createEntry(
                         Feature.SIMPLE_BLOCK,
                         SimpleBlockFeatureConfig(
-                            BlockStateProvider.of(HybridAquaticBlocks.GIANT_CLAM.defaultState.with(Properties.WATERLOGGED, true))
+                            WeightedBlockStateProvider(
+                                DataPool.builder<BlockState>()
+                                    .add(HybridAquaticBlocks.GIANT_CLAM.defaultState.with(Properties.WATERLOGGED, true).with(HorizontalFacingBlock.FACING, Direction.EAST), 1)
+                                    .add(HybridAquaticBlocks.GIANT_CLAM.defaultState.with(Properties.WATERLOGGED, true).with(HorizontalFacingBlock.FACING, Direction.NORTH), 1)
+                                    .build()
+                            )
                         ),
-                        BlockPredicate.matchingBlockTag(HybridAquaticBlockTags.GIANT_CLAM_GENERATE_IN)
+                        BlockPredicate.matchingFluids(Fluids.WATER)
                     )
                 )
             )
