@@ -8,6 +8,7 @@ import net.minecraft.entity.LivingEntity
 import net.minecraft.entity.ai.control.MoveControl
 import net.minecraft.entity.ai.goal.*
 import net.minecraft.entity.ai.pathing.EntityNavigation
+import net.minecraft.entity.ai.pathing.MobNavigation
 import net.minecraft.entity.ai.pathing.PathNodeType
 import net.minecraft.entity.attribute.DefaultAttributeContainer
 import net.minecraft.entity.attribute.EntityAttributes
@@ -20,10 +21,13 @@ import net.minecraft.entity.data.DataTracker
 import net.minecraft.entity.data.TrackedData
 import net.minecraft.entity.data.TrackedDataHandlerRegistry
 import net.minecraft.entity.mob.WaterCreatureEntity
+import net.minecraft.entity.passive.IronGolemEntity
 import net.minecraft.entity.player.PlayerEntity
 import net.minecraft.nbt.NbtCompound
 import net.minecraft.predicate.entity.EntityPredicates
 import net.minecraft.server.network.ServerPlayerEntity
+import net.minecraft.sound.SoundEvent
+import net.minecraft.sound.SoundEvents
 import net.minecraft.text.Text
 import net.minecraft.util.Hand
 import net.minecraft.world.Difficulty
@@ -39,11 +43,19 @@ class KarkinosEntity(entityType: EntityType<out HybridAquaticMinibossEntity>, wo
 
     private var landNavigation: EntityNavigation = createNavigation(world)
 
+    override fun createNavigation(world: World): EntityNavigation {
+        return MobNavigation(this, world)
+    }
+
+    override fun shouldSwimInFluids(): Boolean {
+        return false
+    }
+
     init {
-        setPathfindingPenalty(PathNodeType.WATER, 0.0f)
+        setPathfindingPenalty(PathNodeType.WATER, 5.0f)
         moveControl = MoveControl(this)
         navigation = this.landNavigation
-        stepHeight = 2.0F
+        stepHeight = 1.5F
     }
 
     private var flipTimer: Int = 0
@@ -66,6 +78,7 @@ class KarkinosEntity(entityType: EntityType<out HybridAquaticMinibossEntity>, wo
         goalSelector.add(8, LookAtEntityGoal(this, PlayerEntity::class.java, 16.0f))
         targetSelector.add(1, RevengeGoal(this))
         targetSelector.add(2, ActiveTargetGoal(this, PlayerEntity::class.java, 10, true, true, null))
+        targetSelector.add(2, ActiveTargetGoal(this, IronGolemEntity::class.java, 10, true, true, null))
     }
 
     private fun beFlipped() {
@@ -112,13 +125,11 @@ class KarkinosEntity(entityType: EntityType<out HybridAquaticMinibossEntity>, wo
 
             if (flipTimer <= 0) {
                 isFlipped = false
-                attributes.getCustomInstance(EntityAttributes.GENERIC_MOVEMENT_SPEED)?.baseValue = 0.6
-                attributes.getCustomInstance(EntityAttributes.GENERIC_ARMOR_TOUGHNESS)?.baseValue = 5.0
-                attributes.getCustomInstance(EntityAttributes.GENERIC_ARMOR)?.baseValue = 8.0
+                attributes.getCustomInstance(EntityAttributes.GENERIC_MOVEMENT_SPEED)?.baseValue = 0.5
+                attributes.getCustomInstance(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE)?.baseValue = 5.0
             } else {
                 attributes.getCustomInstance(EntityAttributes.GENERIC_MOVEMENT_SPEED)?.baseValue = 0.0
-                attributes.getCustomInstance(EntityAttributes.GENERIC_ARMOR_TOUGHNESS)?.baseValue = 0.0
-                attributes.getCustomInstance(EntityAttributes.GENERIC_ARMOR)?.baseValue = 0.0
+                attributes.getCustomInstance(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE)?.baseValue = 0.0
             }
         }
 
@@ -155,8 +166,10 @@ class KarkinosEntity(entityType: EntityType<out HybridAquaticMinibossEntity>, wo
     override fun damage(source: DamageSource, amount: Float): Boolean {
         val dmgSourcesRegistry = damageSources.registry
 
-        if (source.type == dmgSourcesRegistry.entryOf(DamageTypes.ARROW).value() as DamageType) return false
-        else if (source.type == dmgSourcesRegistry.entryOf(DamageTypes.IN_WALL).value() as DamageType) return false
+        if (source.type == dmgSourcesRegistry.entryOf(DamageTypes.ARROW).value() as DamageType)
+            return false
+        else if (source.type == dmgSourcesRegistry.entryOf(DamageTypes.IN_WALL).value() as DamageType)
+            return false
 
         val damaged = super.damage(source, amount)
 
@@ -194,14 +207,22 @@ class KarkinosEntity(entityType: EntityType<out HybridAquaticMinibossEntity>, wo
         controllers.add(DefaultAnimations.genericWalkRunIdleController(this))
         controllers.add(DefaultAnimations.genericAttackAnimation(this, DefaultAnimations.ATTACK_SWING))
         controllers.add(AnimationController(this, 5) { state ->
-                if (isFlipped) {
-                    state.setAndContinue(FLIP)
-                    PlayState.CONTINUE
-                } else {
-                    PlayState.STOP
-                }
+            if (isFlipped) {
+                state.setAndContinue(FLIP)
+                PlayState.CONTINUE
+            } else {
+                PlayState.STOP
             }
+        }
         )
+    }
+
+    override fun getHurtSound(source: DamageSource): SoundEvent {
+        return SoundEvents.ENTITY_TURTLE_EGG_CRACK
+    }
+
+    override fun getDeathSound(): SoundEvent {
+        return SoundEvents.ENTITY_TURTLE_EGG_BREAK
     }
 
     companion object {
@@ -211,20 +232,19 @@ class KarkinosEntity(entityType: EntityType<out HybridAquaticMinibossEntity>, wo
         fun createMobAttributes(): DefaultAttributeContainer.Builder {
             return WaterCreatureEntity.createMobAttributes()
                 .add(EntityAttributes.GENERIC_MAX_HEALTH, 300.0)
-                .add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.6)
+                .add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.4)
                 .add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 10.0)
-                .add(EntityAttributes.GENERIC_ATTACK_SPEED, 8.0)
+                .add(EntityAttributes.GENERIC_ATTACK_SPEED, 0.4)
                 .add(EntityAttributes.GENERIC_FOLLOW_RANGE, 32.0)
-                .add(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE, 50.0)
-                .add(EntityAttributes.GENERIC_ARMOR_TOUGHNESS, 5.0)
-                .add(EntityAttributes.GENERIC_ARMOR, 8.0)
+                .add(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE, 5.0)
         }
 
         val FLIPPED: TrackedData<Boolean> =
             DataTracker.registerData(KarkinosEntity::class.java, TrackedDataHandlerRegistry.BOOLEAN)
     }
 
-    internal open class KarkinosAttackGoal(private val karkinos: KarkinosEntity) : MeleeAttackGoal(karkinos, 0.6, false) {
+    internal open class KarkinosAttackGoal(private val karkinos: KarkinosEntity) :
+        MeleeAttackGoal(karkinos, 0.6, false) {
         override fun attack(target: LivingEntity, squaredDistance: Double) {
             val d = getSquaredMaxAttackDistance(target)
             if (squaredDistance <= d && this.cooldown <= 0) {
