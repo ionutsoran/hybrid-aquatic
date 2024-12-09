@@ -11,8 +11,8 @@ import net.minecraft.entity.ai.goal.LookAroundGoal
 import net.minecraft.entity.ai.goal.MoveIntoWaterGoal
 import net.minecraft.entity.ai.goal.WanderAroundGoal
 import net.minecraft.entity.ai.pathing.EntityNavigation
+import net.minecraft.entity.ai.pathing.MobNavigation
 import net.minecraft.entity.ai.pathing.PathNodeType
-import net.minecraft.entity.ai.pathing.SpiderNavigation
 import net.minecraft.entity.damage.DamageSource
 import net.minecraft.entity.data.DataTracker
 import net.minecraft.entity.data.TrackedData
@@ -57,16 +57,8 @@ open class HybridAquaticCritterEntity(
         navigation = this.landNavigation
     }
 
-    override fun isClimbing(): Boolean {
-        return this.isClimbingWall()
-    }
-
-    private fun isClimbingWall(): Boolean {
-        return ((dataTracker.get(CRITTER_FLAGS) as Byte).toInt() and 1) != 0
-    }
-
     override fun createNavigation(world: World): EntityNavigation {
-        return SpiderNavigation(this, world)
+        return MobNavigation(this, world)
     }
 
     override fun hasNoDrag(): Boolean {
@@ -75,24 +67,10 @@ open class HybridAquaticCritterEntity(
 
     override fun tick() {
         super.tick()
-        if (!world.isClient) {
-            this.setClimbingWall(this.horizontalCollision)
-        }
 
         if (!isWet) {
             this.speed = 0.01F
         }
-    }
-
-    private fun setClimbingWall(climbing: Boolean) {
-        var b = dataTracker.get(CRITTER_FLAGS) as Byte
-        b = if (climbing) {
-            (b.toInt() or 1).toByte()
-        } else {
-            (b.toInt() and -2).toByte()
-        }
-
-        dataTracker.set(CRITTER_FLAGS, b)
     }
 
     override fun initDataTracker() {
@@ -125,7 +103,8 @@ open class HybridAquaticCritterEntity(
                 variantKey = variants.keys.elementAt(random.nextBetween(0, variants.size - 1))
             } else {
                 // Handle collisions
-                val validKeys = variants.filter { it.value.spawnCondition(world, spawnReason, blockPos, random) }.map { it.key }
+                val validKeys =
+                    variants.filter { it.value.spawnCondition(world, spawnReason, blockPos, random) }.map { it.key }
 
                 if (validKeys.isEmpty()) {
                     variantKey = variants.keys.random()
@@ -133,7 +112,10 @@ open class HybridAquaticCritterEntity(
                     for (rule in collisionRules) {
                         val variantSet = rule.variants.toSet()
                         if ((rule.exclusionStatus == VariantCollisionRules.ExclusionStatus.EXCLUSIVE && validKeys.toSet() == variantSet) ||
-                            (rule.exclusionStatus == VariantCollisionRules.ExclusionStatus.INCLUSIVE && validKeys.containsAll(variantSet))) {
+                            (rule.exclusionStatus == VariantCollisionRules.ExclusionStatus.INCLUSIVE && validKeys.containsAll(
+                                variantSet
+                            ))
+                        ) {
                             variantKey = rule.collisionHandler(validKeys.toSet(), random, world)
                             break
                         }
@@ -206,11 +188,11 @@ open class HybridAquaticCritterEntity(
         return PlayState.CONTINUE
     }
 
-    protected open fun getMinSize() : Int {
+    protected open fun getMinSize(): Int {
         return 0
     }
 
-    protected open fun getMaxSize() : Int {
+    protected open fun getMaxSize(): Int {
         return 0
     }
 
@@ -286,10 +268,14 @@ open class HybridAquaticCritterEntity(
         }
 
     companion object {
-        val VARIANT: TrackedData<String> = DataTracker.registerData(HybridAquaticCritterEntity::class.java, TrackedDataHandlerRegistry.STRING)
-        var VARIANT_DATA: TrackedData<NbtCompound> = DataTracker.registerData(HybridAquaticCritterEntity::class.java, TrackedDataHandlerRegistry.NBT_COMPOUND)
-        val CRITTER_SIZE: TrackedData<Int> = DataTracker.registerData(HybridAquaticCritterEntity::class.java, TrackedDataHandlerRegistry.INTEGER)
-        val CRITTER_FLAGS: TrackedData<Byte> = DataTracker.registerData(HybridAquaticCritterEntity::class.java, TrackedDataHandlerRegistry.BYTE)
+        val VARIANT: TrackedData<String> =
+            DataTracker.registerData(HybridAquaticCritterEntity::class.java, TrackedDataHandlerRegistry.STRING)
+        var VARIANT_DATA: TrackedData<NbtCompound> =
+            DataTracker.registerData(HybridAquaticCritterEntity::class.java, TrackedDataHandlerRegistry.NBT_COMPOUND)
+        val CRITTER_SIZE: TrackedData<Int> =
+            DataTracker.registerData(HybridAquaticCritterEntity::class.java, TrackedDataHandlerRegistry.INTEGER)
+        val CRITTER_FLAGS: TrackedData<Byte> =
+            DataTracker.registerData(HybridAquaticCritterEntity::class.java, TrackedDataHandlerRegistry.BYTE)
 
         fun canSpawn(
             type: EntityType<out WaterCreatureEntity>,
@@ -306,7 +292,7 @@ open class HybridAquaticCritterEntity(
                     world.getFluidState(pos).isIn(FluidTags.WATER)
         }
 
-        fun getScaleAdjustment(critter : HybridAquaticCritterEntity, adjustment : Float): Float {
+        fun getScaleAdjustment(critter: HybridAquaticCritterEntity, adjustment: Float): Float {
             return 1.0f + (critter.size * adjustment)
         }
 
@@ -314,29 +300,33 @@ open class HybridAquaticCritterEntity(
         const val VARIANT_DATA_KEY = "VariantData"
         const val CRITTER_SIZE_KEY = "CritterSize"
 
-        val WALK_ANIMATION: RawAnimation  = RawAnimation.begin().then("walk", Animation.LoopType.LOOP)
-        val IDLE_ANIMATION: RawAnimation  = RawAnimation.begin().then("idle", Animation.LoopType.LOOP)
-        val FLOP_ANIMATION: RawAnimation  = RawAnimation.begin().then("flop", Animation.LoopType.LOOP)
+        val WALK_ANIMATION: RawAnimation = RawAnimation.begin().then("walk", Animation.LoopType.LOOP)
+        val IDLE_ANIMATION: RawAnimation = RawAnimation.begin().then("idle", Animation.LoopType.LOOP)
+        val FLOP_ANIMATION: RawAnimation = RawAnimation.begin().then("flop", Animation.LoopType.LOOP)
     }
 
     @Suppress("UNUSED")
     data class CritterVariant(
-        val variantName : String,
-        val spawnCondition: (WorldAccess, SpawnReason, BlockPos, Random ) -> Boolean,
+        val variantName: String,
+        val spawnCondition: (WorldAccess, SpawnReason, BlockPos, Random) -> Boolean,
         val ignore: List<Ignore> = emptyList(),
         val priority: Int = 0,
-        var providedVariant: (World, BlockPos, Random, HybridAquaticCritterEntity) -> String = {_,_,_,_ ->
+        var providedVariant: (World, BlockPos, Random, HybridAquaticCritterEntity) -> String = { _, _, _, _ ->
             variantName
         }
     ) {
 
-        fun getProvidedVariant(critter: HybridAquaticCritterEntity) : String {
+        fun getProvidedVariant(critter: HybridAquaticCritterEntity): String {
             return providedVariant(critter.world, critter.blockPos, critter.random, critter)
         }
 
         companion object {
 
-            fun biomeVariant(variantName: String, biomes : List<TagKey<Biome>>, ignore : List<Ignore> = emptyList()): CritterVariant {
+            fun biomeVariant(
+                variantName: String,
+                biomes: List<TagKey<Biome>>,
+                ignore: List<Ignore> = emptyList()
+            ): CritterVariant {
                 return CritterVariant(variantName, { world, _, pos, _ ->
                     val biome = world.getBiome(pos)
                     biomes.any { biome.isIn(it) }
@@ -352,19 +342,26 @@ open class HybridAquaticCritterEntity(
     }
 
     @Suppress("UNUSED")
-    data class VariantCollisionRules(val variants : Set<String>, val collisionHandler: (Set<String>, Random, ServerWorldAccess) -> String, val exclusionStatus: ExclusionStatus = INCLUSIVE) {
+    data class VariantCollisionRules(
+        val variants: Set<String>,
+        val collisionHandler: (Set<String>, Random, ServerWorldAccess) -> String,
+        val exclusionStatus: ExclusionStatus = INCLUSIVE
+    ) {
         enum class ExclusionStatus {
             INCLUSIVE,
             EXCLUSIVE
         }
 
-        fun equalDistribution(variants: Set<String>, status : ExclusionStatus = INCLUSIVE) : VariantCollisionRules {
+        fun equalDistribution(variants: Set<String>, status: ExclusionStatus = INCLUSIVE): VariantCollisionRules {
             return VariantCollisionRules(variants, { possibleVariants, _, _ ->
                 possibleVariants.random()
             }, status)
         }
 
-        fun weightedDistribution(weights: Set<Pair<String, Double>>, status: ExclusionStatus = EXCLUSIVE) : VariantCollisionRules {
+        fun weightedDistribution(
+            weights: Set<Pair<String, Double>>,
+            status: ExclusionStatus = EXCLUSIVE
+        ): VariantCollisionRules {
             return VariantCollisionRules(weights.map { pair -> pair.first }.toSet(), { _, random, _ ->
                 val weightTotal = weights.sumOf { pair -> pair.second }
                 val randomVal = random.nextFloat() * weightTotal
