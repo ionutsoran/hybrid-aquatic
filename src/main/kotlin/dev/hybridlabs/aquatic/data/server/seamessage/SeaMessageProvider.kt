@@ -44,6 +44,8 @@ class SeaMessageProvider(output: FabricDataOutput, registriesFuture: Completable
             GeneratedSeaMessageData("crocodile", "It's always the crocodile you don't see you have to worry about.", "Jeremy Wade", englishTitle = "The Unseen Crocodile"),
             GeneratedSeaMessageData("bad_luck", "According to the Luck and Probability department it’s statistically bad luck to wish people good luck during a crisis.", "Agent Estevez", englishTitle = "Important Notice: FBC"),
             GeneratedSeaMessageData("cryptic_gun_message", "< You/We wield the Gun/You >", "The Board", englishTitle = "Hotline"),
+            GeneratedSeaMessageData("boo", "\nBoo"),
+            GeneratedSeaMessageData("control_oop", "Objects of Power shape reality around us. Handle with care.", author = "FBC", englishTitle = "Object of Power: Sea Message"),
             GeneratedSeaMessageData("dylan", """
                 You are a worm through time.
                 The thunder song distorts you.
