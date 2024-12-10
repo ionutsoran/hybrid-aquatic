@@ -267,6 +267,10 @@ open class HybridAquaticCrustaceanEntity(
         return false
     }
 
+    override fun hasNoDrag(): Boolean {
+        return this.isSwimming
+    }
+
     //#region SFX
 
     override fun calculateNextStepSoundDistance(): Float {

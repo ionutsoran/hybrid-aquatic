@@ -62,7 +62,7 @@ open class HybridAquaticCritterEntity(
     }
 
     override fun hasNoDrag(): Boolean {
-        return false
+        return this.isSwimming
     }
 
     override fun tick() {
