@@ -696,14 +696,14 @@ object HybridAquaticItems {
         )
     )
 
-    val COWFISH = register("cowfish",
+    val BOXFISH = register("boxfish",
         Item(
             FabricItemSettings()
                 .food(
                     FoodComponent.Builder()
                         .hunger(1)
                         .saturationModifier(0.2F)
-                        .statusEffect(StatusEffectInstance(StatusEffects.POISON, 1200, 1), 1.0f)
+                        .statusEffect(StatusEffectInstance(StatusEffects.POISON, 1200, 2), 1.0f)
                         .meat()
                         .build()
                 )
@@ -1108,7 +1108,7 @@ object HybridAquaticItems {
     val CARP_SPAWN_EGG = registerSpawnEgg("carp_spawn_egg", HybridAquaticEntityTypes.CARP, 0x725234, 0xd3ad8c)
     val CLOWNFISH_SPAWN_EGG = registerSpawnEgg("clownfish_spawn_egg", HybridAquaticEntityTypes.CLOWNFISH, 0xdf4917, 0xf8e7ed)
     val COELACANTH_SPAWN_EGG = registerSpawnEgg("coelacanth_spawn_egg", HybridAquaticEntityTypes.COELACANTH, 0x2f517a, 0xbac4d3)
-    val COWFISH_SPAWN_EGG = registerSpawnEgg("cowfish_spawn_egg", HybridAquaticEntityTypes.COWFISH, 0xfffeac, 0xffc056)
+    val BOXFISH_SPAWN_EGG = registerSpawnEgg("boxfish_spawn_egg", HybridAquaticEntityTypes.BOXFISH, 0xfffeac, 0xffc056)
     val DANIO_SPAWN_EGG = registerSpawnEgg("danio_spawn_egg", HybridAquaticEntityTypes.DANIO, 0xdcdced, 0x2a3f52)
     val DISCUS_SPAWN_EGG = registerSpawnEgg("discus_spawn_egg", HybridAquaticEntityTypes.DISCUS, 0xeeeecd, 0xf4a957)
     val DRAGONFISH_SPAWN_EGG = registerSpawnEgg("dragonfish_spawn_egg", HybridAquaticEntityTypes.DRAGONFISH, 0x2e2e33, 0xfffaa9)

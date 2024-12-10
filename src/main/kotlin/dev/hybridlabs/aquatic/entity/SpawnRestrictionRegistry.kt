@@ -28,7 +28,7 @@ object SpawnRestrictionRegistry {
             HybridAquaticEntityTypes.TUNA,
             HybridAquaticEntityTypes.MAHI,
             HybridAquaticEntityTypes.SURGEONFISH,
-            HybridAquaticEntityTypes.COWFISH,
+            HybridAquaticEntityTypes.BOXFISH,
             HybridAquaticEntityTypes.SEAHORSE,
             HybridAquaticEntityTypes.SUNFISH,
             HybridAquaticEntityTypes.LIONFISH,

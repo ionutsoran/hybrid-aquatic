@@ -46,7 +46,7 @@ object EntityBiomeModifications {
         addFish(HybridAquaticEntityTypes.TOADFISH, listOf(HybridAquaticBiomeTags.REEF), 1, 1, 1)
         addFish(HybridAquaticEntityTypes.SURGEONFISH, listOf(HybridAquaticBiomeTags.REEF), 5, 1, 3)
         addFish(HybridAquaticEntityTypes.CLOWNFISH, listOf(HybridAquaticBiomeTags.REEF), 3, 1, 2)
-        addFish(HybridAquaticEntityTypes.COWFISH, listOf(HybridAquaticBiomeTags.REEF), 1, 1, 1)
+        addFish(HybridAquaticEntityTypes.BOXFISH, listOf(HybridAquaticBiomeTags.REEF), 1, 1, 1)
         addFish(HybridAquaticEntityTypes.TRIGGERFISH, listOf(HybridAquaticBiomeTags.REEF), 3, 1, 1)
         addFish(HybridAquaticEntityTypes.PARROTFISH, listOf(HybridAquaticBiomeTags.REEF), 5, 1, 2)
         addFish(HybridAquaticEntityTypes.MORAY_EEL, listOf(HybridAquaticBiomeTags.REEF), 1, 1, 1)

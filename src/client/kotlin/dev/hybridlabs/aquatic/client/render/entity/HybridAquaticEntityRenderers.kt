@@ -52,7 +52,7 @@ object HybridAquaticEntityRenderers {
     val SEAHORSE = EntityRendererRegistry.register(HybridAquaticEntityTypes.SEAHORSE, ::SeahorseEntityRenderer)
     val MOON_JELLYFISH = EntityRendererRegistry.register(HybridAquaticEntityTypes.MOON_JELLYFISH, ::MoonJellyfishEntityRenderer)
     val GOURAMI = EntityRendererRegistry.register(HybridAquaticEntityTypes.GOURAMI, ::GouramiEntityRenderer)
-    val COWFISH = EntityRendererRegistry.register(HybridAquaticEntityTypes.COWFISH, ::CowfishEntityRenderer)
+    val BOXFISH = EntityRendererRegistry.register(HybridAquaticEntityTypes.BOXFISH, ::BoxfishEntityRenderer)
     val DISCUS = EntityRendererRegistry.register(HybridAquaticEntityTypes.DISCUS, ::DiscusEntityRenderer)
     val SURGEONFISH = EntityRendererRegistry.register(HybridAquaticEntityTypes.SURGEONFISH, ::SurgeonfishEntityRenderer)
     val PARROTFISH = EntityRendererRegistry.register(HybridAquaticEntityTypes.PARROTFISH, ::ParrotfishEntityRenderer)

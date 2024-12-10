@@ -35,7 +35,7 @@ class LiveCatchEnchantment : Enchantment(Rarity.RARE, EnchantmentTarget.FISHING_
             HybridAquaticItems.POWDER_BLUE_TANG to HybridAquaticEntityTypes.SURGEONFISH,
             HybridAquaticItems.YELLOW_TANG to HybridAquaticEntityTypes.SURGEONFISH,
             HybridAquaticItems.CLOWNFISH to HybridAquaticEntityTypes.CLOWNFISH,
-            HybridAquaticItems.COWFISH to HybridAquaticEntityTypes.COWFISH,
+            HybridAquaticItems.BOXFISH to HybridAquaticEntityTypes.BOXFISH,
             HybridAquaticItems.TIGER_BARB to HybridAquaticEntityTypes.TIGER_BARB,
             HybridAquaticItems.BETTA to HybridAquaticEntityTypes.BETTA,
             HybridAquaticItems.NEON_TETRA to HybridAquaticEntityTypes.TETRA,
