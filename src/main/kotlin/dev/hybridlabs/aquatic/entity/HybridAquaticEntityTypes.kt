@@ -485,7 +485,7 @@ object HybridAquaticEntityTypes {
     val KARKINOS = registerMiniboss(
         "karkinos",
         ::KarkinosEntity,
-        EntityDimensions.fixed(2.25f, 1.25f),
+        EntityDimensions.fixed(2.0f, 1.0f),
         KarkinosEntity.createMobAttributes()
     )
 

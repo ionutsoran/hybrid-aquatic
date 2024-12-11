@@ -88,7 +88,7 @@ class KarkinosEntity(entityType: EntityType<out HybridAquaticMinibossEntity>, wo
     }
 
     override fun hasNoDrag(): Boolean {
-        return this.isSwimming
+        return false
     }
 
     private fun getHandSwingDuration(): Int {
@@ -127,7 +127,7 @@ class KarkinosEntity(entityType: EntityType<out HybridAquaticMinibossEntity>, wo
             if (flipTimer <= 0) {
                 isFlipped = false
                 attributes.getCustomInstance(EntityAttributes.GENERIC_MOVEMENT_SPEED)?.baseValue = 0.5
-                attributes.getCustomInstance(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE)?.baseValue = 5.0
+                attributes.getCustomInstance(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE)?.baseValue = 1.0
             } else {
                 attributes.getCustomInstance(EntityAttributes.GENERIC_MOVEMENT_SPEED)?.baseValue = 0.0
                 attributes.getCustomInstance(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE)?.baseValue = 0.0
@@ -166,20 +166,21 @@ class KarkinosEntity(entityType: EntityType<out HybridAquaticMinibossEntity>, wo
 
     override fun damage(source: DamageSource, amount: Float): Boolean {
         val dmgSourcesRegistry = damageSources.registry
+        var adjustedAmount = amount
 
         if (source.type == dmgSourcesRegistry.entryOf(DamageTypes.ARROW).value() as DamageType)
-            return false
+            adjustedAmount *= 0.5f
         else if (source.type == dmgSourcesRegistry.entryOf(DamageTypes.IN_WALL).value() as DamageType)
-            return false
+            adjustedAmount *= 0.5f
 
         val damaged = super.damage(source, amount)
 
-        if (damaged && source.source is PlayerEntity && !isFlipped) {
+        if (source.source is PlayerEntity && !isFlipped) {
             val player = source.source as PlayerEntity
             val heldItem = player.mainHandStack
 
             if (EnchantmentHelper.getLevel(Enchantments.BANE_OF_ARTHROPODS, heldItem) > 2 ||
-                (EnchantmentHelper.getLevel(Enchantments.RIPTIDE, heldItem) > 0)
+                EnchantmentHelper.getLevel(Enchantments.RIPTIDE, heldItem) > 0
             ) {
                 beFlipped()
             }
@@ -233,11 +234,11 @@ class KarkinosEntity(entityType: EntityType<out HybridAquaticMinibossEntity>, wo
         fun createMobAttributes(): DefaultAttributeContainer.Builder {
             return WaterCreatureEntity.createMobAttributes()
                 .add(EntityAttributes.GENERIC_MAX_HEALTH, 300.0)
-                .add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.4)
+                .add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.35)
                 .add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 10.0)
-                .add(EntityAttributes.GENERIC_ATTACK_SPEED, 0.4)
+                .add(EntityAttributes.GENERIC_ATTACK_SPEED, 0.35)
                 .add(EntityAttributes.GENERIC_FOLLOW_RANGE, 32.0)
-                .add(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE, 5.0)
+                .add(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE, 1.0)
         }
 
         val FLIPPED: TrackedData<Boolean> =
