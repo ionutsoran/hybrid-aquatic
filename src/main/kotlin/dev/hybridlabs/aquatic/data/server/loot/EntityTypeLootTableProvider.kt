@@ -926,63 +926,13 @@ class EntityTypeLootTableProvider(output: FabricDataOutput) : SimpleFabricLootTa
             )
         }
 
-        export(exporter, HybridAquaticEntityTypes.HAMMERHEAD_SHARK) {
+        export(exporter, HybridAquaticEntityTypes.SQUIRRELFISH) {
             pool(
                 LootPool.builder()
                     .with(
-                        ItemEntry.builder(HybridAquaticItems.SHARK_TOOTH)
-                            .apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(1.0F, 3.0F)))
-                    )
-            )
-        }
-
-        export(exporter, HybridAquaticEntityTypes.THRESHER_SHARK) {
-            pool(
-                LootPool.builder()
-                    .with(
-                        ItemEntry.builder(HybridAquaticItems.SHARK_TOOTH)
-                            .apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(1.0F, 3.0F)))
-                    )
-            )
-        }
-
-        export(exporter, HybridAquaticEntityTypes.FRILLED_SHARK) {
-            pool(
-                LootPool.builder()
-                    .with(
-                        ItemEntry.builder(HybridAquaticItems.SHARK_TOOTH)
-                            .apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(1.0F, 3.0F)))
-                    )
-            )
-        }
-
-        export(exporter, HybridAquaticEntityTypes.BULL_SHARK) {
-            pool(
-                LootPool.builder()
-                    .with(
-                        ItemEntry.builder(HybridAquaticItems.SHARK_TOOTH)
-                            .apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(1.0F, 3.0F)))
-                    )
-            )
-        }
-
-        export(exporter, HybridAquaticEntityTypes.GREAT_WHITE_SHARK) {
-            pool(
-                LootPool.builder()
-                    .with(
-                        ItemEntry.builder(HybridAquaticItems.SHARK_TOOTH)
-                            .apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(1.0F, 3.0F)))
-                    )
-            )
-        }
-
-
-        export(exporter, HybridAquaticEntityTypes.TIGER_SHARK) {
-            pool(
-                LootPool.builder()
-                    .with(
-                        ItemEntry.builder(HybridAquaticItems.SHARK_TOOTH)
-                            .apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(1.0F, 3.0F)))
+                        ItemEntry.builder(HybridAquaticItems.SQUIRRELFISH)
+                            .apply(LootingEnchantLootFunction.builder(UniformLootNumberProvider.create(0.0F, 1.0F)))
+                            .apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(1.0F, 1.0F)))
                     )
             )
         }

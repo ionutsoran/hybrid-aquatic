@@ -2,6 +2,7 @@ package dev.hybridlabs.aquatic.entity.shark
 
 import dev.hybridlabs.aquatic.effect.HybridAquaticStatusEffects
 import dev.hybridlabs.aquatic.entity.fish.HybridAquaticFishEntity
+import dev.hybridlabs.aquatic.item.HybridAquaticItems
 import net.minecraft.block.Blocks
 import net.minecraft.entity.*
 import net.minecraft.entity.ai.control.AquaticMoveControl
@@ -19,6 +20,8 @@ import net.minecraft.entity.mob.Angerable
 import net.minecraft.entity.mob.HostileEntity.isSpawnDark
 import net.minecraft.entity.mob.WaterCreatureEntity
 import net.minecraft.entity.player.PlayerEntity
+import net.minecraft.item.ItemStack
+import net.minecraft.item.Items
 import net.minecraft.nbt.NbtCompound
 import net.minecraft.predicate.entity.EntityPredicates
 import net.minecraft.registry.tag.FluidTags
@@ -76,25 +79,15 @@ open class HybridAquaticSharkEntity(
         goalSelector.add(4, LookAroundGoal(this))
         goalSelector.add(5, LookAtEntityGoal(this, PlayerEntity::class.java, 6.0f))
         goalSelector.add(1, SharkAttackGoal(this))
-        targetSelector.add(
-            2,
-            ActiveTargetGoal(this, PlayerEntity::class.java, 10, true, true) { entity: LivingEntity ->
-                shouldAngerAt(entity) || shouldProximityAttack(entity as PlayerEntity) && !isPassive
-            })
-        targetSelector.add(
-            1,
-            ActiveTargetGoal(this, LivingEntity::class.java, 10, true, true) {
-                it.hasStatusEffect(HybridAquaticStatusEffects.BLEEDING) && it !is HybridAquaticSharkEntity && !isPassive
-            })
-        targetSelector.add(
-            3,
-            ActiveTargetGoal(
-                this,
-                LivingEntity::class.java,
-                10,
-                true,
-                true
-            ) { entity: LivingEntity -> prey.any { preyType -> entity.type.isIn(preyType) } && hunger < MAX_HUNGER / 4 })
+        targetSelector.add(2, ActiveTargetGoal(this, PlayerEntity::class.java, 10, true, true) { entity: LivingEntity ->
+            shouldAngerAt(entity) || shouldProximityAttack(entity as PlayerEntity) && !isPassive
+        })
+        targetSelector.add(1, ActiveTargetGoal(this, LivingEntity::class.java, 10, true, true) {
+            it.hasStatusEffect(HybridAquaticStatusEffects.BLEEDING) && it !is HybridAquaticSharkEntity && !isPassive
+        })
+        targetSelector.add(3, ActiveTargetGoal(
+            this, LivingEntity::class.java, 10, true, true
+        ) { entity: LivingEntity -> prey.any { preyType -> entity.type.isIn(preyType) } && hunger < MAX_HUNGER / 4 })
     }
 
     override fun initialize(
@@ -250,15 +243,13 @@ open class HybridAquaticSharkEntity(
 
     //#region Animations
     override fun registerControllers(controllerRegistrar: AnimatableManager.ControllerRegistrar) {
-        controllerRegistrar.add(
-            AnimationController(this, "Swim/Charge/Idle", 0) { state ->
-                val animation = when {
-                    state.isMoving -> if (this.isSprinting) DefaultAnimations.RUN else DefaultAnimations.SWIM
-                    else -> DefaultAnimations.SWIM
-                }
-                state.setAndContinue(animation)
+        controllerRegistrar.add(AnimationController(this, "Swim/Charge/Idle", 0) { state ->
+            val animation = when {
+                state.isMoving -> if (this.isSprinting) DefaultAnimations.RUN else DefaultAnimations.SWIM
+                else -> DefaultAnimations.SWIM
             }
-        )
+            state.setAndContinue(animation)
+        })
         controllerRegistrar.add(
             DefaultAnimations.genericAttackAnimation(this, DefaultAnimations.ATTACK_BITE)
         )
@@ -287,8 +278,7 @@ open class HybridAquaticSharkEntity(
     //#endregion
 
     private fun shouldProximityAttack(player: PlayerEntity): Boolean {
-        if (customName?.string == "friend")
-            return false
+        if (customName?.string == "friend") return false
 
         return closePlayerAttack && player.squaredDistanceTo(this) <= 12 && !player.isCreative
     }
@@ -323,7 +313,7 @@ open class HybridAquaticSharkEntity(
     }
 
     private fun getHandSwingDuration(): Int {
-        return 20
+        return 15
     }
 
     override fun tickHandSwing() {
@@ -357,21 +347,24 @@ open class HybridAquaticSharkEntity(
 
         override fun attack(target: LivingEntity, squaredDistance: Double) {
             val d = getSquaredMaxAttackDistance(target)
-            if (squaredDistance <= d && this.cooldown <= 0) {
+            if (squaredDistance <= d && this.cooldown <= 0 && !target.isBlocking) {
                 resetCooldown()
                 shark.swingHand(Hand.MAIN_HAND)
                 shark.tryAttack(target)
                 shark.playSound(SoundEvents.ENTITY_FOX_BITE, 0.5F, 0.0F)
                 target.addStatusEffect(StatusEffectInstance(HybridAquaticStatusEffects.BLEEDING, 200, 0), shark)
 
-                if (target.health <= 0)
-                    shark.hunger = MAX_HUNGER
+                if (target.health <= 0) shark.hunger = MAX_HUNGER
                 shark.health = shark.maxHealth
+
+                if (target.mainHandStack.isOf(Items.SHIELD) && target.isBlocking) {
+                    shark.dropStack(ItemStack(HybridAquaticItems.SHARK_TOOTH))
+                }
             }
         }
 
         override fun getSquaredMaxAttackDistance(entity: LivingEntity): Double {
-            return (shark.width * 2.0 + entity.width)
+            return (shark.width * 2.5 + entity.width)
         }
 
         override fun start() {
@@ -399,7 +392,6 @@ open class HybridAquaticSharkEntity(
 
     override fun tryAttack(target: Entity?): Boolean {
         if (super.tryAttack(target)) {
-
             playSound(SoundEvents.ENTITY_FOX_BITE, 1.0F, 0.0F)
 
             return true
@@ -407,6 +399,7 @@ open class HybridAquaticSharkEntity(
             return false
         }
     }
+
 
     companion object {
         const val MOISTNESS_KEY = "Moistness"
@@ -434,12 +427,10 @@ open class HybridAquaticSharkEntity(
             val topY = world.seaLevel
             val bottomY = world.seaLevel - 24
 
-            return pos.y in bottomY..topY &&
-                    world.getFluidState(pos).isIn(FluidTags.WATER) &&
-                    world.getFluidState(pos.down()).isIn(FluidTags.WATER) &&
-                    world.getBlockState(pos.up()).isOf(Blocks.WATER) &&
-                    world.isSkyVisibleAllowingSea(pos) &&
-                    !isSpawnDark(world, pos, random)
+            return pos.y in bottomY..topY && world.getFluidState(pos)
+                .isIn(FluidTags.WATER) && world.getFluidState(pos.down()).isIn(FluidTags.WATER) && world.getBlockState(
+                pos.up()
+            ).isOf(Blocks.WATER) && world.isSkyVisibleAllowingSea(pos) && !isSpawnDark(world, pos, random)
         }
 
         @Suppress("UNUSED_PARAMETER", "DEPRECATION")
@@ -453,11 +444,10 @@ open class HybridAquaticSharkEntity(
             val topY = world.seaLevel - 24
             val bottomY = world.seaLevel - 128
 
-            return pos.y in bottomY..topY &&
-                    world.getFluidState(pos).isIn(FluidTags.WATER) &&
-                    world.getFluidState(pos.down()).isIn(FluidTags.WATER) &&
-                    world.getBlockState(pos.up()).isOf(Blocks.WATER) &&
-                    isSpawnDark(world, pos, random)
+            return pos.y in bottomY..topY && world.getFluidState(pos)
+                .isIn(FluidTags.WATER) && world.getFluidState(pos.down()).isIn(FluidTags.WATER) && world.getBlockState(
+                pos.up()
+            ).isOf(Blocks.WATER) && isSpawnDark(world, pos, random)
         }
 
         fun getScaleAdjustment(shark: HybridAquaticSharkEntity, adjustment: Float): Float {
