@@ -649,7 +649,7 @@ object HybridAquaticEntityTypes {
     val GREAT_WHITE_SHARK = registerShark(
         "great_white_shark",
         ::GreatWhiteSharkEntity,
-        EntityDimensions.fixed(1.75f, 0.6f),
+        EntityDimensions.fixed(2.0f, 1.0f),
         GreatWhiteSharkEntity.createMobAttributes()
     )
 
