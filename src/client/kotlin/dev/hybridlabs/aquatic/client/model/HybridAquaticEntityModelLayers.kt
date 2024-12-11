@@ -32,7 +32,6 @@ object HybridAquaticEntityModelLayers {
         return layer
     }
 
-
     /**
      * Injects Blahaj Plushie models into the given [builder].
      * @see SkullBlockEntityRendererMixin
