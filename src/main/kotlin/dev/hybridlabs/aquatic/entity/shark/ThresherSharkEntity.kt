@@ -3,7 +3,6 @@ package dev.hybridlabs.aquatic.entity.shark
 import dev.hybridlabs.aquatic.entity.ai.goal.SharkJumpGoal
 import dev.hybridlabs.aquatic.tag.HybridAquaticEntityTags
 import net.minecraft.entity.EntityType
-import net.minecraft.entity.ai.goal.BreatheAirGoal
 import net.minecraft.entity.ai.goal.RevengeGoal
 import net.minecraft.entity.attribute.DefaultAttributeContainer
 import net.minecraft.entity.attribute.EntityAttributes
@@ -17,7 +16,6 @@ class ThresherSharkEntity(entityType: EntityType<out ThresherSharkEntity>, world
     override fun initGoals() {
         super.initGoals()
         goalSelector.add(1, RevengeGoal(this))
-        goalSelector.add(2, BreatheAirGoal(this))
         goalSelector.add(5, SharkJumpGoal(this, 10))
     }
 
