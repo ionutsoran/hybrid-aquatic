@@ -104,7 +104,6 @@ open class HybridAquaticSharkEntity(
         return super.initialize(world, difficulty, spawnReason, entityData, entityNbt)
     }
 
-
     override fun tick() {
         super.tick()
         if (isAiDisabled) {
@@ -243,7 +242,7 @@ open class HybridAquaticSharkEntity(
 
     //#region Animations
     override fun registerControllers(controllerRegistrar: AnimatableManager.ControllerRegistrar) {
-        controllerRegistrar.add(AnimationController(this, "Swim/Charge/Idle", 0) { state ->
+        controllerRegistrar.add(AnimationController(this, "Swim/Charge/Idle", 4) { state ->
             val animation = when {
                 state.isMoving -> if (this.isSprinting) DefaultAnimations.RUN else DefaultAnimations.SWIM
                 else -> DefaultAnimations.SWIM
@@ -313,7 +312,7 @@ open class HybridAquaticSharkEntity(
     }
 
     private fun getHandSwingDuration(): Int {
-        return 15
+        return 40
     }
 
     override fun tickHandSwing() {
