@@ -8,7 +8,7 @@ import net.minecraft.item.ItemPlacementContext
 import net.minecraft.particle.ParticleTypes
 import net.minecraft.registry.tag.FluidTags
 import net.minecraft.state.StateManager
-import net.minecraft.state.property.Properties
+import net.minecraft.state.property.Properties.WATERLOGGED
 import net.minecraft.util.math.BlockPos
 import net.minecraft.util.math.Direction
 import net.minecraft.util.math.random.Random
@@ -28,7 +28,7 @@ class TubeSpongeBlock(
 
     init {
         defaultState = stateManager.defaultState
-            .with(GiantClamBlock.WATERLOGGED, true)
+            .with(WATERLOGGED, true)
     }
 
     override fun canPlaceAt(state: BlockState, world: WorldView, pos: BlockPos): Boolean {
@@ -45,7 +45,7 @@ class TubeSpongeBlock(
         pos: BlockPos,
         neighborPos: BlockPos
     ): BlockState {
-        if (state.get(Properties.WATERLOGGED)) {
+        if (state.get(WATERLOGGED)) {
             world.scheduleFluidTick(pos, Fluids.WATER, Fluids.WATER.getTickRate(world))
         }
 
@@ -70,7 +70,7 @@ class TubeSpongeBlock(
     override fun getPlacementState(ctx: ItemPlacementContext): BlockState? {
         val fluidState = ctx.world.getFluidState(ctx.blockPos)
         return if (fluidState.isIn(FluidTags.WATER)) defaultState.with(
-            Properties.WATERLOGGED, ctx.world.getFluidState(ctx.blockPos).isOf(
+            WATERLOGGED, ctx.world.getFluidState(ctx.blockPos).isOf(
                 Fluids.WATER)) else null
     }
 
@@ -79,15 +79,15 @@ class TubeSpongeBlock(
     }
 
     override fun getFluidState(state: BlockState): FluidState {
-        return if (state.get(Properties.WATERLOGGED)) Fluids.WATER.getStill(false) else super.getFluidState(state)
+        return if (state.get(WATERLOGGED)) Fluids.WATER.getStill(false) else super.getFluidState(state)
     }
 
     override fun appendProperties(builder: StateManager.Builder<Block, BlockState>) {
-        builder.add(Properties.WATERLOGGED)
+        builder.add(WATERLOGGED)
     }
 
     override fun randomDisplayTick(state: BlockState, world: World, pos: BlockPos, random: Random) {
-        if (state.get(Properties.WATERLOGGED) && emitsParticles && bubbleTimer % 20 == 0) {
+        if (state.get(WATERLOGGED) && emitsParticles && bubbleTimer % 20 == 0) {
             (bubbleTimer / 60).toFloat() * 0.05f
             val upwardVelocity = 0.1f
 
