@@ -138,11 +138,11 @@ open class HybridAquaticSharkEntity(
     //#endregion
 
     override fun canImmediatelyDespawn(distanceSquared: Double): Boolean {
-        return false
+        return !this.fromFishingNet && !this.hasCustomName()
     }
 
     override fun getLimitPerChunk(): Int {
-        return 3
+        return 4
     }
 
     //#region NBT & Data
