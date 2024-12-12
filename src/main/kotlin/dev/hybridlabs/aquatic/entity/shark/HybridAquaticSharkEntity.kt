@@ -58,7 +58,7 @@ open class HybridAquaticSharkEntity(
     private var angerTime = 0
     private var angryAt: UUID? = null
 
-    private var hunger: Int
+    var hunger: Int
         get() = dataTracker.get(HUNGER)
         set(hunger) {
             dataTracker.set(HUNGER, hunger)

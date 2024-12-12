@@ -6,9 +6,42 @@ import net.minecraft.entity.attribute.DefaultAttributeContainer
 import net.minecraft.entity.attribute.EntityAttributes
 import net.minecraft.entity.mob.WaterCreatureEntity
 import net.minecraft.world.World
+import software.bernie.geckolib.core.animation.AnimatableManager
+import software.bernie.geckolib.core.animation.AnimationController
+import software.bernie.geckolib.core.animation.RawAnimation
 
 class BaskingSharkEntity(entityType: EntityType<out BaskingSharkEntity>, world: World) :
     HybridAquaticSharkEntity(entityType, world, listOf(HybridAquaticEntityTags.NONE), true, false) {
+
+    private var isMouthOpen = false
+
+    override fun registerControllers(controllerRegistrar: AnimatableManager.ControllerRegistrar) {
+        controllerRegistrar.add(AnimationController(this, "Open/Closed", 0) { state ->
+            val animation = when {
+                isMouthOpen -> MOUTH_OPEN
+                else -> MOUTH_CLOSED
+            }
+            state.setAndContinue(animation)
+        })
+        super.registerControllers(controllerRegistrar)
+    }
+
+    override fun tick() {
+        super.tick()
+
+        if (hunger < MAX_HUNGER / 4) {
+            isMouthOpen = true
+        }
+
+        if (isMouthOpen) {
+            hunger += 10
+
+            if (hunger >= MAX_HUNGER) {
+                hunger = MAX_HUNGER
+                isMouthOpen = false
+            }
+        }
+    }
 
     override fun getLimitPerChunk(): Int {
         return 1
@@ -18,10 +51,13 @@ class BaskingSharkEntity(entityType: EntityType<out BaskingSharkEntity>, world: 
         fun createMobAttributes(): DefaultAttributeContainer.Builder {
             return WaterCreatureEntity.createMobAttributes()
                 .add(EntityAttributes.GENERIC_MAX_HEALTH, 60.0)
-                .add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 1.0)
+                .add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.75)
                 .add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 3.0)
-                .add(EntityAttributes.GENERIC_FOLLOW_RANGE, 26.0)
+                .add(EntityAttributes.GENERIC_FOLLOW_RANGE, 16.0)
         }
+
+        val MOUTH_OPEN: RawAnimation = RawAnimation.begin().thenPlay("misc.mouth_open")
+        val MOUTH_CLOSED: RawAnimation = RawAnimation.begin().thenPlay("misc.mouth_closed")
     }
 
     override fun getMaxSize(): Int {
