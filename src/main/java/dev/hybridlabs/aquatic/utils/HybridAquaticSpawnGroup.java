@@ -13,9 +13,9 @@ public enum HybridAquaticSpawnGroup {
 
     JELLY_UNDERGROUND("ha_jelly_underground", 5, true, false, 64),
 
-    SHARK("ha_shark", 5, true, true, 64),
+    SHARK("ha_shark", 5, true, true, 128),
 
-    SHARK_UNDERGROUND("ha_shark_underground", 5, true, true, 64),
+    SHARK_UNDERGROUND("ha_shark_underground", 5, true, true, 128),
 
     CRUSTACEAN("crustacean", 5, true, false, 64),
 
