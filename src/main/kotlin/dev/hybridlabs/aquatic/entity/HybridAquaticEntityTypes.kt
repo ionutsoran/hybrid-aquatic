@@ -186,13 +186,6 @@ object HybridAquaticEntityTypes {
         MackerelEntity.createMobAttributes()
     )
 
-    val OARFISH = registerFish(
-        "oarfish",
-        ::OarfishEntity,
-        EntityDimensions.fixed(1.5f, 0.65f),
-        OarfishEntity.createMobAttributes()
-    )
-
     val OSCAR = registerFish(
         "oscar",
         ::OscarEntity,
@@ -303,6 +296,13 @@ object HybridAquaticEntityTypes {
         ::GoldenDoradoEntity,
         EntityDimensions.fixed(1.0f, 0.6f),
         GoldenDoradoEntity.createMobAttributes()
+    )
+
+    val OARFISH = registerFishUnderground(
+        "oarfish",
+        ::OarfishEntity,
+        EntityDimensions.fixed(1.5f, 0.65f),
+        OarfishEntity.createMobAttributes()
     )
 
     val COELACANTH = registerFishUnderground(

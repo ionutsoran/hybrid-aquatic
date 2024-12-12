@@ -36,7 +36,6 @@ object EntityBiomeModifications {
         addFish(HybridAquaticEntityTypes.NEEDLEFISH, listOf(HybridAquaticBiomeTags.TEMPERATE_OCEANS, HybridAquaticBiomeTags.TROPICAL_OCEANS), 3, 1, 3)
         addFish(HybridAquaticEntityTypes.MACKEREL, listOf(HybridAquaticBiomeTags.COLD_OCEANS, HybridAquaticBiomeTags.TEMPERATE_OCEANS), 5, 3, 5)
         addFish(HybridAquaticEntityTypes.OPAH, listOf(HybridAquaticBiomeTags.TEMPERATE_OCEANS, HybridAquaticBiomeTags.TROPICAL_OCEANS), 3, 1, 1)
-        addFish(HybridAquaticEntityTypes.OARFISH, listOf(HybridAquaticBiomeTags.TEMPERATE_OCEANS, HybridAquaticBiomeTags.TROPICAL_OCEANS), 1, 1, 1)
         addFish(HybridAquaticEntityTypes.ROCKFISH, listOf(HybridAquaticBiomeTags.TEMPERATE_OCEANS, HybridAquaticBiomeTags.TROPICAL_OCEANS), 3, 1, 3)
         addFish(HybridAquaticEntityTypes.SEA_BASS, listOf(HybridAquaticBiomeTags.TEMPERATE_OCEANS, HybridAquaticBiomeTags.TROPICAL_OCEANS), 3, 1, 3)
         addFish(HybridAquaticEntityTypes.SEAHORSE, listOf(HybridAquaticBiomeTags.REEF), 1, 1, 2)
@@ -55,6 +54,7 @@ object EntityBiomeModifications {
 
 
         // underground fishes
+        addUndergroundFish(HybridAquaticEntityTypes.OARFISH, listOf(HybridAquaticBiomeTags.TROPICAL_OCEANS, HybridAquaticBiomeTags.TEMPERATE_OCEANS), 1, 1, 1)
         addUndergroundFish(HybridAquaticEntityTypes.ANGLERFISH, listOf(HybridAquaticBiomeTags.TROPICAL_OCEANS, HybridAquaticBiomeTags.TEMPERATE_OCEANS), 5, 1, 2)
         addUndergroundFish(HybridAquaticEntityTypes.BARRELEYE, listOf(HybridAquaticBiomeTags.TROPICAL_OCEANS, HybridAquaticBiomeTags.TEMPERATE_OCEANS), 1, 1, 1)
         addUndergroundFish(HybridAquaticEntityTypes.DRAGONFISH, listOf(HybridAquaticBiomeTags.TROPICAL_OCEANS, HybridAquaticBiomeTags.TEMPERATE_OCEANS), 3, 1, 2)

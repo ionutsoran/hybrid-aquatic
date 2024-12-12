@@ -33,7 +33,6 @@ object SpawnRestrictionRegistry {
             HybridAquaticEntityTypes.SUNFISH,
             HybridAquaticEntityTypes.LIONFISH,
             HybridAquaticEntityTypes.TOADFISH,
-            HybridAquaticEntityTypes.OARFISH,
             HybridAquaticEntityTypes.STONEFISH,
             HybridAquaticEntityTypes.ROCKFISH,
             HybridAquaticEntityTypes.SEA_BASS,
@@ -63,11 +62,12 @@ object SpawnRestrictionRegistry {
         // underground fish
         setOf(
             HybridAquaticEntityTypes.ANGLERFISH,
-            HybridAquaticEntityTypes.DRAGONFISH,
             HybridAquaticEntityTypes.BARRELEYE,
-            HybridAquaticEntityTypes.SEA_ANGEL,
-            HybridAquaticEntityTypes.RATFISH,
             HybridAquaticEntityTypes.COELACANTH,
+            HybridAquaticEntityTypes.DRAGONFISH,
+            HybridAquaticEntityTypes.OARFISH,
+            HybridAquaticEntityTypes.RATFISH,
+            HybridAquaticEntityTypes.SEA_ANGEL,
             ).forEach { registerFishUnderground(it) }
 
         // cephalopods
