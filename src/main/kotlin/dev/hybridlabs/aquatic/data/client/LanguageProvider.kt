@@ -412,6 +412,7 @@ class LanguageProvider(output: FabricDataOutput) : FabricLanguageProvider(output
             HybridAquaticEntityTypes.BASKING_SHARK to "Basking Shark",
             HybridAquaticEntityTypes.THRESHER_SHARK to "Thresher Shark",
             HybridAquaticEntityTypes.FRILLED_SHARK to "Frilled Shark",
+            HybridAquaticEntityTypes.LANTERN_SHARK to "Lantern Shark",
             HybridAquaticEntityTypes.GREAT_WHITE_SHARK to "Great White Shark",
             HybridAquaticEntityTypes.TIGER_SHARK to "Tiger Shark",
             HybridAquaticEntityTypes.HAMMERHEAD_SHARK to "Hammerhead Shark",

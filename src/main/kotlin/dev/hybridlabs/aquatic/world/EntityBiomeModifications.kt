@@ -99,6 +99,7 @@ object EntityBiomeModifications {
         addShark(HybridAquaticEntityTypes.WHALE_SHARK, listOf(HybridAquaticBiomeTags.TROPICAL_OCEANS), 1, 1, 1)
         addShark(HybridAquaticEntityTypes.BASKING_SHARK, listOf(HybridAquaticBiomeTags.COLD_OCEANS, HybridAquaticBiomeTags.TEMPERATE_OCEANS), 1, 1, 1)
         addUndergroundShark(HybridAquaticEntityTypes.FRILLED_SHARK, listOf(HybridAquaticBiomeTags.TROPICAL_OCEANS), 3, 1, 1)
+        addUndergroundShark(HybridAquaticEntityTypes.LANTERN_SHARK, listOf(HybridAquaticBiomeTags.TEMPERATE_OCEANS, HybridAquaticBiomeTags.TROPICAL_OCEANS), 3, 1, 2)
 
         // crustaceans
         addCrustacean(HybridAquaticEntityTypes.DUNGENESS_CRAB, listOf(HybridAquaticBiomeTags.SANDY_BEACHES), 5, 2, 3)

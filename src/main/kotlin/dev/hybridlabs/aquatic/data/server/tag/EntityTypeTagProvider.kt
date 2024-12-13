@@ -47,6 +47,8 @@ class EntityTypeTagProvider(output: FabricDataOutput, registriesFuture: Completa
                 HybridAquaticEntityTypes.LIONFISH,
                 HybridAquaticEntityTypes.PARROTFISH,
                 HybridAquaticEntityTypes.MORAY_EEL,
+                HybridAquaticEntityTypes.JOHN_DORY,
+                HybridAquaticEntityTypes.LANTERN_SHARK,
             )
 
         // large prey
@@ -121,6 +123,7 @@ class EntityTypeTagProvider(output: FabricDataOutput, registriesFuture: Completa
                 HybridAquaticEntityTypes.THRESHER_SHARK,
                 HybridAquaticEntityTypes.TIGER_SHARK,
                 HybridAquaticEntityTypes.WHALE_SHARK,
+                HybridAquaticEntityTypes.LANTERN_SHARK,
             )
 
         // critters
@@ -157,6 +160,7 @@ class EntityTypeTagProvider(output: FabricDataOutput, registriesFuture: Completa
             .add(
                 HybridAquaticEntityTypes.AFRICAN_BUTTERFLY,
                 HybridAquaticEntityTypes.BETTA,
+                HybridAquaticEntityTypes.JOHN_DORY,
                 HybridAquaticEntityTypes.CARP,
                 HybridAquaticEntityTypes.CLOWNFISH,
                 HybridAquaticEntityTypes.BOXFISH,

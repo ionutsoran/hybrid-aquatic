@@ -120,6 +120,7 @@ object SpawnRestrictionRegistry {
 
         setOf(
             HybridAquaticEntityTypes.FRILLED_SHARK,
+            HybridAquaticEntityTypes.LANTERN_SHARK,
         ).forEach { registerSharkUnderground(it) }
 
         // critters
