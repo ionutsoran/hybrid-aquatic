@@ -8,7 +8,7 @@
 					"rotation": [0, "Math.cos(query.anim_time * 90)*-10", "Math.cos(query.anim_time * 90)*-2.5"]
 				},
 				"right_back_fin": {
-					"rotation": [0, "22.5+Math.cos(query.anim_time * 360)*-5", -22.5]
+					"rotation": [0, "22.5+Math.cos(query.anim_time * 180)*-5", -22.5]
 				},
 				"body_3": {
 					"rotation": [0, "Math.sin(query.anim_time * 360)*-10", 0]
@@ -26,7 +26,7 @@
 					"rotation": [-3.28397, "12.0676+Math.sin(query.anim_time * 90)*-12.5", "-37.8472+Math.cos(query.anim_time * 90)*12.5"]
 				},
 				"left_back_fin": {
-					"rotation": [0, "-22.5+Math.cos(query.anim_time * 360)*5", 22.5]
+					"rotation": [0, "-22.5+Math.cos(query.anim_time * 180)*5", 22.5]
 				},
 				"left_fin": {
 					"rotation": [-3.28397, "-12.0676+Math.sin(query.anim_time * 90)*-12.5", "37.8472+Math.cos(query.anim_time * 90)*12.5"]
