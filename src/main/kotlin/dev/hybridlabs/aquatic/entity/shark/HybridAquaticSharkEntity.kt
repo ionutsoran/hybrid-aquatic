@@ -126,10 +126,12 @@ open class HybridAquaticSharkEntity(
 
         isSprinting = isAttacking
 
+        val originalSpeed = getAttributeBaseValue(EntityAttributes.GENERIC_MOVEMENT_SPEED)
+
         if (isAttacking) {
-            attributes.getCustomInstance(EntityAttributes.GENERIC_MOVEMENT_SPEED)?.baseValue = 3.0
+            attributes.getCustomInstance(EntityAttributes.GENERIC_MOVEMENT_SPEED)?.baseValue = 2 * originalSpeed
         } else {
-            attributes.getCustomInstance(EntityAttributes.GENERIC_MOVEMENT_SPEED)?.baseValue = 1.0
+            attributes.getCustomInstance(EntityAttributes.GENERIC_MOVEMENT_SPEED)?.baseValue = originalSpeed
         }
         if (hunger > 0) hunger -= 1
     }
