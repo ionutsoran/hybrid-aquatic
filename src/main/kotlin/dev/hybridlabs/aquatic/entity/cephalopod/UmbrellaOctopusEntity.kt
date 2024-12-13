@@ -13,7 +13,9 @@ class UmbrellaOctopusEntity(entityType: EntityType<out UmbrellaOctopusEntity>, w
         world,
         emptyMap(),
         HybridAquaticEntityTags.NONE,
-        HybridAquaticEntityTags.SHARK
+        HybridAquaticEntityTags.SHARK,
+        false,
+        false
     ) {
 
     companion object {

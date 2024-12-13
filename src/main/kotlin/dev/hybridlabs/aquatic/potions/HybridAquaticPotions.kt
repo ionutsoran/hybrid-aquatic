@@ -19,7 +19,7 @@ object HybridAquaticPotions {
         "glowing",
         Potion(StatusEffectInstance(StatusEffects.GLOWING, 3600, 0)),
         Potions.AWKWARD,
-        HybridAquaticItems.GLOW_SLIME
+        Items.GLOW_INK_SAC
     )
 
     val CLARITY_POTION = registerPotionWithRecipe(
@@ -84,6 +84,13 @@ object HybridAquaticPotions {
         Potion(StatusEffectInstance(HybridAquaticStatusEffects.CORROSION, 300, 0)),
         Potions.AWKWARD,
         HybridAquaticItems.SULFUR
+    )
+
+    val BLINDNESS_POTION = registerPotionWithRecipe(
+        "blindness",
+        Potion(StatusEffectInstance(StatusEffects.BLINDNESS, 300, 0)),
+        Potions.AWKWARD,
+        Items.INK_SAC
     )
 
     private fun registerPotionWithRecipe(id: String, potion: Potion, inputPotion: Potion, ingredient: Item): Potion {

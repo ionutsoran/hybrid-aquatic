@@ -13,7 +13,9 @@ class FireflySquidEntity(entityType: EntityType<out FireflySquidEntity>, world: 
         world,
         emptyMap(),
         HybridAquaticEntityTags.CRUSTACEAN,
-        HybridAquaticEntityTags.SHARK
+        HybridAquaticEntityTags.SHARK,
+        true,
+        true
     ) {
 
     companion object {

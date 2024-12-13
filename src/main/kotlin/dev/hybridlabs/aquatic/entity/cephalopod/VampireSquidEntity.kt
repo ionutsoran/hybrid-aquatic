@@ -13,7 +13,9 @@ class VampireSquidEntity(entityType: EntityType<out VampireSquidEntity>, world: 
         world,
         emptyMap(),
         HybridAquaticEntityTags.NONE,
-        HybridAquaticEntityTags.SHARK
+        HybridAquaticEntityTags.SHARK,
+        false,
+        false
     ) {
 
     companion object {

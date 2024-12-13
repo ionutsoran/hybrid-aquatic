@@ -296,6 +296,7 @@ class LanguageProvider(output: FabricDataOutput) : FabricLanguageProvider(output
             HybridAquaticStatusEffects.THALASSOPHOBIA to "Thalassophobia",
             HybridAquaticStatusEffects.BUOYANCY to "Buoyancy",
             HybridAquaticStatusEffects.SPININESS to "Spininess",
+            HybridAquaticStatusEffects.INKED to "Inked",
         ).forEach { (effect, translation) ->
             val identifier = Registries.STATUS_EFFECT.getId(effect)
             builder.add("effect.${identifier?.namespace}.${identifier?.path}", translation)
@@ -340,11 +341,11 @@ class LanguageProvider(output: FabricDataOutput) : FabricLanguageProvider(output
             "thalassophobia" to "Thalassophobia",
             "bleeding" to "Bleeding",
             "swimming" to "Swimming",
-            "true_clarity" to "True Clarity",
             "buoyancy" to "Buoyancy",
             "spininess" to "Spininess",
             "minor_luck" to "Minor Luck",
             "major_luck" to "Major Luck",
+            "blindness" to "Blindness",
         ).forEach { (potion, translation) ->
             builder.add("item.minecraft.potion.effect.$potion", "Potion of $translation")
             builder.add("item.minecraft.splash_potion.effect.$potion", "Splash Potion of $translation")

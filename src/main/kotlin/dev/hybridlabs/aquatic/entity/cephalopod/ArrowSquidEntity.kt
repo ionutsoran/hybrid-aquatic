@@ -13,7 +13,9 @@ class ArrowSquidEntity(entityType: EntityType<out ArrowSquidEntity>, world: Worl
         world,
         emptyMap(),
         HybridAquaticEntityTags.CRUSTACEAN,
-        HybridAquaticEntityTags.SHARK
+        HybridAquaticEntityTags.SHARK,
+        true,
+        false
     ) {
 
     companion object {

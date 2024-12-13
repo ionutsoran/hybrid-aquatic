@@ -1,6 +1,7 @@
 package dev.hybridlabs.aquatic.mixin.client;
 
 import com.mojang.blaze3d.systems.RenderSystem;
+import dev.hybridlabs.aquatic.effect.HybridAquaticStatusEffects;
 import dev.hybridlabs.aquatic.item.HybridAquaticItems;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.DrawContext;
@@ -19,6 +20,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 public class InGameHudMixin {
     @Unique
     private static final Identifier DIVING_HELMET_OVERLAY = new Identifier("hybrid-aquatic","textures/misc/diving_helmet_overlay.png");
+    private static final Identifier INKED_OVERLAY = new Identifier("hybrid-aquatic","textures/misc/inked_overlay.png");
 
     @Inject(method = "render", at = @At("HEAD"))
     private void onRender(DrawContext context, float tickDelta, CallbackInfo ci) {
@@ -30,6 +32,9 @@ public class InGameHudMixin {
             if (helmet.getItem() == HybridAquaticItems.INSTANCE.getDIVING_HELMET()) {
                 renderDivingHelmetOverlay(context);
             }
+        }
+        if (player != null && player.hasStatusEffect(HybridAquaticStatusEffects.INSTANCE.getINKED())) {
+            renderInkedOverlay(context);
         }
     }
 
@@ -46,6 +51,24 @@ public class InGameHudMixin {
         RenderSystem.defaultBlendFunc();
         RenderSystem.setShaderTexture(0, DIVING_HELMET_OVERLAY);
         context.drawTexture(DIVING_HELMET_OVERLAY, 0, 0, scaledWidth, scaledHeight, 0.0F, 0.0F, 512, 256, 512, 256);
+        RenderSystem.depthMask(true);
+        RenderSystem.enableDepthTest();
+        RenderSystem.disableBlend();
+    }
+
+    @Unique
+    private void renderInkedOverlay(DrawContext context) {
+        MinecraftClient client = MinecraftClient.getInstance();
+        Window window = client.getWindow();
+        int scaledWidth = window.getScaledWidth();
+        int scaledHeight = window.getScaledHeight();
+
+        RenderSystem.disableDepthTest();
+        RenderSystem.depthMask(false);
+        RenderSystem.enableBlend();
+        RenderSystem.defaultBlendFunc();
+        RenderSystem.setShaderTexture(0, INKED_OVERLAY);
+        context.drawTexture(INKED_OVERLAY, 0, 0, scaledWidth, scaledHeight, 0.0F, 0.0F, 512, 256, 512, 256);
         RenderSystem.depthMask(true);
         RenderSystem.enableDepthTest();
         RenderSystem.disableBlend();

@@ -14,7 +14,9 @@ class CuttlefishEntity(entityType: EntityType<out CuttlefishEntity>, world: Worl
         world,
         emptyMap(),
         HybridAquaticEntityTags.CRUSTACEAN,
-        HybridAquaticEntityTags.SHARK
+        HybridAquaticEntityTags.SHARK,
+        true,
+        false
     ) {
 
     private var tickCounter = 0

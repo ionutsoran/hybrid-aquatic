@@ -13,7 +13,9 @@ class NautilusEntity(entityType: EntityType<out NautilusEntity>, world: World) :
         world,
         emptyMap(),
         HybridAquaticEntityTags.NONE,
-        HybridAquaticEntityTags.SHARK
+        HybridAquaticEntityTags.SHARK,
+        false,
+        false
     ) {
 
     companion object {
