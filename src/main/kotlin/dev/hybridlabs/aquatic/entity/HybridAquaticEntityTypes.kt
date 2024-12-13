@@ -228,6 +228,13 @@ object HybridAquaticEntityTypes {
         SeaBassEntity.createMobAttributes()
     )
 
+    val JOHN_DORY = registerFishUnderground(
+        "john_dory",
+        ::JohnDoryEntity,
+        EntityDimensions.fixed(0.3f, 0.4f),
+        JohnDoryEntity.createMobAttributes()
+    )
+
     val SEA_ANGEL = registerFishUnderground(
         "sea_angel",
         ::SeaAngelEntity,

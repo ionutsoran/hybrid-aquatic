@@ -360,6 +360,7 @@ class LanguageProvider(output: FabricDataOutput) : FabricLanguageProvider(output
             HybridAquaticEntityTypes.CLOWNFISH to "Clownfish",
             HybridAquaticEntityTypes.AFRICAN_BUTTERFLY to "African Butterfly Fish",
             HybridAquaticEntityTypes.ANGLERFISH to "Anglerfish",
+            HybridAquaticEntityTypes.JOHN_DORY to "John Dory",
             HybridAquaticEntityTypes.DRAGONFISH to "Dragonfish",
             HybridAquaticEntityTypes.BARRELEYE to "Barreleye",
             HybridAquaticEntityTypes.TUNA to "Tuna",
