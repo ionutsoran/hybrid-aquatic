@@ -628,7 +628,7 @@ object HybridAquaticEntityTypes {
     val BASKING_SHARK = registerShark(
         "basking_shark",
         ::BaskingSharkEntity,
-        EntityDimensions.fixed(2.5f, 0.8f),
+        EntityDimensions.fixed(2.0f, 0.6f),
         BaskingSharkEntity.createMobAttributes()
     )
 
