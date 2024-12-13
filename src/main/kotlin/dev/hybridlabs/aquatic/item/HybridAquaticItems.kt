@@ -1,4 +1,4 @@
-@file:Suppress("unused")
+@file:Suppress("unused", "SameParameterValue")
 
 package dev.hybridlabs.aquatic.item
 

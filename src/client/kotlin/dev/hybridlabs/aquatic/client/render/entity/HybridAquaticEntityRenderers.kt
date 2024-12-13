@@ -1,3 +1,5 @@
+@file:Suppress("unused")
+
 package dev.hybridlabs.aquatic.client.render.entity
 
 import dev.hybridlabs.aquatic.client.render.entity.cephalopods.*

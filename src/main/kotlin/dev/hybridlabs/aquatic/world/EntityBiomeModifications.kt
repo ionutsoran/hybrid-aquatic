@@ -1,3 +1,5 @@
+@file:Suppress("SameParameterValue")
+
 package dev.hybridlabs.aquatic.world
 
 import dev.hybridlabs.aquatic.entity.HybridAquaticEntityTypes
