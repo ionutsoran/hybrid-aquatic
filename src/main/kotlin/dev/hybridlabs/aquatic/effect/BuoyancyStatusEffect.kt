@@ -8,13 +8,13 @@ import net.minecraft.util.math.Vec3d
 class BuoyancyStatusEffect : StatusEffect(StatusEffectCategory.BENEFICIAL, 0xffe478) {
 
     override fun canApplyUpdateEffect(duration: Int, amplifier: Int): Boolean {
-        return duration % 20 == 0
+        return true
     }
 
     override fun applyUpdateEffect(entity: LivingEntity, amplifier: Int) {
-        val currentVelocity = entity.velocity
         if (entity.isSubmergedInWater) {
-            entity.velocity = Vec3d(currentVelocity.x, 1.0, currentVelocity.z)
+            val upwardForce = 0.05 + (0.03 * amplifier) // Gentle levitating force, scales with amplifier
+            entity.velocity = Vec3d(entity.velocity.x, upwardForce, entity.velocity.z)
         }
     }
 }
