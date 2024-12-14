@@ -64,7 +64,7 @@ object EntityBiomeModifications {
         addUndergroundFish(HybridAquaticEntityTypes.RATFISH, listOf(HybridAquaticBiomeTags.TROPICAL_OCEANS, HybridAquaticBiomeTags.TEMPERATE_OCEANS, HybridAquaticBiomeTags.COLD_OCEANS), 1, 1, 3)
         addUndergroundFish(HybridAquaticEntityTypes.SEA_ANGEL, listOf(HybridAquaticBiomeTags.ARCTIC_OCEANS, HybridAquaticBiomeTags.COLD_OCEANS), 1, 1, 1)
         addUndergroundFish(HybridAquaticEntityTypes.COELACANTH, listOf(HybridAquaticBiomeTags.TROPICAL_OCEANS, HybridAquaticBiomeTags.TEMPERATE_OCEANS), 1, 1, 2)
-        addUndergroundFish(HybridAquaticEntityTypes.SNAILFISH, listOf(BiomeTags.IS_DEEP_OCEAN), 3, 1, 5)
+        addUndergroundFish(HybridAquaticEntityTypes.SNAILFISH, listOf(BiomeTags.IS_OCEAN), 3, 1, 5)
 
         // cephalopods
         addCephalopod(HybridAquaticEntityTypes.ARROW_SQUID, listOf(HybridAquaticBiomeTags.COLD_OCEANS, HybridAquaticBiomeTags.ARCTIC_OCEANS), 5, 1, 3)
@@ -95,10 +95,10 @@ object EntityBiomeModifications {
 
         // sharks
         addShark(HybridAquaticEntityTypes.GREAT_WHITE_SHARK, listOf(HybridAquaticBiomeTags.TEMPERATE_OCEANS, HybridAquaticBiomeTags.TROPICAL_OCEANS), 1, 1, 1)
-        addShark(HybridAquaticEntityTypes.TIGER_SHARK, listOf(HybridAquaticBiomeTags.TEMPERATE_OCEANS, HybridAquaticBiomeTags.TROPICAL_OCEANS), 3, 1, 1)
-        addShark(HybridAquaticEntityTypes.HAMMERHEAD_SHARK, listOf(HybridAquaticBiomeTags.TEMPERATE_OCEANS, HybridAquaticBiomeTags.TROPICAL_OCEANS), 5, 1, 3)
-        addShark(HybridAquaticEntityTypes.THRESHER_SHARK, listOf(HybridAquaticBiomeTags.TEMPERATE_OCEANS, HybridAquaticBiomeTags.TROPICAL_OCEANS), 5, 1, 1)
-        addShark(HybridAquaticEntityTypes.BULL_SHARK, listOf(HybridAquaticBiomeTags.TROPICAL_OCEANS), 3, 1, 1)
+        addShark(HybridAquaticEntityTypes.TIGER_SHARK, listOf(HybridAquaticBiomeTags.TEMPERATE_OCEANS, HybridAquaticBiomeTags.TROPICAL_OCEANS), 2, 1, 1)
+        addShark(HybridAquaticEntityTypes.HAMMERHEAD_SHARK, listOf(HybridAquaticBiomeTags.TEMPERATE_OCEANS, HybridAquaticBiomeTags.TROPICAL_OCEANS), 3, 1, 3)
+        addShark(HybridAquaticEntityTypes.THRESHER_SHARK, listOf(HybridAquaticBiomeTags.TEMPERATE_OCEANS, HybridAquaticBiomeTags.TROPICAL_OCEANS), 3, 1, 1)
+        addShark(HybridAquaticEntityTypes.BULL_SHARK, listOf(HybridAquaticBiomeTags.TROPICAL_OCEANS), 2, 1, 1)
         addShark(HybridAquaticEntityTypes.WHALE_SHARK, listOf(HybridAquaticBiomeTags.TROPICAL_OCEANS), 1, 1, 1)
         addShark(HybridAquaticEntityTypes.BASKING_SHARK, listOf(HybridAquaticBiomeTags.COLD_OCEANS, HybridAquaticBiomeTags.TEMPERATE_OCEANS), 1, 1, 1)
         addUndergroundShark(HybridAquaticEntityTypes.FRILLED_SHARK, listOf(HybridAquaticBiomeTags.TROPICAL_OCEANS), 3, 1, 1)
