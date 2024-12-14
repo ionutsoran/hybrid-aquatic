@@ -86,20 +86,20 @@ class BlockLootTableProvider(output: FabricDataOutput) : FabricBlockLootTablePro
         // message in a bottle
         addDrop(HybridAquaticBlocks.MESSAGE_IN_A_BOTTLE) { block ->
             LootTable.builder().pool(
-                    LootPool.builder().with(
-                            AlternativeEntry.builder(
-                                ItemEntry.builder(block).conditionally(WITH_SILK_TOUCH).apply(
-                                    CopyNbtLootFunction.builder(ContextLootNbtProvider.BLOCK_ENTITY)
-                                        .withOperation(VARIANT_KEY, "$BLOCK_ENTITY_TAG_KEY.$VARIANT_KEY")
-                                        .withOperation(MESSAGE_KEY, "$BLOCK_ENTITY_TAG_KEY.$MESSAGE_KEY")
-                                ),
-                                ItemEntry.builder(HybridAquaticItems.SEA_MESSAGE_BOOK).apply(
-                                    CopyNbtLootFunction.builder(ContextLootNbtProvider.BLOCK_ENTITY)
-                                        .withOperation("$MESSAGE_KEY.tag.$SEA_MESSAGE_KEY", SEA_MESSAGE_KEY)
-                                )
-                            )
+                LootPool.builder().with(
+                    AlternativeEntry.builder(
+                        ItemEntry.builder(block).conditionally(WITH_SILK_TOUCH).apply(
+                            CopyNbtLootFunction.builder(ContextLootNbtProvider.BLOCK_ENTITY)
+                                .withOperation(VARIANT_KEY, "$BLOCK_ENTITY_TAG_KEY.$VARIANT_KEY")
+                                .withOperation(MESSAGE_KEY, "$BLOCK_ENTITY_TAG_KEY.$MESSAGE_KEY")
+                        ),
+                        ItemEntry.builder(HybridAquaticItems.SEA_MESSAGE_BOOK).apply(
+                            CopyNbtLootFunction.builder(ContextLootNbtProvider.BLOCK_ENTITY)
+                                .withOperation("$MESSAGE_KEY.tag.$SEA_MESSAGE_KEY", SEA_MESSAGE_KEY)
                         )
+                    )
                 )
+            )
         }
 
         // crate
@@ -121,19 +121,6 @@ class BlockLootTableProvider(output: FabricDataOutput) : FabricBlockLootTablePro
                 LootPool.builder().with(
                     AlternativeEntry.builder(
                         LootTableEntry.builder(HybridAquaticLootTables.HYBRID_CRATE_TREASURE_ID).conditionally(
-                            MatchToolLootCondition.builder(ItemPredicate.Builder.create().tag(ItemTags.AXES))
-                        ),
-                        ItemEntry.builder(block),
-                    )
-                )
-            )
-        }
-
-        addDrop(HybridAquaticBlocks.DRIFTWOOD_CRATE) { block ->
-            LootTable.builder().pool(
-                LootPool.builder().with(
-                    AlternativeEntry.builder(
-                        LootTableEntry.builder(HybridAquaticLootTables.DRIFTWOOD_CRATE_TREASURE_ID).conditionally(
                             MatchToolLootCondition.builder(ItemPredicate.Builder.create().tag(ItemTags.AXES))
                         ),
                         ItemEntry.builder(block),

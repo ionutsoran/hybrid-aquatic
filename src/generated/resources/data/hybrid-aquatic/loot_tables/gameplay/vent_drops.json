@@ -39,7 +39,11 @@
           "weight": 5
         }
       ],
-      "rolls": 1.0
+      "rolls": {
+        "type": "minecraft:uniform",
+        "max": 0.1,
+        "min": 0.1
+      }
     }
   ],
   "random_sequence": "hybrid-aquatic:gameplay/vent_drops"

@@ -12,7 +12,8 @@ import net.minecraft.loot.entry.ItemEntry
 import net.minecraft.util.Identifier
 import java.util.function.BiConsumer
 
-class FishingLootTableProvider(output: FabricDataOutput) : SimpleFabricLootTableProvider(output, LootContextTypes.FISHING) {
+class FishingLootTableProvider(output: FabricDataOutput) :
+    SimpleFabricLootTableProvider(output, LootContextTypes.FISHING) {
     override fun accept(exporter: BiConsumer<Identifier, LootTable.Builder>) {
         exporter.accept(
             HybridAquaticLootTables.FISHING_DEEP_SEA_FISH_ID,
@@ -303,7 +304,6 @@ class FishingLootTableProvider(output: FabricDataOutput) : SimpleFabricLootTable
                         .with(ItemEntry.builder(HybridAquaticItems.JUNGLE_CRATE))
                         .with(ItemEntry.builder(HybridAquaticItems.MANGROVE_CRATE))
                         .with(ItemEntry.builder(HybridAquaticItems.CHERRY_CRATE))
-                        .with(ItemEntry.builder(HybridAquaticItems.DRIFTWOOD_CRATE))
                         .with(MessageInABottleItemEntry.builder())
                 )
         )

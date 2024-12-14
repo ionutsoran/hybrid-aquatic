@@ -56,10 +56,6 @@ object HybridAquaticBlocks {
         .hardness(0.75F)
     ))
 
-    val DRIFTWOOD_CRATE = register("driftwood_crate", CrateBlock(FabricBlockSettings.copyOf(Blocks.OAK_PLANKS)
-        .hardness(0.75F)
-    ))
-
     val OAK_CRATE = register("oak_crate", CrateBlock(FabricBlockSettings.copyOf(Blocks.OAK_PLANKS)
         .hardness(0.75F)
     ))

@@ -48,7 +48,6 @@ object  HybridAquaticItemGroups {
 
             entries.add(HybridAquaticBlocks.CRAB_POT)
             entries.add(HybridAquaticBlocks.HYBRID_CRATE)
-            entries.add(HybridAquaticBlocks.DRIFTWOOD_CRATE)
             entries.add(HybridAquaticBlocks.OAK_CRATE)
             entries.add(HybridAquaticBlocks.SPRUCE_CRATE)
             entries.add(HybridAquaticBlocks.BIRCH_CRATE)

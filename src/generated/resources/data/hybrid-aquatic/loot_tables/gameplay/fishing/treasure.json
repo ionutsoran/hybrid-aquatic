@@ -45,10 +45,6 @@
           "name": "hybrid-aquatic:cherry_crate"
         },
         {
-          "type": "minecraft:item",
-          "name": "hybrid-aquatic:driftwood_crate"
-        },
-        {
           "type": "hybrid-aquatic:message_in_a_bottle"
         }
       ],
