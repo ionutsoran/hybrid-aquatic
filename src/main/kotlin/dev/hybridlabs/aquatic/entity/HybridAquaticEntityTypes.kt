@@ -46,6 +46,13 @@ object HybridAquaticEntityTypes {
         AnglerfishEntity.createMobAttributes()
     )
 
+    val SNAILFISH = registerFishUnderground(
+        "snailfish",
+        ::SnailfishEntity,
+        EntityDimensions.fixed(0.3f, 0.25f),
+        SnailfishEntity.createMobAttributes()
+    )
+
     val BARRELEYE = registerFishUnderground(
         "barreleye",
         ::BarreleyeEntity,

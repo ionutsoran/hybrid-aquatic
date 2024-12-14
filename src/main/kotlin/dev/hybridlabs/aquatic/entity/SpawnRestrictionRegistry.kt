@@ -68,6 +68,7 @@ object SpawnRestrictionRegistry {
             HybridAquaticEntityTypes.OARFISH,
             HybridAquaticEntityTypes.RATFISH,
             HybridAquaticEntityTypes.JOHN_DORY,
+            HybridAquaticEntityTypes.SNAILFISH,
             HybridAquaticEntityTypes.SEA_ANGEL,
             ).forEach { registerFishUnderground(it) }
 
