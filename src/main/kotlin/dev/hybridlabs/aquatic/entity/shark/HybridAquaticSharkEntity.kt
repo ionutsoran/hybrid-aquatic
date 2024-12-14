@@ -281,7 +281,7 @@ open class HybridAquaticSharkEntity(
     private fun shouldProximityAttack(player: PlayerEntity): Boolean {
         if (customName?.string == "friend") return false
 
-        return closePlayerAttack && player.squaredDistanceTo(this) <= 12 && !player.isCreative
+        return closePlayerAttack && player.squaredDistanceTo(this) <= 5 && !player.isCreative
     }
 
     //#region Angerable Implementation Details
