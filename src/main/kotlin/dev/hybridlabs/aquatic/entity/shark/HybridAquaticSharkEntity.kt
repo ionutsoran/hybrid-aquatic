@@ -10,7 +10,6 @@ import net.minecraft.entity.ai.control.YawAdjustingLookControl
 import net.minecraft.entity.ai.goal.*
 import net.minecraft.entity.ai.pathing.PathNodeType
 import net.minecraft.entity.ai.pathing.SwimNavigation
-import net.minecraft.entity.attribute.EntityAttributes
 import net.minecraft.entity.damage.DamageSource
 import net.minecraft.entity.data.DataTracker
 import net.minecraft.entity.data.TrackedData
@@ -126,13 +125,14 @@ open class HybridAquaticSharkEntity(
 
         isSprinting = isAttacking
 
-        val originalSpeed = getAttributeBaseValue(EntityAttributes.GENERIC_MOVEMENT_SPEED)
+        val originalSpeed = movementSpeed
 
-        if (isAttacking) {
-            attributes.getCustomInstance(EntityAttributes.GENERIC_MOVEMENT_SPEED)?.baseValue = 2 * originalSpeed
+        movementSpeed = if (isAttacking) {
+            originalSpeed * 2
         } else {
-            attributes.getCustomInstance(EntityAttributes.GENERIC_MOVEMENT_SPEED)?.baseValue = originalSpeed
+            originalSpeed
         }
+
         if (hunger > 0) hunger -= 1
     }
 
