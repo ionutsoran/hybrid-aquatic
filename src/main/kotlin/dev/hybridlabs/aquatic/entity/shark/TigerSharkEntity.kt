@@ -9,7 +9,16 @@ import net.minecraft.entity.mob.WaterCreatureEntity
 import net.minecraft.world.World
 
 class TigerSharkEntity(entityType: EntityType<out TigerSharkEntity>, world: World) :
-    HybridAquaticSharkEntity(entityType, world, listOf(HybridAquaticEntityTags.LARGE_PREY, HybridAquaticEntityTags.MEDIUM_PREY), false, true) {
+    HybridAquaticSharkEntity(
+        entityType,
+        world,
+        listOf(
+            HybridAquaticEntityTags.CEPHALOPOD,
+            HybridAquaticEntityTags.CRUSTACEAN,
+            HybridAquaticEntityTags.MEDIUM_PREY),
+        false,
+        false
+    ) {
 
     override fun initGoals() {
         super.initGoals()
