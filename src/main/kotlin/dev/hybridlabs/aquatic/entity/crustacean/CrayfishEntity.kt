@@ -8,6 +8,7 @@ import net.minecraft.world.World
 
 class CrayfishEntity(entityType: EntityType<out HybridAquaticCrustaceanEntity>, world: World) :
     HybridAquaticCrustaceanEntity(entityType, world, true, false, false, emptyMap()) {
+
     companion object {
         fun createMobAttributes(): DefaultAttributeContainer.Builder {
             return WaterCreatureEntity.createMobAttributes()
@@ -17,9 +18,11 @@ class CrayfishEntity(entityType: EntityType<out HybridAquaticCrustaceanEntity>, 
                 .add(EntityAttributes.GENERIC_FOLLOW_RANGE, 16.0)
         }
     }
-    override fun getMaxSize() : Int {
+
+    override fun getMaxSize(): Int {
         return 5
     }
+
     override fun getMinSize(): Int {
         return -5
     }
