@@ -1,5 +1,6 @@
 package dev.hybridlabs.aquatic.entity.critter
 
+import dev.hybridlabs.aquatic.entity.fish.RockfishEntity
 import dev.hybridlabs.aquatic.tag.HybridAquaticBiomeTags
 import net.minecraft.entity.EntityType
 import net.minecraft.entity.attribute.DefaultAttributeContainer
@@ -12,14 +13,43 @@ import software.bernie.geckolib.core.animation.AnimationState
 import software.bernie.geckolib.core.`object`.PlayState
 
 class SeaCucumberEntity(entityType: EntityType<out SeaCucumberEntity>, world: World) :
-    HybridAquaticCritterEntity(entityType, world, variants = hashMapOf(
-        "sea_pig" to CritterVariant.biomeVariant("sea_pig", listOf(BiomeTags.IS_DEEP_OCEAN),
-            ignore = listOf(CritterVariant.Ignore.ANIMATION)),
-        "black" to CritterVariant.biomeVariant("black", listOf(HybridAquaticBiomeTags.TROPICAL_OCEANS, HybridAquaticBiomeTags.TEMPERATE_OCEANS, HybridAquaticBiomeTags.REEF),
-            ignore = listOf(CritterVariant.Ignore.MODEL, CritterVariant.Ignore.ANIMATION)),
-        "red" to CritterVariant.biomeVariant("red", listOf(HybridAquaticBiomeTags.TROPICAL_OCEANS, HybridAquaticBiomeTags.TEMPERATE_OCEANS, HybridAquaticBiomeTags.REEF),
-            ignore = listOf(CritterVariant.Ignore.MODEL, CritterVariant.Ignore.ANIMATION)),
-        )) {
+    HybridAquaticCritterEntity(
+        entityType, world, variants = hashMapOf(
+            "sea_pig" to CritterVariant.biomeVariant(
+                "sea_pig", listOf(BiomeTags.IS_DEEP_OCEAN),
+                ignore = listOf(CritterVariant.Ignore.ANIMATION)
+            ),
+            "black" to CritterVariant.biomeVariant(
+                "black",
+                listOf(
+                    HybridAquaticBiomeTags.TROPICAL_OCEANS,
+                    HybridAquaticBiomeTags.TEMPERATE_OCEANS,
+                    HybridAquaticBiomeTags.REEF
+                ),
+                ignore = listOf(CritterVariant.Ignore.MODEL, CritterVariant.Ignore.ANIMATION)
+            ),
+            "red" to CritterVariant.biomeVariant(
+                "red",
+                listOf(
+                    HybridAquaticBiomeTags.TROPICAL_OCEANS,
+                    HybridAquaticBiomeTags.TEMPERATE_OCEANS,
+                    HybridAquaticBiomeTags.REEF
+                ),
+                ignore = listOf(CritterVariant.Ignore.MODEL, CritterVariant.Ignore.ANIMATION)
+            ),
+        )
+    ) {
+
+    override fun remove(reason: RemovalReason) {
+        if (!world.isClient && this.isDead) {
+            if (world.random.nextInt(4) == 0) {
+                val pearlfishEntity = type.create(this.world) as RockfishEntity
+                world.spawnEntity(pearlfishEntity)
+            }
+        }
+
+        super.remove(reason)
+    }
 
     companion object {
         fun createMobAttributes(): DefaultAttributeContainer.Builder {
@@ -36,7 +66,7 @@ class SeaCucumberEntity(entityType: EntityType<out SeaCucumberEntity>, world: Wo
         return PlayState.CONTINUE
     }
 
-    override fun getMaxSize() : Int {
+    override fun getMaxSize(): Int {
         return 5
     }
 

@@ -67,6 +67,13 @@ object HybridAquaticEntityTypes {
         BettaEntity.createMobAttributes()
     )
 
+    val PEARLFISH = registerFish(
+        "pearlfish",
+        ::PearlfishEntity,
+        EntityDimensions.fixed(0.2f, 0.2f),
+        PearlfishEntity.createMobAttributes()
+    )
+
     val STINGRAY = registerRay(
         "stingray",
         ::StingrayEntity,
