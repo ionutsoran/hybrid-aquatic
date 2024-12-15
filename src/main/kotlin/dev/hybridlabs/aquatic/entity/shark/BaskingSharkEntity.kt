@@ -13,12 +13,12 @@ import software.bernie.geckolib.core.animation.RawAnimation
 class BaskingSharkEntity(entityType: EntityType<out BaskingSharkEntity>, world: World) :
     HybridAquaticSharkEntity(entityType, world, listOf(HybridAquaticEntityTags.NONE), true, false) {
 
-    private var isMouthOpen = false
+    private var isFeeding = false
 
     override fun registerControllers(controllerRegistrar: AnimatableManager.ControllerRegistrar) {
         controllerRegistrar.add(AnimationController(this, "Open/Closed", 0) { state ->
             val animation = when {
-                isMouthOpen -> MOUTH_OPEN
+                isFeeding -> MOUTH_OPEN
                 else -> MOUTH_CLOSED
             }
             state.setAndContinue(animation)
@@ -30,15 +30,15 @@ class BaskingSharkEntity(entityType: EntityType<out BaskingSharkEntity>, world: 
         super.tick()
 
         if (hunger < MAX_HUNGER / 4) {
-            isMouthOpen = true
+            isFeeding = true
         }
 
-        if (isMouthOpen) {
+        if (isFeeding) {
             hunger += 10
 
             if (hunger >= MAX_HUNGER) {
                 hunger = MAX_HUNGER
-                isMouthOpen = false
+                isFeeding = false
             }
         }
     }
