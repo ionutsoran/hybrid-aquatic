@@ -20,7 +20,7 @@ class HammerheadSharkEntity(entityType: EntityType<out HammerheadSharkEntity>, w
         fun createMobAttributes(): DefaultAttributeContainer.Builder {
             return WaterCreatureEntity.createMobAttributes()
                 .add(EntityAttributes.GENERIC_MAX_HEALTH, 45.0)
-                .add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.8)
+                .add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.5)
                 .add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 4.0)
                 .add(EntityAttributes.GENERIC_FOLLOW_RANGE, 26.0)
         }
