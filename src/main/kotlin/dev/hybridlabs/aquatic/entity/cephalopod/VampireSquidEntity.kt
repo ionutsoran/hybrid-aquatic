@@ -24,7 +24,7 @@ class VampireSquidEntity(entityType: EntityType<out VampireSquidEntity>, world: 
     private var isFeeding = false
 
     override fun registerControllers(controllerRegistrar: AnimatableManager.ControllerRegistrar) {
-        controllerRegistrar.add(AnimationController(this, "Open/Closed", 4) { state ->
+        controllerRegistrar.add(AnimationController(this, "Open/Closed", 12) { state ->
             val animation = when {
                 isFeeding -> TENTACLES_EXTENDED
                 else -> TENTACLES_RETRACTED
