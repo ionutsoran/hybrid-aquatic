@@ -20,7 +20,6 @@ import net.minecraft.entity.damage.DamageTypes
 import net.minecraft.entity.data.DataTracker
 import net.minecraft.entity.data.TrackedData
 import net.minecraft.entity.data.TrackedDataHandlerRegistry
-import net.minecraft.entity.mob.WaterCreatureEntity
 import net.minecraft.entity.passive.IronGolemEntity
 import net.minecraft.entity.player.PlayerEntity
 import net.minecraft.nbt.NbtCompound
@@ -232,11 +231,11 @@ class KarkinosEntity(entityType: EntityType<out HybridAquaticMinibossEntity>, wo
         val FLIP: RawAnimation = RawAnimation.begin().thenPlay("misc.flip")
 
         fun createMobAttributes(): DefaultAttributeContainer.Builder {
-            return WaterCreatureEntity.createMobAttributes()
+            return createLivingAttributes()
                 .add(EntityAttributes.GENERIC_MAX_HEALTH, 300.0)
                 .add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.35)
                 .add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 10.0)
-                .add(EntityAttributes.GENERIC_ATTACK_SPEED, 0.35)
+                .add(EntityAttributes.GENERIC_ATTACK_KNOCKBACK, 0.0)
                 .add(EntityAttributes.GENERIC_FOLLOW_RANGE, 32.0)
                 .add(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE, 1.0)
         }

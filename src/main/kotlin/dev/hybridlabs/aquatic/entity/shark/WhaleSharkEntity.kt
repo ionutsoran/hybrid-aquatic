@@ -4,7 +4,6 @@ import dev.hybridlabs.aquatic.tag.HybridAquaticEntityTags
 import net.minecraft.entity.EntityType
 import net.minecraft.entity.attribute.DefaultAttributeContainer
 import net.minecraft.entity.attribute.EntityAttributes
-import net.minecraft.entity.mob.WaterCreatureEntity
 import net.minecraft.world.World
 import software.bernie.geckolib.core.animation.AnimatableManager
 import software.bernie.geckolib.core.animation.AnimationController
@@ -49,11 +48,12 @@ class WhaleSharkEntity(entityType: EntityType<out WhaleSharkEntity>, world: Worl
 
     companion object {
         fun createMobAttributes(): DefaultAttributeContainer.Builder {
-            return WaterCreatureEntity.createMobAttributes()
+            return createLivingAttributes()
                 .add(EntityAttributes.GENERIC_MAX_HEALTH, 60.0)
                 .add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.6)
                 .add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 2.0)
-                .add(EntityAttributes.GENERIC_FOLLOW_RANGE, 26.0)
+                .add(EntityAttributes.GENERIC_ATTACK_KNOCKBACK, 0.0)
+                .add(EntityAttributes.GENERIC_FOLLOW_RANGE, 16.0)
         }
 
         val MOUTH_OPEN: RawAnimation = RawAnimation.begin().thenPlay("misc.mouth_open")

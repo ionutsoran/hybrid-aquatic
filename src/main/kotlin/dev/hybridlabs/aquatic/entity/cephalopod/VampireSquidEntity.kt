@@ -4,7 +4,6 @@ import dev.hybridlabs.aquatic.tag.HybridAquaticEntityTags
 import net.minecraft.entity.EntityType
 import net.minecraft.entity.attribute.DefaultAttributeContainer
 import net.minecraft.entity.attribute.EntityAttributes
-import net.minecraft.entity.mob.WaterCreatureEntity
 import net.minecraft.world.World
 import software.bernie.geckolib.core.animation.AnimatableManager
 import software.bernie.geckolib.core.animation.AnimationController
@@ -24,7 +23,7 @@ class VampireSquidEntity(entityType: EntityType<out VampireSquidEntity>, world: 
     private var isFeeding = false
 
     override fun registerControllers(controllerRegistrar: AnimatableManager.ControllerRegistrar) {
-        controllerRegistrar.add(AnimationController(this, "Open/Closed", 12) { state ->
+        controllerRegistrar.add(AnimationController(this, "Open/Closed", 4) { state ->
             val animation = when {
                 isFeeding -> TENTACLES_EXTENDED
                 else -> TENTACLES_RETRACTED
@@ -53,11 +52,12 @@ class VampireSquidEntity(entityType: EntityType<out VampireSquidEntity>, world: 
 
     companion object {
         fun createMobAttributes(): DefaultAttributeContainer.Builder {
-            return WaterCreatureEntity.createMobAttributes()
-                .add(EntityAttributes.GENERIC_MAX_HEALTH, 12.0)
+            return createLivingAttributes()
+                .add(EntityAttributes.GENERIC_MAX_HEALTH, 6.0)
                 .add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.4)
-                .add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 1.0)
-                .add(EntityAttributes.GENERIC_FOLLOW_RANGE, 12.0)
+                .add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 2.0)
+                .add(EntityAttributes.GENERIC_ATTACK_KNOCKBACK, 0.0)
+                .add(EntityAttributes.GENERIC_FOLLOW_RANGE, 8.0)
         }
 
         val TENTACLES_EXTENDED: RawAnimation = RawAnimation.begin().thenPlay("misc.tentacles_extended")

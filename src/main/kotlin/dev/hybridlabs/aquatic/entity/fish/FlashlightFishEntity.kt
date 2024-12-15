@@ -5,7 +5,6 @@ import net.minecraft.entity.EntityType
 import net.minecraft.entity.LivingEntity
 import net.minecraft.entity.attribute.DefaultAttributeContainer
 import net.minecraft.entity.attribute.EntityAttributes
-import net.minecraft.entity.mob.WaterCreatureEntity
 import net.minecraft.entity.player.PlayerEntity
 import net.minecraft.world.World
 
@@ -39,11 +38,12 @@ class FlashlightFishEntity(entityType: EntityType<out FlashlightFishEntity>, wor
 
     companion object {
         fun createMobAttributes(): DefaultAttributeContainer.Builder {
-            return WaterCreatureEntity.createMobAttributes()
+            return createLivingAttributes()
                 .add(EntityAttributes.GENERIC_MAX_HEALTH, 3.0)
-                .add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.7)
+                .add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.6)
                 .add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 1.0)
-                .add(EntityAttributes.GENERIC_FOLLOW_RANGE, 12.0)
+                .add(EntityAttributes.GENERIC_ATTACK_KNOCKBACK, 0.0)
+                .add(EntityAttributes.GENERIC_FOLLOW_RANGE, 4.0)
         }
     }
 }

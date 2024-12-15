@@ -16,7 +16,6 @@ import net.minecraft.entity.data.TrackedDataHandlerRegistry
 import net.minecraft.entity.effect.StatusEffectInstance
 import net.minecraft.entity.effect.StatusEffects
 import net.minecraft.entity.mob.MobEntity
-import net.minecraft.entity.mob.WaterCreatureEntity
 import net.minecraft.entity.player.PlayerEntity
 import net.minecraft.nbt.NbtCompound
 import net.minecraft.sound.SoundEvents
@@ -24,13 +23,17 @@ import net.minecraft.world.World
 import java.util.function.Predicate
 
 class ToadfishEntity(entityType: EntityType<out ToadfishEntity>, world: World) :
-    HybridAquaticFishEntity(entityType, world, emptyMap(),
+    HybridAquaticFishEntity(
+        entityType, world, emptyMap(),
         listOf(
-        HybridAquaticEntityTags.NONE),
+            HybridAquaticEntityTags.NONE
+        ),
         listOf(
             HybridAquaticEntityTags.MEDIUM_PREY,
             HybridAquaticEntityTags.LARGE_PREY,
-            HybridAquaticEntityTags.SHARK)) {
+            HybridAquaticEntityTags.SHARK
+        )
+    ) {
 
     override fun getLimitPerChunk(): Int {
         return 2
@@ -159,18 +162,22 @@ class ToadfishEntity(entityType: EntityType<out ToadfishEntity>, world: World) :
 
     companion object {
         fun createMobAttributes(): DefaultAttributeContainer.Builder {
-            return WaterCreatureEntity.createMobAttributes()
+            return createLivingAttributes()
                 .add(EntityAttributes.GENERIC_MAX_HEALTH, 3.0)
-                .add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.7)
+                .add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.3)
                 .add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 1.0)
-                .add(EntityAttributes.GENERIC_FOLLOW_RANGE, 12.0)
+                .add(EntityAttributes.GENERIC_ATTACK_KNOCKBACK, 0.0)
+                .add(EntityAttributes.GENERIC_FOLLOW_RANGE, 4.0)
         }
 
-        private val PUFF_STATE: TrackedData<Int> = DataTracker.registerData(ToadfishEntity::class.java, TrackedDataHandlerRegistry.INTEGER)
+        private val PUFF_STATE: TrackedData<Int> =
+            DataTracker.registerData(ToadfishEntity::class.java, TrackedDataHandlerRegistry.INTEGER)
         private val BLOW_UP_FILTER: Predicate<LivingEntity> = Predicate { entity ->
             if (entity is PlayerEntity && entity.isCreative) false else entity.group != EntityGroup.AQUATIC
         }
-        private val BLOW_UP_TARGET_PREDICATE: TargetPredicate = TargetPredicate.createNonAttackable().ignoreDistanceScalingFactor().ignoreVisibility().setPredicate(BLOW_UP_FILTER)
+        private val BLOW_UP_TARGET_PREDICATE: TargetPredicate =
+            TargetPredicate.createNonAttackable().ignoreDistanceScalingFactor().ignoreVisibility()
+                .setPredicate(BLOW_UP_FILTER)
 
         const val NOT_PUFFED = 0
         const val SEMI_PUFFED = 1

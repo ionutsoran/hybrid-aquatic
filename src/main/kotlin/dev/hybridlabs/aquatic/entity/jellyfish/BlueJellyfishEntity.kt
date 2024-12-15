@@ -3,7 +3,6 @@ package dev.hybridlabs.aquatic.entity.jellyfish
 import net.minecraft.entity.EntityType
 import net.minecraft.entity.attribute.DefaultAttributeContainer
 import net.minecraft.entity.attribute.EntityAttributes
-import net.minecraft.entity.mob.WaterCreatureEntity
 import net.minecraft.world.World
 
 class BlueJellyfishEntity(entityType: EntityType<out BlueJellyfishEntity>, world: World) :
@@ -15,11 +14,12 @@ class BlueJellyfishEntity(entityType: EntityType<out BlueJellyfishEntity>, world
 
     companion object {
         fun createMobAttributes(): DefaultAttributeContainer.Builder {
-            return WaterCreatureEntity.createMobAttributes()
-                .add(EntityAttributes.GENERIC_MAX_HEALTH, 4.0)
-                .add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 1.2)
+            return createLivingAttributes()
+                .add(EntityAttributes.GENERIC_MAX_HEALTH, 3.0)
+                .add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.4)
                 .add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 2.0)
-                .add(EntityAttributes.GENERIC_FOLLOW_RANGE, 20.0)
+                .add(EntityAttributes.GENERIC_ATTACK_KNOCKBACK, 0.0)
+                .add(EntityAttributes.GENERIC_FOLLOW_RANGE, 4.0)
         }
     }
 

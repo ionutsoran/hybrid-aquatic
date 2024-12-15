@@ -6,17 +6,20 @@ import net.minecraft.entity.ai.goal.Goal
 import net.minecraft.entity.attribute.DefaultAttributeContainer
 import net.minecraft.entity.attribute.EntityAttributes
 import net.minecraft.entity.mob.PathAwareEntity
-import net.minecraft.entity.mob.WaterCreatureEntity
 import net.minecraft.world.World
 
 class OpahEntity(entityType: EntityType<out OpahEntity>, world: World) :
-    HybridAquaticFishEntity(entityType, world, emptyMap(),
+    HybridAquaticFishEntity(
+        entityType, world, emptyMap(),
         listOf(
             HybridAquaticEntityTags.CEPHALOPOD,
-            HybridAquaticEntityTags.SMALL_PREY),
+            HybridAquaticEntityTags.SMALL_PREY
+        ),
         listOf(
             HybridAquaticEntityTags.MEDIUM_PREY,
-            HybridAquaticEntityTags.SHARK)) {
+            HybridAquaticEntityTags.SHARK
+        )
+    ) {
 
     override fun getLimitPerChunk(): Int {
         return 2
@@ -29,11 +32,12 @@ class OpahEntity(entityType: EntityType<out OpahEntity>, world: World) :
 
     companion object {
         fun createMobAttributes(): DefaultAttributeContainer.Builder {
-            return WaterCreatureEntity.createMobAttributes()
-                .add(EntityAttributes.GENERIC_MAX_HEALTH, 12.0)
+            return createLivingAttributes()
+                .add(EntityAttributes.GENERIC_MAX_HEALTH, 6.0)
                 .add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.7)
-                .add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 2.0)
-                .add(EntityAttributes.GENERIC_FOLLOW_RANGE, 12.0)
+                .add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 5.0)
+                .add(EntityAttributes.GENERIC_ATTACK_KNOCKBACK, 0.0)
+                .add(EntityAttributes.GENERIC_FOLLOW_RANGE, 8.0)
         }
     }
 
@@ -44,7 +48,7 @@ class OpahEntity(entityType: EntityType<out OpahEntity>, world: World) :
         private val maxDistance: Float
     ) : Goal() {
 
-        private var target: TunaEntity? = null
+        private lateinit var target: TunaEntity
 
         override fun canStart(): Boolean {
             val closestTuna = mob.world.getEntitiesByClass(
@@ -61,7 +65,7 @@ class OpahEntity(entityType: EntityType<out OpahEntity>, world: World) :
         }
 
         override fun shouldContinue(): Boolean {
-            return target != null && target!!.isAlive && mob.squaredDistanceTo(target!!) > (minDistance * minDistance)
+            return target.isAlive && mob.squaredDistanceTo(target) > (minDistance * minDistance)
         }
 
         override fun start() {
@@ -69,12 +73,11 @@ class OpahEntity(entityType: EntityType<out OpahEntity>, world: World) :
         }
 
         override fun stop() {
-            target = null
             mob.navigation.stop()
         }
 
         override fun tick() {
-            target?.let {
+            target.let {
                 mob.navigation.startMovingTo(it, speed)
             }
         }

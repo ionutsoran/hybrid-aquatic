@@ -3,20 +3,21 @@ package dev.hybridlabs.aquatic.entity.fish
 import dev.hybridlabs.aquatic.entity.ai.goal.FishJumpGoal
 import dev.hybridlabs.aquatic.tag.HybridAquaticEntityTags
 import net.minecraft.entity.EntityType
-import net.minecraft.entity.ai.goal.BreatheAirGoal
 import net.minecraft.entity.attribute.DefaultAttributeContainer
 import net.minecraft.entity.attribute.EntityAttributes
-import net.minecraft.entity.mob.WaterCreatureEntity
 import net.minecraft.util.math.Vec3d
 import net.minecraft.world.World
 
 class AfricanButterflyEntity(entityType: EntityType<out AfricanButterflyEntity>, world: World) :
-    HybridAquaticFishEntity(entityType, world, emptyMap(),
+    HybridAquaticFishEntity(
+        entityType, world, emptyMap(),
         listOf(HybridAquaticEntityTags.NONE),
         listOf(
             HybridAquaticEntityTags.MEDIUM_PREY,
             HybridAquaticEntityTags.LARGE_PREY,
-            HybridAquaticEntityTags.SHARK)) {
+            HybridAquaticEntityTags.SHARK
+        )
+    ) {
 
     private var isGliding = false
 
@@ -24,34 +25,13 @@ class AfricanButterflyEntity(entityType: EntityType<out AfricanButterflyEntity>,
         return 1
     }
 
-    //#region Air & Jumping
     override fun initGoals() {
         super.initGoals()
-        goalSelector.add(2, BreatheAirGoal(this))
         targetSelector.add(5, FishJumpGoal(this, 10))
-    }
-
-    init {
-        this.air = 300
-    }
-
-    override fun getMaxAir(): Int {
-        return 1200
-    }
-
-    override fun getAir(): Int {
-        return super.getAir().coerceAtLeast(0)
     }
 
     override fun tick() {
         super.tick()
-
-        if (this.isSubmergedInWater) {
-            this.air = (this.air - 1).coerceAtLeast(0)
-
-        } else {
-            this.air = this.maxAir
-        }
 
         if (!this.isTouchingWater && !isOnGround) {
             if (!isGliding) {
@@ -83,15 +63,14 @@ class AfricanButterflyEntity(entityType: EntityType<out AfricanButterflyEntity>,
         this.velocity = newMotion
     }
 
-    //#endergion
-
     companion object {
         fun createMobAttributes(): DefaultAttributeContainer.Builder {
-            return WaterCreatureEntity.createMobAttributes()
-                .add(EntityAttributes.GENERIC_MAX_HEALTH, 2.0)
+            return createLivingAttributes()
+                .add(EntityAttributes.GENERIC_MAX_HEALTH, 3.0)
                 .add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.6)
                 .add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 1.0)
-                .add(EntityAttributes.GENERIC_FOLLOW_RANGE, 8.0)
+                .add(EntityAttributes.GENERIC_ATTACK_KNOCKBACK, 0.0)
+                .add(EntityAttributes.GENERIC_FOLLOW_RANGE, 4.0)
         }
     }
 }

@@ -3,10 +3,8 @@ package dev.hybridlabs.aquatic.entity.fish
 import dev.hybridlabs.aquatic.entity.ai.goal.FishJumpGoal
 import dev.hybridlabs.aquatic.tag.HybridAquaticEntityTags
 import net.minecraft.entity.EntityType
-import net.minecraft.entity.ai.goal.BreatheAirGoal
 import net.minecraft.entity.attribute.DefaultAttributeContainer
 import net.minecraft.entity.attribute.EntityAttributes
-import net.minecraft.entity.mob.WaterCreatureEntity
 import net.minecraft.util.math.Vec3d
 import net.minecraft.world.World
 
@@ -27,35 +25,13 @@ class FlyingFishEntity(entityType: EntityType<out FlyingFishEntity>, world: Worl
         return 6
     }
 
-    //#region Air & Jumping
-
     override fun initGoals() {
         super.initGoals()
-        goalSelector.add(2, BreatheAirGoal(this))
         targetSelector.add(5, FishJumpGoal(this, 10))
-    }
-
-    init {
-        this.air = 300
-    }
-
-    override fun getMaxAir(): Int {
-        return 1200
-    }
-
-    override fun getAir(): Int {
-        return super.getAir().coerceAtLeast(0)
     }
 
     override fun tick() {
         super.tick()
-
-        if (this.isSubmergedInWater) {
-            this.air = (this.air - 1).coerceAtLeast(0)
-
-        } else {
-            this.air = this.maxAir
-        }
 
         if (!this.isTouchingWater && !isOnGround) {
             if (!isGliding) {
@@ -88,15 +64,14 @@ class FlyingFishEntity(entityType: EntityType<out FlyingFishEntity>, world: Worl
         this.velocity = newMotion
     }
 
-    //#endregion
-
     companion object {
         fun createMobAttributes(): DefaultAttributeContainer.Builder {
-            return WaterCreatureEntity.createMobAttributes()
-                .add(EntityAttributes.GENERIC_MAX_HEALTH, 2.0)
-                .add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.7)
+            return createLivingAttributes()
+                .add(EntityAttributes.GENERIC_MAX_HEALTH, 3.0)
+                .add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.6)
                 .add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 1.0)
-                .add(EntityAttributes.GENERIC_FOLLOW_RANGE, 8.0)
+                .add(EntityAttributes.GENERIC_ATTACK_KNOCKBACK, 0.0)
+                .add(EntityAttributes.GENERIC_FOLLOW_RANGE, 4.0)
         }
     }
 }

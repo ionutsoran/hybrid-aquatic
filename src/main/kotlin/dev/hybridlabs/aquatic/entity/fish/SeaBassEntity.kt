@@ -5,20 +5,25 @@ import dev.hybridlabs.aquatic.tag.HybridAquaticEntityTags
 import net.minecraft.entity.EntityType
 import net.minecraft.entity.attribute.DefaultAttributeContainer
 import net.minecraft.entity.attribute.EntityAttributes
-import net.minecraft.entity.mob.WaterCreatureEntity
 import net.minecraft.util.Identifier
 import net.minecraft.world.World
 
 class SeaBassEntity(entityType: EntityType<out SeaBassEntity>, world: World) :
-    HybridAquaticFishEntity(entityType, world, variants = hashMapOf(
-        "black" to FishVariant.biomeVariant("black", listOf(HybridAquaticBiomeTags.TEMPERATE_OCEANS),
-            ignore = listOf(FishVariant.Ignore.ANIMATION, FishVariant.Ignore.MODEL)),
+    HybridAquaticFishEntity(
+        entityType, world, variants = hashMapOf(
+            "black" to FishVariant.biomeVariant(
+                "black", listOf(HybridAquaticBiomeTags.TEMPERATE_OCEANS),
+                ignore = listOf(FishVariant.Ignore.ANIMATION, FishVariant.Ignore.MODEL)
+            ),
         ),
         listOf(
-            HybridAquaticEntityTags.NONE),
+            HybridAquaticEntityTags.NONE
+        ),
         listOf(
             HybridAquaticEntityTags.LARGE_PREY,
-            HybridAquaticEntityTags.SHARK)) {
+            HybridAquaticEntityTags.SHARK
+        )
+    ) {
 
     public override fun getLootTableId(): Identifier {
         return Identifier("hybrid-aquatic", "entity/sea_bass")
@@ -28,13 +33,14 @@ class SeaBassEntity(entityType: EntityType<out SeaBassEntity>, world: World) :
         return 2
     }
 
-        companion object {
+    companion object {
         fun createMobAttributes(): DefaultAttributeContainer.Builder {
-            return WaterCreatureEntity.createMobAttributes()
-                .add(EntityAttributes.GENERIC_MAX_HEALTH, 3.0)
-                .add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.8)
+            return createLivingAttributes()
+                .add(EntityAttributes.GENERIC_MAX_HEALTH, 6.0)
+                .add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.6)
                 .add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 1.0)
-                .add(EntityAttributes.GENERIC_FOLLOW_RANGE, 12.0)
+                .add(EntityAttributes.GENERIC_ATTACK_KNOCKBACK, 0.0)
+                .add(EntityAttributes.GENERIC_FOLLOW_RANGE, 8.0)
         }
     }
 }

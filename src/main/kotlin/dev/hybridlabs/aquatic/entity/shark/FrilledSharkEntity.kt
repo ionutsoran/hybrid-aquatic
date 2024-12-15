@@ -5,7 +5,6 @@ import net.minecraft.entity.EntityType
 import net.minecraft.entity.ai.goal.RevengeGoal
 import net.minecraft.entity.attribute.DefaultAttributeContainer
 import net.minecraft.entity.attribute.EntityAttributes
-import net.minecraft.entity.mob.WaterCreatureEntity
 import net.minecraft.world.World
 
 class FrilledSharkEntity(entityType: EntityType<out FrilledSharkEntity>, world: World) :
@@ -22,15 +21,16 @@ class FrilledSharkEntity(entityType: EntityType<out FrilledSharkEntity>, world: 
 
     companion object {
         fun createMobAttributes(): DefaultAttributeContainer.Builder {
-            return WaterCreatureEntity.createMobAttributes()
+            return createLivingAttributes()
                 .add(EntityAttributes.GENERIC_MAX_HEALTH, 24.0)
                 .add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.4)
                 .add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 4.0)
+                .add(EntityAttributes.GENERIC_ATTACK_KNOCKBACK, 0.0)
                 .add(EntityAttributes.GENERIC_FOLLOW_RANGE, 16.0)
         }
     }
 
-    override fun getMaxSize() : Int {
+    override fun getMaxSize(): Int {
         return 3
     }
 

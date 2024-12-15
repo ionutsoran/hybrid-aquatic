@@ -5,11 +5,20 @@ import net.minecraft.entity.EntityType
 import net.minecraft.entity.ai.goal.RevengeGoal
 import net.minecraft.entity.attribute.DefaultAttributeContainer
 import net.minecraft.entity.attribute.EntityAttributes
-import net.minecraft.entity.mob.WaterCreatureEntity
 import net.minecraft.world.World
 
 class BullSharkEntity(entityType: EntityType<out BullSharkEntity>, world: World) :
-    HybridAquaticSharkEntity(entityType, world, listOf(HybridAquaticEntityTags.LARGE_PREY, HybridAquaticEntityTags.MEDIUM_PREY), false, true) {
+    HybridAquaticSharkEntity(
+        entityType,
+        world,
+        listOf(HybridAquaticEntityTags.LARGE_PREY, HybridAquaticEntityTags.MEDIUM_PREY),
+        false,
+        true
+    ) {
+
+    override fun getLimitPerChunk(): Int {
+        return 1
+    }
 
     override fun initGoals() {
         super.initGoals()
@@ -18,15 +27,16 @@ class BullSharkEntity(entityType: EntityType<out BullSharkEntity>, world: World)
 
     companion object {
         fun createMobAttributes(): DefaultAttributeContainer.Builder {
-            return WaterCreatureEntity.createMobAttributes()
+            return createLivingAttributes()
                 .add(EntityAttributes.GENERIC_MAX_HEALTH, 54.0)
                 .add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.6)
                 .add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 8.0)
-                .add(EntityAttributes.GENERIC_FOLLOW_RANGE, 26.0)
+                .add(EntityAttributes.GENERIC_ATTACK_KNOCKBACK, 0.0)
+                .add(EntityAttributes.GENERIC_FOLLOW_RANGE, 32.0)
         }
     }
 
-    override fun getMaxSize() : Int {
+    override fun getMaxSize(): Int {
         return 2
     }
 

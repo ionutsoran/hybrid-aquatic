@@ -18,6 +18,7 @@ class EntityTypeTagProvider(output: FabricDataOutput, registriesFuture: Completa
                 HybridAquaticEntityTypes.PEARLFISH,
                 HybridAquaticEntityTypes.SNAILFISH,
                 HybridAquaticEntityTypes.BOXFISH,
+                HybridAquaticEntityTypes.OSCAR,
                 HybridAquaticEntityTypes.FLASHLIGHT_FISH,
                 HybridAquaticEntityTypes.MACKEREL,
                 HybridAquaticEntityTypes.BARRELEYE,
@@ -32,6 +33,7 @@ class EntityTypeTagProvider(output: FabricDataOutput, registriesFuture: Completa
                 HybridAquaticEntityTypes.AFRICAN_BUTTERFLY,
                 HybridAquaticEntityTypes.FLYING_FISH,
                 HybridAquaticEntityTypes.SQUIRRELFISH,
+                HybridAquaticEntityTypes.STONEFISH,
                 EntityType.SALMON,
                 EntityType.COD,
                 EntityType.TROPICAL_FISH
@@ -161,6 +163,7 @@ class EntityTypeTagProvider(output: FabricDataOutput, registriesFuture: Completa
         getOrCreateTagBuilder(HybridAquaticEntityTags.FISH)
             .add(
                 HybridAquaticEntityTypes.AFRICAN_BUTTERFLY,
+                HybridAquaticEntityTypes.STONEFISH,
                 HybridAquaticEntityTypes.PEARLFISH,
                 HybridAquaticEntityTypes.BETTA,
                 HybridAquaticEntityTypes.JOHN_DORY,

@@ -10,7 +10,6 @@ import net.minecraft.entity.ai.goal.Goal
 import net.minecraft.entity.attribute.DefaultAttributeContainer
 import net.minecraft.entity.attribute.EntityAttributes
 import net.minecraft.entity.mob.PathAwareEntity
-import net.minecraft.entity.mob.WaterCreatureEntity
 import net.minecraft.world.World
 
 class AnglerfishEntity(entityType: EntityType<out AnglerfishEntity>, world: World) :
@@ -34,12 +33,12 @@ class AnglerfishEntity(entityType: EntityType<out AnglerfishEntity>, world: Worl
 
     companion object {
         fun createMobAttributes(): DefaultAttributeContainer.Builder {
-            return WaterCreatureEntity.createMobAttributes()
-                .add(EntityAttributes.GENERIC_MAX_HEALTH, 4.0)
-                .add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.4)
-                .add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 2.0)
-                .add(EntityAttributes.GENERIC_ATTACK_SPEED, 4.0)
-                .add(EntityAttributes.GENERIC_FOLLOW_RANGE, 32.0)
+            return createLivingAttributes()
+                .add(EntityAttributes.GENERIC_MAX_HEALTH, 2.0)
+                .add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.25)
+                .add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 1.0)
+                .add(EntityAttributes.GENERIC_ATTACK_KNOCKBACK, 0.0)
+                .add(EntityAttributes.GENERIC_FOLLOW_RANGE, 4.0)
         }
     }
 

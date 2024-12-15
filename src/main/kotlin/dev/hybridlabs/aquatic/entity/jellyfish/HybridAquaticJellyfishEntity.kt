@@ -37,7 +37,7 @@ import software.bernie.geckolib.core.animation.AnimationState
 import software.bernie.geckolib.core.animation.EasingType
 import software.bernie.geckolib.util.GeckoLibUtil
 
-@Suppress("LeakingThis", "UNUSED_PARAMETER", "DEPRECATION")
+@Suppress("LeakingThis", "DEPRECATION", "UNUSED_PARAMETER")
 open class HybridAquaticJellyfishEntity(
     type: EntityType<out HybridAquaticJellyfishEntity>,
     world: World,

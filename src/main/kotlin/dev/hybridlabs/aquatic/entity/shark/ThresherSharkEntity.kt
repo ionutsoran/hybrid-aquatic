@@ -6,51 +6,29 @@ import net.minecraft.entity.EntityType
 import net.minecraft.entity.ai.goal.RevengeGoal
 import net.minecraft.entity.attribute.DefaultAttributeContainer
 import net.minecraft.entity.attribute.EntityAttributes
-import net.minecraft.entity.mob.WaterCreatureEntity
 import net.minecraft.world.World
 
 class ThresherSharkEntity(entityType: EntityType<out ThresherSharkEntity>, world: World) :
     HybridAquaticSharkEntity(entityType, world, listOf(HybridAquaticEntityTags.SMALL_PREY, HybridAquaticEntityTags.MEDIUM_PREY), false, false) {
 
-    //#region Air & Jumping
+    override fun getLimitPerChunk(): Int {
+        return 1
+    }
+
     override fun initGoals() {
         super.initGoals()
         goalSelector.add(1, RevengeGoal(this))
         goalSelector.add(5, SharkJumpGoal(this, 10))
     }
 
-    init {
-        this.air = 800
-    }
-
-    override fun getMaxAir(): Int {
-        return 2400
-    }
-
-    override fun getAir(): Int {
-        return super.getAir().coerceAtLeast(0)
-    }
-
-    override fun tick() {
-        super.tick()
-
-        if (this.isSubmergedInWater) {
-            this.air = (this.air - 1).coerceAtLeast(0)
-
-        } else {
-            this.air = this.maxAir
-        }
-    }
-
-    //#endregion
-
     companion object {
         fun createMobAttributes(): DefaultAttributeContainer.Builder {
-            return WaterCreatureEntity.createMobAttributes()
+            return createLivingAttributes()
                 .add(EntityAttributes.GENERIC_MAX_HEALTH, 36.0)
                 .add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.6)
                 .add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 4.0)
-                .add(EntityAttributes.GENERIC_FOLLOW_RANGE, 26.0)
+                .add(EntityAttributes.GENERIC_ATTACK_KNOCKBACK, 0.0)
+                .add(EntityAttributes.GENERIC_FOLLOW_RANGE, 16.0)
         }
     }
 

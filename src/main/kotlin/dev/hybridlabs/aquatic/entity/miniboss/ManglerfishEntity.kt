@@ -12,7 +12,6 @@ import net.minecraft.entity.attribute.EntityAttributes
 import net.minecraft.entity.boss.BossBar
 import net.minecraft.entity.boss.ServerBossBar
 import net.minecraft.entity.damage.DamageSource
-import net.minecraft.entity.mob.WaterCreatureEntity
 import net.minecraft.entity.player.PlayerEntity
 import net.minecraft.nbt.NbtCompound
 import net.minecraft.predicate.entity.EntityPredicates
@@ -154,11 +153,11 @@ class ManglerfishEntity(entityType: EntityType<out HybridAquaticMinibossEntity>,
 
     companion object {
         fun createMobAttributes(): DefaultAttributeContainer.Builder {
-            return WaterCreatureEntity.createMobAttributes()
+            return createLivingAttributes()
                 .add(EntityAttributes.GENERIC_MAX_HEALTH, 300.0)
                 .add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 1.2)
                 .add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 10.0)
-                .add(EntityAttributes.GENERIC_ATTACK_SPEED, 8.0)
+                .add(EntityAttributes.GENERIC_ATTACK_KNOCKBACK, 0.0)
                 .add(EntityAttributes.GENERIC_FOLLOW_RANGE, 64.0)
         }
     }

@@ -8,17 +8,20 @@ import net.minecraft.entity.attribute.EntityAttributes
 import net.minecraft.entity.damage.DamageSource
 import net.minecraft.entity.effect.StatusEffectInstance
 import net.minecraft.entity.effect.StatusEffects
-import net.minecraft.entity.mob.WaterCreatureEntity
 import net.minecraft.world.World
 
 class StonefishEntity(entityType: EntityType<out StonefishEntity>, world: World) :
-    HybridAquaticFishEntity(entityType, world, emptyMap(),
+    HybridAquaticFishEntity(
+        entityType, world, emptyMap(),
         listOf(
-        HybridAquaticEntityTags.SMALL_PREY),
+            HybridAquaticEntityTags.SMALL_PREY
+        ),
         listOf(
             HybridAquaticEntityTags.MEDIUM_PREY,
             HybridAquaticEntityTags.LARGE_PREY,
-            HybridAquaticEntityTags.SHARK)) {
+            HybridAquaticEntityTags.SHARK
+        )
+    ) {
 
     override fun getLimitPerChunk(): Int {
         return 2
@@ -26,18 +29,19 @@ class StonefishEntity(entityType: EntityType<out StonefishEntity>, world: World)
 
     companion object {
         fun createMobAttributes(): DefaultAttributeContainer.Builder {
-            return WaterCreatureEntity.createMobAttributes()
-                .add(EntityAttributes.GENERIC_MAX_HEALTH, 4.0)
-                .add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.6)
+            return createLivingAttributes()
+                .add(EntityAttributes.GENERIC_MAX_HEALTH, 3.0)
+                .add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.3)
                 .add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 1.0)
-                .add(EntityAttributes.GENERIC_FOLLOW_RANGE, 12.0)
+                .add(EntityAttributes.GENERIC_ATTACK_KNOCKBACK, 0.0)
+                .add(EntityAttributes.GENERIC_FOLLOW_RANGE, 8.0)
         }
     }
 
-    override fun damage(source: DamageSource?, amount: Float): Boolean {
+    override fun damage(source: DamageSource, amount: Float): Boolean {
         if (super.damage(source, amount)) {
 
-            val attacker = source?.attacker
+            val attacker = source.attacker
             if (attacker is LivingEntity && attacker.mainHandStack.isEmpty) {
                 attacker.addStatusEffect(StatusEffectInstance(StatusEffects.POISON, 200, 2))
             }

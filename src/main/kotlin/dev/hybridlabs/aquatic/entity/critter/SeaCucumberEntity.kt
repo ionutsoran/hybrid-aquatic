@@ -5,7 +5,6 @@ import dev.hybridlabs.aquatic.tag.HybridAquaticBiomeTags
 import net.minecraft.entity.EntityType
 import net.minecraft.entity.attribute.DefaultAttributeContainer
 import net.minecraft.entity.attribute.EntityAttributes
-import net.minecraft.entity.mob.WaterCreatureEntity
 import net.minecraft.registry.tag.BiomeTags
 import net.minecraft.world.World
 import software.bernie.geckolib.core.animatable.GeoAnimatable
@@ -75,9 +74,12 @@ class SeaCucumberEntity(entityType: EntityType<out SeaCucumberEntity>, world: Wo
 
     companion object {
         fun createMobAttributes(): DefaultAttributeContainer.Builder {
-            return WaterCreatureEntity.createMobAttributes()
+            return createLivingAttributes()
                 .add(EntityAttributes.GENERIC_MAX_HEALTH, 2.0)
                 .add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.1)
+                .add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 2.0)
+                .add(EntityAttributes.GENERIC_ATTACK_KNOCKBACK, 0.0)
+                .add(EntityAttributes.GENERIC_FOLLOW_RANGE, 2.0)
         }
     }
 

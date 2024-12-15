@@ -10,17 +10,19 @@ import net.minecraft.entity.ai.goal.RevengeGoal
 import net.minecraft.entity.attribute.DefaultAttributeContainer
 import net.minecraft.entity.attribute.EntityAttributes
 import net.minecraft.entity.effect.StatusEffectInstance
-import net.minecraft.entity.mob.WaterCreatureEntity
 import net.minecraft.world.Difficulty
 import net.minecraft.world.World
 
 class PiranhaEntity(entityType: EntityType<out PiranhaEntity>, world: World) :
-    HybridAquaticSchoolingFishEntity(entityType, world,
+    HybridAquaticSchoolingFishEntity(
+        entityType, world,
         listOf(HybridAquaticEntityTags.SMALL_PREY),
         listOf(
             HybridAquaticEntityTags.MEDIUM_PREY,
             HybridAquaticEntityTags.LARGE_PREY,
-            HybridAquaticEntityTags.SHARK)) {
+            HybridAquaticEntityTags.SHARK
+        )
+    ) {
 
     override fun getLimitPerChunk(): Int {
         return 4
@@ -28,20 +30,23 @@ class PiranhaEntity(entityType: EntityType<out PiranhaEntity>, world: World) :
 
     companion object {
         fun createMobAttributes(): DefaultAttributeContainer.Builder {
-            return WaterCreatureEntity.createMobAttributes()
+            return createLivingAttributes()
                 .add(EntityAttributes.GENERIC_MAX_HEALTH, 3.0)
-                .add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 1.0)
+                .add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.6)
                 .add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 2.0)
-                .add(EntityAttributes.GENERIC_ATTACK_SPEED, 4.0)
                 .add(EntityAttributes.GENERIC_ATTACK_KNOCKBACK, 0.0)
-                .add(EntityAttributes.GENERIC_FOLLOW_RANGE, 12.0)
+                .add(EntityAttributes.GENERIC_FOLLOW_RANGE, 4.0)
         }
     }
 
     override fun initGoals() {
         super.initGoals()
         targetSelector.add(1, RevengeGoal(this, *arrayOfNulls(0)).setGroupRevenge(*arrayOfNulls(0)))
-        targetSelector.add(1, ActiveTargetGoal(this, LivingEntity::class.java, 10, true, true) { it.hasStatusEffect(HybridAquaticStatusEffects.BLEEDING) && it !is PiranhaEntity })
+        targetSelector.add(
+            1,
+            ActiveTargetGoal(this, LivingEntity::class.java, 10, true, true) {
+                it.hasStatusEffect(HybridAquaticStatusEffects.BLEEDING) && it !is PiranhaEntity
+            })
     }
 
     override fun tryAttack(target: Entity?): Boolean {

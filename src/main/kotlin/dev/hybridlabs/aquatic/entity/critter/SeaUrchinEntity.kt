@@ -7,7 +7,6 @@ import net.minecraft.entity.LivingEntity
 import net.minecraft.entity.attribute.DefaultAttributeContainer
 import net.minecraft.entity.attribute.EntityAttributes
 import net.minecraft.entity.damage.DamageSource
-import net.minecraft.entity.mob.PathAwareEntity
 import net.minecraft.registry.tag.BiomeTags
 import net.minecraft.util.Identifier
 import net.minecraft.util.math.BlockPos
@@ -44,10 +43,13 @@ class SeaUrchinEntity(entityType: EntityType<out SeaUrchinEntity>, world: World)
 
     companion object {
         fun createMobAttributes(): DefaultAttributeContainer.Builder {
-            return PathAwareEntity.createMobAttributes()
+            return createLivingAttributes()
                 .add(EntityAttributes.GENERIC_MAX_HEALTH, 2.0)
                 .add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.1)
-                .add(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE, 100.0)
+                .add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 2.0)
+                .add(EntityAttributes.GENERIC_ATTACK_KNOCKBACK, 0.0)
+                .add(EntityAttributes.GENERIC_FOLLOW_RANGE, 2.0)
+                .add(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE, 1.0)
         }
     }
 

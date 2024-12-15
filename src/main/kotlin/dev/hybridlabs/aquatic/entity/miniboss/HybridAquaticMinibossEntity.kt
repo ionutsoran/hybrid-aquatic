@@ -25,11 +25,6 @@ abstract class HybridAquaticMinibossEntity(type: EntityType<out HostileEntity>, 
     private val factory = GeckoLibUtil.createInstanceCache(this)
 
     private var attackTick = 0
-    var attemptAttack: Boolean
-        get() = dataTracker.get(ATTEMPT_ATTACK)
-        set(attemptAttack) {
-            dataTracker.set(ATTEMPT_ATTACK, attemptAttack)
-        }
 
     override fun initDataTracker() {
         super.initDataTracker()

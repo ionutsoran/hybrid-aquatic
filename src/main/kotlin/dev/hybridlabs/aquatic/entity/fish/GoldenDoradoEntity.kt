@@ -5,7 +5,6 @@ import net.minecraft.entity.EntityType
 import net.minecraft.entity.ai.goal.RevengeGoal
 import net.minecraft.entity.attribute.DefaultAttributeContainer
 import net.minecraft.entity.attribute.EntityAttributes
-import net.minecraft.entity.mob.WaterCreatureEntity
 import net.minecraft.world.World
 
 class GoldenDoradoEntity(entityType: EntityType<out GoldenDoradoEntity>, world: World) :
@@ -23,15 +22,16 @@ class GoldenDoradoEntity(entityType: EntityType<out GoldenDoradoEntity>, world: 
 
     override fun initGoals() {
         super.initGoals()
-        targetSelector.add(1, RevengeGoal(this, *arrayOfNulls(0)).setGroupRevenge(*arrayOfNulls(0)))
+        goalSelector.add(1, RevengeGoal(this))
     }
 
     companion object {
         fun createMobAttributes(): DefaultAttributeContainer.Builder {
-            return WaterCreatureEntity.createMobAttributes()
-                .add(EntityAttributes.GENERIC_MAX_HEALTH, 12.0)
-                .add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.8)
-                .add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 6.0)
+            return createLivingAttributes()
+                .add(EntityAttributes.GENERIC_MAX_HEALTH, 10.0)
+                .add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.6)
+                .add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 5.0)
+                .add(EntityAttributes.GENERIC_ATTACK_KNOCKBACK, 0.0)
                 .add(EntityAttributes.GENERIC_FOLLOW_RANGE, 16.0)
         }
     }
