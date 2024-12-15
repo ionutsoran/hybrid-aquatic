@@ -42,17 +42,7 @@ class ClownfishEntity(entityType: EntityType<out ClownfishEntity>, world: World)
     }
 
     public override fun getLootTableId(): Identifier {
-        return when (this.variant?.variantName) {
-            "ocellaris" -> Identifier("hybrid-aquatic", "entities/clownfish")
-            "percula" -> Identifier("hybrid-aquatic", "entities/clownfish")
-            "whiteband" -> Identifier("hybrid-aquatic", "entities/clownfish")
-            "tomato" -> Identifier("hybrid-aquatic", "entities/clownfish")
-            "cinnamon" -> Identifier("hybrid-aquatic", "entities/clownfish")
-            "clarkii" -> Identifier("hybrid-aquatic", "entities/clownfish")
-            "pink_skunk" -> Identifier("hybrid-aquatic", "entities/clownfish")
-            "orange_skunk" -> Identifier("hybrid-aquatic", "entities/clownfish")
-            else -> super.getLootTableId()
-        }
+        return Identifier("hybrid-aquatic", "entities/clownfish")
     }
 
     private var targetAnemonePos: BlockPos? = null
@@ -61,7 +51,7 @@ class ClownfishEntity(entityType: EntityType<out ClownfishEntity>, world: World)
         fun createMobAttributes(): DefaultAttributeContainer.Builder {
             return WaterCreatureEntity.createMobAttributes()
                 .add(EntityAttributes.GENERIC_MAX_HEALTH, 2.0)
-                .add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.7)
+                .add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.6)
                 .add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 1.0)
                 .add(EntityAttributes.GENERIC_FOLLOW_RANGE, 12.0)
         }
