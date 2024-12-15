@@ -3,11 +3,9 @@ package dev.hybridlabs.aquatic.entity.shark
 import dev.hybridlabs.aquatic.entity.ai.goal.SharkJumpGoal
 import dev.hybridlabs.aquatic.tag.HybridAquaticEntityTags
 import net.minecraft.entity.EntityType
-import net.minecraft.entity.ai.goal.ActiveTargetGoal
 import net.minecraft.entity.ai.goal.RevengeGoal
 import net.minecraft.entity.attribute.DefaultAttributeContainer
 import net.minecraft.entity.attribute.EntityAttributes
-import net.minecraft.entity.mob.GuardianEntity
 import net.minecraft.entity.mob.WaterCreatureEntity
 import net.minecraft.world.World
 
@@ -19,8 +17,6 @@ class GreatWhiteSharkEntity(entityType: EntityType<out GreatWhiteSharkEntity>, w
         super.initGoals()
         goalSelector.add(1, RevengeGoal(this))
         goalSelector.add(5, SharkJumpGoal(this, 10))
-        targetSelector.add(2, ActiveTargetGoal(this, GuardianEntity::class.java, 10, true, true) { !isPassive
-        })
     }
 
     init {

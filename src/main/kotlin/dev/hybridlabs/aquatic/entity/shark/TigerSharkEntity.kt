@@ -87,8 +87,6 @@ class TigerSharkEntity(entityType: EntityType<out TigerSharkEntity>, world: Worl
     override fun initGoals() {
         super.initGoals()
         goalSelector.add(1, RevengeGoal(this))
-        targetSelector.add(2, ActiveTargetGoal(this, GuardianEntity::class.java, 10, true, true) { !isPassive
-        })
     }
 
     companion object {

@@ -2,11 +2,9 @@ package dev.hybridlabs.aquatic.entity.shark
 
 import dev.hybridlabs.aquatic.tag.HybridAquaticEntityTags
 import net.minecraft.entity.EntityType
-import net.minecraft.entity.ai.goal.ActiveTargetGoal
 import net.minecraft.entity.ai.goal.RevengeGoal
 import net.minecraft.entity.attribute.DefaultAttributeContainer
 import net.minecraft.entity.attribute.EntityAttributes
-import net.minecraft.entity.mob.GuardianEntity
 import net.minecraft.entity.mob.WaterCreatureEntity
 import net.minecraft.world.World
 
@@ -16,8 +14,6 @@ class BullSharkEntity(entityType: EntityType<out BullSharkEntity>, world: World)
     override fun initGoals() {
         super.initGoals()
         goalSelector.add(1, RevengeGoal(this))
-        targetSelector.add(2, ActiveTargetGoal(this, GuardianEntity::class.java, 10, true, true) { !isPassive
-        })
     }
 
     companion object {
