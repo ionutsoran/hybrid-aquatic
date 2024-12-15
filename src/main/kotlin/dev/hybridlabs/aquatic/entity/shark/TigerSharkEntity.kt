@@ -46,16 +46,7 @@ class TigerSharkEntity(entityType: EntityType<out TigerSharkEntity>, world: Worl
     private fun dropBurpItem() {
         if (!world.isClient) {
             val itemsToDrop = listOf(
-                ItemStack(Items.ACACIA_BOAT),
-                ItemStack(Items.BIRCH_BOAT),
-                ItemStack(Items.CHERRY_BOAT),
-                ItemStack(Items.DARK_OAK_BOAT),
-                ItemStack(Items.JUNGLE_BOAT),
-                ItemStack(Items.MANGROVE_BOAT),
-                ItemStack(Items.OAK_BOAT),
-                ItemStack(Items.SPRUCE_BOAT),
-                ItemStack(Items.ROTTEN_FLESH),
-                ItemStack(Items.LEATHER),
+                ItemStack(Items.LEATHER_BOOTS),
                 ItemStack(Items.GLASS_BOTTLE),
                 ItemStack(Items.SCUTE),
                 ItemStack(Items.NAUTILUS_SHELL),
