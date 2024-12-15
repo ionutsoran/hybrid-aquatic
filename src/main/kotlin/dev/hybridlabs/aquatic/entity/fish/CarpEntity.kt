@@ -35,7 +35,7 @@ class CarpEntity(entityType: EntityType<out CarpEntity>, world: World) :
             "koi_hajiro" -> Identifier("hybrid-aquatic", "gameplay/koi")
             "koi_platinum" -> Identifier("hybrid-aquatic", "gameplay/koi")
             "koi_tancho" -> Identifier("hybrid-aquatic", "gameplay/koi")
-            "common" -> Identifier("hybrid-aquatic", "gameplay/carp")
+            "common" -> Identifier("hybrid-aquatic", "entity/carp")
             else -> super.getLootTableId()
         }
     }

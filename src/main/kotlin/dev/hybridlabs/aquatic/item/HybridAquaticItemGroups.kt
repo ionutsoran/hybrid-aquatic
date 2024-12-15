@@ -169,6 +169,7 @@ object  HybridAquaticItemGroups {
             entries.add(HybridAquaticItems.SEAHORSE)
             entries.add(HybridAquaticItems.MACKEREL)
             entries.add(HybridAquaticItems.FLYING_FISH)
+            entries.add(HybridAquaticItems.PEARLFISH)
             entries.add(HybridAquaticItems.BOXFISH)
             entries.add(HybridAquaticItems.TOADFISH)
             entries.add(HybridAquaticItems.STONEFISH)

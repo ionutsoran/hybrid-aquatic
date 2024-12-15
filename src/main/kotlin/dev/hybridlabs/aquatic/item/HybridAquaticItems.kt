@@ -631,6 +631,19 @@ object HybridAquaticItems {
         )
     )
 
+    val PEARLFISH = register("pearlfish",
+        Item(
+            FabricItemSettings()
+                .food(
+                    FoodComponent.Builder()
+                        .hunger(1)
+                        .saturationModifier(0.2F)
+                        .meat()
+                        .build()
+                )
+        )
+    )
+
     val DISCUS = register("discus",
         Item(
             FabricItemSettings()
