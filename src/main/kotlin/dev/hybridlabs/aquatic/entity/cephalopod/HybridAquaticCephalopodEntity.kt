@@ -120,6 +120,8 @@ open class HybridAquaticCephalopodEntity(
         }
 
         isSprinting = isAttacking
+
+        if (hunger > 0) hunger -= 1
     }
 
     override fun tickWaterBreathingAir(air: Int) {}
@@ -278,7 +280,7 @@ open class HybridAquaticCephalopodEntity(
             dataTracker.set(CEPHALOPOD_SIZE, size)
         }
 
-    private var hunger: Int
+    var hunger: Int
         get() = dataTracker.get(HUNGER)
         set(hunger) {
             dataTracker.set(HUNGER, hunger)
@@ -417,7 +419,7 @@ open class HybridAquaticCephalopodEntity(
             pos: BlockPos,
             random: Random
         ): Boolean {
-            val topY = world.seaLevel
+            val topY = world.seaLevel - 4
             val bottomY = world.seaLevel - 24
 
             return pos.y in bottomY..topY &&
