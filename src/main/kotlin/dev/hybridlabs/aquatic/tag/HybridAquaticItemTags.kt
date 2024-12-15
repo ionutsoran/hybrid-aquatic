@@ -24,6 +24,7 @@ object HybridAquaticItemTags {
 
     val RAW_FISHES = createConventional("foods/raw_fishes")
     val COOKED_FISHES = createConventional("foods/cooked_fishes")
+    val ARMOR = createConventional("c/armor")
 
     private fun create(id: String): TagKey<Item> {
         return TagKey.of(RegistryKeys.ITEM, Identifier(HybridAquatic.MOD_ID, id))

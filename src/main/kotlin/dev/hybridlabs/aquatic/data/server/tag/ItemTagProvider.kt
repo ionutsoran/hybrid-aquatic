@@ -321,5 +321,20 @@ class ItemTagProvider(output: FabricDataOutput, registriesFuture: CompletableFut
         ).forEach { item ->
             getOrCreateTagBuilder(HybridAquaticItemTags.BACK_FIN).add(item)
         }
+
+        setOf(
+            HybridAquaticItems.MANGLERFISH_LURE,
+            HybridAquaticItems.MANGLERFISH_FIN,
+            HybridAquaticItems.EEL_SCARF,
+            HybridAquaticItems.MOON_JELLYFISH_HAT,
+            HybridAquaticItems.NAUTILUS_HELMET,
+            HybridAquaticItems.NAUTILUS_PAULDRONS,
+            HybridAquaticItems.DIVING_HELMET,
+            HybridAquaticItems.DIVING_SUIT,
+            HybridAquaticItems.DIVING_LEGGINGS,
+            HybridAquaticItems.DIVING_BOOTS,
+        ).forEach { item ->
+            getOrCreateTagBuilder(HybridAquaticItemTags.ARMOR).add(item)
+        }
     }
 }
