@@ -70,7 +70,7 @@ object HybridAquaticEntityTypes {
     val PEARLFISH = registerFish(
         "pearlfish",
         ::PearlfishEntity,
-        EntityDimensions.fixed(0.2f, 0.2f),
+        EntityDimensions.fixed(0.25f, 0.2f),
         PearlfishEntity.createMobAttributes()
     )
 

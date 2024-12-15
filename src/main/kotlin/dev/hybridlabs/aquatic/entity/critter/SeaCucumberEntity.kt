@@ -1,6 +1,6 @@
 package dev.hybridlabs.aquatic.entity.critter
 
-import dev.hybridlabs.aquatic.entity.fish.RockfishEntity
+import dev.hybridlabs.aquatic.entity.HybridAquaticEntityTypes
 import dev.hybridlabs.aquatic.tag.HybridAquaticBiomeTags
 import net.minecraft.entity.EntityType
 import net.minecraft.entity.attribute.DefaultAttributeContainer
@@ -43,8 +43,30 @@ class SeaCucumberEntity(entityType: EntityType<out SeaCucumberEntity>, world: Wo
     override fun remove(reason: RemovalReason) {
         if (!world.isClient && this.isDead) {
             if (world.random.nextInt(4) == 0) {
-                val pearlfishEntity = type.create(this.world) as RockfishEntity
-                world.spawnEntity(pearlfishEntity)
+                val text = this.customName
+                val isAiDisabled = this.isAiDisabled
+                val spawnCount = 1 + world.random.nextInt(2)
+
+                for (l in 0 until spawnCount) {
+                    val offsetX = (world.random.nextFloat() - 0.5f) * 2.0f
+                    val offsetZ = (world.random.nextFloat() - 0.5f) * 2.0f
+                    val pearlfishEntity = HybridAquaticEntityTypes.PEARLFISH.create(world)
+
+                    pearlfishEntity?.let {
+                        it.customName = text
+                        it.isAiDisabled = isAiDisabled
+                        it.isInvulnerable = this.isInvulnerable
+                        it.refreshPositionAndAngles(
+                            this.x + offsetX,
+                            this.y + 0.5,
+                            this.z + offsetZ,
+                            world.random.nextFloat() * 360.0f,
+                            0.0f
+                        )
+
+                        world.spawnEntity(it)
+                    }
+                }
             }
         }
 
