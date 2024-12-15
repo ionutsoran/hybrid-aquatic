@@ -222,6 +222,7 @@ class ItemTagProvider(output: FabricDataOutput, registriesFuture: CompletableFut
             HybridAquaticItems.RAW_CRAYFISH,
             HybridAquaticItems.RAW_LOBSTER_TAIL,
         ).forEach { item ->
+            getOrCreateTagBuilder(HybridAquaticItemTags.RAW_FISH).add(item)
             getOrCreateTagBuilder(HybridAquaticItemTags.RAW_FISHES).add(item)
         }
 
@@ -235,7 +236,19 @@ class ItemTagProvider(output: FabricDataOutput, registriesFuture: CompletableFut
             HybridAquaticItems.COOKED_CRAYFISH,
             HybridAquaticItems.COOKED_LOBSTER_TAIL,
         ).forEach { item ->
+            getOrCreateTagBuilder(HybridAquaticItemTags.COOKED_FISH).add(item)
             getOrCreateTagBuilder(HybridAquaticItemTags.COOKED_FISHES).add(item)
+        }
+
+        listOf(
+            HybridAquaticItems.LIONFISH,
+            HybridAquaticItems.STONEFISH,
+            HybridAquaticItems.TOADFISH,
+            HybridAquaticItems.BOXFISH,
+            HybridAquaticItems.BLUE_SPOTTED_STINGRAY,
+            HybridAquaticItems.SPOTTED_EAGLE_RAY,
+        ).forEach { item ->
+            getOrCreateTagBuilder(HybridAquaticItemTags.FOOD_POISONING).add(item)
         }
 
         listOf(
@@ -334,7 +347,7 @@ class ItemTagProvider(output: FabricDataOutput, registriesFuture: CompletableFut
             HybridAquaticItems.DIVING_LEGGINGS,
             HybridAquaticItems.DIVING_BOOTS,
         ).forEach { item ->
-            getOrCreateTagBuilder(HybridAquaticItemTags.ARMOR).add(item)
+            getOrCreateTagBuilder(HybridAquaticItemTags.ARMORS).add(item)
         }
     }
 }
