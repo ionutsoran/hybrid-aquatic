@@ -128,7 +128,6 @@ open class HybridAquaticJellyfishEntity(
     }
 
 
-
     override fun canImmediatelyDespawn(distanceSquared: Double): Boolean {
         return !fromFishingNet && !hasCustomName()
     }
@@ -307,11 +306,11 @@ open class HybridAquaticJellyfishEntity(
         return 300
     }
 
-    protected open fun getMinSize() : Int {
+    protected open fun getMinSize(): Int {
         return 0
     }
 
-    protected open fun getMaxSize() : Int {
+    protected open fun getMaxSize(): Int {
         return 0
     }
 
@@ -332,8 +331,10 @@ open class HybridAquaticJellyfishEntity(
     }
 
     companion object {
-        val MOISTNESS: TrackedData<Int> = DataTracker.registerData(HybridAquaticJellyfishEntity::class.java, TrackedDataHandlerRegistry.INTEGER)
-        val JELLYFISH_SIZE: TrackedData<Int> = DataTracker.registerData(HybridAquaticJellyfishEntity::class.java, TrackedDataHandlerRegistry.INTEGER)
+        val MOISTNESS: TrackedData<Int> =
+            DataTracker.registerData(HybridAquaticJellyfishEntity::class.java, TrackedDataHandlerRegistry.INTEGER)
+        val JELLYFISH_SIZE: TrackedData<Int> =
+            DataTracker.registerData(HybridAquaticJellyfishEntity::class.java, TrackedDataHandlerRegistry.INTEGER)
 
         fun canSpawn(
             type: EntityType<out WaterCreatureEntity>,
@@ -370,7 +371,7 @@ open class HybridAquaticJellyfishEntity(
                     isSpawnDark(world, pos, random)
         }
 
-        fun getScaleAdjustment(jellyfish : HybridAquaticJellyfishEntity, adjustment : Float): Float {
+        fun getScaleAdjustment(jellyfish: HybridAquaticJellyfishEntity, adjustment: Float): Float {
             return 1.0f + (jellyfish.size * adjustment)
         }
 
