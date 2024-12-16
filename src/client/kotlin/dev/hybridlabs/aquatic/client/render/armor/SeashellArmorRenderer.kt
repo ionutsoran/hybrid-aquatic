@@ -6,6 +6,6 @@ import net.minecraft.util.Identifier
 import software.bernie.geckolib.model.DefaultedItemGeoModel
 import software.bernie.geckolib.renderer.GeoArmorRenderer
 
-class SeashellArmorRenderer: GeoArmorRenderer<DivingArmorItem>(
+class SeashellArmorRenderer : GeoArmorRenderer<DivingArmorItem>(
     DefaultedItemGeoModel(Identifier(HybridAquatic.MOD_ID, "armor/seashell_armor"))
 )

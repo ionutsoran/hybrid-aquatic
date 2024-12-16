@@ -6,7 +6,8 @@ import net.minecraft.client.render.VertexConsumerProvider
 import net.minecraft.client.render.entity.EntityRendererFactory.Context
 import net.minecraft.client.util.math.MatrixStack
 
-class NudibranchEntityRenderer(context: Context) : HybridAquaticCritterEntityRenderer<HybridAquaticCritterEntity>(context, NudibranchEntityModel()) {
+class NudibranchEntityRenderer(context: Context) :
+    HybridAquaticCritterEntityRenderer<HybridAquaticCritterEntity>(context, NudibranchEntityModel()) {
     override fun render(
         entity: HybridAquaticCritterEntity?,
         entityYaw: Float,

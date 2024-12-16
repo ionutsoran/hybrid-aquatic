@@ -50,7 +50,7 @@ open class HybridAquaticSharkEntity(
     entityType: EntityType<out HybridAquaticSharkEntity>,
     world: World,
     private val prey: List<TagKey<EntityType<*>>>,
-    val isPassive: Boolean,
+    private val isPassive: Boolean,
     private val closePlayerAttack: Boolean
 ) : WaterCreatureEntity(entityType, world), Angerable, GeoEntity {
     private val factory = GeckoLibUtil.createInstanceCache(this)

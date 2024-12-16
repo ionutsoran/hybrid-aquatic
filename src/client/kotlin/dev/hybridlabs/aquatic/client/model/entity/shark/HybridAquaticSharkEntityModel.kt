@@ -12,15 +12,15 @@ import software.bernie.geckolib.model.GeoModel
 abstract class HybridAquaticSharkEntityModel<T : HybridAquaticSharkEntity> (
     private val id: String
 ) : GeoModel<T>() {
-    override fun getModelResource(animatable: T?): Identifier {
+    override fun getModelResource(animatable: T): Identifier {
         return Identifier(HybridAquatic.MOD_ID, "geo/shark/$id.geo.json")
     }
 
-    override fun getTextureResource(animatable: T?): Identifier {
+    override fun getTextureResource(animatable: T): Identifier {
         return Identifier(HybridAquatic.MOD_ID, "textures/entity/shark/$id.png")
     }
 
-    override fun getAnimationResource(animatable: T?): Identifier {
+    override fun getAnimationResource(animatable: T): Identifier {
         return Identifier(HybridAquatic.MOD_ID, "animations/$id.animation.json")
     }
 

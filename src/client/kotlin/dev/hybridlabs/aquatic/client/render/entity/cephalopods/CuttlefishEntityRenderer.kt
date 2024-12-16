@@ -6,4 +6,3 @@ import net.minecraft.client.render.entity.EntityRendererFactory.Context
 
 class CuttlefishEntityRenderer(context: Context) :
     HybridAquaticCephalopodEntityRenderer<CuttlefishEntity>(context, CuttlefishEntityModel(), true, false)
-

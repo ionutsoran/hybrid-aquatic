@@ -43,7 +43,8 @@ import java.util.List;
 
 @Mixin(FishingBobberEntity.class)
 public abstract class FishingBobberEntityMixin extends ProjectileEntity implements CustomFishingBobberEntityData {
-    @Shadow private int waitCountdown;
+    @Shadow
+    private int waitCountdown;
 
     public FishingBobberEntityMixin(EntityType<? extends ProjectileEntity> entityType, World world) {
         super(entityType, world);
@@ -85,8 +86,7 @@ public abstract class FishingBobberEntityMixin extends ProjectileEntity implemen
         Item lureItem = this.lureItemStack.getItem();
         if (lureItem.equals(HybridAquaticItems.INSTANCE.getBARBED_HOOK()) && this.getWorld().isDay()) {
             waitCountdown -= 75;
-        }
-        else if (lureItem.equals(HybridAquaticItems.INSTANCE.getGLOWING_HOOK()) && this.getWorld().isNight()) {
+        } else if (lureItem.equals(HybridAquaticItems.INSTANCE.getGLOWING_HOOK()) && this.getWorld().isNight()) {
             waitCountdown -= 75;
         }
     }
@@ -204,12 +204,12 @@ public abstract class FishingBobberEntityMixin extends ProjectileEntity implemen
             )
     )
     private void onHookReelEntity(ItemStack usedItem, CallbackInfoReturnable<Integer> cir) {
-        if(this.getWorld() instanceof ServerWorld serverWorld) {
+        if (this.getWorld() instanceof ServerWorld serverWorld) {
             if (!lureItemStack.isEmpty() && lureItemStack.isOf(HybridAquaticItems.INSTANCE.getOMINOUS_HOOK())) {
                 try {
                     var karkinosType = HybridAquaticEntityTypes.INSTANCE.getKARKINOS();
                     var karkinos = karkinosType.spawn(serverWorld, getBlockPos().add(0, -1, 0), SpawnReason.MOB_SUMMONED);
-                    if(karkinos == null) return;
+                    if (karkinos == null) return;
 
                     double modifier = 0.15;
                     Vec3d vecBetween = usedPlayer.getPos().subtract(this.getPos());
@@ -230,7 +230,7 @@ public abstract class FishingBobberEntityMixin extends ProjectileEntity implemen
                 try {
                     var creeperType = EntityType.CREEPER;
                     var creeper = creeperType.spawn(serverWorld, getBlockPos().add(0, -1, 0), SpawnReason.MOB_SUMMONED);
-                    if(creeper == null) return;
+                    if (creeper == null) return;
 
                     double modifier = 0.15;
                     Vec3d vecBetween = usedPlayer.getPos().subtract(this.getPos());

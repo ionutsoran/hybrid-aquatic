@@ -6,7 +6,8 @@ import net.minecraft.client.render.VertexConsumerProvider
 import net.minecraft.client.render.entity.EntityRendererFactory.Context
 import net.minecraft.client.util.math.MatrixStack
 
-class StarfishEntityRenderer(context: Context) : HybridAquaticCritterEntityRenderer<HybridAquaticCritterEntity>(context, StarfishEntityModel()) {
+class StarfishEntityRenderer(context: Context) :
+    HybridAquaticCritterEntityRenderer<HybridAquaticCritterEntity>(context, StarfishEntityModel()) {
     override fun render(
         entity: HybridAquaticCritterEntity?,
         entityYaw: Float,
