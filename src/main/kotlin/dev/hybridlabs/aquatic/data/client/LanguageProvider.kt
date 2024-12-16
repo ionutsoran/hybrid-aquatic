@@ -452,6 +452,7 @@ class LanguageProvider(output: FabricDataOutput) : FabricLanguageProvider(output
             HybridAquaticEntityTypes.ATOLLA_JELLYFISH to "Atolla Jellyfish",
             HybridAquaticEntityTypes.BIG_RED_JELLYFISH to "Big Red Jellyfish",
             HybridAquaticEntityTypes.COSMIC_JELLYFISH to "Cosmic Jellyfish",
+            HybridAquaticEntityTypes.FIREWORK_JELLYFISH to "Firework Jellyfish",
             HybridAquaticEntityTypes.BLUE_JELLYFISH to "Blue Jellyfish",
         )
 

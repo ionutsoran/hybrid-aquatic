@@ -5,8 +5,8 @@ import dev.hybridlabs.aquatic.entity.cephalopod.CuttlefishEntity
 import net.minecraft.util.Identifier
 
 class CuttlefishEntityModel : HybridAquaticCephalopodEntityModel<CuttlefishEntity>("cuttlefish") {
-    override fun getTextureResource(animatable: CuttlefishEntity?): Identifier {
-        val texturePath = when (animatable?.randomValue) {
+    override fun getTextureResource(animatable: CuttlefishEntity): Identifier {
+        val texturePath = when (animatable.randomValue) {
             0 -> "textures/entity/cephalopod/cuttlefish/cuttlefish.png"
             1 -> "textures/entity/cephalopod/cuttlefish/cuttlefish_zebra.png"
             2 -> "textures/entity/cephalopod/cuttlefish/cuttlefish_disruptive.png"

@@ -106,6 +106,7 @@ object SpawnRestrictionRegistry {
             HybridAquaticEntityTypes.ATOLLA_JELLYFISH,
             HybridAquaticEntityTypes.BIG_RED_JELLYFISH,
             HybridAquaticEntityTypes.COSMIC_JELLYFISH,
+            HybridAquaticEntityTypes.FIREWORK_JELLYFISH,
             HybridAquaticEntityTypes.MAUVE_STINGER,
         ).forEach { registerJellyUnderground(it) }
 

@@ -95,6 +95,7 @@ object HybridAquaticEntityRenderers {
     val ATOLLA_JELLYFISH = EntityRendererRegistry.register(HybridAquaticEntityTypes.ATOLLA_JELLYFISH, ::AtollaJellyfishEntityRenderer)
     val BIG_RED_JELLYFISH = EntityRendererRegistry.register(HybridAquaticEntityTypes.BIG_RED_JELLYFISH, ::BigRedJellyfishEntityRenderer)
     val COSMIC_JELLYFISH = EntityRendererRegistry.register(HybridAquaticEntityTypes.COSMIC_JELLYFISH, ::CosmicJellyfishEntityRenderer)
+    val FIREWORK_JELLYFISH = EntityRendererRegistry.register(HybridAquaticEntityTypes.FIREWORK_JELLYFISH, ::FireworkJellyfishEntityRenderer)
     val BOX_JELLYFISH = EntityRendererRegistry.register(HybridAquaticEntityTypes.BOX_JELLYFISH, ::BoxJellyfishEntityRenderer)
 
     //endregion

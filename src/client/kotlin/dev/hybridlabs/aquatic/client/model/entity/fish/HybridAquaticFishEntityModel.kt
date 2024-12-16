@@ -11,22 +11,22 @@ import software.bernie.geckolib.core.animation.AnimationState
 import software.bernie.geckolib.model.GeoModel
 
 abstract class HybridAquaticFishEntityModel<T: HybridAquaticFishEntity> (private val id: String) : GeoModel<T>() {
-    override fun getModelResource(animatable: T?): Identifier {
-        val variant = animatable?.variant
+    override fun getModelResource(animatable: T): Identifier {
+        val variant = animatable.variant
         if (variant != null && !variant.ignore.contains(MODEL))
             return Identifier(HybridAquatic.MOD_ID, "geo/fish/${id}/${id}_${variant.getProvidedVariant(animatable)}.geo.json")
         return Identifier(HybridAquatic.MOD_ID, "geo/fish/${id}/$id.geo.json")
     }
 
-    override fun getTextureResource(animatable: T?): Identifier {
-        val variant = animatable?.variant
+    override fun getTextureResource(animatable: T): Identifier {
+        val variant = animatable.variant
         if (variant != null && !variant.ignore.contains(TEXTURE))
             return Identifier(HybridAquatic.MOD_ID, "textures/entity/fish/${id}/${id}_${variant.getProvidedVariant(animatable)}.png")
         return Identifier(HybridAquatic.MOD_ID, "textures/entity/fish/${id}/$id.png")
     }
 
-    override fun getAnimationResource(animatable: T?): Identifier {
-        val variant = animatable?.variant
+    override fun getAnimationResource(animatable: T): Identifier {
+        val variant = animatable.variant
         if (variant != null && !variant.ignore.contains(ANIMATION))
             return Identifier(HybridAquatic.MOD_ID, "animations/${id}_${variant.getProvidedVariant(animatable)}.animation.json")
         return Identifier(HybridAquatic.MOD_ID, "animations/$id.animation.json")

@@ -6,8 +6,8 @@ import net.minecraft.util.Identifier
 
 class ToadfishEntityModel : HybridAquaticFishEntityModel<ToadfishEntity>("toadfish") {
 
-    override fun getTextureResource(animatable: ToadfishEntity?): Identifier {
-        val puffState = animatable?.getPuffState() ?: 0
+    override fun getTextureResource(animatable: ToadfishEntity): Identifier {
+        val puffState = animatable.getPuffState()
 
         val texturePath = when (puffState) {
             0 -> "textures/entity/fish/toadfish/toadfish_small.png"

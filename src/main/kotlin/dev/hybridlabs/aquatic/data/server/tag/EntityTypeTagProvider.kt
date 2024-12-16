@@ -150,6 +150,7 @@ class EntityTypeTagProvider(output: FabricDataOutput, registriesFuture: Completa
                 HybridAquaticEntityTypes.CAULIFLOWER_JELLYFISH,
                 HybridAquaticEntityTypes.COMPASS_JELLYFISH,
                 HybridAquaticEntityTypes.COSMIC_JELLYFISH,
+                HybridAquaticEntityTypes.FIREWORK_JELLYFISH,
                 HybridAquaticEntityTypes.FRIED_EGG_JELLYFISH,
                 HybridAquaticEntityTypes.LIONS_MANE_JELLYFISH,
                 HybridAquaticEntityTypes.MAUVE_STINGER,

@@ -5,7 +5,7 @@ import net.minecraft.client.render.RenderLayer
 import net.minecraft.util.Identifier
 
 class SeaAngelEntityModel : HybridAquaticFishEntityModel<HybridAquaticFishEntity>("sea_angel") {
-    override fun getRenderType(animatable: HybridAquaticFishEntity?, texture: Identifier?): RenderLayer {
+    override fun getRenderType(animatable: HybridAquaticFishEntity, texture: Identifier): RenderLayer {
         return RenderLayer.getEntityTranslucent(texture)
     }
 }

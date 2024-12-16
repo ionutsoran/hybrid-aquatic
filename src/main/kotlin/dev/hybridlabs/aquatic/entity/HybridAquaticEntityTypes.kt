@@ -568,6 +568,13 @@ object HybridAquaticEntityTypes {
         CosmicJellyfishEntity.createMobAttributes()
     )
 
+    val FIREWORK_JELLYFISH = registerJellyUnderground(
+        "firework_jellyfish",
+        ::FireworkJellyfishEntity,
+        EntityDimensions.fixed(0.5f, 0.5f),
+        FireworkJellyfishEntity.createMobAttributes()
+    )
+
     val BARREL_JELLYFISH = registerJelly(
         "barrel_jellyfish",
         ::BarrelJellyfishEntity,

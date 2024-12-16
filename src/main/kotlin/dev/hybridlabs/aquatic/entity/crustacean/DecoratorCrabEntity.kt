@@ -68,7 +68,7 @@ class DecoratorCrabEntity(entityType: EntityType<out HybridAquaticCrustaceanEnti
     override fun registerControllers(controllerRegistrar: AnimatableManager.ControllerRegistrar) {
         controllerRegistrar.add(AnimationController(this, "With/Without", 0) { state ->
             val animation = when {
-                hasCoral -> WITH_CORAL
+                coralTimer == 0 -> WITH_CORAL
                 else -> WITHOUT_CORAL
             }
             state.setAndContinue(animation)
@@ -76,12 +76,11 @@ class DecoratorCrabEntity(entityType: EntityType<out HybridAquaticCrustaceanEnti
         super.registerControllers(controllerRegistrar)
     }
 
-    private var hasCoral = true
     private var coralTimer = 0
 
     override fun interactMob(player: PlayerEntity, hand: Hand): ActionResult {
         val itemStack = player.getStackInHand(hand)
-        if (!itemStack.isEmpty && itemStack.isOf(Items.SHEARS) && hasCoral) {
+        if (!itemStack.isEmpty && itemStack.isOf(Items.SHEARS) && coralTimer == 0) {
             if (!world.isClient) {
                 this.coralTimer = 3600
                 this.playSound(SoundEvents.ENTITY_SHEEP_SHEAR, 1.0f, 1.0f)
@@ -98,7 +97,7 @@ class DecoratorCrabEntity(entityType: EntityType<out HybridAquaticCrustaceanEnti
     override fun tick() {
         super.tick()
 
-        hasCoral = coralTimer == 0
+        if (coralTimer > 0) coralTimer -= 1
     }
 
     companion object {

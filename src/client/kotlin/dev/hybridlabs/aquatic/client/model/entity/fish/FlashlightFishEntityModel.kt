@@ -6,8 +6,8 @@ import net.minecraft.util.Identifier
 
 class FlashlightFishEntityModel : HybridAquaticFishEntityModel<FlashlightFishEntity>("flashlight_fish") {
 
-    override fun getTextureResource(animatable: FlashlightFishEntity?): Identifier {
-        val isLightOn = animatable?.isLightOn ?: true
+    override fun getTextureResource(animatable: FlashlightFishEntity): Identifier {
+        val isLightOn = animatable.isLightOn
 
         val texturePath = if (isLightOn) {
             "textures/entity/fish/flashlight_fish/flashlight_fish.png"

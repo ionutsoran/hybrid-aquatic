@@ -89,8 +89,9 @@ object EntityBiomeModifications {
         addJelly(HybridAquaticEntityTypes.BOX_JELLYFISH, listOf(HybridAquaticBiomeTags.MANGROVES, HybridAquaticBiomeTags.REEF, HybridAquaticBiomeTags.TROPICAL_OCEANS, HybridAquaticBiomeTags.SANDY_BEACHES), 1, 1, 1)
 
         addUndergroundJelly(HybridAquaticEntityTypes.ATOLLA_JELLYFISH, listOf(BiomeTags.IS_DEEP_OCEAN), 1, 1, 1)
-        addUndergroundJelly(HybridAquaticEntityTypes.BIG_RED_JELLYFISH, listOf(BiomeTags.IS_DEEP_OCEAN), 2, 1, 1)
+        addUndergroundJelly(HybridAquaticEntityTypes.BIG_RED_JELLYFISH, listOf(BiomeTags.IS_DEEP_OCEAN), 1, 1, 1)
         addUndergroundJelly(HybridAquaticEntityTypes.COSMIC_JELLYFISH, listOf(BiomeTags.IS_DEEP_OCEAN), 2, 1, 1)
+        addUndergroundJelly(HybridAquaticEntityTypes.FIREWORK_JELLYFISH, listOf(BiomeTags.IS_DEEP_OCEAN), 2, 1, 1)
         addJelly(HybridAquaticEntityTypes.MAUVE_STINGER, listOf(BiomeTags.IS_DEEP_OCEAN), 3, 1, 1)
 
         //#region Sharks
