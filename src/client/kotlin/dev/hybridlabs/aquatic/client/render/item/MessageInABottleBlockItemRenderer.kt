@@ -1,5 +1,6 @@
 package dev.hybridlabs.aquatic.client.render.item
 
+import dev.hybridlabs.aquatic.HybridAquaticClient
 import dev.hybridlabs.aquatic.block.HybridAquaticBlocks
 import dev.hybridlabs.aquatic.block.MessageInABottleBlock
 import dev.hybridlabs.aquatic.block.entity.MessageInABottleBlockEntity
@@ -17,7 +18,7 @@ import net.minecraft.util.math.BlockPos
  */
 class MessageInABottleBlockItemRenderer : DynamicItemRenderer {
     private val messageInABottleBlockEntity = MessageInABottleBlockEntity(BlockPos.ORIGIN, HybridAquaticBlocks.MESSAGE_IN_A_BOTTLE.defaultState)
-    private val renderer = MessageInABottleBlockEntityRenderer()
+    private val renderer = MessageInABottleBlockEntityRenderer(HybridAquaticClient.createBlockEntityRendererFactoryContext())
 
     override fun render(
         stack: ItemStack,
