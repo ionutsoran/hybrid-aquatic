@@ -110,7 +110,7 @@ object HybridAquaticEntityTypes {
     )
 
     val BOXFISH = registerFish(
-        "cowfish",
+        "boxfish",
         ::BoxfishEntity,
         EntityDimensions.fixed(0.3f, 0.3f),
         BoxfishEntity.createMobAttributes()
