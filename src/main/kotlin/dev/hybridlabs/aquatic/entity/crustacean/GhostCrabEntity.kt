@@ -7,15 +7,18 @@ import net.minecraft.entity.attribute.EntityAttributes
 import net.minecraft.world.World
 
 class GhostCrabEntity(entityType: EntityType<out HybridAquaticCrustaceanEntity>, world: World) :
-    HybridAquaticCrustaceanEntity(entityType, world, false, false, true, variants = hashMapOf(
-        "purple" to CrustaceanVariant.biomeVariant("purple", HybridAquaticBiomeTags.SANDY_BEACHES,
-            ignore = listOf(CrustaceanVariant.Ignore.MODEL, CrustaceanVariant.Ignore.ANIMATION)),
-        "yellow" to CrustaceanVariant.biomeVariant("yellow", HybridAquaticBiomeTags.SANDY_BEACHES,
-            ignore = listOf(CrustaceanVariant.Ignore.MODEL, CrustaceanVariant.Ignore.ANIMATION)),
-        "red" to CrustaceanVariant.biomeVariant("red", HybridAquaticBiomeTags.SANDY_BEACHES,
-            ignore = listOf(CrustaceanVariant.Ignore.MODEL, CrustaceanVariant.Ignore.ANIMATION)),
-        "white" to CrustaceanVariant.biomeVariant("white", HybridAquaticBiomeTags.SANDY_BEACHES,
-            ignore = listOf(CrustaceanVariant.Ignore.MODEL, CrustaceanVariant.Ignore.ANIMATION)))) {
+    HybridAquaticCrustaceanEntity(
+        entityType, world, true, false,
+        variants = hashMapOf(
+            "purple" to CrustaceanVariant.biomeVariant("purple", HybridAquaticBiomeTags.SANDY_BEACHES,
+                ignore = listOf(CrustaceanVariant.Ignore.MODEL, CrustaceanVariant.Ignore.ANIMATION)),
+            "yellow" to CrustaceanVariant.biomeVariant("yellow", HybridAquaticBiomeTags.SANDY_BEACHES,
+                ignore = listOf(CrustaceanVariant.Ignore.MODEL, CrustaceanVariant.Ignore.ANIMATION)),
+            "red" to CrustaceanVariant.biomeVariant("red", HybridAquaticBiomeTags.SANDY_BEACHES,
+                ignore = listOf(CrustaceanVariant.Ignore.MODEL, CrustaceanVariant.Ignore.ANIMATION)),
+            "white" to CrustaceanVariant.biomeVariant("white", HybridAquaticBiomeTags.SANDY_BEACHES,
+                ignore = listOf(CrustaceanVariant.Ignore.MODEL, CrustaceanVariant.Ignore.ANIMATION)))
+    ) {
 
     companion object {
         fun createMobAttributes(): DefaultAttributeContainer.Builder {

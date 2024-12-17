@@ -48,6 +48,10 @@ class KarkinosEntity(entityType: EntityType<out HybridAquaticMinibossEntity>, wo
     }
 
     override fun shouldSwimInFluids(): Boolean {
+        return true
+    }
+
+    override fun isPushedByFluids(): Boolean {
         return false
     }
 
@@ -73,6 +77,7 @@ class KarkinosEntity(entityType: EntityType<out HybridAquaticMinibossEntity>, wo
 
     override fun initGoals() {
         goalSelector.add(1, KarkinosAttackGoal(this))
+        goalSelector.add(7, PounceAtTargetGoal(this, 0.3F))
         goalSelector.add(4, WanderAroundFarGoal(this, 0.3))
         goalSelector.add(5, LookAroundGoal(this))
         goalSelector.add(8, LookAtEntityGoal(this, PlayerEntity::class.java, 16.0f))

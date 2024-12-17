@@ -143,11 +143,11 @@ open class HybridAquaticCritterEntity(
     }
 
     override fun shouldSwimInFluids(): Boolean {
-        return false
+        return true
     }
 
-    override fun getBaseMovementSpeedMultiplier(): Float {
-        return 1.0F
+    override fun isPushedByFluids(): Boolean {
+        return false
     }
 
     override fun writeCustomDataToNbt(nbt: NbtCompound) {

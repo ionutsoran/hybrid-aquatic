@@ -8,16 +8,19 @@ import net.minecraft.util.Identifier
 import net.minecraft.world.World
 
 class LobsterEntity(entityType: EntityType<out HybridAquaticCrustaceanEntity>, world: World) :
-    HybridAquaticCrustaceanEntity(entityType, world, true, false, false, variants = hashMapOf(
-        "american" to CrustaceanVariant.biomeVariant("american", HybridAquaticBiomeTags.REEF,
-            ignore = listOf(CrustaceanVariant.Ignore.MODEL, CrustaceanVariant.Ignore.ANIMATION)),
-        "california_spiny" to CrustaceanVariant.biomeVariant("california_spiny", HybridAquaticBiomeTags.REEF,
-            ignore = listOf(CrustaceanVariant.Ignore.MODEL, CrustaceanVariant.Ignore.ANIMATION)),
-        "ornate_spiny" to CrustaceanVariant.biomeVariant("ornate_spiny", HybridAquaticBiomeTags.REEF,
-            ignore = listOf(CrustaceanVariant.Ignore.MODEL, CrustaceanVariant.Ignore.ANIMATION)),
-        "regal_slipper" to CrustaceanVariant.biomeVariant("regal_slipper", HybridAquaticBiomeTags.REEF,
-            ignore = listOf(CrustaceanVariant.Ignore.ANIMATION)),
-        )) {
+    HybridAquaticCrustaceanEntity(
+        entityType, world, false, false,
+        variants = hashMapOf(
+            "american" to CrustaceanVariant.biomeVariant("american", HybridAquaticBiomeTags.REEF,
+                ignore = listOf(CrustaceanVariant.Ignore.MODEL, CrustaceanVariant.Ignore.ANIMATION)),
+            "california_spiny" to CrustaceanVariant.biomeVariant("california_spiny", HybridAquaticBiomeTags.REEF,
+                ignore = listOf(CrustaceanVariant.Ignore.MODEL, CrustaceanVariant.Ignore.ANIMATION)),
+            "ornate_spiny" to CrustaceanVariant.biomeVariant("ornate_spiny", HybridAquaticBiomeTags.REEF,
+                ignore = listOf(CrustaceanVariant.Ignore.MODEL, CrustaceanVariant.Ignore.ANIMATION)),
+            "regal_slipper" to CrustaceanVariant.biomeVariant("regal_slipper", HybridAquaticBiomeTags.REEF,
+                ignore = listOf(CrustaceanVariant.Ignore.ANIMATION)),
+            )
+    ) {
 
     public override fun getLootTableId(): Identifier {
         return when (this.variant?.variantName) {

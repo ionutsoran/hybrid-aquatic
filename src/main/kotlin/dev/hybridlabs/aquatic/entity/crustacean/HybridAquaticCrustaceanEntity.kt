@@ -13,7 +13,6 @@ import net.minecraft.entity.ai.goal.EscapeDangerGoal
 import net.minecraft.entity.ai.goal.WanderAroundGoal
 import net.minecraft.entity.ai.pathing.EntityNavigation
 import net.minecraft.entity.ai.pathing.MobNavigation
-import net.minecraft.entity.ai.pathing.PathNodeType
 import net.minecraft.entity.attribute.EntityAttributes
 import net.minecraft.entity.damage.DamageSource
 import net.minecraft.entity.data.DataTracker
@@ -46,9 +45,8 @@ import software.bernie.geckolib.util.GeckoLibUtil
 open class HybridAquaticCrustaceanEntity(
     type: EntityType<out HybridAquaticCrustaceanEntity>,
     world: World,
-    open val isAquatic: Boolean,
-    open val isTerrestrial: Boolean,
     open val canDance: Boolean,
+    open val canSwim: Boolean,
     private val variants: Map<String, CrustaceanVariant> = mutableMapOf(),
     open val assumeDefault: Boolean = false,
     open val collisionRules: List<HybridAquaticFishEntity.VariantCollisionRules> = listOf(),
@@ -111,14 +109,15 @@ open class HybridAquaticCrustaceanEntity(
         entityData: EntityData?,
         entityNbt: NbtCompound?
     ): EntityData? {
-        this.size = this.random.nextBetween(getMinSize(),getMaxSize())
+        this.size = this.random.nextBetween(getMinSize(), getMaxSize())
 
         if (variants.isNotEmpty()) {
             if (spawnReason == SpawnReason.SPAWN_EGG) {
                 variantKey = variants.keys.elementAt(random.nextBetween(0, variants.size - 1))
             } else {
                 // Handle collisions
-                val validKeys = variants.filter { it.value.spawnCondition(world, spawnReason, blockPos, random) }.map { it.key }
+                val validKeys =
+                    variants.filter { it.value.spawnCondition(world, spawnReason, blockPos, random) }.map { it.key }
 
                 if (validKeys.isEmpty()) {
                     variantKey = variants.keys.random()
@@ -126,7 +125,10 @@ open class HybridAquaticCrustaceanEntity(
                     for (rule in collisionRules) {
                         val variantSet = rule.variants.toSet()
                         if ((rule.exclusionStatus == HybridAquaticFishEntity.VariantCollisionRules.ExclusionStatus.EXCLUSIVE && validKeys.toSet() == variantSet) ||
-                            (rule.exclusionStatus == HybridAquaticFishEntity.VariantCollisionRules.ExclusionStatus.INCLUSIVE && validKeys.containsAll(variantSet))) {
+                            (rule.exclusionStatus == HybridAquaticFishEntity.VariantCollisionRules.ExclusionStatus.INCLUSIVE && validKeys.containsAll(
+                                variantSet
+                            ))
+                        ) {
                             variantKey = rule.collisionHandler(validKeys.toSet(), random, world)
                             break
                         }
@@ -154,18 +156,8 @@ open class HybridAquaticCrustaceanEntity(
     }
 
     // region movement
-    init {
-        if (isAquatic) {
-            setPathfindingPenalty(PathNodeType.WATER, 0.0f)
-            setPathfindingPenalty(PathNodeType.WALKABLE, 10.0f)
-        } else if (isTerrestrial) {
-            setPathfindingPenalty(PathNodeType.WATER, 10.0f)
-            setPathfindingPenalty(PathNodeType.WALKABLE, 0.0f)
-        } else {
-            setPathfindingPenalty(PathNodeType.WATER, 0.0f)
-            setPathfindingPenalty(PathNodeType.WALKABLE, 0.0f)
-        }
 
+    init {
         moveControl = MoveControl(this)
         navigation = MobNavigation(this, world)
         stepHeight = 1.0F
@@ -194,6 +186,10 @@ open class HybridAquaticCrustaceanEntity(
     }
 
     override fun shouldSwimInFluids(): Boolean {
+        return true
+    }
+
+    override fun isPushedByFluids(): Boolean {
         return false
     }
 
@@ -205,32 +201,28 @@ open class HybridAquaticCrustaceanEntity(
     override fun tick() {
         super.tick()
 
-        if (this is HermitCrabEntity && isHiding) {
+        if ((this is HermitCrabEntity || this is GiantIsopodEntity) && isHiding) {
             hidingTimer--
 
             if (hidingTimer <= 0 && (world.time - lastDamageTime) >= 200) {
                 isHiding = false
                 attributes.getCustomInstance(EntityAttributes.GENERIC_MOVEMENT_SPEED)?.baseValue = 0.3
-                attributes.getCustomInstance(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE)?.baseValue = 0.0
-                attributes.getCustomInstance(EntityAttributes.GENERIC_ARMOR_TOUGHNESS)?.baseValue = 5.0
                 attributes.getCustomInstance(EntityAttributes.GENERIC_ARMOR)?.baseValue = 5.0
             } else {
                 attributes.getCustomInstance(EntityAttributes.GENERIC_MOVEMENT_SPEED)?.baseValue = 0.0
-                attributes.getCustomInstance(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE)?.baseValue = 1.0
-                attributes.getCustomInstance(EntityAttributes.GENERIC_ARMOR_TOUGHNESS)?.baseValue = 50.0
                 attributes.getCustomInstance(EntityAttributes.GENERIC_ARMOR)?.baseValue = 50.0
             }
         }
     }
 
     override fun damage(source: DamageSource, amount: Float): Boolean {
-        if (this is HermitCrabEntity && !isHiding) {
-                startHiding()
-            }
+        if (this is HermitCrabEntity || this is GiantIsopodEntity && !isHiding) {
+            startHiding()
+        }
 
-            lastDamageTime = world.time
+        lastDamageTime = world.time
 
-            return super.damage(source, amount)
+        return super.damage(source, amount)
     }
 
     // end region
@@ -261,14 +253,6 @@ open class HybridAquaticCrustaceanEntity(
         variantData = nbt.getCompound(VARIANT_DATA_KEY)
         size = nbt.getInt(CRUSTACEAN_SIZE_KEY)
         fromFishingNet = nbt.getBoolean("FromFishingNet")
-    }
-
-    override fun isPushedByFluids(): Boolean {
-        return false
-    }
-
-    override fun hasNoDrag(): Boolean {
-        return this.isSwimming
     }
 
     //#region SFX
@@ -319,11 +303,9 @@ open class HybridAquaticCrustaceanEntity(
 
     //#region Animations
     override fun registerControllers(controllerRegistrar: AnimatableManager.ControllerRegistrar) {
-
         controllerRegistrar.add(
             DefaultAnimations.genericWalkIdleController(this)
         )
-
         controllerRegistrar.add(
             AnimationController(this, "Hide", 5,
                 AnimationController.AnimationStateHandler { state: AnimationState<HybridAquaticCrustaceanEntity> ->
@@ -332,9 +314,9 @@ open class HybridAquaticCrustaceanEntity(
                     } else {
                         PlayState.STOP
                     }
-                })
+                }
+            )
         )
-
         controllerRegistrar.add(
             AnimationController(this, "Dance", 5,
                 AnimationController.AnimationStateHandler { state: AnimationState<HybridAquaticCrustaceanEntity> ->
@@ -343,7 +325,8 @@ open class HybridAquaticCrustaceanEntity(
                     } else {
                         PlayState.STOP
                     }
-                })
+                }
+            )
         )
     }
 
@@ -354,10 +337,14 @@ open class HybridAquaticCrustaceanEntity(
     //#endregion
 
     companion object {
-        val CRUSTACEAN_SIZE: TrackedData<Int> = DataTracker.registerData(HybridAquaticCrustaceanEntity::class.java, TrackedDataHandlerRegistry.INTEGER)
-        val ATTEMPT_ATTACK: TrackedData<Boolean> = DataTracker.registerData(HybridAquaticCrustaceanEntity::class.java, TrackedDataHandlerRegistry.BOOLEAN)
-        val VARIANT: TrackedData<String> = DataTracker.registerData(HybridAquaticCrustaceanEntity::class.java, TrackedDataHandlerRegistry.STRING)
-        var VARIANT_DATA: TrackedData<NbtCompound> = DataTracker.registerData(HybridAquaticCrustaceanEntity::class.java, TrackedDataHandlerRegistry.NBT_COMPOUND)
+        val CRUSTACEAN_SIZE: TrackedData<Int> =
+            DataTracker.registerData(HybridAquaticCrustaceanEntity::class.java, TrackedDataHandlerRegistry.INTEGER)
+        val ATTEMPT_ATTACK: TrackedData<Boolean> =
+            DataTracker.registerData(HybridAquaticCrustaceanEntity::class.java, TrackedDataHandlerRegistry.BOOLEAN)
+        val VARIANT: TrackedData<String> =
+            DataTracker.registerData(HybridAquaticCrustaceanEntity::class.java, TrackedDataHandlerRegistry.STRING)
+        var VARIANT_DATA: TrackedData<NbtCompound> =
+            DataTracker.registerData(HybridAquaticCrustaceanEntity::class.java, TrackedDataHandlerRegistry.NBT_COMPOUND)
 
         val DANCE: RawAnimation = RawAnimation.begin().thenPlay("misc.dance")
         val HIDE: RawAnimation = RawAnimation.begin().thenPlay("misc.hide")
@@ -394,7 +381,7 @@ open class HybridAquaticCrustaceanEntity(
                     isSpawnDark(world, pos, random)
         }
 
-        fun getScaleAdjustment(crustacean : HybridAquaticCrustaceanEntity, adjustment : Float): Float {
+        fun getScaleAdjustment(crustacean: HybridAquaticCrustaceanEntity, adjustment: Float): Float {
             return 1.0f + (crustacean.size * adjustment)
         }
 
@@ -405,8 +392,8 @@ open class HybridAquaticCrustaceanEntity(
 
     @Suppress("UNUSED")
     data class CrustaceanVariant(
-        val variantName : String,
-        val spawnCondition: (WorldAccess, SpawnReason, BlockPos, Random ) -> Boolean,
+        val variantName: String,
+        val spawnCondition: (WorldAccess, SpawnReason, BlockPos, Random) -> Boolean,
         val ignore: List<Ignore> = emptyList(),
         val priority: Int = 0,
         var providedVariant: (World, BlockPos, Random, HybridAquaticCrustaceanEntity) -> String = { _, _, _, _ ->
@@ -414,12 +401,16 @@ open class HybridAquaticCrustaceanEntity(
         }
     ) {
 
-        fun getProvidedVariant(crustacean: HybridAquaticCrustaceanEntity) : String {
+        fun getProvidedVariant(crustacean: HybridAquaticCrustaceanEntity): String {
             return providedVariant(crustacean.world, crustacean.blockPos, crustacean.random, crustacean)
         }
 
         companion object {
-            fun biomeVariant(variantName: String, biomes : TagKey<Biome>, ignore : List<Ignore> = emptyList()): CrustaceanVariant {
+            fun biomeVariant(
+                variantName: String,
+                biomes: TagKey<Biome>,
+                ignore: List<Ignore> = emptyList()
+            ): CrustaceanVariant {
                 return CrustaceanVariant(variantName, { world, _, pos, _ ->
                     world.getBiome(pos).isIn(biomes)
                 }, ignore)
@@ -434,20 +425,30 @@ open class HybridAquaticCrustaceanEntity(
     }
 
     @Suppress("UNUSED")
-    data class VariantCollisionRules(val variants : Set<String>, val collisionHandler: (Set<String>, Random, ServerWorldAccess) -> String, val exclusionStatus: ExclusionStatus = ExclusionStatus.INCLUSIVE) {
+    data class VariantCollisionRules(
+        val variants: Set<String>,
+        val collisionHandler: (Set<String>, Random, ServerWorldAccess) -> String,
+        val exclusionStatus: ExclusionStatus = ExclusionStatus.INCLUSIVE
+    ) {
 
         enum class ExclusionStatus {
             INCLUSIVE,
             EXCLUSIVE
         }
 
-        fun equalDistribution(variants: Set<String>, status : ExclusionStatus = ExclusionStatus.INCLUSIVE) : VariantCollisionRules {
+        fun equalDistribution(
+            variants: Set<String>,
+            status: ExclusionStatus = ExclusionStatus.INCLUSIVE
+        ): VariantCollisionRules {
             return VariantCollisionRules(variants, { possibleVariants, _, _ ->
                 possibleVariants.random()
             }, status)
         }
 
-        fun weightedDistribution(weights: Set<Pair<String, Double>>, status: ExclusionStatus = ExclusionStatus.EXCLUSIVE) : VariantCollisionRules {
+        fun weightedDistribution(
+            weights: Set<Pair<String, Double>>,
+            status: ExclusionStatus = ExclusionStatus.EXCLUSIVE
+        ): VariantCollisionRules {
             return VariantCollisionRules(weights.map { pair -> pair.first }.toSet(), { _, random, _ ->
                 val weightTotal = weights.sumOf { pair -> pair.second }
                 val randomVal = random.nextFloat() * weightTotal

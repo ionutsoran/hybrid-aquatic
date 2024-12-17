@@ -6,7 +6,7 @@ import net.minecraft.entity.attribute.EntityAttributes
 import net.minecraft.world.World
 
 class GiantIsopodEntity(entityType: EntityType<out HybridAquaticCrustaceanEntity>, world: World) :
-    HybridAquaticCrustaceanEntity(entityType, world, true, false, false, emptyMap()) {
+    HybridAquaticCrustaceanEntity(entityType, world, false, true, emptyMap()) {
 
     companion object {
         fun createMobAttributes(): DefaultAttributeContainer.Builder {
@@ -18,7 +18,8 @@ class GiantIsopodEntity(entityType: EntityType<out HybridAquaticCrustaceanEntity
                 .add(EntityAttributes.GENERIC_FOLLOW_RANGE, 4.0)
         }
     }
-    override fun getMaxSize() : Int {
+
+    override fun getMaxSize(): Int {
         return 5
     }
 
