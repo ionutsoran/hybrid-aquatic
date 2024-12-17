@@ -1,6 +1,5 @@
 package dev.hybridlabs.aquatic.block
 
-import dev.hybridlabs.aquatic.block.enum.GiantClamState
 import dev.hybridlabs.aquatic.item.HybridAquaticItems
 import net.minecraft.block.*
 import net.minecraft.entity.Entity
@@ -178,6 +177,7 @@ class GiantClamBlock(
             GiantClamState.CLOSED,
             GiantClamState.DEAD
         )
+
         val WATERLOGGED: BooleanProperty = Properties.WATERLOGGED
         private val SHAPE: VoxelShape = createCuboidShape(2.0, 0.0, 2.0, 14.0, 8.0, 14.0)
         private val COLLISION_SHAPE: VoxelShape = createCuboidShape(2.0, 0.0, 2.0, 14.0, 8.0, 14.0)

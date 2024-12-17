@@ -1,4 +1,4 @@
-package dev.hybridlabs.aquatic.block.enum
+package dev.hybridlabs.aquatic.block
 
 import net.minecraft.util.StringIdentifiable
 
