@@ -21,6 +21,7 @@ import net.minecraft.state.property.Properties
 import net.minecraft.util.ActionResult
 import net.minecraft.util.BlockRotation
 import net.minecraft.util.Hand
+import net.minecraft.util.StringIdentifiable
 import net.minecraft.util.hit.BlockHitResult
 import net.minecraft.util.math.BlockPos
 import net.minecraft.util.math.Direction
@@ -181,5 +182,13 @@ class GiantClamBlock(
         val WATERLOGGED: BooleanProperty = Properties.WATERLOGGED
         private val SHAPE: VoxelShape = createCuboidShape(2.0, 0.0, 2.0, 14.0, 8.0, 14.0)
         private val COLLISION_SHAPE: VoxelShape = createCuboidShape(2.0, 0.0, 2.0, 14.0, 8.0, 14.0)
+    }
+
+    enum class GiantClamState : StringIdentifiable {
+        OPEN, CLOSED, DEAD;
+
+        override fun asString(): String {
+            return name.lowercase()
+        }
     }
 }
