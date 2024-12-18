@@ -51,7 +51,7 @@ class VentPatchFeature(codec: Codec<VentPatchFeatureConfig>) : Feature<VentPatch
                 val wormRadius = wormRadiusProvider.get(random)
                 generateTubeWormPatch(world, candidateTopPos, random, wormCount, wormCountPerBlockProvider, wormRadius, wormProvider)
 
-                spawnYetiCrabsAroundVent(world, candidateTopPos, random, 2 + random.nextInt(3), 6)
+                spawnYetiCrabsAroundVent(world, candidateTopPos, random, 1 + random.nextInt(3), 6)
 
                 generated = true
             }

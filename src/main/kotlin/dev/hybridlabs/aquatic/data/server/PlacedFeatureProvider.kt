@@ -23,7 +23,6 @@ class PlacedFeatureProvider(output: FabricDataOutput, registriesFuture: Completa
                     SquarePlacementModifier.of(),
                     PlacedFeatures.OCEAN_FLOOR_WG_HEIGHTMAP,
                     CountPlacementModifier.of(1),
-                    BiomePlacementModifier.of()
                 )
             )
         )
@@ -35,7 +34,6 @@ class PlacedFeatureProvider(output: FabricDataOutput, registriesFuture: Completa
                     SquarePlacementModifier.of(),
                     PlacedFeatures.OCEAN_FLOOR_WG_HEIGHTMAP,
                     CountPlacementModifier.of(1),
-                    BiomePlacementModifier.of()
                 )
             )
         )
@@ -47,7 +45,6 @@ class PlacedFeatureProvider(output: FabricDataOutput, registriesFuture: Completa
                     SquarePlacementModifier.of(),
                     PlacedFeatures.OCEAN_FLOOR_WG_HEIGHTMAP,
                     CountPlacementModifier.of(1),
-                    BiomePlacementModifier.of()
                 )
             )
         )
@@ -59,7 +56,6 @@ class PlacedFeatureProvider(output: FabricDataOutput, registriesFuture: Completa
                     SquarePlacementModifier.of(),
                     PlacedFeatures.OCEAN_FLOOR_WG_HEIGHTMAP,
                     CountPlacementModifier.of(1),
-                    BiomePlacementModifier.of()
                 )
             )
         )
@@ -72,7 +68,6 @@ class PlacedFeatureProvider(output: FabricDataOutput, registriesFuture: Completa
                     SquarePlacementModifier.of(),
                     PlacedFeatures.OCEAN_FLOOR_WG_HEIGHTMAP,
                     CountPlacementModifier.of(1),
-                    BiomePlacementModifier.of()
                 )
             )
         )
@@ -85,7 +80,6 @@ class PlacedFeatureProvider(output: FabricDataOutput, registriesFuture: Completa
                     SquarePlacementModifier.of(),
                     PlacedFeatures.OCEAN_FLOOR_WG_HEIGHTMAP,
                     CountPlacementModifier.of(1),
-                    BiomePlacementModifier.of()
                 )
             )
         )
@@ -98,7 +92,6 @@ class PlacedFeatureProvider(output: FabricDataOutput, registriesFuture: Completa
                     SquarePlacementModifier.of(),
                     PlacedFeatures.WORLD_SURFACE_WG_HEIGHTMAP,
                     RarityFilterPlacementModifier.of(150),
-                    BiomePlacementModifier.of()
                 )
             )
         )
@@ -108,12 +101,11 @@ class PlacedFeatureProvider(output: FabricDataOutput, registriesFuture: Completa
             HybridAquaticPlacedFeatures.THERMAL_VENT_PATCH,
             PlacedFeature(entries.ref(HybridAquaticConfiguredFeatures.THERMAL_VENT_PATCH),
                 listOf(
-                    NoiseBasedCountPlacementModifier.of(5, 200.0, 0.0),
+                    NoiseBasedCountPlacementModifier.of(5, 100.0, 0.0),
                     SquarePlacementModifier.of(),
                     PlacedFeatures.BOTTOM_TO_120_RANGE,
                     SurfaceThresholdFilterPlacementModifier.of(Heightmap.Type.OCEAN_FLOOR_WG, Int.MIN_VALUE, -32),
                     CountPlacementModifier.of(1),
-                    BiomePlacementModifier.of()
                 )
             )
         )
@@ -124,9 +116,9 @@ class PlacedFeatureProvider(output: FabricDataOutput, registriesFuture: Completa
             PlacedFeature(entries.ref(HybridAquaticConfiguredFeatures.BRINE_LAKE),
                 listOf(
                     SquarePlacementModifier.of(),
-                    PlacedFeatures.OCEAN_FLOOR_HEIGHTMAP,
-                    CountPlacementModifier.of(4),
-                    BiomePlacementModifier.of(),
+                    PlacedFeatures.BOTTOM_TO_120_RANGE,
+                    SurfaceThresholdFilterPlacementModifier.of(Heightmap.Type.OCEAN_FLOOR_WG, Int.MIN_VALUE, Int.MAX_VALUE),
+                    CountPlacementModifier.of(1),
                 )
             )
         )
@@ -136,7 +128,7 @@ class PlacedFeatureProvider(output: FabricDataOutput, registriesFuture: Completa
             PlacedFeature(entries.ref(HybridAquaticConfiguredFeatures.DEEP_CORAL_MUSHROOM),
                 listOf(
                     SquarePlacementModifier.of(),
-                    HeightmapPlacementModifier.of(Heightmap.Type.OCEAN_FLOOR_WG),
+                    PlacedFeatures.OCEAN_FLOOR_WG_HEIGHTMAP,
                 )
             )
         )
@@ -146,7 +138,7 @@ class PlacedFeatureProvider(output: FabricDataOutput, registriesFuture: Completa
             PlacedFeature(entries.ref(HybridAquaticConfiguredFeatures.DEEP_CORAL_TREE),
                 listOf(
                     SquarePlacementModifier.of(),
-                    HeightmapPlacementModifier.of(Heightmap.Type.OCEAN_FLOOR_WG),
+                    PlacedFeatures.OCEAN_FLOOR_WG_HEIGHTMAP,
                 )
             )
         )
@@ -156,7 +148,7 @@ class PlacedFeatureProvider(output: FabricDataOutput, registriesFuture: Completa
             PlacedFeature(entries.ref(HybridAquaticConfiguredFeatures.DEEP_CORAL_CLAW),
                 listOf(
                     SquarePlacementModifier.of(),
-                    HeightmapPlacementModifier.of(Heightmap.Type.OCEAN_FLOOR_WG),
+                    PlacedFeatures.OCEAN_FLOOR_WG_HEIGHTMAP,
                 )
             )
         )
@@ -166,10 +158,9 @@ class PlacedFeatureProvider(output: FabricDataOutput, registriesFuture: Completa
             PlacedFeature(
                 entries.ref(HybridAquaticConfiguredFeatures.DEEP_OCEAN_VEGETATION),
                 listOf(
-                    NoiseBasedCountPlacementModifier.of(20, 400.0, 0.0),
+                    NoiseBasedCountPlacementModifier.of(40, 200.0, 0.0),
                     SquarePlacementModifier.of(),
                     PlacedFeatures.OCEAN_FLOOR_WG_HEIGHTMAP,
-                    BiomePlacementModifier.of()
                 )
             )
         )

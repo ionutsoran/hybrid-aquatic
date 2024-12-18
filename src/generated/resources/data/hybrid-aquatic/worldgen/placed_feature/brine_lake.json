@@ -5,15 +5,24 @@
       "type": "minecraft:in_square"
     },
     {
-      "type": "minecraft:heightmap",
-      "heightmap": "OCEAN_FLOOR"
+      "type": "minecraft:height_range",
+      "height": {
+        "type": "minecraft:uniform",
+        "max_inclusive": {
+          "absolute": 256
+        },
+        "min_inclusive": {
+          "above_bottom": 0
+        }
+      }
+    },
+    {
+      "type": "minecraft:surface_relative_threshold_filter",
+      "heightmap": "OCEAN_FLOOR_WG"
     },
     {
       "type": "minecraft:count",
-      "count": 4
-    },
-    {
-      "type": "minecraft:biome"
+      "count": 1
     }
   ]
 }

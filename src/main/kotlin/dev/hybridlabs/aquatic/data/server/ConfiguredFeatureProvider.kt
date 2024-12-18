@@ -10,7 +10,6 @@ import net.fabricmc.fabric.api.datagen.v1.provider.FabricDynamicRegistryProvider
 import net.minecraft.block.BlockState
 import net.minecraft.block.Blocks
 import net.minecraft.block.HorizontalFacingBlock
-import net.minecraft.fluid.Fluids
 import net.minecraft.registry.RegistryWrapper
 import net.minecraft.registry.entry.RegistryEntryList
 import net.minecraft.state.property.Properties
@@ -38,7 +37,7 @@ class ConfiguredFeatureProvider(output: FabricDataOutput, registriesFuture: Comp
                         SimpleBlockFeatureConfig(
                             BlockStateProvider.of(HybridAquaticBlocks.ANEMONE.defaultState)
                         ),
-                        BlockPredicate.matchingFluids(Fluids.WATER)
+                        BlockPredicate.matchingBlocks(Blocks.WATER)
                     )
                 )
             )
@@ -54,7 +53,7 @@ class ConfiguredFeatureProvider(output: FabricDataOutput, registriesFuture: Comp
                         SimpleBlockFeatureConfig(
                             BlockStateProvider.of(HybridAquaticBlocks.BROWN_SEAWEED.defaultState)
                         ),
-                        BlockPredicate.matchingFluids(Fluids.WATER)
+                        BlockPredicate.matchingBlocks(Blocks.WATER)
                     )
                 )
             )
@@ -70,7 +69,7 @@ class ConfiguredFeatureProvider(output: FabricDataOutput, registriesFuture: Comp
                         SimpleBlockFeatureConfig(
                             BlockStateProvider.of(HybridAquaticBlocks.RED_SEAWEED.defaultState)
                         ),
-                        BlockPredicate.matchingFluids(Fluids.WATER)
+                        BlockPredicate.matchingBlocks(Blocks.WATER)
                     )
                 )
             )
@@ -86,7 +85,7 @@ class ConfiguredFeatureProvider(output: FabricDataOutput, registriesFuture: Comp
                         SimpleBlockFeatureConfig(
                             BlockStateProvider.of(HybridAquaticBlocks.GREEN_SEAWEED.defaultState)
                         ),
-                        BlockPredicate.matchingFluids(Fluids.WATER)
+                        BlockPredicate.matchingBlocks(Blocks.WATER)
                     )
                 )
             )
@@ -104,7 +103,7 @@ class ConfiguredFeatureProvider(output: FabricDataOutput, registriesFuture: Comp
                         SimpleBlockFeatureConfig(
                             BlockStateProvider.of(HybridAquaticBlocks.TUBE_SPONGE.defaultState.with(Properties.WATERLOGGED, true))
                         ),
-                        BlockPredicate.matchingFluids(Fluids.WATER)
+                        BlockPredicate.matchingBlocks(Blocks.WATER)
                     )
                 )
             )
@@ -126,7 +125,7 @@ class ConfiguredFeatureProvider(output: FabricDataOutput, registriesFuture: Comp
                                     .build()
                             )
                         ),
-                        BlockPredicate.matchingFluids(Fluids.WATER)
+                        BlockPredicate.matchingBlocks(Blocks.WATER)
                     )
                 )
             )
