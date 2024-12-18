@@ -233,6 +233,7 @@ class LanguageProvider(output: FabricDataOutput) : FabricLanguageProvider(output
             HybridAquaticItems.DANIO to "Danio",
             HybridAquaticItems.BETTA to "Betta",
             HybridAquaticItems.PEARLFISH to "Pearlfish",
+            HybridAquaticItems.SNAILFISH to "Snailfish",
             HybridAquaticItems.DISCUS to "Discus",
             HybridAquaticItems.GOURAMI to "Gourami",
             HybridAquaticItems.RATFISH to "Ratfish",

@@ -208,6 +208,7 @@ class ModelProvider(output: FabricDataOutput) : FabricModelProvider(output) {
             HybridAquaticItems.BARRELEYE,
             HybridAquaticItems.BETTA,
             HybridAquaticItems.PEARLFISH,
+            HybridAquaticItems.SNAILFISH,
             HybridAquaticItems.BLUE_SPOTTED_STINGRAY,
             HybridAquaticItems.BLUE_TANG,
             HybridAquaticItems.SURGEONFISH_SOHAL,

@@ -653,6 +653,17 @@ class EntityTypeLootTableProvider(output: FabricDataOutput) : SimpleFabricLootTa
             )
         }
 
+        export(exporter, HybridAquaticEntityTypes.SNAILFISH) {
+            pool(
+                LootPool.builder()
+                    .with(
+                        ItemEntry.builder(HybridAquaticItems.SNAILFISH)
+                            .apply(LootingEnchantLootFunction.builder(UniformLootNumberProvider.create(0.0F, 1.0F)))
+                            .apply(SetCountLootFunction.builder(ConstantLootNumberProvider.create(1.0F)))
+                    )
+            )
+        }
+
         export(exporter, HybridAquaticEntityTypes.DANIO) {
             pool(
                 LootPool.builder()
