@@ -17,7 +17,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(LivingEntity.class)
-public abstract class EntityMixin {
+public abstract class LivingEntityMixin {
 
     @Unique
     private int brineEffectTick = 0;
@@ -25,14 +25,13 @@ public abstract class EntityMixin {
     @Inject(
         method = "baseTick",
         at = @At(
-            value = "INVOKE",
-            target = "Lnet/minecraft/entity/LivingEntity;isSubmergedIn(Lnet/minecraft/registry/tag/TagKey;)Z"
+            value = "TAIL"
         )
     )
     private void applyToxicShockInBrine(CallbackInfo ci) {
         LivingEntity livingEntity = (LivingEntity) (Object) this;
         
-        if (brineEffectTick >= 20) {
+        if (!livingEntity.getWorld().isClient && brineEffectTick >= 20) {
             brineEffectTick = 0;
             Box box = livingEntity.getBoundingBox().contract(0.001);
             int entityMinX = MathHelper.floor(box.minX);
