@@ -1,7 +1,6 @@
-package dev.hybridlabs.aquatic.entity.fish.ray
+package dev.hybridlabs.aquatic.entity.fish
 
 import dev.hybridlabs.aquatic.entity.ai.goal.FishJumpGoal
-import dev.hybridlabs.aquatic.entity.fish.HybridAquaticFishEntity
 import dev.hybridlabs.aquatic.tag.HybridAquaticEntityTags
 import net.minecraft.entity.EntityType
 import net.minecraft.entity.ai.goal.RevengeGoal
@@ -23,7 +22,7 @@ class MantaRayEntity(entityType: EntityType<out MantaRayEntity>, world: World) :
         fun createMobAttributes(): DefaultAttributeContainer.Builder {
             return createLivingAttributes()
                 .add(EntityAttributes.GENERIC_MAX_HEALTH, 10.0)
-                .add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.6)
+                .add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.5)
                 .add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 5.0)
                 .add(EntityAttributes.GENERIC_FOLLOW_RANGE, 16.0)
         }
