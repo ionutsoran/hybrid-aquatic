@@ -3,10 +3,11 @@
 	"animations": {
 		"sway": {
 			"loop": true,
-			"animation_length": 2,
 			"bones": {
 				"tentacles": {
-					"rotation": ["Math.sin(query.anim_time * 180)*1", 0, "Math.cos(query.anim_time * 180)*1"]
+					"rotation": {
+						"vector": ["Math.sin(query.anim_time * 90)*2.5", 0, "Math.cos(query.anim_time * 90)*2.5"]
+					}
 				}
 			}
 		}

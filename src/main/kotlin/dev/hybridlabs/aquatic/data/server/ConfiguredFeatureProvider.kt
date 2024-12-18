@@ -31,11 +31,16 @@ class ConfiguredFeatureProvider(output: FabricDataOutput, registriesFuture: Comp
             HybridAquaticConfiguredFeatures.ANEMONE_PATCH,
             ConfiguredFeature(
                 Feature.NO_BONEMEAL_FLOWER, RandomPatchFeatureConfig(
-                    2, 2, 2,
+                    3, 3, 3,
                     PlacedFeatures.createEntry(
                         Feature.SIMPLE_BLOCK,
                         SimpleBlockFeatureConfig(
-                            BlockStateProvider.of(HybridAquaticBlocks.ANEMONE.defaultState)
+                            WeightedBlockStateProvider(
+                                DataPool.builder<BlockState>()
+                                    .add(HybridAquaticBlocks.ANEMONE.defaultState.with(Properties.WATERLOGGED, true), 1)
+                                    .add(HybridAquaticBlocks.STRAWBERRY_ANEMONE.defaultState.with(Properties.WATERLOGGED, true), 3)
+                                    .build()
+                            )
                         ),
                         BlockPredicate.matchingBlocks(Blocks.WATER)
                     )

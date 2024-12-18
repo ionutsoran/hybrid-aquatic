@@ -100,6 +100,7 @@ class LanguageProvider(output: FabricDataOutput) : FabricLanguageProvider(output
             HybridAquaticBlocks.TIGER_SHARK_PLUSHIE to "Tiger Shark Plushie",
             HybridAquaticBlocks.WHALE_SHARK_PLUSHIE to "Whale Shark Plushie",
             HybridAquaticBlocks.ANEMONE to "Anemone",
+            HybridAquaticBlocks.STRAWBERRY_ANEMONE to "Strawberry Anemone",
             HybridAquaticBlocks.TUBE_SPONGE to "Tube Sponge",
             HybridAquaticBlocks.CRAB_POT to "Crab Pot",
             HybridAquaticBlocks.HYBRID_CRATE to "Hybrid Crate",

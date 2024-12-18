@@ -22,7 +22,7 @@ class PlacedFeatureProvider(output: FabricDataOutput, registriesFuture: Completa
                 listOf(
                     SquarePlacementModifier.of(),
                     PlacedFeatures.OCEAN_FLOOR_WG_HEIGHTMAP,
-                    CountPlacementModifier.of(1),
+                    CountPlacementModifier.of(2),
                 )
             )
         )
@@ -103,8 +103,7 @@ class PlacedFeatureProvider(output: FabricDataOutput, registriesFuture: Completa
                 listOf(
                     NoiseBasedCountPlacementModifier.of(5, 100.0, 0.0),
                     SquarePlacementModifier.of(),
-                    PlacedFeatures.BOTTOM_TO_120_RANGE,
-                    SurfaceThresholdFilterPlacementModifier.of(Heightmap.Type.OCEAN_FLOOR_WG, Int.MIN_VALUE, -32),
+                    SurfaceThresholdFilterPlacementModifier.of(Heightmap.Type.OCEAN_FLOOR_WG, Int.MIN_VALUE, -12),
                     CountPlacementModifier.of(1),
                 )
             )
@@ -116,8 +115,7 @@ class PlacedFeatureProvider(output: FabricDataOutput, registriesFuture: Completa
             PlacedFeature(entries.ref(HybridAquaticConfiguredFeatures.BRINE_LAKE),
                 listOf(
                     SquarePlacementModifier.of(),
-                    PlacedFeatures.BOTTOM_TO_120_RANGE,
-                    SurfaceThresholdFilterPlacementModifier.of(Heightmap.Type.OCEAN_FLOOR_WG, Int.MIN_VALUE, Int.MAX_VALUE),
+                    SurfaceThresholdFilterPlacementModifier.of(Heightmap.Type.OCEAN_FLOOR_WG, Int.MIN_VALUE, -8),
                     CountPlacementModifier.of(1),
                 )
             )
@@ -159,8 +157,8 @@ class PlacedFeatureProvider(output: FabricDataOutput, registriesFuture: Completa
                 entries.ref(HybridAquaticConfiguredFeatures.DEEP_OCEAN_VEGETATION),
                 listOf(
                     NoiseBasedCountPlacementModifier.of(40, 200.0, 0.0),
+                    SurfaceThresholdFilterPlacementModifier.of(Heightmap.Type.OCEAN_FLOOR_WG, Int.MIN_VALUE, -12),
                     SquarePlacementModifier.of(),
-                    PlacedFeatures.OCEAN_FLOOR_WG_HEIGHTMAP,
                 )
             )
         )

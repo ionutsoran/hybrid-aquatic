@@ -46,10 +46,12 @@ abstract class DeepCoralFeature(codec: Codec<DefaultFeatureConfig>) : Feature<De
         state: BlockState
     ): Boolean
 
-    protected fun generateDeepCoralPiece(world: WorldAccess, random: Random, pos: BlockPos, state: BlockState): Boolean {
-        val abovePos = pos.up()
+    protected fun generateDeepCoralPiece(world: WorldAccess, random: Random, pos: BlockPos, state: BlockState?): Boolean {
+        val blockPos = pos.up()
         val blockState = world.getBlockState(pos)
-        if ((blockState.isOf(Blocks.WATER) || blockState.isIn(HybridAquaticBlockTags.DEEP_CORALS)) && world.isWater(abovePos)) {
+        if ((blockState.isOf(Blocks.WATER) || blockState.isIn(HybridAquaticBlockTags.DEEP_CORALS)) && world.getBlockState(blockPos)
+                .isOf(Blocks.WATER)
+        ) {
             world.setBlockState(pos, state, 3)
             if (random.nextFloat() < 0.25f) {
                 Registries.BLOCK.getEntryList(HybridAquaticBlockTags.DEEP_CORALS).flatMap { blocks: RegistryEntryList.Named<Block> ->
@@ -57,31 +59,37 @@ abstract class DeepCoralFeature(codec: Codec<DefaultFeatureConfig>) : Feature<De
                         random
                     )
                 }.map { obj: RegistryEntry<Block> -> obj.value() }.ifPresent { block: Block ->
-                    world.setBlockState(abovePos, block.defaultState, 2)
+                    world.setBlockState(blockPos, block.defaultState, 2)
                 }
             } else if (random.nextFloat() < 0.05f) {
-                world.setBlockState(abovePos, HybridAquaticBlocks.TUBE_WORM.defaultState.with(TubeWormBlock.WORMS, random.nextInt(4) + 1), Block.NOTIFY_LISTENERS)
+                world.setBlockState(
+                    blockPos,
+                    HybridAquaticBlocks.TUBE_WORM.defaultState.with(TubeWormBlock.WORMS, random.nextInt(4) + 1), 2
+                )
             }
 
-            Direction.Type.HORIZONTAL.forEach { direction ->
-                if (random.nextFloat() < 0.2f) {
-                    val wallPos = pos.offset(direction)
-                    if (world.getBlockState(wallPos).isOf(Blocks.WATER)) {
-                        Registries.BLOCK.getEntryList(HybridAquaticBlockTags.DEEP_WALL_CORALS)
-                            .flatMap { blocks -> blocks.getRandom(random) }
-                            .map(RegistryEntry<Block>::value)
-                            .ifPresent { block ->
-                                val defaultState = block.defaultState
-                                val state = if (defaultState.contains(DeadCoralWallFanBlock.FACING)) {
-                                    defaultState.with(
-                                        DeadCoralWallFanBlock.FACING,
-                                        direction
-                                    )
-                                } else {
-                                    defaultState
-                                }
+            val var7: Iterator<*> = Direction.Type.HORIZONTAL.iterator()
 
-                                world.setBlockState(wallPos, state, Block.NOTIFY_LISTENERS)
+            while (var7.hasNext()) {
+                val direction = var7.next() as Direction
+                if (random.nextFloat() < 0.2f) {
+                    val blockPos2 = pos.offset(direction)
+                    if (world.getBlockState(blockPos2).isOf(Blocks.WATER)) {
+                        Registries.BLOCK.getEntryList(HybridAquaticBlockTags.DEEP_WALL_CORALS)
+                            .flatMap { blocks: RegistryEntryList.Named<Block> ->
+                                blocks.getRandom(
+                                    random
+                                )
+                            }.map { obj: RegistryEntry<Block> -> obj.value() }.ifPresent { block: Block ->
+                                var blockState = block.defaultState
+                                if (blockState.contains(DeadCoralWallFanBlock.FACING)) {
+                                    blockState =
+                                        blockState.with(
+                                            DeadCoralWallFanBlock.FACING,
+                                            direction
+                                        ) as BlockState
+                                }
+                                world.setBlockState(blockPos2, blockState, 2)
                             }
                     }
                 }

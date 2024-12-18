@@ -2,6 +2,8 @@ package dev.hybridlabs.aquatic.block.entity
 
 import net.minecraft.block.BlockState
 import net.minecraft.block.entity.BlockEntity
+import net.minecraft.nbt.NbtCompound
+import net.minecraft.network.packet.s2c.play.BlockEntityUpdateS2CPacket
 import net.minecraft.util.math.BlockPos
 import software.bernie.geckolib.core.animatable.GeoAnimatable
 import software.bernie.geckolib.core.animatable.instance.AnimatableInstanceCache
@@ -10,13 +12,12 @@ import software.bernie.geckolib.core.`object`.PlayState
 import software.bernie.geckolib.util.GeckoLibUtil
 import software.bernie.geckolib.util.RenderUtils
 
-
-class BuoyBlockEntity(pos: BlockPos, state: BlockState) : BlockEntity(HybridAquaticBlockEntityTypes.BUOY, pos, state), GeoAnimatable {
-    private val animCache = GeckoLibUtil.createInstanceCache(this)
+class StrawberryAnemoneBlockEntity(pos: BlockPos, state: BlockState) : BlockEntity(HybridAquaticBlockEntityTypes.STRAWBERRY_ANEMONE, pos, state), GeoAnimatable {
+    private val factory = GeckoLibUtil.createInstanceCache(this)
 
     private fun <E> predicate(event: AnimationState<E>): PlayState where E : BlockEntity?, E : GeoAnimatable {
         return if (world != null) {
-            event.controller.setAnimation(FLOAT_ANIMATION)
+            event.controller.setAnimation(SWAY_ANIMATION)
             PlayState.CONTINUE
         } else {
             PlayState.STOP
@@ -28,14 +29,23 @@ class BuoyBlockEntity(pos: BlockPos, state: BlockState) : BlockEntity(HybridAqua
     }
 
     override fun getAnimatableInstanceCache(): AnimatableInstanceCache {
-        return animCache
+        return factory
     }
 
-    override fun getTick(p0: Any): Double {
+    override fun getTick(o: Any): Double {
         return RenderUtils.getCurrentTick()
     }
 
+    override fun toInitialChunkDataNbt(): NbtCompound {
+        return createNbt()
+    }
+
+    override fun toUpdatePacket(): BlockEntityUpdateS2CPacket {
+        return BlockEntityUpdateS2CPacket.create(this)
+    }
+
     companion object {
-        val FLOAT_ANIMATION: RawAnimation = RawAnimation.begin().then("float", Animation.LoopType.LOOP)
+        val SWAY_ANIMATION: RawAnimation = RawAnimation.begin().then("sway", Animation.LoopType.LOOP)
+
     }
 }

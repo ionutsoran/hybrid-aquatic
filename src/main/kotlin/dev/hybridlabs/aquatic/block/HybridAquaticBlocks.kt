@@ -30,6 +30,17 @@ object HybridAquaticBlocks {
             .drops(Identifier(HybridAquatic.MOD_ID, "blocks/anemone"))
     ))
 
+    val STRAWBERRY_ANEMONE = register("strawberry_anemone", StrawberryAnemoneBlock(
+        FabricBlockSettings.create()
+            .mapColor(MapColor.DARK_RED)
+            .ticksRandomly()
+            .strength(0.4f)
+            .nonOpaque()
+            .pistonBehavior(PistonBehavior.DESTROY)
+            .sounds(BlockSoundGroup.SLIME)
+            .drops(Identifier(HybridAquatic.MOD_ID, "blocks/strawberry_anemone"))
+    ))
+
     val MESSAGE_IN_A_BOTTLE = register("message_in_a_bottle", MessageInABottleBlock(
         FabricBlockSettings.copyOf(Blocks.GLASS)
             .breakInstantly()

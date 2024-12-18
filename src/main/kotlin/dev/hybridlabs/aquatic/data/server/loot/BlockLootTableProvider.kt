@@ -35,6 +35,14 @@ class BlockLootTableProvider(output: FabricDataOutput) : FabricBlockLootTablePro
             )
         }
 
+        addDrop(HybridAquaticBlocks.STRAWBERRY_ANEMONE) { block ->
+            LootTable.builder().pool(
+                LootPool.builder()
+                    .with(ItemEntry.builder(block))
+                    .conditionally(WITH_SILK_TOUCH_OR_SHEARS)
+            )
+        }
+
         //region wood
         addDrop(HybridAquaticBlocks.DRIFTWOOD_LOG)
         addDrop(HybridAquaticBlocks.DRIFTWOOD_WOOD)
