@@ -3,15 +3,18 @@ package dev.hybridlabs.aquatic.world.gen.feature
 import com.mojang.serialization.Codec
 import dev.hybridlabs.aquatic.block.ThermalVentBlock
 import dev.hybridlabs.aquatic.block.TubeWormBlock
+import dev.hybridlabs.aquatic.entity.HybridAquaticEntityTypes
 import net.minecraft.block.Block
 import net.minecraft.block.BlockState
 import net.minecraft.block.enums.Thickness
+import net.minecraft.entity.SpawnReason
 import net.minecraft.state.property.Properties
 import net.minecraft.util.math.BlockPos
 import net.minecraft.util.math.Direction
 import net.minecraft.util.math.intprovider.IntProvider
 import net.minecraft.util.math.random.Random
 import net.minecraft.world.Heightmap
+import net.minecraft.world.ServerWorldAccess
 import net.minecraft.world.WorldAccess
 import net.minecraft.world.gen.feature.Feature
 import net.minecraft.world.gen.feature.util.FeatureContext
@@ -19,7 +22,7 @@ import net.minecraft.world.gen.stateprovider.BlockStateProvider
 import kotlin.math.max
 import kotlin.math.sqrt
 
-@Suppress("NAME_SHADOWING")
+@Suppress("NAME_SHADOWING", "SameParameterValue")
 class VentPatchFeature(codec: Codec<VentPatchFeatureConfig>) : Feature<VentPatchFeatureConfig>(codec) {
     override fun generate(context: FeatureContext<VentPatchFeatureConfig>): Boolean {
         var generated = false
@@ -47,6 +50,9 @@ class VentPatchFeature(codec: Codec<VentPatchFeatureConfig>) : Feature<VentPatch
                 val wormCount = wormCountProvider.get(random)
                 val wormRadius = wormRadiusProvider.get(random)
                 generateTubeWormPatch(world, candidateTopPos, random, wormCount, wormCountPerBlockProvider, wormRadius, wormProvider)
+
+                spawnYetiCrabsAroundVent(world, candidateTopPos, random, 2 + random.nextInt(3), 6)
+
                 generated = true
             }
         }
@@ -87,6 +93,31 @@ class VentPatchFeature(codec: Codec<VentPatchFeatureConfig>) : Feature<VentPatch
         }
 
         return true
+    }
+
+    private fun spawnYetiCrabsAroundVent(world: ServerWorldAccess, rootPos: BlockPos, random: Random, count: Int, radius: Int) {
+        repeat(count) {
+            val offsetX = random.nextInt(radius * 2 + 1) - radius
+            val offsetZ = random.nextInt(radius * 2 + 1) - radius
+            val spawnPos = rootPos.add(offsetX, 0, offsetZ)
+
+            val spawnY = world.getTopY(Heightmap.Type.OCEAN_FLOOR_WG, spawnPos.x, spawnPos.z)
+            val candidatePos = BlockPos(spawnPos.x, spawnY, spawnPos.z)
+
+            if (world.isWater(candidatePos)) {
+                val yetiCrabEntity = HybridAquaticEntityTypes.YETI_CRAB.create(world.toServerWorld()) ?: return@repeat
+                yetiCrabEntity.refreshPositionAndAngles(candidatePos, random.nextFloat() * 360F, 0F)
+                yetiCrabEntity.setPersistent()
+                yetiCrabEntity.initialize(
+                    world,
+                    world.getLocalDifficulty(candidatePos),
+                    SpawnReason.STRUCTURE,
+                    null,
+                    null
+                )
+                world.spawnEntity(yetiCrabEntity)
+            }
+        }
     }
 
     private fun generateHydrothermalVent(
