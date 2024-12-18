@@ -6,7 +6,7 @@ import net.minecraft.entity.attribute.EntityAttributes
 import net.minecraft.world.World
 
 class CrayfishEntity(entityType: EntityType<out HybridAquaticCrustaceanEntity>, world: World) :
-    HybridAquaticCrustaceanEntity(entityType, world, false, false, emptyMap()) {
+    HybridAquaticCrustaceanEntity(entityType, world, false, emptyMap()) {
 
     companion object {
         fun createMobAttributes(): DefaultAttributeContainer.Builder {

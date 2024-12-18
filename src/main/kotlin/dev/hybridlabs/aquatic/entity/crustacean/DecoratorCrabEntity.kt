@@ -21,8 +21,7 @@ import software.bernie.geckolib.core.animation.RawAnimation
 
 class DecoratorCrabEntity(entityType: EntityType<out HybridAquaticCrustaceanEntity>, world: World) :
     HybridAquaticCrustaceanEntity(
-        entityType, world, false, false,
-        variants = hashMapOf(
+        entityType, world, false, variants = hashMapOf(
             "brain" to CrustaceanVariant.biomeVariant(
                 "brain", HybridAquaticBiomeTags.REEF,
                 ignore = listOf(CrustaceanVariant.Ignore.MODEL, CrustaceanVariant.Ignore.ANIMATION)

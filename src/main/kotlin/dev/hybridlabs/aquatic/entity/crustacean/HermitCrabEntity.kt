@@ -9,7 +9,7 @@ import net.minecraft.world.World
 
 class HermitCrabEntity(entityType: EntityType<out HybridAquaticCrustaceanEntity>, world: World) :
     HybridAquaticCrustaceanEntity(
-        entityType, world, false, false, variants = hashMapOf(
+        entityType, world, false, variants = hashMapOf(
             "shell" to CrustaceanVariant.biomeVariant(
                 "shell", HybridAquaticBiomeTags.SANDY_BEACHES,
                 ignore = listOf(CrustaceanVariant.Ignore.ANIMATION)

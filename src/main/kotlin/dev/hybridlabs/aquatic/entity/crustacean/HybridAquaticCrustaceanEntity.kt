@@ -46,7 +46,6 @@ open class HybridAquaticCrustaceanEntity(
     type: EntityType<out HybridAquaticCrustaceanEntity>,
     world: World,
     open val canDance: Boolean,
-    open val canSwim: Boolean,
     private val variants: Map<String, CrustaceanVariant> = mutableMapOf(),
     open val assumeDefault: Boolean = false,
     open val collisionRules: List<HybridAquaticFishEntity.VariantCollisionRules> = listOf(),
@@ -186,7 +185,7 @@ open class HybridAquaticCrustaceanEntity(
     }
 
     override fun shouldSwimInFluids(): Boolean {
-        return true
+        return !isOnGround
     }
 
     override fun isPushedByFluids(): Boolean {

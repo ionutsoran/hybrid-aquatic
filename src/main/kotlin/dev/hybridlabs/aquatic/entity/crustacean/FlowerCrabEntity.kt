@@ -6,7 +6,7 @@ import net.minecraft.entity.attribute.EntityAttributes
 import net.minecraft.world.World
 
 class FlowerCrabEntity(entityType: EntityType<out HybridAquaticCrustaceanEntity>, world: World) :
-    HybridAquaticCrustaceanEntity(entityType, world, true, false, emptyMap()) {
+    HybridAquaticCrustaceanEntity(entityType, world, true, emptyMap()) {
 
     companion object {
         fun createMobAttributes(): DefaultAttributeContainer.Builder {

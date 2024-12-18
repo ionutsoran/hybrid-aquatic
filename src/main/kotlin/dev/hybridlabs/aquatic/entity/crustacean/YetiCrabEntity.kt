@@ -6,13 +6,13 @@ import net.minecraft.entity.attribute.EntityAttributes
 import net.minecraft.world.World
 
 class YetiCrabEntity(entityType: EntityType<out HybridAquaticCrustaceanEntity>, world: World) :
-    HybridAquaticCrustaceanEntity(entityType, world, false, false, emptyMap()) {
+    HybridAquaticCrustaceanEntity(entityType, world, false, emptyMap()) {
 
     companion object {
         fun createMobAttributes(): DefaultAttributeContainer.Builder {
             return createLivingAttributes()
                 .add(EntityAttributes.GENERIC_MAX_HEALTH, 3.0)
-                .add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.3)
+                .add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.25)
                 .add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 4.0)
                 .add(EntityAttributes.GENERIC_ATTACK_KNOCKBACK, 0.0)
                 .add(EntityAttributes.GENERIC_FOLLOW_RANGE, 4.0)

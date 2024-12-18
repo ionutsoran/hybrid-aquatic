@@ -9,8 +9,7 @@ import net.minecraft.world.World
 
 class LobsterEntity(entityType: EntityType<out HybridAquaticCrustaceanEntity>, world: World) :
     HybridAquaticCrustaceanEntity(
-        entityType, world, false, false,
-        variants = hashMapOf(
+        entityType, world, false, variants = hashMapOf(
             "american" to CrustaceanVariant.biomeVariant("american", HybridAquaticBiomeTags.REEF,
                 ignore = listOf(CrustaceanVariant.Ignore.MODEL, CrustaceanVariant.Ignore.ANIMATION)),
             "california_spiny" to CrustaceanVariant.biomeVariant("california_spiny", HybridAquaticBiomeTags.REEF,

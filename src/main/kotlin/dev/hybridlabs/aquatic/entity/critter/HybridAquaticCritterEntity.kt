@@ -142,8 +142,9 @@ open class HybridAquaticCritterEntity(
         return super.initialize(world, difficulty, spawnReason, entityData, entityNbt)
     }
 
+
     override fun shouldSwimInFluids(): Boolean {
-        return true
+        return !isOnGround
     }
 
     override fun isPushedByFluids(): Boolean {

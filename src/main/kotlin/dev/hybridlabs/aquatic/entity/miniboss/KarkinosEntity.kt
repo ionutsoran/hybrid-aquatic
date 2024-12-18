@@ -48,7 +48,7 @@ class KarkinosEntity(entityType: EntityType<out HybridAquaticMinibossEntity>, wo
     }
 
     override fun shouldSwimInFluids(): Boolean {
-        return true
+        return !isOnGround
     }
 
     override fun isPushedByFluids(): Boolean {
