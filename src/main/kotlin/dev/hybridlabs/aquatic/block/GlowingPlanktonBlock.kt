@@ -8,6 +8,7 @@ import net.minecraft.entity.ai.pathing.NavigationType
 import net.minecraft.fluid.FluidState
 import net.minecraft.fluid.Fluids
 import net.minecraft.item.ItemPlacementContext
+import net.minecraft.particle.ParticleTypes
 import net.minecraft.server.world.ServerWorld
 import net.minecraft.state.StateManager
 import net.minecraft.state.property.BooleanProperty
@@ -22,12 +23,13 @@ import net.minecraft.world.WorldView
 
 @Suppress("OVERRIDE_DEPRECATION")
 class GlowingPlanktonBlock(settings: Settings) : Block(
-    settings.luminance { state -> if (state.get(LIT)) 7 else 0 }
+    settings.luminance { state -> state.get(LIGHT_LEVEL) }
 ), Waterloggable {
     init {
         defaultState = defaultState
             .with(WATERLOGGED, true)
-            .with(LIT, false) as BlockState
+            .with(LIT, false)
+            .with(LIGHT_LEVEL, 0) as BlockState
     }
 
     override fun canPlaceAt(state: BlockState, world: WorldView, pos: BlockPos): Boolean {
@@ -44,10 +46,10 @@ class GlowingPlanktonBlock(settings: Settings) : Block(
     }
 
     override fun getOutlineShape(
-        state: BlockState?,
-        world: BlockView?,
-        pos: BlockPos?,
-        context: ShapeContext?
+        state: BlockState,
+        world: BlockView,
+        pos: BlockPos,
+        context: ShapeContext
     ): VoxelShape {
         return SHAPE
     }
@@ -67,11 +69,11 @@ class GlowingPlanktonBlock(settings: Settings) : Block(
         return if (state.get(WATERLOGGED)) Fluids.WATER.getStill(false) else super.getFluidState(state)
     }
 
-    override fun isTransparent(state: BlockState?, world: BlockView, pos: BlockPos): Boolean {
+    override fun isTransparent(state: BlockState, world: BlockView, pos: BlockPos): Boolean {
         return true
     }
 
-    override fun getRenderType(state: BlockState?): BlockRenderType {
+    override fun getRenderType(state: BlockState): BlockRenderType {
         return BlockRenderType.INVISIBLE
     }
 
@@ -95,8 +97,33 @@ class GlowingPlanktonBlock(settings: Settings) : Block(
     override fun onEntityCollision(state: BlockState, world: World, pos: BlockPos, entity: Entity) {
         super.onEntityCollision(state, world, pos, entity)
         if (world is ServerWorld && !state.get(LIT)) {
-            world.setBlockState(pos, state.with(LIT, true))
-            world.scheduleBlockTick(pos, this, 100)
+            world.setBlockState(pos, state.with(LIT, true).with(LIGHT_LEVEL, 7))
+            world.scheduleBlockTick(pos, this, 20)
+            val radius = 1.5
+            val particleCount = 5
+            val random = world.random
+
+            for (i in 0 until particleCount) {
+                val offsetX = random.nextDouble() * 2 * radius - radius
+                val offsetY = random.nextDouble() * 0.25
+                val offsetZ = random.nextDouble() * 2 * radius - radius
+
+                val particleX = entity.x + offsetX
+                val particleY = entity.y + offsetY
+                val particleZ = entity.z + offsetZ
+
+                world.spawnParticles(
+                    ParticleTypes.GLOW,
+                    particleX,
+                    particleY,
+                    particleZ,
+                    particleCount,
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0
+                )
+            }
         }
     }
 
@@ -106,13 +133,17 @@ class GlowingPlanktonBlock(settings: Settings) : Block(
         pos: BlockPos,
         random: net.minecraft.util.math.random.Random
     ) {
-        if (state.get(LIT)) {
+        val lightLevel = state.get(LIGHT_LEVEL)
+        if (lightLevel > 0) {
+            world.setBlockState(pos, state.with(LIGHT_LEVEL, lightLevel - 1))
+            world.scheduleBlockTick(pos, this, 20)
+        } else if (state.get(LIT)) {
             world.setBlockState(pos, state.with(LIT, false))
         }
     }
 
     override fun appendProperties(builder: StateManager.Builder<Block, BlockState>) {
-        builder.add(WATERLOGGED, LIT)
+        builder.add(WATERLOGGED, LIT, LIGHT_LEVEL)
     }
 
     override fun canPathfindThrough(state: BlockState, world: BlockView, pos: BlockPos, type: NavigationType): Boolean {
@@ -121,6 +152,7 @@ class GlowingPlanktonBlock(settings: Settings) : Block(
 
     companion object {
         val LIT: BooleanProperty = BooleanProperty.of("lit")
+        val LIGHT_LEVEL: net.minecraft.state.property.IntProperty = net.minecraft.state.property.IntProperty.of("light_level", 0, 7)
         private val SHAPE: VoxelShape = createCuboidShape(0.0, 0.0, 0.0, 0.0, 0.0, 0.0)
     }
 }
