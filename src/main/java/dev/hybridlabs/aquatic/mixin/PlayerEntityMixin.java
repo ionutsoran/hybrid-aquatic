@@ -88,7 +88,7 @@ public abstract class PlayerEntityMixin implements CustomPlayerEntityData {
             if (foundEntity != null) hybrid_aquatic$setHurtTime(200);
         }
     }
-    
+
     @Inject(method = "tick", at = @At("TAIL"))
     private void tickDownCustomHurtTime(CallbackInfo ci) {
         int cHurtTime = hybrid_aquatic$getHurtTime();
@@ -110,58 +110,58 @@ public abstract class PlayerEntityMixin implements CustomPlayerEntityData {
         var player = (PlayerEntity)(Object)this;
         ItemStack itemStack = player.getEquippedStack(EquipmentSlot.HEAD);
 
-        if (itemStack.isOf(HybridAquaticItems.INSTANCE.getDIVING_HELMET())) {
-            if (!player.isSubmergedIn(FluidTags.WATER)) {
-                player.addStatusEffect(new StatusEffectInstance(StatusEffects.WATER_BREATHING, 600, 0, false, false, false));
-            } else {
-                player.addStatusEffect(new StatusEffectInstance(HybridAquaticStatusEffects.INSTANCE.getCLARITY(), 600, 0, false, false, false));
-            }
-        }
+//        if (itemStack.isOf(HybridAquaticItems.INSTANCE.getDIVING_HELMET())) {
+//            if (!player.isSubmergedIn(FluidTags.WATER)) {
+//                player.addStatusEffect(new StatusEffectInstance(StatusEffects.WATER_BREATHING, 600, 0, false, false, false));
+//            } else {
+//                player.addStatusEffect(new StatusEffectInstance(HybridAquaticStatusEffects.INSTANCE.getCLARITY(), 600, 0, false, false, false));
+//            }
+//        }
     }
 
     @Unique
     private void updateDivingBoots() {
         var player = (PlayerEntity)(Object)this;
         ItemStack itemStack = player.getEquippedStack(EquipmentSlot.FEET);
-        isWearingDivingBoots = itemStack.isOf(HybridAquaticItems.INSTANCE.getDIVING_BOOTS());
-        if (isWearingDivingBoots && player.isSubmergedIn(FluidTags.WATER)) {
-            player.setStepHeight(1.0f);
-        } else {
-            player.setStepHeight(0.6f);
-        }
+//        isWearingDivingBoots = itemStack.isOf(HybridAquaticItems.INSTANCE.getDIVING_BOOTS());
+//        if (isWearingDivingBoots && player.isSubmergedIn(FluidTags.WATER)) {
+//            player.setStepHeight(1.0f);
+//        } else {
+//            player.setStepHeight(0.6f);
+//        }
     }
 
     @Unique
     private void updateTurtleChestplate() {
         var player = (PlayerEntity)(Object)this;
         var itemStack = player.getEquippedStack(EquipmentSlot.CHEST);
-        if (itemStack.isOf(HybridAquaticItems.INSTANCE.getTURTLE_CHESTPLATE())) {
-            player.addStatusEffect(new StatusEffectInstance(StatusEffects.RESISTANCE, 200, 0, false, false, true));
-            player.addStatusEffect(new StatusEffectInstance(StatusEffects.SLOWNESS, 200, 0, false, false, true));
-        }
+//        if (itemStack.isOf(HybridAquaticItems.INSTANCE.getTURTLE_CHESTPLATE())) {
+//            player.addStatusEffect(new StatusEffectInstance(StatusEffects.RESISTANCE, 200, 0, false, false, true));
+//            player.addStatusEffect(new StatusEffectInstance(StatusEffects.SLOWNESS, 200, 0, false, false, true));
+//        }
     }
-    
+
     @Unique
     int coralRepairTick = 0;
     @Unique
     private void repairCoralTools(int tickDelay) {
         var player = (PlayerEntity)(Object)this;
         var inventory = player.getInventory();
-        
+
         if (player.isSubmergedIn(FluidTags.WATER)) {
             if (coralRepairTick > tickDelay) {
                 List<DefaultedList<ItemStack>> combinedInventory = ImmutableList.of(inventory.main, inventory.offHand);
                 List<ItemStack> coralItems = new ArrayList<>();
                 for(List<ItemStack> list: combinedInventory) {
-	                for (ItemStack itemStack: list) {
-		                if (itemStack.getItem() instanceof ToolItem tool &&
-				                    tool.getMaterial() == HybridAquaticToolMaterials.CORAL &&
-				                    itemStack.isDamaged()) {
-                        coralItems.add(itemStack);
-		                }
-	                }
+                    for (ItemStack itemStack: list) {
+                        if (itemStack.getItem() instanceof ToolItem tool &&
+                                tool.getMaterial() == HybridAquaticToolMaterials.CORAL &&
+                                itemStack.isDamaged()) {
+                            coralItems.add(itemStack);
+                        }
+                    }
                 }
-                
+
                 if(!coralItems.isEmpty()) {
                     ItemStack item = coralItems.get(player.getRandom().nextInt(coralItems.size()));
                     item.setDamage(item.getDamage() - 1);
@@ -169,7 +169,7 @@ public abstract class PlayerEntityMixin implements CustomPlayerEntityData {
                 }
                 coralRepairTick = 0;
             }
-            
+
             coralRepairTick++;
         }
     }

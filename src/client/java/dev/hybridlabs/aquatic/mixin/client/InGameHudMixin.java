@@ -29,9 +29,9 @@ public class InGameHudMixin {
 
         if (player != null && client.options.getPerspective().isFirstPerson()) {
             ItemStack helmet = player.getInventory().getArmorStack(3);
-            if (helmet.getItem() == HybridAquaticItems.INSTANCE.getDIVING_HELMET()) {
-                renderDivingHelmetOverlay(context);
-            }
+//            if (helmet.getItem() == HybridAquaticItems.INSTANCE.getDIVING_HELMET()) {
+//                renderDivingHelmetOverlay(context);
+//            }
         }
         if (player != null && player.hasStatusEffect(HybridAquaticStatusEffects.INSTANCE.getINKED())) {
             renderInkedOverlay(context);

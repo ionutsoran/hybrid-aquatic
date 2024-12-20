@@ -119,86 +119,86 @@ class AdvancementProvider(output: FabricDataOutput) : FabricAdvancementProvider(
             .build(Identifier("hybrid-aquatic", "buoy"))
         consumer?.accept(buoyAdvancement)
 
-        val divingSuitAdvancement = Advancement.Builder.create()
-            .parent(boatAdvancement)
-            .display(
-                HybridAquaticItems.DIVING_HELMET,
-                Text.translatable("advancements.hybrid-aquatic.diving_suit.title"),
-                Text.translatable("advancements.hybrid-aquatic.diving_suit.description"),
-                Identifier("textures/gui/advancements/backgrounds/adventure.png"),
-                AdvancementFrame.GOAL,
-                true,
-                true,
-                false
-            )
-            .criterion(
-                "obtain_diving_suit",
-                InventoryChangedCriterion.Conditions.items(
-                    HybridAquaticItems.DIVING_HELMET,
-                    HybridAquaticItems.DIVING_SUIT,
-                    HybridAquaticItems.DIVING_LEGGINGS,
-                    HybridAquaticItems.DIVING_BOOTS
-                )
-            )
-            .build(Identifier("hybrid-aquatic", "diving_suit"))
-        consumer?.accept(divingSuitAdvancement)
+//        val divingSuitAdvancement = Advancement.Builder.create()
+//            .parent(boatAdvancement)
+//            .display(
+//                HybridAquaticItems.DIVING_HELMET,
+//                Text.translatable("advancements.hybrid-aquatic.diving_suit.title"),
+//                Text.translatable("advancements.hybrid-aquatic.diving_suit.description"),
+//                Identifier("textures/gui/advancements/backgrounds/adventure.png"),
+//                AdvancementFrame.GOAL,
+//                true,
+//                true,
+//                false
+//            )
+//            .criterion(
+//                "obtain_diving_suit",
+//                InventoryChangedCriterion.Conditions.items(
+//                    HybridAquaticItems.DIVING_HELMET,
+//                    HybridAquaticItems.DIVING_SUIT,
+//                    HybridAquaticItems.DIVING_LEGGINGS,
+//                    HybridAquaticItems.DIVING_BOOTS
+//                )
+//            )
+//            .build(Identifier("hybrid-aquatic", "diving_suit"))
+//        consumer?.accept(divingSuitAdvancement)
 
-        val brineAdvancement = Advancement.Builder.create()
-            .parent(divingSuitAdvancement)
-            .display(
-                HybridAquaticItems.BRINE_BUCKET,
-                Text.translatable("advancements.hybrid-aquatic.brine.title"),
-                Text.translatable("advancements.hybrid-aquatic.brine.description"),
-                Identifier("textures/gui/advancements/backgrounds/adventure.png"),
-                AdvancementFrame.TASK,
-                true,
-                true,
-                false
-            )
-            .criterion(
-                "enter_brine",
-                EnterBlockCriterion.Conditions.block(BRINE)
-            )
-            .build(Identifier("hybrid-aquatic", "brine"))
-        consumer?.accept(brineAdvancement)
+//        val brineAdvancement = Advancement.Builder.create()
+//            .parent(divingSuitAdvancement)
+//            .display(
+//                HybridAquaticItems.BRINE_BUCKET,
+//                Text.translatable("advancements.hybrid-aquatic.brine.title"),
+//                Text.translatable("advancements.hybrid-aquatic.brine.description"),
+//                Identifier("textures/gui/advancements/backgrounds/adventure.png"),
+//                AdvancementFrame.TASK,
+//                true,
+//                true,
+//                false
+//            )
+//            .criterion(
+//                "enter_brine",
+//                EnterBlockCriterion.Conditions.block(BRINE)
+//            )
+//            .build(Identifier("hybrid-aquatic", "brine"))
+//        consumer?.accept(brineAdvancement)
 
-        val obtainPearlAdvancement = Advancement.Builder.create()
-            .parent(divingSuitAdvancement)
-            .display(
-                HybridAquaticItems.PEARL,
-                Text.translatable("advancements.hybrid-aquatic.pearl.title"),
-                Text.translatable("advancements.hybrid-aquatic.pearl.description"),
-                Identifier("textures/gui/advancements/backgrounds/adventure.png"),
-                AdvancementFrame.TASK,
-                true,
-                true,
-                false
-            )
-            .criterion(
-                "obtain_pearl",
-                InventoryChangedCriterion.Conditions.items(HybridAquaticItems.PEARL)
-            )
-            .build(Identifier("hybrid-aquatic", "pearl"))
-        consumer?.accept(obtainPearlAdvancement)
+//        val obtainPearlAdvancement = Advancement.Builder.create()
+//            .parent(divingSuitAdvancement)
+//            .display(
+//                HybridAquaticItems.PEARL,
+//                Text.translatable("advancements.hybrid-aquatic.pearl.title"),
+//                Text.translatable("advancements.hybrid-aquatic.pearl.description"),
+//                Identifier("textures/gui/advancements/backgrounds/adventure.png"),
+//                AdvancementFrame.TASK,
+//                true,
+//                true,
+//                false
+//            )
+//            .criterion(
+//                "obtain_pearl",
+//                InventoryChangedCriterion.Conditions.items(HybridAquaticItems.PEARL)
+//            )
+//            .build(Identifier("hybrid-aquatic", "pearl"))
+//        consumer?.accept(obtainPearlAdvancement)
 
-        val obtainBlackPearlAdvancement = Advancement.Builder.create()
-            .parent(obtainPearlAdvancement)
-            .display(
-                HybridAquaticItems.BLACK_PEARL,
-                Text.translatable("advancements.hybrid-aquatic.black_pearl.title"),
-                Text.translatable("advancements.hybrid-aquatic.black_pearl.description"),
-                Identifier("textures/gui/advancements/backgrounds/adventure.png"),
-                AdvancementFrame.TASK,
-                true,
-                true,
-                true
-            )
-            .criterion(
-                "obtain_black_pearl",
-                InventoryChangedCriterion.Conditions.items(HybridAquaticItems.BLACK_PEARL)
-            )
-            .build(Identifier("hybrid-aquatic", "black_pearl"))
-        consumer?.accept(obtainBlackPearlAdvancement)
+//        val obtainBlackPearlAdvancement = Advancement.Builder.create()
+//            .parent(obtainPearlAdvancement)
+//            .display(
+//                HybridAquaticItems.BLACK_PEARL,
+//                Text.translatable("advancements.hybrid-aquatic.black_pearl.title"),
+//                Text.translatable("advancements.hybrid-aquatic.black_pearl.description"),
+//                Identifier("textures/gui/advancements/backgrounds/adventure.png"),
+//                AdvancementFrame.TASK,
+//                true,
+//                true,
+//                true
+//            )
+//            .criterion(
+//                "obtain_black_pearl",
+//                InventoryChangedCriterion.Conditions.items(HybridAquaticItems.BLACK_PEARL)
+//            )
+//            .build(Identifier("hybrid-aquatic", "black_pearl"))
+//        consumer?.accept(obtainBlackPearlAdvancement)
 
         val fishingHookAdvancement = Advancement.Builder.create()
             .parent(fishingNetAdvancement)
@@ -280,26 +280,26 @@ class AdvancementProvider(output: FabricDataOutput) : FabricAdvancementProvider(
             .build(Identifier("hybrid-aquatic", "ominous_hook"))
         consumer?.accept(ominousHookAdvancement)
 
-        val killKarkinosAdvancement = Advancement.Builder.create()
-            .parent(ominousHookAdvancement)
-            .display(
-                HybridAquaticItems.KARKINOS_CLAW,
-                Text.translatable("advancements.hybrid-aquatic.kill_karkinos.title"),
-                Text.translatable("advancements.hybrid-aquatic.kill_karkinos.description"),
-                Identifier("textures/gui/advancements/backgrounds/adventure.png"),
-                AdvancementFrame.CHALLENGE,
-                true,
-                true,
-                true
-            )
-            .criterion(
-                "kill_karkinos",
-                OnKilledCriterion.Conditions.createPlayerKilledEntity(
-                    EntityPredicate.Builder.create().type(HybridAquaticEntityTypes.KARKINOS).build()
-                )
-            )
-            .build(Identifier("hybrid-aquatic", "kill_karkinos"))
-        consumer?.accept(killKarkinosAdvancement)
+//        val killKarkinosAdvancement = Advancement.Builder.create()
+//            .parent(ominousHookAdvancement)
+//            .display(
+//                //HybridAquaticItems.KARKINOS_CLAW,
+//                Text.translatable("advancements.hybrid-aquatic.kill_karkinos.title"),
+//                Text.translatable("advancements.hybrid-aquatic.kill_karkinos.description"),
+//                Identifier("textures/gui/advancements/backgrounds/adventure.png"),
+//                AdvancementFrame.CHALLENGE,
+//                true,
+//                true,
+//                true
+//            )
+//            .criterion(
+//                "kill_karkinos",
+//                OnKilledCriterion.Conditions.createPlayerKilledEntity(
+//                    EntityPredicate.Builder.create().type(HybridAquaticEntityTypes.KARKINOS).build()
+//                )
+//            )
+//            .build(Identifier("hybrid-aquatic", "kill_karkinos"))
+//        consumer?.accept(killKarkinosAdvancement)
 
         val killSharkAdvancement = Advancement.Builder.create()
             .parent(boatAdvancement)

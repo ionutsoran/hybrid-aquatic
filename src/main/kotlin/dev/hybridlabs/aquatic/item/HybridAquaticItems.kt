@@ -21,76 +21,76 @@ import net.minecraft.util.math.Direction
 object HybridAquaticItems {
 
     //#region Armor
-    val DIVING_HELMET: Item = register(
-        "diving_helmet",
-        DivingArmorItem(HybridAquaticArmorMaterials.DIVING, ArmorItem.Type.HELMET, FabricItemSettings().maxCount(1))
-    )
+//    val DIVING_HELMET: Item = register(
+//        "diving_helmet",
+//        DivingArmorItem(HybridAquaticArmorMaterials.DIVING, ArmorItem.Type.HELMET, FabricItemSettings().maxCount(1))
+//    )
+//
+//    val DIVING_SUIT: Item = register(
+//        "diving_suit",
+//        DivingArmorItem(HybridAquaticArmorMaterials.DIVING, ArmorItem.Type.CHESTPLATE, FabricItemSettings().maxCount(1))
+//    )
+//
+//    val DIVING_LEGGINGS: Item = register(
+//        "diving_leggings",
+//        DivingArmorItem(HybridAquaticArmorMaterials.DIVING, ArmorItem.Type.LEGGINGS, FabricItemSettings().maxCount(1))
+//    )
+//
+//    val DIVING_BOOTS: Item = register(
+//        "diving_boots",
+//        DivingArmorItem(HybridAquaticArmorMaterials.DIVING, ArmorItem.Type.BOOTS, FabricItemSettings().maxCount(1))
+//    )
 
-    val DIVING_SUIT: Item = register(
-        "diving_suit",
-        DivingArmorItem(HybridAquaticArmorMaterials.DIVING, ArmorItem.Type.CHESTPLATE, FabricItemSettings().maxCount(1))
-    )
-
-    val DIVING_LEGGINGS: Item = register(
-        "diving_leggings",
-        DivingArmorItem(HybridAquaticArmorMaterials.DIVING, ArmorItem.Type.LEGGINGS, FabricItemSettings().maxCount(1))
-    )
-
-    val DIVING_BOOTS: Item = register(
-        "diving_boots",
-        DivingArmorItem(HybridAquaticArmorMaterials.DIVING, ArmorItem.Type.BOOTS, FabricItemSettings().maxCount(1))
-    )
-
-    val NAUTILUS_HELMET: Item = register(
-        "nautilus_helmet",
-        SeashellArmorItem(HybridAquaticArmorMaterials.SEASHELL, ArmorItem.Type.HELMET, FabricItemSettings().maxCount(1))
-    )
-
-    val NAUTILUS_PAULDRONS: Item = register(
-        "nautilus_pauldrons",
-        SeashellArmorItem(
-            HybridAquaticArmorMaterials.SEASHELL,
-            ArmorItem.Type.CHESTPLATE,
-            FabricItemSettings().maxCount(1)
-        )
-    )
-
-    val TURTLE_CHESTPLATE: Item = register(
-        "turtle_chestplate",
-        TurtleArmorItem(HybridAquaticArmorMaterials.TURTLE, ArmorItem.Type.CHESTPLATE, FabricItemSettings().maxCount(1))
-    )
-
-    val MANGLERFISH_LURE: Item = register(
-        "manglerfish_lure",
-        ManglerfishArmorItem(
-            HybridAquaticArmorMaterials.MANGLERFISH,
-            ArmorItem.Type.HELMET,
-            FabricItemSettings().maxCount(1)
-        )
-    )
-
-    val MANGLERFISH_FIN: Item = register(
-        "manglerfish_fin",
-        ManglerfishArmorItem(
-            HybridAquaticArmorMaterials.MANGLERFISH,
-            ArmorItem.Type.CHESTPLATE,
-            FabricItemSettings().maxCount(1)
-        )
-    )
-
-    val EEL_SCARF: Item = register(
-        "eel_scarf",
-        EelArmorItem(HybridAquaticArmorMaterials.EEL, ArmorItem.Type.CHESTPLATE, FabricItemSettings().maxCount(1))
-    )
-
-    val MOON_JELLYFISH_HAT: Item = register(
-        "moon_jellyfish_hat",
-        MoonJellyfishArmorItem(
-            HybridAquaticArmorMaterials.MOONJELLYFISH,
-            ArmorItem.Type.HELMET,
-            FabricItemSettings().maxCount(1)
-        )
-    )
+//    val NAUTILUS_HELMET: Item = register(
+//        "nautilus_helmet",
+//        SeashellArmorItem(HybridAquaticArmorMaterials.SEASHELL, ArmorItem.Type.HELMET, FabricItemSettings().maxCount(1))
+//    )
+//
+//    val NAUTILUS_PAULDRONS: Item = register(
+//        "nautilus_pauldrons",
+//        SeashellArmorItem(
+//            HybridAquaticArmorMaterials.SEASHELL,
+//            ArmorItem.Type.CHESTPLATE,
+//            FabricItemSettings().maxCount(1)
+//        )
+//    )
+//
+//    val TURTLE_CHESTPLATE: Item = register(
+//        "turtle_chestplate",
+//        TurtleArmorItem(HybridAquaticArmorMaterials.TURTLE, ArmorItem.Type.CHESTPLATE, FabricItemSettings().maxCount(1))
+//    )
+//
+//    val MANGLERFISH_LURE: Item = register(
+//        "manglerfish_lure",
+//        ManglerfishArmorItem(
+//            HybridAquaticArmorMaterials.MANGLERFISH,
+//            ArmorItem.Type.HELMET,
+//            FabricItemSettings().maxCount(1)
+//        )
+//    )
+//
+//    val MANGLERFISH_FIN: Item = register(
+//        "manglerfish_fin",
+//        ManglerfishArmorItem(
+//            HybridAquaticArmorMaterials.MANGLERFISH,
+//            ArmorItem.Type.CHESTPLATE,
+//            FabricItemSettings().maxCount(1)
+//        )
+//    )
+//
+//    val EEL_SCARF: Item = register(
+//        "eel_scarf",
+//        EelArmorItem(HybridAquaticArmorMaterials.EEL, ArmorItem.Type.CHESTPLATE, FabricItemSettings().maxCount(1))
+//    )
+//
+//    val MOON_JELLYFISH_HAT: Item = register(
+//        "moon_jellyfish_hat",
+//        MoonJellyfishArmorItem(
+//            HybridAquaticArmorMaterials.MOONJELLYFISH,
+//            ArmorItem.Type.HELMET,
+//            FabricItemSettings().maxCount(1)
+//        )
+//    )
 
     //#endregion
 
@@ -99,7 +99,7 @@ object HybridAquaticItems {
     val SEA_MESSAGE_BOOK = register("sea_message_book", SeaMessageBookItem(FabricItemSettings()))
     val FISHING_NET = register("fishing_net", FishingNetItem(FabricItemSettings().maxCount(1)))
     val BRINE_BUCKET = register("brine_bucket", BucketItem(HybridAquaticFluids.BRINE, FabricItemSettings().maxCount(1)))
-    val KARKINOS_CLAW = register("karkinos_claw", KarkinosClawItem(FabricItemSettings().maxCount(1)))
+    //val KARKINOS_CLAW = register("karkinos_claw", KarkinosClawItem(FabricItemSettings().maxCount(1)))
 
     val BARBED_HOOK = register("barbed_hook", HookItem(Item.Settings().maxDamage(16)))
     val GLOWING_HOOK = register("glowing_hook", HookItem(Item.Settings().maxDamage(16)))
@@ -201,7 +201,7 @@ object HybridAquaticItems {
 
     //#region Blocks
 
-        //#region Nature Blocks
+    //#region Nature Blocks
 
     val ANEMONE = registerBlockItem("anemone", HybridAquaticBlocks.ANEMONE)
     val STRAWBERRY_ANEMONE = registerBlockItem("strawberry_anemone", HybridAquaticBlocks.STRAWBERRY_ANEMONE)
@@ -214,7 +214,7 @@ object HybridAquaticItems {
     val TUBE_WORM = registerBlockItem("tube_worm", HybridAquaticBlocks.TUBE_WORM)
     val TUBE_SPONGE = registerBlockItem("tube_sponge", HybridAquaticBlocks.TUBE_SPONGE)
 
-            //#region Coral Blocks
+    //#region Coral Blocks
 
     val BUTTON_CORAL_BLOCK = registerBlockItem("button_coral_block", HybridAquaticBlocks.BUTTON_CORAL_BLOCK)
     val DEAD_BUTTON_CORAL_BLOCK = registerBlockItem("dead_button_coral_block", HybridAquaticBlocks.DEAD_BUTTON_CORAL_BLOCK)
@@ -244,17 +244,17 @@ object HybridAquaticItems {
     val THORN_CORAL_FAN = registerVerticallyAttachable("thorn_coral_fan", HybridAquaticBlocks.THORN_CORAL_FAN, HybridAquaticBlocks.THORN_CORAL_WALL_FAN)
     val DEAD_THORN_CORAL_FAN = registerVerticallyAttachable("dead_thorn_coral_fan", HybridAquaticBlocks.DEAD_THORN_CORAL_FAN, HybridAquaticBlocks.DEAD_THORN_CORAL_WALL_FAN)
 
-            //#endregion
+    //#endregion
 
-        //#endregion
+    //#endregion
 
-        //#region Artificial Blocks
+    //#region Artificial Blocks
 
     val BUOY = registerPlaceableInWaterBlockItem("buoy", HybridAquaticBlocks.BUOY)
     val GLOWSTICK = registerVerticallyAttachable("glowstick", HybridAquaticBlocks.GLOWSTICK, HybridAquaticBlocks.WALL_GLOWSTICK)
     val MESSAGE_IN_A_BOTTLE = register("message_in_a_bottle", MessageInABottleItem(FabricItemSettings()))
 
-            //#region Plushies
+    //#region Plushies
 
     val BASKING_SHARK_PLUSHIE = registerBlockItem("basking_shark_plushie", HybridAquaticBlocks.BASKING_SHARK_PLUSHIE)
     val BULL_SHARK_PLUSHIE = registerBlockItem("bull_shark_plushie", HybridAquaticBlocks.BULL_SHARK_PLUSHIE)
@@ -265,9 +265,9 @@ object HybridAquaticItems {
     val TIGER_SHARK_PLUSHIE = registerBlockItem("tiger_shark_plushie", HybridAquaticBlocks.TIGER_SHARK_PLUSHIE)
     val WHALE_SHARK_PLUSHIE = registerBlockItem("whale_shark_plushie", HybridAquaticBlocks.WHALE_SHARK_PLUSHIE)
 
-            //#endregion
+    //#endregion
 
-            //#region Crates
+    //#region Crates
 
     val CRAB_POT = registerBlockItem("crab_pot", HybridAquaticBlocks.CRAB_POT)
     val HYBRID_CRATE = registerBlockItem("hybrid_crate", HybridAquaticBlocks.HYBRID_CRATE)
@@ -280,9 +280,9 @@ object HybridAquaticItems {
     val MANGROVE_CRATE = registerBlockItem("mangrove_crate", HybridAquaticBlocks.MANGROVE_CRATE)
     val CHERRY_CRATE = registerBlockItem("cherry_crate", HybridAquaticBlocks.CHERRY_CRATE)
 
-            //#endregion
+    //#endregion
 
-            //#region Wood Blocks
+    //#region Wood Blocks
 
     val DRIFTWOOD_PLANKS = registerBlockItem("driftwood_planks", HybridAquaticBlocks.DRIFTWOOD_PLANKS)
     val DRIFTWOOD_LOG = registerBlockItem("driftwood_log", HybridAquaticBlocks.DRIFTWOOD_LOG)
@@ -298,9 +298,9 @@ object HybridAquaticItems {
     val DRIFTWOOD_PRESSURE_PLATE = registerBlockItem("driftwood_pressure_plate", HybridAquaticBlocks.DRIFTWOOD_PRESSURE_PLATE)
     val DRIFTWOOD_BUTTON = registerBlockItem("driftwood_button", HybridAquaticBlocks.DRIFTWOOD_BUTTON)
 
-            //#endregion
+    //#endregion
 
-        //#endregion
+    //#endregion
 
     //#endregion
 
@@ -1290,7 +1290,7 @@ object HybridAquaticItems {
 
     //#region Spawn Eggs
 
-        //#region Fish
+    //#region Fish
 
     val AFRICAN_BUTTERFLY_SPAWN_EGG = registerSpawnEgg("african_butterfly_spawn_egg", HybridAquaticEntityTypes.AFRICAN_BUTTERFLY, 0xb57955, 0x1e3555)
     val BARRELEYE_SPAWN_EGG = registerSpawnEgg("barreleye_spawn_egg", HybridAquaticEntityTypes.BARRELEYE, 0x4b4343, 0x6bc96c)
@@ -1330,9 +1330,9 @@ object HybridAquaticItems {
     val TUNA_SPAWN_EGG = registerSpawnEgg("tuna_spawn_egg", HybridAquaticEntityTypes.TUNA, 0x36668d, 0xf5d58d)
     val GOLDEN_DORADO_SPAWN_EGG = registerSpawnEgg("golden_dorado_spawn_egg", HybridAquaticEntityTypes.GOLDEN_DORADO, 0x36668d, 0xf5d58d)
 
-        //#endregion
+    //#endregion
 
-        //#region Deep Sea Fish
+    //#region Deep Sea Fish
 
     val ANGLERFISH_SPAWN_EGG = registerSpawnEgg("anglerfish_spawn_egg", HybridAquaticEntityTypes.ANGLERFISH, 0x4b4257, 0xa7f1eb)
     val COELACANTH_SPAWN_EGG = registerSpawnEgg("coelacanth_spawn_egg", HybridAquaticEntityTypes.COELACANTH, 0x2f517a, 0xbac4d3)
@@ -1342,26 +1342,26 @@ object HybridAquaticItems {
     val OARFISH_SPAWN_EGG = registerSpawnEgg("oarfish_spawn_egg", HybridAquaticEntityTypes.OARFISH, 0x8892ab, 0xb04743)
     val RATFISH_SPAWN_EGG = registerSpawnEgg("ratfish_spawn_egg", HybridAquaticEntityTypes.RATFISH, 0xa16470, 0x673146)
 
-        //#endregion
+    //#endregion
 
-        //#region Cephalopod
+    //#region Cephalopod
 
     val CUTTLEFISH_SPAWN_EGG = registerSpawnEgg("cuttlefish_spawn_egg", HybridAquaticEntityTypes.CUTTLEFISH, 0x8a4836, 0xf6deae)
     val ARROW_SQUID_SPAWN_EGG = registerSpawnEgg("arrow_squid_spawn_egg", HybridAquaticEntityTypes.ARROW_SQUID, 0x761f31, 0xd56360)
     val FIREFLY_SQUID_SPAWN_EGG = registerSpawnEgg("firefly_squid_spawn_egg", HybridAquaticEntityTypes.FIREFLY_SQUID, 0xc93a61, 0x4ec0e8)
 
-        //#endregion
+    //#endregion
 
-        //#region Deep Sea Cephalopod
+    //#region Deep Sea Cephalopod
 
     val GLOWING_SUCKER_OCTOPUS_SPAWN_EGG = registerSpawnEgg("glowing_sucker_octopus_spawn_egg", HybridAquaticEntityTypes.GLOWING_SUCKER_OCTOPUS, 0x892f4f, 0x84d5fe)
     val NAUTILUS_SPAWN_EGG = registerSpawnEgg("nautilus_spawn_egg", HybridAquaticEntityTypes.NAUTILUS, 0xd4ccc3, 0xae4635)
     val UMBRELLA_OCTOPUS_SPAWN_EGG = registerSpawnEgg("umbrella_octopus_spawn_egg", HybridAquaticEntityTypes.UMBRELLA_OCTOPUS, 0xffaf25, 0xfeff92)
     val VAMPIRE_SQUID_SPAWN_EGG = registerSpawnEgg("vampire_squid_spawn_egg", HybridAquaticEntityTypes.VAMPIRE_SQUID, 0x73363c, 0xc3e9e2)
 
-        //#endregion
+    //#endregion
 
-        //#region Jellyfish
+    //#region Jellyfish
 
     val BARREL_JELLYFISH_SPAWN_EGG = registerSpawnEgg("barrel_jellyfish_spawn_egg", HybridAquaticEntityTypes.BARREL_JELLYFISH, 0xd6f3ea, 0x413c83)
     val BLUE_JELLYFISH_SPAWN_EGG = registerSpawnEgg("blue_jellyfish_spawn_egg", HybridAquaticEntityTypes.BLUE_JELLYFISH, 0x4dc0e8, 0xff6b97)
@@ -1374,9 +1374,9 @@ object HybridAquaticItems {
     val SEA_NETTLE_SPAWN_EGG = registerSpawnEgg("sea_nettle_spawn_egg", HybridAquaticEntityTypes.SEA_NETTLE, 0xf7bc78, 0x76435f)
     val BOX_JELLYFISH_SPAWN_EGG = registerSpawnEgg("box_jellyfish_spawn_egg", HybridAquaticEntityTypes.BOX_JELLYFISH, 0x9ba6de, 0xebeff8)
 
-        //#endregion
+    //#endregion
 
-        //#region Deep Sea Jellyfish
+    //#region Deep Sea Jellyfish
 
     val MAUVE_STINGER_SPAWN_EGG = registerSpawnEgg("mauve_stinger_spawn_egg", HybridAquaticEntityTypes.MAUVE_STINGER, 0x633063, 0xbc787a)
     val ATOLLA_JELLYFISH_SPAWN_EGG = registerSpawnEgg("atolla_jellyfish_spawn_egg", HybridAquaticEntityTypes.ATOLLA_JELLYFISH, 0xa32858, 0x4dc0e8)
@@ -1384,9 +1384,9 @@ object HybridAquaticItems {
     val COSMIC_JELLYFISH_SPAWN_EGG = registerSpawnEgg("cosmic_jellyfish_spawn_egg", HybridAquaticEntityTypes.COSMIC_JELLYFISH, 0xe7debb, 0xffd375)
     val FIREWORK_JELLYFISH_SPAWN_EGG = registerSpawnEgg("firework_jellyfish_spawn_egg", HybridAquaticEntityTypes.FIREWORK_JELLYFISH, 0x6975e8, 0xfc7fb7)
 
-        //#endregion
+    //#endregion
 
-        //#region Crustaceans
+    //#region Crustaceans
 
     val COCONUT_CRAB_SPAWN_EGG = registerSpawnEgg("coconut_crab_spawn_egg", HybridAquaticEntityTypes.COCONUT_CRAB, 0x3e2d25, 0x3c546d)
     val DUNGENESS_CRAB_SPAWN_EGG = registerSpawnEgg("dungeness_crab_spawn_egg", HybridAquaticEntityTypes.DUNGENESS_CRAB, 0x81353f, 0xeecfce)
@@ -1402,24 +1402,24 @@ object HybridAquaticItems {
     val SHRIMP_SPAWN_EGG = registerSpawnEgg("shrimp_spawn_egg", HybridAquaticEntityTypes.SHRIMP, 0xeb564b, 0xff9166)
     val VAMPIRE_CRAB_SPAWN_EGG = registerSpawnEgg("vampire_crab_spawn_egg", HybridAquaticEntityTypes.VAMPIRE_CRAB, 0x322947, 0x752053)
 
-        //#endregion
+    //#endregion
 
-        //#region Deep Sea Crustaceans
+    //#region Deep Sea Crustaceans
 
     val GIANT_ISOPOD_SPAWN_EGG = registerSpawnEgg("giant_isopod_spawn_egg", HybridAquaticEntityTypes.GIANT_ISOPOD, 0xe6d3d6, 0x3c2236)
     val SPIDER_CRAB_SPAWN_EGG = registerSpawnEgg("spider_crab_spawn_egg", HybridAquaticEntityTypes.SPIDER_CRAB, 0x9d3e41, 0xc6836f)
     val YETI_CRAB_SPAWN_EGG = registerSpawnEgg("yeti_crab_spawn_egg", HybridAquaticEntityTypes.YETI_CRAB, 0xfff4dd, 0xffd16b)
 
-         //#endregion
+    //#endregion
 
-        //#region Miniboss
+    //#region Miniboss
 
     val KARKINOS_SPAWN_EGG = registerSpawnEgg("karkinos_spawn_egg", HybridAquaticEntityTypes.KARKINOS, 0x852c2a, 0x3d1031)
     val MANGLERFISH_SPAWN_EGG = registerSpawnEgg("manglerfish_spawn_egg", HybridAquaticEntityTypes.MANGLERFISH, 0x44404d, 0x74e5d5)
 
-        //#endregion
+    //#endregion
 
-        //#region Critters
+    //#region Critters
 
     val NUDIBRANCH_SPAWN_EGG = registerSpawnEgg("nudibranch_spawn_egg", HybridAquaticEntityTypes.NUDIBRANCH, 0xf7be47, 0xb853a3)
     val SEA_CUCUMBER_SPAWN_EGG = registerSpawnEgg("sea_cucumber_spawn_egg", HybridAquaticEntityTypes.SEA_CUCUMBER, 0x225b6d, 0x0c2627)
@@ -1427,9 +1427,9 @@ object HybridAquaticItems {
     val STARFISH_SPAWN_EGG = registerSpawnEgg("starfish_spawn_egg", HybridAquaticEntityTypes.STARFISH, 0x994066, 0x592645)
     val SEA_ANGEL_SPAWN_EGG = registerSpawnEgg("sea_angel_spawn_egg", HybridAquaticEntityTypes.SEA_ANGEL, 0xc6d5f9, 0xf38135)
 
-        //#endregion
+    //#endregion
 
-      //#region Sharks
+    //#region Sharks
 
     val BASKING_SHARK_SPAWN_EGG = registerSpawnEgg("basking_shark_spawn_egg", HybridAquaticEntityTypes.BASKING_SHARK, 0x725e6b, 0x201b1b)
     val BULL_SHARK_SPAWN_EGG = registerSpawnEgg("bull_shark_spawn_egg", HybridAquaticEntityTypes.BULL_SHARK, 0x676b8d, 0xd0ccda)
@@ -1441,7 +1441,7 @@ object HybridAquaticItems {
     val TIGER_SHARK_SPAWN_EGG = registerSpawnEgg("tiger_shark_spawn_egg", HybridAquaticEntityTypes.TIGER_SHARK, 0x3e3943, 0xf4f2f3)
     val WHALE_SHARK_SPAWN_EGG = registerSpawnEgg("whale_shark_spawn_egg", HybridAquaticEntityTypes.WHALE_SHARK, 0x1a1932, 0xffffff)
 
-        //#endregion
+    //#endregion
 
     //#endregion
 

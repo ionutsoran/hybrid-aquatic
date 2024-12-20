@@ -274,17 +274,17 @@ class ModelProvider(output: FabricDataOutput) : FabricModelProvider(output) {
             HybridAquaticItems.MAGNETIC_HOOK,
             HybridAquaticItems.CREEPERMAGNET_HOOK,
             HybridAquaticItems.OMINOUS_HOOK,
-            HybridAquaticItems.DIVING_HELMET,
-            HybridAquaticItems.DIVING_SUIT,
-            HybridAquaticItems.DIVING_LEGGINGS,
-            HybridAquaticItems.DIVING_BOOTS,
-            HybridAquaticItems.NAUTILUS_HELMET,
-            HybridAquaticItems.NAUTILUS_PAULDRONS,
-            HybridAquaticItems.MANGLERFISH_LURE,
-            HybridAquaticItems.MANGLERFISH_FIN,
-            HybridAquaticItems.TURTLE_CHESTPLATE,
-            HybridAquaticItems.EEL_SCARF,
-            HybridAquaticItems.MOON_JELLYFISH_HAT
+//            HybridAquaticItems.DIVING_HELMET,
+//            HybridAquaticItems.DIVING_SUIT,
+//            HybridAquaticItems.DIVING_LEGGINGS,
+//            HybridAquaticItems.DIVING_BOOTS,
+//            HybridAquaticItems.NAUTILUS_HELMET,
+//            HybridAquaticItems.NAUTILUS_PAULDRONS,
+//            HybridAquaticItems.MANGLERFISH_LURE,
+//            HybridAquaticItems.MANGLERFISH_FIN,
+//            HybridAquaticItems.TURTLE_CHESTPLATE,
+//            HybridAquaticItems.EEL_SCARF,
+//            HybridAquaticItems.MOON_JELLYFISH_HAT
         ).forEach { item ->
             generator.register(item, Models.GENERATED)
         }

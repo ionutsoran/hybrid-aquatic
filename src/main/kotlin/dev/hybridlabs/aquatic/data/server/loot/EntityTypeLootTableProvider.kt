@@ -46,36 +46,36 @@ class EntityTypeLootTableProvider(output: FabricDataOutput) : SimpleFabricLootTa
         }
         //crustaceans
 
-        export(exporter, HybridAquaticEntityTypes.KARKINOS) {
-            pool(
-                LootPool.builder()
-                    .with(
-                        ItemEntry.builder(HybridAquaticItems.RAW_CRAB)
-                            .apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(8.0F, 16.0F)))
-                    )
-            )
-            pool(
-                LootPool.builder()
-                    .with(
-                        ItemEntry.builder(HybridAquaticItems.KARKINOS_CLAW)
-                    )
-            )
-        }
+//        export(exporter, HybridAquaticEntityTypes.KARKINOS) {
+//            pool(
+//                LootPool.builder()
+//                    .with(
+//                        ItemEntry.builder(HybridAquaticItems.RAW_CRAB)
+//                            .apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(8.0F, 16.0F)))
+//                    )
+//            )
+//            pool(
+//                LootPool.builder()
+//                    .with(
+//                        ItemEntry.builder(HybridAquaticItems.KARKINOS_CLAW)
+//                    )
+//            )
+//        }
 
-        export(exporter, HybridAquaticEntityTypes.MANGLERFISH) {
-            pool(
-                LootPool.builder()
-                    .with(
-                        ItemEntry.builder(HybridAquaticItems.MANGLERFISH_LURE)
-                    )
-            )
-            pool(
-                LootPool.builder()
-                    .with(
-                        ItemEntry.builder(HybridAquaticItems.MANGLERFISH_FIN)
-                    )
-            )
-        }
+//        export(exporter, HybridAquaticEntityTypes.MANGLERFISH) {
+//            pool(
+//                LootPool.builder()
+//                    .with(
+//                        ItemEntry.builder(HybridAquaticItems.MANGLERFISH_LURE)
+//                    )
+//            )
+//            pool(
+//                LootPool.builder()
+//                    .with(
+//                        ItemEntry.builder(HybridAquaticItems.MANGLERFISH_FIN)
+//                    )
+//            )
+//        }
 
         export(exporter, HybridAquaticEntityTypes.DECORATOR_CRAB) {
             pool(

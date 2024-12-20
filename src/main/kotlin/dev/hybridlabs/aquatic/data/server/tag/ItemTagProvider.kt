@@ -320,38 +320,38 @@ class ItemTagProvider(output: FabricDataOutput, registriesFuture: CompletableFut
                 getOrCreateTagBuilder(HybridAquaticItemTags.PLUSHIES).add(item)
             }
 
-        setOf(
-            HybridAquaticItems.MOON_JELLYFISH_HAT,
-            HybridAquaticItems.MANGLERFISH_LURE,
-        ).forEach { item ->
-            getOrCreateTagBuilder(HybridAquaticItemTags.HAT).add(item)
-        }
+//        setOf(
+//            HybridAquaticItems.MOON_JELLYFISH_HAT,
+//            HybridAquaticItems.MANGLERFISH_LURE,
+//        ).forEach { item ->
+//            getOrCreateTagBuilder(HybridAquaticItemTags.HAT).add(item)
+//        }
+//
+//        setOf(
+//            HybridAquaticItems.EEL_SCARF,
+//        ).forEach { item ->
+//            getOrCreateTagBuilder(HybridAquaticItemTags.SCARF).add(item)
+//        }
+//
+//        setOf(
+//            HybridAquaticItems.MANGLERFISH_FIN,
+//        ).forEach { item ->
+//            getOrCreateTagBuilder(HybridAquaticItemTags.BACK_FIN).add(item)
+//        }
 
-        setOf(
-            HybridAquaticItems.EEL_SCARF,
-        ).forEach { item ->
-            getOrCreateTagBuilder(HybridAquaticItemTags.SCARF).add(item)
-        }
-
-        setOf(
-            HybridAquaticItems.MANGLERFISH_FIN,
-        ).forEach { item ->
-            getOrCreateTagBuilder(HybridAquaticItemTags.BACK_FIN).add(item)
-        }
-
-        setOf(
-            HybridAquaticItems.MANGLERFISH_LURE,
-            HybridAquaticItems.MANGLERFISH_FIN,
-            HybridAquaticItems.EEL_SCARF,
-            HybridAquaticItems.MOON_JELLYFISH_HAT,
-            HybridAquaticItems.NAUTILUS_HELMET,
-            HybridAquaticItems.NAUTILUS_PAULDRONS,
-            HybridAquaticItems.DIVING_HELMET,
-            HybridAquaticItems.DIVING_SUIT,
-            HybridAquaticItems.DIVING_LEGGINGS,
-            HybridAquaticItems.DIVING_BOOTS,
-        ).forEach { item ->
-            getOrCreateTagBuilder(HybridAquaticItemTags.ARMORS).add(item)
-        }
+//        setOf(
+//            HybridAquaticItems.MANGLERFISH_LURE,
+//            HybridAquaticItems.MANGLERFISH_FIN,
+//            HybridAquaticItems.EEL_SCARF,
+//            HybridAquaticItems.MOON_JELLYFISH_HAT,
+//            HybridAquaticItems.NAUTILUS_HELMET,
+//            HybridAquaticItems.NAUTILUS_PAULDRONS,
+//            HybridAquaticItems.DIVING_HELMET,
+//            HybridAquaticItems.DIVING_SUIT,
+//            HybridAquaticItems.DIVING_LEGGINGS,
+//            HybridAquaticItems.DIVING_BOOTS,
+//        ).forEach { item ->
+//            getOrCreateTagBuilder(HybridAquaticItemTags.ARMORS).add(item)
+//        }
     }
 }

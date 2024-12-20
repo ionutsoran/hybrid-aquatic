@@ -266,7 +266,7 @@ class LanguageProvider(output: FabricDataOutput) : FabricLanguageProvider(output
             HybridAquaticItems.CREEPERMAGNET_HOOK to "CreeperMagnet Hook",
             HybridAquaticItems.OMINOUS_HOOK to "Ominous Hook",
             HybridAquaticItems.FISHING_NET to "Fishing Net",
-            HybridAquaticItems.KARKINOS_CLAW to "Karkinos Claw",
+            //HybridAquaticItems.KARKINOS_CLAW to "Karkinos Claw",
             HybridAquaticItems.SEASHELL_SPEAR to "Seashell Spear",
             HybridAquaticItems.SEASHELL_PICKAXE to "Seashell Pickaxe",
             HybridAquaticItems.SEASHELL_AXE to "Seashell Axe",
@@ -277,17 +277,17 @@ class LanguageProvider(output: FabricDataOutput) : FabricLanguageProvider(output
             HybridAquaticItems.CORAL_AXE to "Coral Axe",
             HybridAquaticItems.CORAL_SHOVEL to "Coral Shovel",
             HybridAquaticItems.CORAL_HOE to "Coral Hoe",
-            HybridAquaticItems.DIVING_HELMET to "Diving Helmet",
-            HybridAquaticItems.DIVING_SUIT to "Diving Suit",
-            HybridAquaticItems.DIVING_LEGGINGS to "Diving Leggings",
-            HybridAquaticItems.DIVING_BOOTS to "Diving Boots",
-            HybridAquaticItems.NAUTILUS_HELMET to "Nautilus Helmet",
-            HybridAquaticItems.NAUTILUS_PAULDRONS to "Nautilus Pauldrons",
-            HybridAquaticItems.MANGLERFISH_LURE to "Manglerfish Lure",
-            HybridAquaticItems.MANGLERFISH_FIN to "Manglerfish Fin",
-            HybridAquaticItems.EEL_SCARF to "Eel Scarf",
-            HybridAquaticItems.TURTLE_CHESTPLATE to "Turtle Chestplate",
-            HybridAquaticItems.MOON_JELLYFISH_HAT to "Moon Jellyfish Hat",
+//            HybridAquaticItems.DIVING_HELMET to "Diving Helmet",
+//            HybridAquaticItems.DIVING_SUIT to "Diving Suit",
+//            HybridAquaticItems.DIVING_LEGGINGS to "Diving Leggings",
+//            HybridAquaticItems.DIVING_BOOTS to "Diving Boots",
+//            HybridAquaticItems.NAUTILUS_HELMET to "Nautilus Helmet",
+//            HybridAquaticItems.NAUTILUS_PAULDRONS to "Nautilus Pauldrons",
+//            HybridAquaticItems.MANGLERFISH_LURE to "Manglerfish Lure",
+//            HybridAquaticItems.MANGLERFISH_FIN to "Manglerfish Fin",
+//            HybridAquaticItems.EEL_SCARF to "Eel Scarf",
+//            HybridAquaticItems.TURTLE_CHESTPLATE to "Turtle Chestplate",
+//            HybridAquaticItems.MOON_JELLYFISH_HAT to "Moon Jellyfish Hat",
         ).forEach { (item, translation) ->
             builder.add(item, translation)
         }
@@ -326,7 +326,7 @@ class LanguageProvider(output: FabricDataOutput) : FabricLanguageProvider(output
             HybridAquaticBlocks.ACACIA_CRATE.translationKey to "Break with an axe to open",
             HybridAquaticBlocks.CHERRY_CRATE.translationKey to "Break with an axe to open",
             HybridAquaticItems.FISHING_NET.translationKey to "Stored Entity: %s",
-            HybridAquaticItems.MOON_JELLYFISH_HAT.translationKey to "Made by Jakotens",
+//            HybridAquaticItems.MOON_JELLYFISH_HAT.translationKey to "Made by Jakotens",
         ).forEach { (itemTranslationKey, translation) ->
             builder.add(itemTranslationKey.plus(".description"), translation)
         }
