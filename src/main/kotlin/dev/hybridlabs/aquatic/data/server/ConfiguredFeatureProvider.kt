@@ -11,20 +11,24 @@ import net.minecraft.block.BlockState
 import net.minecraft.block.Blocks
 import net.minecraft.block.HorizontalFacingBlock
 import net.minecraft.registry.RegistryWrapper
-import net.minecraft.registry.entry.RegistryEntryList
 import net.minecraft.state.property.Properties
 import net.minecraft.util.collection.DataPool
 import net.minecraft.util.math.Direction
 import net.minecraft.util.math.intprovider.ConstantIntProvider
 import net.minecraft.util.math.intprovider.UniformIntProvider
+import net.minecraft.util.math.noise.DoublePerlinNoiseSampler
 import net.minecraft.world.gen.blockpredicate.BlockPredicate
 import net.minecraft.world.gen.feature.*
 import net.minecraft.world.gen.stateprovider.BlockStateProvider
+import net.minecraft.world.gen.stateprovider.NoiseBlockStateProvider
 import net.minecraft.world.gen.stateprovider.SimpleBlockStateProvider
 import net.minecraft.world.gen.stateprovider.WeightedBlockStateProvider
 import java.util.concurrent.CompletableFuture
 
-class ConfiguredFeatureProvider(output: FabricDataOutput, registriesFuture: CompletableFuture<RegistryWrapper.WrapperLookup>) : FabricDynamicRegistryProvider(output, registriesFuture) {
+class ConfiguredFeatureProvider(
+    output: FabricDataOutput,
+    registriesFuture: CompletableFuture<RegistryWrapper.WrapperLookup>
+) : FabricDynamicRegistryProvider(output, registriesFuture) {
     override fun configure(registries: RegistryWrapper.WrapperLookup, entries: Entries) {
         // anemone patch
         entries.add(
@@ -38,25 +42,14 @@ class ConfiguredFeatureProvider(output: FabricDataOutput, registriesFuture: Comp
                             WeightedBlockStateProvider(
                                 DataPool.builder<BlockState>()
                                     .add(HybridAquaticBlocks.ANEMONE.defaultState.with(Properties.WATERLOGGED, true), 1)
-                                    .add(HybridAquaticBlocks.STRAWBERRY_ANEMONE.defaultState.with(Properties.WATERLOGGED, true), 3)
+                                    .add(
+                                        HybridAquaticBlocks.STRAWBERRY_ANEMONE.defaultState.with(
+                                            Properties.WATERLOGGED,
+                                            true
+                                        ), 3
+                                    )
                                     .build()
                             )
-                        ),
-                        BlockPredicate.matchingBlocks(Blocks.WATER)
-                    )
-                )
-            )
-        )
-
-        entries.add(
-            HybridAquaticConfiguredFeatures.BROWN_SEAWEED_PATCH,
-            ConfiguredFeature(
-                Feature.FLOWER, RandomPatchFeatureConfig(
-                    10, 5, 2,
-                    PlacedFeatures.createEntry(
-                        Feature.SIMPLE_BLOCK,
-                        SimpleBlockFeatureConfig(
-                            BlockStateProvider.of(HybridAquaticBlocks.BROWN_SEAWEED.defaultState)
                         ),
                         BlockPredicate.matchingBlocks(Blocks.WATER)
                     )
@@ -73,6 +66,63 @@ class ConfiguredFeatureProvider(output: FabricDataOutput, registriesFuture: Comp
                         Feature.SIMPLE_BLOCK,
                         SimpleBlockFeatureConfig(
                             BlockStateProvider.of(HybridAquaticBlocks.RED_SEAWEED.defaultState)
+                        ),
+                        BlockPredicate.matchingBlocks(Blocks.WATER)
+                    )
+                )
+            )
+        )
+
+        entries.add(
+            HybridAquaticConfiguredFeatures.RED_SEAWEED_MEADOW,
+            ConfiguredFeature(
+                Feature.RANDOM_PATCH, RandomPatchFeatureConfig(
+                    100, 10, 10,
+                    PlacedFeatures.createEntry(
+                        Feature.SIMPLE_BLOCK,
+                        SimpleBlockFeatureConfig(
+                            NoiseBlockStateProvider(
+                                237L,
+                                DoublePerlinNoiseSampler.NoiseParameters(-5, -5.0, *DoubleArray(0)),
+                                1.0f,
+                                listOf<BlockState>(
+                                    HybridAquaticBlocks.RED_SEAWEED.defaultState
+                                )
+                            )
+                        ),
+                        BlockPredicate.matchingBlocks(Blocks.WATER)
+                    )
+                )
+            )
+        )
+
+        //#region Sargassum
+
+        entries.add(
+            HybridAquaticConfiguredFeatures.SARGASSUM,
+            ConfiguredFeature(
+                HybridAquaticFeatures.SARGASSUM, SargassumFeatureConfig(
+                    SimpleBlockStateProvider.of(HybridAquaticBlocks.SARGASSUM)
+                )
+            )
+        )
+
+        entries.add(
+            HybridAquaticConfiguredFeatures.FLOATING_SARGASSUM,
+            ConfiguredFeature(
+                Feature.RANDOM_PATCH, RandomPatchFeatureConfig(
+                    100, 10, 10,
+                    PlacedFeatures.createEntry(
+                        Feature.SIMPLE_BLOCK,
+                        SimpleBlockFeatureConfig(
+                            NoiseBlockStateProvider(
+                                237L,
+                                DoublePerlinNoiseSampler.NoiseParameters(-5, 5.0, *DoubleArray(0)),
+                                1.0f,
+                                listOf<BlockState>(
+                                    HybridAquaticBlocks.FLOATING_SARGASSUM.defaultState
+                                )
+                            )
                         ),
                         BlockPredicate.matchingBlocks(Blocks.WATER)
                     )
@@ -106,7 +156,12 @@ class ConfiguredFeatureProvider(output: FabricDataOutput, registriesFuture: Comp
                     PlacedFeatures.createEntry(
                         Feature.SIMPLE_BLOCK,
                         SimpleBlockFeatureConfig(
-                            BlockStateProvider.of(HybridAquaticBlocks.TUBE_SPONGE.defaultState.with(Properties.WATERLOGGED, true))
+                            BlockStateProvider.of(
+                                HybridAquaticBlocks.TUBE_SPONGE.defaultState.with(
+                                    Properties.WATERLOGGED,
+                                    true
+                                )
+                            )
                         ),
                         BlockPredicate.matchingBlocks(Blocks.WATER)
                     )
@@ -125,8 +180,14 @@ class ConfiguredFeatureProvider(output: FabricDataOutput, registriesFuture: Comp
                         SimpleBlockFeatureConfig(
                             WeightedBlockStateProvider(
                                 DataPool.builder<BlockState>()
-                                    .add(HybridAquaticBlocks.GIANT_CLAM.defaultState.with(Properties.WATERLOGGED, true).with(HorizontalFacingBlock.FACING, Direction.EAST), 1)
-                                    .add(HybridAquaticBlocks.GIANT_CLAM.defaultState.with(Properties.WATERLOGGED, true).with(HorizontalFacingBlock.FACING, Direction.NORTH), 1)
+                                    .add(
+                                        HybridAquaticBlocks.GIANT_CLAM.defaultState.with(Properties.WATERLOGGED, true)
+                                            .with(HorizontalFacingBlock.FACING, Direction.EAST), 1
+                                    )
+                                    .add(
+                                        HybridAquaticBlocks.GIANT_CLAM.defaultState.with(Properties.WATERLOGGED, true)
+                                            .with(HorizontalFacingBlock.FACING, Direction.NORTH), 1
+                                    )
                                     .build()
                             )
                         ),
@@ -154,34 +215,12 @@ class ConfiguredFeatureProvider(output: FabricDataOutput, registriesFuture: Comp
                     SimpleBlockStateProvider.of(Blocks.TUFF),
                     SimpleBlockStateProvider.of(HybridAquaticBlocks.THERMAL_VENT),
                     SimpleBlockStateProvider.of(HybridAquaticBlocks.TUBE_WORM),
-                    UniformIntProvider.create(2, 5),
-                    ConstantIntProvider.create(5),
-                    UniformIntProvider.create(4, 8),
+                    UniformIntProvider.create(2, 3),
+                    ConstantIntProvider.create(2),
+                    UniformIntProvider.create(1, 3),
                     ConstantIntProvider.create(8),
                     UniformIntProvider.create(TubeWormBlock.WORMS.min, TubeWormBlock.WORMS.max),
                 )
-            )
-        )
-
-        // deep coral
-        entries.add(
-            HybridAquaticConfiguredFeatures.DEEP_CORAL_TREE,
-            ConfiguredFeature(
-                HybridAquaticFeatures.DEEP_CORAL_TREE, DefaultFeatureConfig()
-            )
-        )
-
-        entries.add(
-            HybridAquaticConfiguredFeatures.DEEP_CORAL_CLAW,
-            ConfiguredFeature(
-                HybridAquaticFeatures.DEEP_CORAL_CLAW, DefaultFeatureConfig()
-            )
-        )
-
-        entries.add(
-            HybridAquaticConfiguredFeatures.DEEP_CORAL_MUSHROOM,
-            ConfiguredFeature(
-                HybridAquaticFeatures.DEEP_CORAL_MUSHROOM, DefaultFeatureConfig()
             )
         )
 
@@ -196,19 +235,41 @@ class ConfiguredFeatureProvider(output: FabricDataOutput, registriesFuture: Comp
             )
         )
 
-        entries.add(
-            HybridAquaticConfiguredFeatures.DEEP_OCEAN_VEGETATION,
-            ConfiguredFeature(
-                Feature.SIMPLE_RANDOM_SELECTOR,
-                SimpleRandomFeatureConfig(
-                    RegistryEntryList.of(
-                        entries.ref(HybridAquaticPlacedFeatures.DEEP_CORAL_TREE),
-                        entries.ref(HybridAquaticPlacedFeatures.DEEP_CORAL_CLAW),
-                        entries.ref(HybridAquaticPlacedFeatures.DEEP_CORAL_MUSHROOM)
-                    )
-                )
-            )
-        )
+//        // deep coral
+//        entries.add(
+//            HybridAquaticConfiguredFeatures.DEEP_CORAL_TREE,
+//            ConfiguredFeature(
+//                HybridAquaticFeatures.DEEP_CORAL_TREE, DefaultFeatureConfig()
+//            )
+//        )
+//
+//        entries.add(
+//            HybridAquaticConfiguredFeatures.DEEP_CORAL_CLAW,
+//            ConfiguredFeature(
+//                HybridAquaticFeatures.DEEP_CORAL_CLAW, DefaultFeatureConfig()
+//            )
+//        )
+//
+//        entries.add(
+//            HybridAquaticConfiguredFeatures.DEEP_CORAL_MUSHROOM,
+//            ConfiguredFeature(
+//                HybridAquaticFeatures.DEEP_CORAL_MUSHROOM, DefaultFeatureConfig()
+//            )
+//        )
+//
+//        entries.add(
+//            HybridAquaticConfiguredFeatures.DEEP_OCEAN_VEGETATION,
+//            ConfiguredFeature(
+//                Feature.SIMPLE_RANDOM_SELECTOR,
+//                SimpleRandomFeatureConfig(
+//                    RegistryEntryList.of(
+//                        entries.ref(HybridAquaticPlacedFeatures.DEEP_CORAL_TREE),
+//                        entries.ref(HybridAquaticPlacedFeatures.DEEP_CORAL_CLAW),
+//                        entries.ref(HybridAquaticPlacedFeatures.DEEP_CORAL_MUSHROOM)
+//                    )
+//                )
+//            )
+//        )
     }
 
     override fun getName(): String {

@@ -154,7 +154,12 @@ class ModelProvider(output: FabricDataOutput) : FabricModelProvider(output) {
             )
 
             registerTintableCrossBlockState(
-                HybridAquaticBlocks.BROWN_SEAWEED,
+                HybridAquaticBlocks.SARGASSUM_PLANT,
+                BlockStateModelGenerator.TintType.NOT_TINTED,
+            )
+
+            registerTintableCrossBlockState(
+                HybridAquaticBlocks.SARGASSUM,
                 BlockStateModelGenerator.TintType.NOT_TINTED,
             )
 
@@ -175,7 +180,7 @@ class ModelProvider(output: FabricDataOutput) : FabricModelProvider(output) {
             HybridAquaticItems.BUOY,
             HybridAquaticItems.RED_SEAWEED,
             HybridAquaticItems.GREEN_SEAWEED,
-            HybridAquaticItems.BROWN_SEAWEED,
+            HybridAquaticItems.SARGASSUM,
             HybridAquaticItems.TUBE_SPONGE,
             HybridAquaticItems.UNI,
             HybridAquaticItems.RAW_CRAYFISH,

@@ -46,7 +46,6 @@ class BlockTagProvider(output: FabricDataOutput, registriesFuture: CompletableFu
             .add(HybridAquaticBlocks.STRIPPED_DRIFTWOOD_WOOD)
 
         getOrCreateTagBuilder(BlockTags.UNDERWATER_BONEMEALS)
-            .add(HybridAquaticBlocks.BROWN_SEAWEED)
             .add(HybridAquaticBlocks.RED_SEAWEED)
             .add(HybridAquaticBlocks.GREEN_SEAWEED)
 
@@ -61,7 +60,6 @@ class BlockTagProvider(output: FabricDataOutput, registriesFuture: CompletableFu
         getOrCreateTagBuilder(BlockTags.CORAL_PLANTS)
             .add(HybridAquaticBlocks.BUTTON_CORAL_FAN)
             .add(HybridAquaticBlocks.SUN_CORAL_FAN)
-            .add(HybridAquaticBlocks.BROWN_SEAWEED)
             .add(HybridAquaticBlocks.RED_SEAWEED)
             .add(HybridAquaticBlocks.GREEN_SEAWEED)
 

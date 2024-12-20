@@ -2,18 +2,12 @@
   "feature": "hybrid-aquatic:thermal_vent_patch",
   "placement": [
     {
-      "type": "minecraft:noise_based_count",
-      "noise_factor": 100.0,
-      "noise_offset": 0.0,
-      "noise_to_count_ratio": 5
-    },
-    {
       "type": "minecraft:in_square"
     },
     {
       "type": "minecraft:surface_relative_threshold_filter",
       "heightmap": "OCEAN_FLOOR_WG",
-      "max_inclusive": -12
+      "max_inclusive": -32
     },
     {
       "type": "minecraft:count",

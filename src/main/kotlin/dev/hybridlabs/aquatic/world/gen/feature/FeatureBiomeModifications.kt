@@ -20,13 +20,25 @@ object FeatureBiomeModifications {
         BiomeModifications.addFeature(
             BiomeSelectors.tag(HybridAquaticBiomeTags.TROPICAL_OCEANS),
             GenerationStep.Feature.VEGETAL_DECORATION,
-            HybridAquaticPlacedFeatures.BROWN_SEAWEED_PATCH
+            HybridAquaticPlacedFeatures.SARGASSUM
+        )
+
+        BiomeModifications.addFeature(
+            BiomeSelectors.tag(HybridAquaticBiomeTags.DEEP_TROPICAL_OCEANS),
+            GenerationStep.Feature.VEGETAL_DECORATION,
+            HybridAquaticPlacedFeatures.FLOATING_SARGASSUM
         )
 
         BiomeModifications.addFeature(
             BiomeSelectors.tag(HybridAquaticBiomeTags.TROPICAL_OCEANS),
             GenerationStep.Feature.VEGETAL_DECORATION,
             HybridAquaticPlacedFeatures.RED_SEAWEED_PATCH
+        )
+
+        BiomeModifications.addFeature(
+            BiomeSelectors.tag(HybridAquaticBiomeTags.SHALLOW_TROPICAL_OCEANS),
+            GenerationStep.Feature.VEGETAL_DECORATION,
+            HybridAquaticPlacedFeatures.RED_SEAWEED_MEADOW
         )
 
         BiomeModifications.addFeature(
@@ -61,14 +73,14 @@ object FeatureBiomeModifications {
 
         BiomeModifications.addFeature(
             BiomeSelectors.tag(BiomeTags.IS_DEEP_OCEAN),
-            GenerationStep.Feature.LAKES,
+            GenerationStep.Feature.SURFACE_STRUCTURES,
             HybridAquaticPlacedFeatures.BRINE_LAKE
         )
 
-        BiomeModifications.addFeature(
-            BiomeSelectors.tag(BiomeTags.IS_DEEP_OCEAN),
-            GenerationStep.Feature.VEGETAL_DECORATION,
-            HybridAquaticPlacedFeatures.DEEP_OCEAN_VEGETATION
-        )
+//        BiomeModifications.addFeature(
+//            BiomeSelectors.tag(BiomeTags.IS_DEEP_OCEAN),
+//            GenerationStep.Feature.VEGETAL_DECORATION,
+//            HybridAquaticPlacedFeatures.DEEP_OCEAN_VEGETATION
+//        )
     }
 }

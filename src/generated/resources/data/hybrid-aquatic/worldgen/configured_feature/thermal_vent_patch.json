@@ -10,11 +10,11 @@
     "count": {
       "type": "minecraft:uniform",
       "value": {
-        "max_inclusive": 5,
+        "max_inclusive": 3,
         "min_inclusive": 2
       }
     },
-    "spread_radius": 5,
+    "spread_radius": 2,
     "vent_block": {
       "type": "minecraft:simple_state_provider",
       "state": {
@@ -38,8 +38,8 @@
     "worm_count": {
       "type": "minecraft:uniform",
       "value": {
-        "max_inclusive": 8,
-        "min_inclusive": 4
+        "max_inclusive": 3,
+        "min_inclusive": 1
       }
     },
     "worm_count_per_block": {

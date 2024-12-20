@@ -4,6 +4,7 @@ import com.mojang.serialization.Codec
 import dev.hybridlabs.aquatic.block.ThermalVentBlock
 import dev.hybridlabs.aquatic.block.TubeWormBlock
 import dev.hybridlabs.aquatic.entity.HybridAquaticEntityTypes
+import dev.hybridlabs.aquatic.tag.HybridAquaticBiomeTags
 import net.minecraft.block.Block
 import net.minecraft.block.BlockState
 import net.minecraft.block.enums.Thickness
@@ -51,7 +52,10 @@ class VentPatchFeature(codec: Codec<VentPatchFeatureConfig>) : Feature<VentPatch
                 val wormRadius = wormRadiusProvider.get(random)
                 generateTubeWormPatch(world, candidateTopPos, random, wormCount, wormCountPerBlockProvider, wormRadius, wormProvider)
 
-                spawnYetiCrabsAroundVent(world, candidateTopPos, random, 1 + random.nextInt(3), 6)
+                val biome = world.getBiome(candidateTopPos)
+                if (biome.isIn(HybridAquaticBiomeTags.ARCTIC_OCEANS)) {
+                    spawnYetiCrabsAroundVent(world, candidateTopPos, random, 1, 3)
+                }
 
                 generated = true
             }

@@ -27,13 +27,26 @@ class PlacedFeatureProvider(output: FabricDataOutput, registriesFuture: Completa
             )
         )
 
+        // sargassum
         entries.add(
-            HybridAquaticPlacedFeatures.BROWN_SEAWEED_PATCH,
-            PlacedFeature(entries.ref(HybridAquaticConfiguredFeatures.BROWN_SEAWEED_PATCH),
+            HybridAquaticPlacedFeatures.SARGASSUM,
+            PlacedFeature(entries.ref(HybridAquaticConfiguredFeatures.SARGASSUM),
                 listOf(
                     SquarePlacementModifier.of(),
                     PlacedFeatures.OCEAN_FLOOR_WG_HEIGHTMAP,
-                    CountPlacementModifier.of(1),
+                    BiomePlacementModifier.of(),
+                    CountPlacementModifier.of(10),
+                )
+            )
+        )
+
+        entries.add(
+            HybridAquaticPlacedFeatures.FLOATING_SARGASSUM,
+            PlacedFeature(entries.ref(HybridAquaticConfiguredFeatures.FLOATING_SARGASSUM),
+                listOf(
+                    SquarePlacementModifier.of(),
+                    PlacedFeatures.WORLD_SURFACE_WG_HEIGHTMAP,
+                    NoiseBasedCountPlacementModifier.of(20, 100.0, 0.0),
                 )
             )
         )
@@ -43,8 +56,21 @@ class PlacedFeatureProvider(output: FabricDataOutput, registriesFuture: Completa
             PlacedFeature(entries.ref(HybridAquaticConfiguredFeatures.RED_SEAWEED_PATCH),
                 listOf(
                     SquarePlacementModifier.of(),
+                    NoiseBasedCountPlacementModifier.of(20, 300.0, 0.0),
                     PlacedFeatures.OCEAN_FLOOR_WG_HEIGHTMAP,
                     CountPlacementModifier.of(1),
+                )
+            )
+        )
+
+        entries.add(
+            HybridAquaticPlacedFeatures.RED_SEAWEED_MEADOW,
+            PlacedFeature(
+                entries.ref(HybridAquaticConfiguredFeatures.RED_SEAWEED_MEADOW),
+                listOf(
+                    SquarePlacementModifier.of(),
+                    NoiseBasedCountPlacementModifier.of(10, 100.0, 0.0),
+                    PlacedFeatures.OCEAN_FLOOR_WG_HEIGHTMAP,
                 )
             )
         )
@@ -101,9 +127,8 @@ class PlacedFeatureProvider(output: FabricDataOutput, registriesFuture: Completa
             HybridAquaticPlacedFeatures.THERMAL_VENT_PATCH,
             PlacedFeature(entries.ref(HybridAquaticConfiguredFeatures.THERMAL_VENT_PATCH),
                 listOf(
-                    NoiseBasedCountPlacementModifier.of(5, 100.0, 0.0),
                     SquarePlacementModifier.of(),
-                    SurfaceThresholdFilterPlacementModifier.of(Heightmap.Type.OCEAN_FLOOR_WG, Int.MIN_VALUE, -12),
+                    SurfaceThresholdFilterPlacementModifier.of(Heightmap.Type.OCEAN_FLOOR_WG, Int.MIN_VALUE, -32),
                     CountPlacementModifier.of(1),
                 )
             )
@@ -115,53 +140,53 @@ class PlacedFeatureProvider(output: FabricDataOutput, registriesFuture: Completa
             PlacedFeature(entries.ref(HybridAquaticConfiguredFeatures.BRINE_LAKE),
                 listOf(
                     SquarePlacementModifier.of(),
-                    SurfaceThresholdFilterPlacementModifier.of(Heightmap.Type.OCEAN_FLOOR_WG, Int.MIN_VALUE, -8),
+                    SurfaceThresholdFilterPlacementModifier.of(Heightmap.Type.OCEAN_FLOOR_WG, Int.MIN_VALUE, -32),
                     CountPlacementModifier.of(1),
                 )
             )
         )
 
-        entries.add(
-            HybridAquaticPlacedFeatures.DEEP_CORAL_MUSHROOM,
-            PlacedFeature(entries.ref(HybridAquaticConfiguredFeatures.DEEP_CORAL_MUSHROOM),
-                listOf(
-                    SquarePlacementModifier.of(),
-                    PlacedFeatures.OCEAN_FLOOR_WG_HEIGHTMAP,
-                )
-            )
-        )
-
-        entries.add(
-            HybridAquaticPlacedFeatures.DEEP_CORAL_TREE,
-            PlacedFeature(entries.ref(HybridAquaticConfiguredFeatures.DEEP_CORAL_TREE),
-                listOf(
-                    SquarePlacementModifier.of(),
-                    PlacedFeatures.OCEAN_FLOOR_WG_HEIGHTMAP,
-                )
-            )
-        )
-
-        entries.add(
-            HybridAquaticPlacedFeatures.DEEP_CORAL_CLAW,
-            PlacedFeature(entries.ref(HybridAquaticConfiguredFeatures.DEEP_CORAL_CLAW),
-                listOf(
-                    SquarePlacementModifier.of(),
-                    PlacedFeatures.OCEAN_FLOOR_WG_HEIGHTMAP,
-                )
-            )
-        )
-
-        entries.add(
-            HybridAquaticPlacedFeatures.DEEP_OCEAN_VEGETATION,
-            PlacedFeature(
-                entries.ref(HybridAquaticConfiguredFeatures.DEEP_OCEAN_VEGETATION),
-                listOf(
-                    NoiseBasedCountPlacementModifier.of(40, 200.0, 0.0),
-                    SurfaceThresholdFilterPlacementModifier.of(Heightmap.Type.OCEAN_FLOOR_WG, Int.MIN_VALUE, -12),
-                    SquarePlacementModifier.of(),
-                )
-            )
-        )
+//        entries.add(
+//            HybridAquaticPlacedFeatures.DEEP_CORAL_MUSHROOM,
+//            PlacedFeature(entries.ref(HybridAquaticConfiguredFeatures.DEEP_CORAL_MUSHROOM),
+//                listOf(
+//                    SquarePlacementModifier.of(),
+//                    PlacedFeatures.OCEAN_FLOOR_WG_HEIGHTMAP,
+//                )
+//            )
+//        )
+//
+//        entries.add(
+//            HybridAquaticPlacedFeatures.DEEP_CORAL_TREE,
+//            PlacedFeature(entries.ref(HybridAquaticConfiguredFeatures.DEEP_CORAL_TREE),
+//                listOf(
+//                    SquarePlacementModifier.of(),
+//                    PlacedFeatures.OCEAN_FLOOR_WG_HEIGHTMAP,
+//                )
+//            )
+//        )
+//
+//        entries.add(
+//            HybridAquaticPlacedFeatures.DEEP_CORAL_CLAW,
+//            PlacedFeature(entries.ref(HybridAquaticConfiguredFeatures.DEEP_CORAL_CLAW),
+//                listOf(
+//                    SquarePlacementModifier.of(),
+//                    PlacedFeatures.OCEAN_FLOOR_WG_HEIGHTMAP,
+//                )
+//            )
+//        )
+//
+//        entries.add(
+//            HybridAquaticPlacedFeatures.DEEP_OCEAN_VEGETATION,
+//            PlacedFeature(
+//                entries.ref(HybridAquaticConfiguredFeatures.DEEP_OCEAN_VEGETATION),
+//                listOf(
+//                    SquarePlacementModifier.of(),
+//                    NoiseBasedCountPlacementModifier.of(20, 200.0, 0.0),
+//                    SurfaceThresholdFilterPlacementModifier.of(Heightmap.Type.OCEAN_FLOOR_WG, Int.MIN_VALUE, -32),
+//                )
+//            )
+//        )
     }
 
     override fun getName(): String {

@@ -59,7 +59,8 @@ object  HybridAquaticItemGroups {
 
             entries.add(HybridAquaticItems.GREEN_SEAWEED)
             entries.add(HybridAquaticItems.RED_SEAWEED)
-            entries.add(HybridAquaticItems.BROWN_SEAWEED)
+            entries.add(HybridAquaticItems.SARGASSUM)
+            entries.add(HybridAquaticItems.FLOATING_SARGASSUM)
 
             entries.add(HybridAquaticItems.BUTTON_CORAL_BLOCK)
             entries.add(HybridAquaticItems.SUN_CORAL_BLOCK)

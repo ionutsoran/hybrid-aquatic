@@ -99,8 +99,14 @@ object HybridAquaticBlocks {
         .hardness(0.75F)
     ))
 
-    val BROWN_SEAWEED = register("brown_seaweed", BrownSeaweedBlock(FabricBlockSettings.copyOf((Blocks.SEAGRASS))))
-    val TALL_BROWN_SEAWEED = register("tall_brown_seaweed", TallBrownSeaweedBlock(FabricBlockSettings.copyOf((Blocks.TALL_SEAGRASS))))
+    val SARGASSUM = register("sargassum", SargassumBlock(FabricBlockSettings.copyOf(Blocks.KELP).nonOpaque()))
+    val SARGASSUM_PLANT = register("sargassum_plant", SargassumPlantBlock(FabricBlockSettings.copyOf(Blocks.KELP_PLANT).nonOpaque().dropsLike(SARGASSUM)))
+
+    val FLOATING_SARGASSUM = register("floating_sargassum", FloatingSargassumBlock(FabricBlockSettings
+        .copyOf(Blocks.LILY_PAD)
+        .noCollision()
+        .breakInstantly()
+        .mapColor(MapColor.OAK_TAN)))
 
     val RED_SEAWEED = register("red_seaweed", RedSeaweedBlock(FabricBlockSettings.copyOf((Blocks.SEAGRASS))))
     val TALL_RED_SEAWEED = register("tall_red_seaweed", TallRedSeaweedBlock(FabricBlockSettings.copyOf((Blocks.TALL_SEAGRASS))))
