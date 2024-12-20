@@ -101,7 +101,7 @@ object EntityBiomeModifications {
         addShark(HybridAquaticEntityTypes.THRESHER_SHARK, listOf(HybridAquaticBiomeTags.DEEP_TEMPERATE_OCEANS, HybridAquaticBiomeTags.DEEP_TROPICAL_OCEANS), 3, 1, 1)
         addShark(HybridAquaticEntityTypes.BULL_SHARK, listOf(HybridAquaticBiomeTags.DEEP_TROPICAL_OCEANS), 2, 1, 1)
         addShark(HybridAquaticEntityTypes.WHALE_SHARK, listOf(HybridAquaticBiomeTags.DEEP_TROPICAL_OCEANS), 1, 1, 1)
-        addShark(HybridAquaticEntityTypes.BASKING_SHARK, listOf(HybridAquaticBiomeTags.COLD_OCEANS, HybridAquaticBiomeTags.TEMPERATE_OCEANS), 1, 1, 1)
+        addShark(HybridAquaticEntityTypes.BASKING_SHARK, listOf(HybridAquaticBiomeTags.TEMPERATE_OCEANS, HybridAquaticBiomeTags.COLD_OCEANS, HybridAquaticBiomeTags.ARCTIC_OCEANS), 1, 1, 1)
 
         //#region Deep Sharks
         addUndergroundShark(HybridAquaticEntityTypes.FRILLED_SHARK, listOf(HybridAquaticBiomeTags.TROPICAL_OCEANS), 3, 1, 1)
