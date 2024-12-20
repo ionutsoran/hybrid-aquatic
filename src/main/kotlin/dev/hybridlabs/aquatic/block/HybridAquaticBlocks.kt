@@ -108,6 +108,13 @@ object HybridAquaticBlocks {
         .breakInstantly()
         .mapColor(MapColor.OAK_TAN)))
 
+    val GLOWING_PLANKTON = register("glowing_plankton", GlowingPlanktonBlock(FabricBlockSettings
+        .copyOf(Blocks.LILY_PAD)
+        .nonOpaque()
+        .replaceable()
+        .noCollision()
+        .breakInstantly()))
+
     val RED_SEAWEED = register("red_seaweed", RedSeaweedBlock(FabricBlockSettings.copyOf((Blocks.SEAGRASS))))
     val TALL_RED_SEAWEED = register("tall_red_seaweed", TallRedSeaweedBlock(FabricBlockSettings.copyOf((Blocks.TALL_SEAGRASS))))
 

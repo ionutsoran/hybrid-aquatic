@@ -18,7 +18,7 @@ import net.minecraft.world.World
 import net.minecraft.world.WorldAccess
 import net.minecraft.world.WorldView
 
-@Suppress("OVERRIDE_DEPRECATION")
+@Suppress("OVERRIDE_DEPRECATION", "DEPRECATION")
 class FloatingSargassumBlock(settings: Settings) : PlantBlock(settings), Waterloggable {
     init {
         defaultState = defaultState.with(Properties.WATERLOGGED, true)
@@ -77,6 +77,7 @@ class FloatingSargassumBlock(settings: Settings) : PlantBlock(settings), Waterlo
     ): VoxelShape {
         return SHAPE
     }
+
     override fun getFluidState(state: BlockState): FluidState {
         return if (state.get(Properties.WATERLOGGED)) Fluids.WATER.getStill(false) else super.getFluidState(state)
     }
@@ -88,10 +89,10 @@ class FloatingSargassumBlock(settings: Settings) : PlantBlock(settings), Waterlo
     override fun onEntityCollision(state: BlockState, world: World, pos: BlockPos, entity: Entity) {
         super.onEntityCollision(state, world, pos, entity)
         if (world is ServerWorld && entity is BoatEntity) {
-            world.breakBlock(BlockPos(pos), true, entity)
-            entity.slowMovement(state, Vec3d(0.75, 0.75, 0.75))
+            entity.slowMovement(state, Vec3d(0.66, 0.66, 0.66))
         }
     }
+
     companion object {
         private val SHAPE: VoxelShape = createCuboidShape(0.0, 14.0, 0.0, 16.0, 15.0, 16.0)
     }

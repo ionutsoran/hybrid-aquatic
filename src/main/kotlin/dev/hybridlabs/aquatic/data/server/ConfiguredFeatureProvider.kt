@@ -77,7 +77,7 @@ class ConfiguredFeatureProvider(
             HybridAquaticConfiguredFeatures.RED_SEAWEED_MEADOW,
             ConfiguredFeature(
                 Feature.RANDOM_PATCH, RandomPatchFeatureConfig(
-                    100, 10, 10,
+                    50, 10, 10,
                     PlacedFeatures.createEntry(
                         Feature.SIMPLE_BLOCK,
                         SimpleBlockFeatureConfig(
@@ -123,6 +123,22 @@ class ConfiguredFeatureProvider(
                                     HybridAquaticBlocks.FLOATING_SARGASSUM.defaultState
                                 )
                             )
+                        ),
+                        BlockPredicate.matchingBlocks(Blocks.WATER)
+                    )
+                )
+            )
+        )
+
+        entries.add(
+            HybridAquaticConfiguredFeatures.GLOWING_PLANKTON,
+            ConfiguredFeature(
+                Feature.RANDOM_PATCH, RandomPatchFeatureConfig(
+                    100, 12, 12,
+                    PlacedFeatures.createEntry(
+                        Feature.SIMPLE_BLOCK,
+                        SimpleBlockFeatureConfig(
+                            BlockStateProvider.of(HybridAquaticBlocks.GLOWING_PLANKTON.defaultState)
                         ),
                         BlockPredicate.matchingBlocks(Blocks.WATER)
                     )

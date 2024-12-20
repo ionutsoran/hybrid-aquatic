@@ -30,6 +30,12 @@ object FeatureBiomeModifications {
         )
 
         BiomeModifications.addFeature(
+            BiomeSelectors.tag(HybridAquaticBiomeTags.REEF),
+            GenerationStep.Feature.VEGETAL_DECORATION,
+            HybridAquaticPlacedFeatures.GLOWING_PLANKTON
+        )
+
+        BiomeModifications.addFeature(
             BiomeSelectors.tag(HybridAquaticBiomeTags.TROPICAL_OCEANS),
             GenerationStep.Feature.VEGETAL_DECORATION,
             HybridAquaticPlacedFeatures.RED_SEAWEED_PATCH
@@ -73,7 +79,7 @@ object FeatureBiomeModifications {
 
         BiomeModifications.addFeature(
             BiomeSelectors.tag(BiomeTags.IS_DEEP_OCEAN),
-            GenerationStep.Feature.SURFACE_STRUCTURES,
+            GenerationStep.Feature.LAKES,
             HybridAquaticPlacedFeatures.BRINE_LAKE
         )
 

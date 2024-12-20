@@ -13,6 +13,7 @@ object HybridAquaticConfiguredFeatures {
     val ANEMONE_PATCH = register("anemone_patch")
     val SARGASSUM = register("sargassum")
     val FLOATING_SARGASSUM = register("floating_sargassum")
+    val GLOWING_PLANKTON = register("glowing_plankton")
     val RED_SEAWEED_PATCH = register("red_seaweed_patch")
     val RED_SEAWEED_MEADOW = register("red_seaweed_meadow")
     val GREEN_SEAWEED_PATCH = register("green_seaweed_patch")

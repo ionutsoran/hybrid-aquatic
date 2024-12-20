@@ -52,6 +52,17 @@ class PlacedFeatureProvider(output: FabricDataOutput, registriesFuture: Completa
         )
 
         entries.add(
+            HybridAquaticPlacedFeatures.GLOWING_PLANKTON,
+            PlacedFeature(entries.ref(HybridAquaticConfiguredFeatures.GLOWING_PLANKTON),
+                listOf(
+                    SquarePlacementModifier.of(),
+                    PlacedFeatures.WORLD_SURFACE_WG_HEIGHTMAP,
+                    NoiseBasedCountPlacementModifier.of(40, 100.0, 0.0),
+                )
+            )
+        )
+
+        entries.add(
             HybridAquaticPlacedFeatures.RED_SEAWEED_PATCH,
             PlacedFeature(entries.ref(HybridAquaticConfiguredFeatures.RED_SEAWEED_PATCH),
                 listOf(
@@ -129,7 +140,7 @@ class PlacedFeatureProvider(output: FabricDataOutput, registriesFuture: Completa
                 listOf(
                     SquarePlacementModifier.of(),
                     SurfaceThresholdFilterPlacementModifier.of(Heightmap.Type.OCEAN_FLOOR_WG, Int.MIN_VALUE, -32),
-                    CountPlacementModifier.of(1),
+                    NoiseBasedCountPlacementModifier.of(10, 100.0, 0.0),
                 )
             )
         )
@@ -141,7 +152,7 @@ class PlacedFeatureProvider(output: FabricDataOutput, registriesFuture: Completa
                 listOf(
                     SquarePlacementModifier.of(),
                     SurfaceThresholdFilterPlacementModifier.of(Heightmap.Type.OCEAN_FLOOR_WG, Int.MIN_VALUE, -32),
-                    CountPlacementModifier.of(1),
+                    NoiseBasedCountPlacementModifier.of(10, 100.0, 0.0),
                 )
             )
         )
