@@ -9,6 +9,7 @@ import net.minecraft.item.ItemPlacementContext
 import net.minecraft.server.world.ServerWorld
 import net.minecraft.state.StateManager
 import net.minecraft.state.property.Properties
+import net.minecraft.state.property.Properties.WATERLOGGED
 import net.minecraft.util.math.BlockPos
 import net.minecraft.util.math.Direction
 import net.minecraft.util.math.Vec3d
@@ -21,7 +22,7 @@ import net.minecraft.world.WorldView
 @Suppress("OVERRIDE_DEPRECATION", "DEPRECATION")
 class FloatingSargassumBlock(settings: Settings) : PlantBlock(settings), Waterloggable {
     init {
-        defaultState = defaultState.with(Properties.WATERLOGGED, true)
+        defaultState = defaultState.with(WATERLOGGED, true)
     }
 
     override fun canPlaceAt(state: BlockState, world: WorldView, pos: BlockPos): Boolean {
