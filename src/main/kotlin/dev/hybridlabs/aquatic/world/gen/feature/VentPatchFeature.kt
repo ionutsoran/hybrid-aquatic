@@ -7,6 +7,7 @@ import dev.hybridlabs.aquatic.entity.HybridAquaticEntityTypes
 import dev.hybridlabs.aquatic.tag.HybridAquaticBiomeTags
 import net.minecraft.block.Block
 import net.minecraft.block.BlockState
+import net.minecraft.block.Blocks
 import net.minecraft.block.enums.Thickness
 import net.minecraft.entity.SpawnReason
 import net.minecraft.state.property.Properties
@@ -179,7 +180,7 @@ class VentPatchFeature(codec: Codec<VentPatchFeatureConfig>) : Feature<VentPatch
             val surfaceY = world.getTopY(Heightmap.Type.OCEAN_FLOOR, targetPos.x, targetPos.z)
             val tubeWormPos = BlockPos(targetPos.x, surfaceY, targetPos.z)
 
-            if (!world.isWater(tubeWormPos)) {
+            if (world.getBlockState(tubeWormPos).block != Blocks.WATER) {
                 return@repeat
             }
 
